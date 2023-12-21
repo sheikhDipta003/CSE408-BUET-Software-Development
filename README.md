@@ -39,7 +39,7 @@ Step-by-step guide to set up the project locally:
      ```
    - Use Kubernetes to orchestrate the containers.
      ```
-     kubectl apply -f deployment.yml  # If using Kubernetes
+     kubectl apply -f deployment.yml
      ```
 
 3. **Initialize Frontend:**
