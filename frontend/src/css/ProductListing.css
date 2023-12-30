@@ -1,0 +1,44 @@
+.content-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-groups {
+    /* Existing styles */
+    flex-basis: 20%;
+}
+
+.topBar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px;
+    height: 20%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.items-per-page, .sort-by, .brand-name {
+    margin: 0 10px;
+    color: black;
+}
+
+.select-boxes {
+    display: flex;
+    align-items: center;
+}
+
+.select-boxes label {
+    margin-right: 5px;
+    margin-top: 0;
+}
+
+.items-per-page, .sort-by {
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 1em;
+    min-width: 5vw;
+}

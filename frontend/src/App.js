@@ -10,10 +10,10 @@ import RequireAuth from './components/RequireAuth';
 import ProductListing from './components/ProductListing';
 import UserProfile from './components/UserProfile';
 import { Routes, Route } from 'react-router-dom';
+import ProductFilter from './components/ProductFilter';
 
 const ROLES = {
   'User': 2001,
-  'Editor': 1984,
   'Admin': 5150
 }
 
@@ -25,6 +25,7 @@ function App() {
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
       <Route path="user/:user_id/viewprofile" element={<UserProfile />} />
+      <Route path="products/filter" element={<ProductFilter />} />
       <Route path="linkpage" element={<LinkPage />} />
       <Route path="unauthorized" element={<Unauthorized />} />
       <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
@@ -32,21 +33,6 @@ function App() {
       </Route>
       <Route path="productlisting/:category/:subcategory" element={<ProductListing />} />
       <Route path="*" element={<Missing />} />
-      
-        {/* public routes */}
-        {/* <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="linkpage" element={<LinkPage />} />
-        <Route path="unauthorized" element={<Unauthorized />} /> */}
-
-        {/* we want to protect these routes */}
-        {/* <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-          <Route path="/" element={<Home />} />
-        </Route> */}
-
-        {/* <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-          <Route path="admin" element={<Admin />} />
-        </Route> */}
       </Route>
     </Routes>
   );
