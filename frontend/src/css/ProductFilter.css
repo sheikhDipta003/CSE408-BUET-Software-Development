@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+/* ProductFilter.css */
+
+.product-filters{
+    display: 'flex';
+    flex-direction: 'column';
+}
+.price-range-slider {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.price-range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}
+
+.dual-slider {
+    position: relative;
+    height: 26px;
+}
+
+.dual-slider input[type="range"] {
+    width: 50%;
+}
+
+.filter-groups {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Ensure child elements take the full width */
+}
+
+.filter-group {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.filter-header label {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.filter-option {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-option input[type="checkbox"] {
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+}

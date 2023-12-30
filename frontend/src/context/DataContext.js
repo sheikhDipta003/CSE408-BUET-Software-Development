@@ -4,17 +4,17 @@ import useAxiosFetch from '../hooks/useAxiosFetch';
 const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
-    const [users, setUsers] = useState([]);
+    const [products, setProducts] = useState([]);
 
-    const { data, fetchError, isLoading } = useAxiosFetch('http://localhost:3500/users');
+    const { data, fetchError, isLoading } = useAxiosFetch('http://localhost:3500/products');
 
     useEffect(() => {
-        setUsers(data);
-    }, [data])
+        setProducts(data);
+    }, [data]);
 
     return (
         <DataContext.Provider value={{
-            users, setUsers, fetchError, isLoading
+            products, setProducts, fetchError, isLoading
         }}>
             {children}
         </DataContext.Provider>
