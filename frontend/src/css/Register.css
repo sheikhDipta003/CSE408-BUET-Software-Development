@@ -1,0 +1,41 @@
+/* register start */
+/* New Styles for Email, Address, and Date of Birth */
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.dob {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.dob label {
+    flex-basis: 100%;
+    max-width: 100%;
+    margin-top: 0;
+    font-weight: normal;
+}
+
+.dob select {
+    flex-basis: 30%;
+    max-width: 30%;
+    padding: 8px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+}
+
+/* Additional responsive adjustments if needed */
+@media (max-width: 600px) {
+    .dob select {
+        flex-basis: 30%;
+        max-width: 30%;
+    }
+}
+
+/* register end */
