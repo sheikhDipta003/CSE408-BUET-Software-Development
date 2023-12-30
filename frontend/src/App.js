@@ -8,6 +8,7 @@ import Unauthorized from './components/Unauthorized';
 import LinkPage from './components/LinkPage';
 import RequireAuth from './components/RequireAuth';
 import ProductListing from './components/ProductListing';
+import UserProfile from './components/UserProfile';
 import { Routes, Route } from 'react-router-dom';
 
 const ROLES = {
@@ -23,6 +24,7 @@ function App() {
       <Route path="/" element={<Layout />}>
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
+      <Route path="user/:user_id/viewprofile" element={<UserProfile />} />
       <Route path="linkpage" element={<LinkPage />} />
       <Route path="unauthorized" element={<Unauthorized />} />
       <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>

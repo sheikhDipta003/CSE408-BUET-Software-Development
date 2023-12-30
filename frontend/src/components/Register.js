@@ -3,9 +3,12 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
 import { Link } from "react-router-dom";
+import '../css/Register.css';
+import {format} from 'date-fns';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const REGISTER_URL = '/register';
 
 const Register = () => {
@@ -27,22 +30,70 @@ const Register = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
+
+    const [address, setAddress] = useState('');
+
+    const [dobYear, setDobYear] = useState('');
+    const [dobMonth, setDobMonth] = useState('');
+    const [dobDay, setDobDay] = useState('');
+
     useEffect(() => {
         userRef.current.focus();
-    }, [])
+    }, []);
 
     useEffect(() => {
         setValidName(USER_REGEX.test(user));
-    }, [user])
+    }, [user]);
 
     useEffect(() => {
         setValidPwd(PWD_REGEX.test(pwd));
         setValidMatch(pwd === matchPwd);
-    }, [pwd, matchPwd])
+    }, [pwd, matchPwd]);
+
+    useEffect(() => {
+        setValidEmail(EMAIL_REGEX.test(email));
+    }, [email]);
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd, matchPwd])
+    }, [user, pwd, matchPwd]);
+
+    // function to generate year options
+    const generateYearOptions = () => {
+        const currentYear = new Date().getFullYear();
+        let years = [];
+        for (let i = currentYear; i >= currentYear - 100; i--) {
+            years.push(<option key={i} value={i}>{i}</option>);
+        }
+        return years;
+    };
+
+    // Function to generate month options
+    const generateMonthOptions = () => {
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        return months.map((month, index) => (
+            <option key={index} value={index + 1}>{month}</option>
+        ));
+    };
+
+    // Function to generate day options
+    const getDaysInMonth = (year, month) => {
+        return new Date(year, month, 0).getDate();
+    };
+    const generateDayOptions = () => {
+        let days = [];
+        const daysInMonth = getDaysInMonth(dobYear, dobMonth);
+        for (let i = 1; i <= daysInMonth; i++) {
+            days.push(<option key={i} value={i}>{i}</option>);
+        }
+        return days;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -54,8 +105,16 @@ const Register = () => {
             return;
         }
         try {
+            const new_user = {user_id: 100,
+                                name: user,
+                                email,
+                                password: pwd,
+                                reg_date: format(new Date(), 'yyyy-MM-dd'),
+                                address,
+                                date_of_birth: format(new Date(dobYear, dobMonth - 1, dobDay), 'yyyy-MM-dd')
+            };
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ user, pwd }),
+                JSON.stringify(new_user),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -86,12 +145,9 @@ const Register = () => {
             {success ? (
                 <section>
                     <h1>Success!</h1>
-                    {/* <p>
+                    <p>
                         <a href="#">Sign In</a>
-                    </p> */}
-                    <span className="line">
-                        <Link to="/">Sign In</Link>
-                    </span>
+                    </p>
                 </section>
             ) : (
                 <section>
@@ -169,7 +225,48 @@ const Register = () => {
                             Must match the first password input field.
                         </p>
 
-                        <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
+                        <label htmlFor="email">
+                            Email:
+                            <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            required
+                            aria-invalid={validEmail ? "false" : "true"}
+                            onFocus={() => setEmailFocus(true)}
+                            onBlur={() => setEmailFocus(false)}
+                        />
+
+                        <label htmlFor="address">
+                            Address:
+                        </label>
+                        <textarea
+                            id="address"
+                            onChange={(e) => setAddress(e.target.value)}
+                            value={address}
+                        />
+
+                        <div className="dob">
+                            <label>Date of Birth:</label>
+                            <select value={dobYear} onChange={(e) => setDobYear(e.target.value)}>
+                                <option value="">Year</option>
+                                {generateYearOptions()}
+                            </select>
+                            <select value={dobMonth} onChange={(e) => setDobMonth(e.target.value)}>
+                                <option value="">Month</option>
+                                {generateMonthOptions()}
+                            </select>
+                            <select value={dobDay} onChange={(e) => setDobDay(e.target.value)}>
+                                <option value="">Day</option>
+                                {generateDayOptions()}
+                            </select>
+                        </div>
+
+                        <button disabled={!validName || !validPwd || !validMatch || !validEmail ? true : false}>Sign Up</button>
                     </form>
                     <p>
                         Already registered?<br />

@@ -1,0 +1,73 @@
+{
+  "users": [{
+    "user_id": 1,
+    "password": "sR4`C8CUx9",
+    "name": "Maddi",
+    "email": "mmackley0@shutterfly.com",
+    "reg_date": "2023-06-01",
+    "address": "93413 Schmedeman Crossing"
+  }, {
+    "user_id": 2,
+    "password": "iW0\"+.3zLoWOv",
+    "name": "Harrietta",
+    "email": "hmacer1@naver.com",
+    "reg_date": "2022-12-10",
+    "address": "55 Jana Pass"
+  }, {
+    "user_id": 3,
+    "password": "vF7$`,jUu)RO",
+    "name": "Carmel",
+    "email": "csego2@php.net",
+    "reg_date": "2023-07-08",
+    "address": "0 Welch Junction"
+  }, {
+    "user_id": 4,
+    "password": "iB9+#0R~bMbnS2",
+    "name": "Corissa",
+    "email": "chaslewood3@angelfire.com",
+    "reg_date": "2023-07-17",
+    "address": "0648 Nelson Drive"
+  }, {
+    "user_id": 5,
+    "password": "sG8(3lwOu",
+    "name": "Ivar",
+    "email": "icrosdill4@linkedin.com",
+    "reg_date": "2023-12-07",
+    "address": "7 Hagan Terrace"
+  }, {
+    "user_id": 6,
+    "password": "hK8`L7D$|N",
+    "name": "Findlay",
+    "email": "fream5@eventbrite.com",
+    "reg_date": "2023-07-02",
+    "address": "5171 Dorton Pass"
+  }, {
+    "user_id": 7,
+    "password": "rV0`}tW/tRTFP\">",
+    "name": "Olivero",
+    "email": "ojouannisson6@desdev.cn",
+    "reg_date": "2023-12-13",
+    "address": "58333 Eliot Point"
+  }, {
+    "user_id": 8,
+    "password": "pU0)bqii",
+    "name": "Suzanne",
+    "email": "sgrunnill7@shinystat.com",
+    "reg_date": "2023-12-26",
+    "address": "87 Warrior Parkway"
+  }, {
+    "user_id": 9,
+    "password": "fJ4,3\\wYeqWMG86",
+    "name": "Tedie",
+    "email": "tmcillrick8@indiatimes.com",
+    "reg_date": "2023-06-09",
+    "address": "55354 Lakewood Gardens Avenue"
+  }, {
+    "user_id": 10,
+    "password": "gN7@fd*3*\\7.g",
+    "name": "Neel",
+    "email": "nfontin9@imgur.com",
+    "reg_date": "2023-11-05",
+    "address": "39 Kinsman Lane"
+  }]
+}
