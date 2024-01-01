@@ -264,6 +264,27 @@
                             "product_name": "Asus Vivobook E410MA Celeron N4020 14\" HD Laptop",
                             "image": "https://www.startech.com.bd/image/cache/catalog/laptop/asus/e410ma/e410ma-01-500x500.jpg",
                             "price": 60000,
+                            "specs":{
+                                "Processor": {
+                                  "ProcessorBrand": "Intel",
+                                  "ProcessorModel": "Core i3-1115G4",
+                                  "ProcessorFrequency": "3.00 GHz up to 4.10 GHz",
+                                  "ProcessorCore": 2,
+                                  "ProcessorThread": 4,
+                                  "CPUCache": "6 MB"
+                                },
+                                "Display": {
+                                  "DisplaySize": "15.6 Inch",
+                                  "DisplayType": "FHD LED",
+                                  "DisplayResolution": "1920 x 1080",
+                                  "TouchScreen": "No"
+                                },
+                                "Memory": {
+                                  "RAM": "8GB",
+                                  "RAMType": "DDR4",
+                                  "BusSpeed": "3200MHz"
+                                }
+                            },
                             "coupon" : {
                                 "code":"SAVE11LAPTOP",
                                 "discount_percentage": 11,
@@ -280,6 +301,27 @@
                             "product_name": "Asus VivoBook 15 E510MA Intel Celeron N4020 15.6\" FHD Laptop",
                             "image": "https://www.startech.com.bd/image/cache/catalog/laptop/asus/e410ma/e410ma-01-500x500.jpg",
                             "price": 31000,
+                            "specs":{
+                                "Processor": {
+                                  "ProcessorBrand": "Intel",
+                                  "ProcessorModel": "Core i3-1115G4",
+                                  "ProcessorFrequency": "3.00 GHz up to 4.10 GHz",
+                                  "ProcessorCore": 2,
+                                  "ProcessorThread": 4,
+                                  "CPUCache": "6 MB"
+                                },
+                                "Display": {
+                                  "DisplaySize": "15.6 Inch",
+                                  "DisplayType": "FHD LED",
+                                  "DisplayResolution": "1920 x 1080",
+                                  "TouchScreen": "No"
+                                },
+                                "Memory": {
+                                  "RAM": "8GB",
+                                  "RAMType": "DDR4",
+                                  "BusSpeed": "3200MHz"
+                                }
+                            },
                             "coupon" : {
                                 "code":"CASHBACK61",
                                 "discount_percentage": null,
@@ -308,6 +350,27 @@
                             "product_name": "Dell D1918H 18.5 Inch LED Monitor",
                             "image": "https://www.startech.com.bd/image/cache/catalog/monitor/dell/d1918h/d1918h-01-500x500.jpg",
                             "price": 60000,
+                            "specs": {
+                                "Processor": {
+                                  "ProcessorBrand": "Intel",
+                                  "ProcessorModel": "Celeron Processor N4020",
+                                  "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
+                                  "ProcessorCore": 2,
+                                  "ProcessorThread": 2,
+                                  "CPUCache": "4MB"
+                                },
+                                "Display": {
+                                  "DisplaySize": 14,
+                                  "DisplayType": "LED",
+                                  "DisplayResolution": "HD (1366X768)",
+                                  "TouchScreen": "No"
+                                },
+                                "Memory": {
+                                  "RAM": "4GB(onboard)",
+                                  "RAMType": "DDR4",
+                                  "BusSpeed": "2666MHz"
+                                }
+                            },
                             "coupon" : {
                                 "code":"SAVE15LAPTOP",
                                 "discount_percentage": 15,
@@ -324,6 +387,27 @@
                             "product_name": "Dell D1920H 18.5 Inch LED Monitor",
                             "image": "https://www.startech.com.bd/image/cache/catalog/monitor/dell/d1918h/d1918h-01-500x500.jpg",
                             "price": 30000,
+                            "specs": {
+                                "Processor": {
+                                  "ProcessorBrand": "Intel",
+                                  "ProcessorModel": "Celeron Processor N4020",
+                                  "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
+                                  "ProcessorCore": 2,
+                                  "ProcessorThread": 2,
+                                  "CPUCache": "4MB"
+                                },
+                                "Display": {
+                                  "DisplaySize": 14,
+                                  "DisplayType": "LED",
+                                  "DisplayResolution": "HD (1366X768)",
+                                  "TouchScreen": "No"
+                                },
+                                "Memory": {
+                                  "RAM": "4GB(onboard)",
+                                  "RAMType": "DDR4",
+                                  "BusSpeed": "2666MHz"
+                                }
+                            },
                             "coupon" : {
                                 "code":"CASHBACK75",
                                 "discount_percentage": null,
@@ -346,6 +430,27 @@
                             "product_name": "Dell Inspiron 15 3520 Intel Core i3",
                             "image": "https://www.ryanscomputers.com/storage/products/main/dell-inspiron-15-3520-intel-core-i3-1215u-8gb-ram-61699100387.webp",
                             "price": 60000,
+                            "specs": {
+                                "Processor": {
+                                  "ProcessorBrand": "Intel",
+                                  "ProcessorModel": "Celeron Processor N4020",
+                                  "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
+                                  "ProcessorCore": 2,
+                                  "ProcessorThread": 2,
+                                  "CPUCache": "4MB"
+                                },
+                                "Display": {
+                                  "DisplaySize": 14,
+                                  "DisplayType": "LED",
+                                  "DisplayResolution": "HD (1366X768)",
+                                  "TouchScreen": "No"
+                                },
+                                "Memory": {
+                                  "RAM": "4GB(onboard)",
+                                  "RAMType": "DDR4",
+                                  "BusSpeed": "2666MHz"
+                                }
+                            },
                             "coupon" : {
                                 "code":"SAVE15LAPTOP",
                                 "discount_percentage": 15,
@@ -362,6 +467,27 @@
                             "product_name": "Dell Inspiron 15 3520 Intel Core i3",
                             "image": "https://www.ryanscomputers.com/storage/products/main/dell-inspiron-15-3520-intel-core-i3-1215u-8gb-ram-61699100387.webp",
                             "price": 30000,
+                            "specs": {
+                                "Processor": {
+                                  "ProcessorBrand": "Intel",
+                                  "ProcessorModel": "Celeron Processor N4020",
+                                  "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
+                                  "ProcessorCore": 2,
+                                  "ProcessorThread": 2,
+                                  "CPUCache": "4MB"
+                                },
+                                "Display": {
+                                  "DisplaySize": 14,
+                                  "DisplayType": "LED",
+                                  "DisplayResolution": "HD (1366X768)",
+                                  "TouchScreen": "No"
+                                },
+                                "Memory": {
+                                  "RAM": "4GB(onboard)",
+                                  "RAMType": "DDR4",
+                                  "BusSpeed": "2666MHz"
+                                }
+                            },
                             "coupon" : {
                                 "code":"CASHBACK75",
                                 "discount_percentage": null,
