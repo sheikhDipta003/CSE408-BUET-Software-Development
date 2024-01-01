@@ -11,6 +11,7 @@ import ProductListing from './components/ProductListing';
 import UserProfile from './components/UserProfile';
 import { Routes, Route } from 'react-router-dom';
 import ProductFilter from './components/ProductFilter';
+import ProductDetails from './components/ProductDetails';
 
 const ROLES = {
   'User': 2001,
@@ -32,6 +33,7 @@ function App() {
         <Route path="admin" element={<Admin />} />
       </Route>
       <Route path="productlisting/:category/:subcategory" element={<ProductListing />} />
+      <Route path="productlisting/:category/:subcategory/:product_id" element={<ProductDetails />} />
       <Route path="*" element={<Missing />} />
       </Route>
     </Routes>

@@ -1,20 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../css/ProductFilter.css';
 
-const ProductFilter = ({ specs }) => {
+const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {
     const [expanded, setExpanded] = useState({});
     const [selectedOptions, setSelectedOptions] = useState({});
     const [lowerValue, setLowerValue] = useState(0);
     const [upperValue, setUpperValue] = useState(400000);
 
-    const handleLowerSliderChange = (event) => {
-        const value = Math.min(Number(event.target.value), 200000);
-        setLowerValue(value);
+    const handleLowerSliderChange = async (event) => {
+        try {
+            const value = Math.min(Number(event.target.value), 200000);
+            setLowerValue(value);
+        } catch (err) {
+            console.log(`Error: ${err.message}`);
+        }
     };
 
-    const handleUpperSliderChange = (event) => {
-        const value = Math.max(Number(event.target.value), 200000);
-        setUpperValue(value);
+    const handleUpperSliderChange = async (event) => {
+        try {
+            const value = Math.max(Number(event.target.value), 200000);
+            setUpperValue(value);
+        } catch (err) {
+            console.log(`Error: ${err.message}`);
+        }
     };
 
     useEffect(() => {
@@ -29,16 +37,24 @@ const ProductFilter = ({ specs }) => {
         setSelectedOptions(initialSelectedOptions);
     }, [specs]);
 
+    useEffect(() => {
+        onPriceRangeChange({ lower: lowerValue, upper: upperValue });
+    }, [lowerValue, upperValue]);
+
     const handleCheckboxChange = (key, option) => {
-        const options = selectedOptions[key];
-        const newOptions = options.includes(option)
-            ? options.filter(o => o !== option)
-            : [...options, option];
-        setSelectedOptions({ ...selectedOptions, [key]: newOptions });
+        setSelectedOptions(prevSelectedOptions => {
+            const updatedOptions = prevSelectedOptions[key].includes(option)
+                ? prevSelectedOptions[key].filter(o => o !== option)
+                : [...prevSelectedOptions[key], option];
+
+            const newSelectedOptions = { ...prevSelectedOptions, [key]: updatedOptions };
+            onFilterChange(newSelectedOptions);
+            return newSelectedOptions;
+        });
     };
 
     const toggleExpand = key => {
-        setExpanded({ ...expanded, [key]: !expanded[key] });
+        setExpanded(prevExpanded => ({ ...prevExpanded, [key]: !prevExpanded[key] }));
     };
 
     const renderFilterGroup = (key, options) => {
@@ -55,7 +71,7 @@ const ProductFilter = ({ specs }) => {
                                 <input
                                     type="checkbox"
                                     value={option}
-                                    checked={selectedOptions[key].includes(option)}
+                                    checked={selectedOptions[key]?.includes(option)}
                                     onChange={() => handleCheckboxChange(key, option)}
                                 />
                                 {option}
