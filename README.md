@@ -13,54 +13,58 @@ Welcome to the repository for our Price Comparison Website. This platform is des
 
 ## Getting Started
 
-### Prerequisites
-List of software/tools required:
-- Docker
-- Kubernetes
-- Node.js
-- Python 3.x
-- MongoDB/MySQL
-- Any IDE (like VSCode)
+## Technology Stack
 
-### Installation
-Step-by-step guide to set up the project locally:
+- **Frontend**: React.js
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB with Mongoose
+
+## Installation
 
 1. **Clone the Repository:**
-   ```
-   git clone https://github.com/sheikhDipta003/CSE408-BUET-Software-Development.git TechShoppers
+   ```bash
+   git clone https://github.com/your-username/TechShoppers.git
    cd TechShoppers
    ```
 
-2. **Set Up Backend Services:**
-   - Navigate to each microservice directory and build Docker containers.
-     ```
-     cd microservice-name
-     docker build -t microservice-name .
-     ```
-   - Use Kubernetes to orchestrate the containers.
-     ```
-     kubectl apply -f deployment.yml
-     ```
-
-3. **Initialize Frontend:**
-   ```
-   cd frontend
+2. **Install Dependencies:**
+   ```bash
+   # Install backend dependencies
+   cd backend
    npm install
+
+   # Install frontend dependencies
+   cd ../frontend
+   npm install
+   ```
+
+3. **Configure Environment Variables:**
+   - Create a `.env` file in the `backend` directory and set up your MongoDB connection string, e.g., `MONGODB_URI=your-mongodb-uri`.
+
+4. **Run the Application:**
+   ```bash
+   # Start the backend server
+   cd backend
+   npm start
+
+   # Start the backend server (uses the node package named 'json-server'; fetch sample data for temporary use in the frontend)
+   cd frontend
+   npx json-server -p 3500 -w .\data\products.json
+
+   # Start the frontend development server
+   cd ../frontend
    npm start
    ```
 
-4. **Access the Application:**
-   - The website should be running on `http://localhost:3000` (or another port specified).
+5. **Open in Browser:**
+   Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to access TechShoppers.
 
 ### Configuration
-- Configure environment variables in `.env` files for each microservice.
-- Adjust database connection settings, API keys, and other sensitive information.
+- Configure environment variables in `.env` files for database connection settings, API keys, and other sensitive information.
 
-## Usage
-Describe how to use the website, including:
-- How to search for products.
-- How to compare prices.
-- Managing user accounts.
+## API Documentation
+
+- The API documentation, ERD and System Architecture details can be found in the `system-design` directory.
 
 ## Running Tests
 Instructions for running automated tests for this system.
@@ -69,16 +73,7 @@ cd microservice-name
 npm test
 ```
 
-## Deployment
-Guidelines for deploying the application on a live system.
-
-## Contributing
-Please read [CONTRIBUTING.md](LINK_TO_CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](LINK_TO_TAGS).
-
 ## Authors
 - **Sheikh Intiser Uddin Dipta** - *1905003* - [sheikhDipta003](https://github.com/sheikhDipta003)
 - **Tanhiat Fatema Afnan** - *1905014* - [Afnan312](https://github.com/Afnan312)
-- **Nazmus Sakib Sami** - *1905030* - [tormentor57](https://github.com/tormentor57)
+- **Nazmus Sakib Sami** - *1905030* - [mahito57](https://github.com/mahito57)
