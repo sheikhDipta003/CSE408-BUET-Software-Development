@@ -68,7 +68,7 @@
                                   "DisplaySize": "15.6 Inch",
                                   "DisplayType": "FHD LED",
                                   "DisplayResolution": "1920 x 1080",
-                                  "TouchScreen": "No"
+                                  "TouchScreen": "Yes"
                                 },
                                 "Memory": {
                                   "RAM": "8GB",
@@ -139,10 +139,10 @@
                                 "Processor": {
                                   "ProcessorBrand": "Intel",
                                   "ProcessorModel": "Core i3-1115G4",
-                                  "ProcessorFrequency": "3.00 GHz up to 4.10 GHz",
+                                  "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
-                                  "ProcessorThread": 4,
-                                  "CPUCache": "6 MB"
+                                  "ProcessorThread": 2,
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": "15.6 Inch",
