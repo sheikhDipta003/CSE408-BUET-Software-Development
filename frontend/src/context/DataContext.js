@@ -14,7 +14,8 @@ export const DataProvider = ({ children }) => {
 
     return (
         <DataContext.Provider value={{
-            products, setProducts, fetchError, isLoading
+            products, setProducts, fetchError, isLoading,
+
         }}>
             {children}
         </DataContext.Provider>

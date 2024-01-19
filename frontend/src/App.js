@@ -12,6 +12,7 @@ import UserProfile from './components/UserProfile';
 import { Routes, Route } from 'react-router-dom';
 import ProductFilter from './components/ProductFilter';
 import ProductDetails from './components/ProductDetails';
+import Wishlist from './components/Wishlist';
 
 const ROLES = {
   'User': 2001,
@@ -26,6 +27,7 @@ function App() {
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
       <Route path="user/:user_id/viewprofile" element={<UserProfile />} />
+      <Route path="user/:user_id/wishlist" element={<Wishlist />} />
       <Route path="products/filter" element={<ProductFilter />} />
       <Route path="linkpage" element={<LinkPage />} />
       <Route path="unauthorized" element={<Unauthorized />} />

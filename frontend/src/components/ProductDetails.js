@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import DataContext from '../context/DataContext';
 import '../css/ProductDetails.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons';
