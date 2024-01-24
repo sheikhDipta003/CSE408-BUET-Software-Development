@@ -32,7 +32,7 @@
     text-decoration: none;
 }
 
-.arrow-table{
+.carousel{
     display: flex;
     flex-direction: row;
 }
@@ -78,4 +78,9 @@
 
 .bookmark-icon:hover {
     cursor: pointer;
+}
+
+button[disabled]{
+    opacity: 0.5;
+    cursor: not-allowed;
 }

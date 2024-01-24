@@ -15,6 +15,8 @@ const Wishlist = () => {
   
   const brands = ["HP", "Asus", "Dell"];
 
+  const websites = ["Startech", "Ryans", "Daraz"];
+
     const wishlistItems = [{
       "product_id": "p979",
       "product_name": "HP 15 Laptop, Intel Celeron X941",
@@ -126,7 +128,9 @@ const Wishlist = () => {
     });
 
     const [products, setProducts] = useState(wishlistItems);
+    const [filteredProducts, setFilteredProducts] = useState(wishlistItems);
     const [selectedProducts, setSelectedProducts] = useState(new Set());
+    const [displayedProducts, setDisplayedProducts] = useState(wishlistItems);
 
     const handleSelectProduct = (productId) => {
         const newSelection = new Set(selectedProducts);
@@ -147,10 +151,11 @@ const Wishlist = () => {
     };
 
     const handleDeleteSelected = () => {
-        const newProducts = products.filter(product => !selectedProducts.has(product.product_id));
-        setProducts(newProducts);
-        setSelectedProducts(new Set()); // Clear selection
-    };
+      const newProducts = products.filter(product => !selectedProducts.has(product.product_id));
+      setProducts(newProducts);
+      setDisplayedProducts(newProducts); // Update displayed products as well
+      setSelectedProducts(new Set()); // Clear selection
+  };
 
     useEffect(() => {
       applyFilters();
@@ -158,28 +163,37 @@ const Wishlist = () => {
   
     const applyFilters = () => {
       let filtered = products.filter(item => {
-        return (filters.category ? item.category.toLowerCase() === filters.category.toLowerCase() : true) &&
-               (filters.subcategory ? item.subcategory.toLowerCase() === filters.subcategory.toLowerCase() : true) &&
-               (filters.brand ? item.brand.toLowerCase() === filters.brand.toLowerCase() : true) &&
-               (filters.website ? item.website_name.toLowerCase().includes(filters.website.toLowerCase()) : true);
+          return (filters.category ? item.category.toLowerCase() === filters.category.toLowerCase() : true) &&
+                 (filters.subcategory ? item.subcategory.toLowerCase() === filters.subcategory.toLowerCase() : true) &&
+                 (filters.brand ? item.brand.toLowerCase() === filters.brand.toLowerCase() : true) &&
+                 (filters.website ? item.website_name.toLowerCase().includes(filters.website.toLowerCase()) : true);
       });
-  
-      if (sortOption === 'priceLowHigh') {
-        filtered.sort((a, b) => a.currrent_price - b.currrent_price);
-      } else if (sortOption === 'priceHighLow') {
-        filtered.sort((a, b) => b.currrent_price - a.currrent_price);
-      }
-  
-      setProducts(filtered);
-    };
+      
+      setFilteredProducts(filtered);
+      applySort(filtered);
+      setDisplayedProducts(filtered);
+  };
+
+  const applySort = (list) => {
+    let sorted = [...list];
+    if (sortOption === 'priceLowHigh') {
+        sorted.sort((a, b) => a.currrent_price - b.currrent_price);
+    } else if (sortOption === 'priceHighLow') {
+        sorted.sort((a, b) => b.currrent_price - a.currrent_price);
+    }
+    setFilteredProducts(sorted);
+};
   
     const handleFilterChange = (e) => {
+      e.preventDefault();
       setFilters({ ...filters, [e.target.name]: e.target.value });
     };
-  
+
     const handleSortChange = (e) => {
+      e.preventDefault();
       setSortOption(e.target.value);
-    };  
+      applySort(filteredProducts);
+    };
 
     return (
         <div className="wishlist-wrapper">
@@ -206,25 +220,29 @@ const Wishlist = () => {
                     <label>Brand:</label>
                     <select name="brand" onChange={handleFilterChange}>
                         <option value="">All</option>
-                        {brands.map((brand, index) => (
+                        {filters.subcategory && brands.map((brand, index) => (
                             <option key={index} value={brand}>{brand}</option>
                         ))}
                     </select>
                 </div>
                 <div>
                     <label>Website:</label>
-                    <input type="text" name="website" onChange={handleFilterChange} />
+                    <select name="website" onChange={handleFilterChange}>
+                        <option value="">All</option>
+                        {websites.map((site, index) => (
+                            <option key={index} value={site}>{site}</option>
+                        ))}
+                    </select>
                 </div>
-                <button onClick={applyFilters}>Apply Filters</button>
             </div>
 
             <div className="sorting-and-products-container">
               <div className="sorting-container">
                 <label htmlFor="sort-by">Sort By: </label>
                 <select id="sort-by" value={sortOption} onChange={handleSortChange}>
-                  <option value="">Select</option>
-                  <option value="priceLowHigh">Price (Low -> High)</option>
-                  <option value="priceHighLow">Price (High -> Low)</option>
+                  <option value="">None</option>
+                  <option value="priceLowHigh">Price (Low -{'>'} High)</option>
+                  <option value="priceHighLow">Price (High -{'>'} Low)</option>
                 </select>
 
                 <button onClick={handleSelectAll}>
@@ -235,7 +253,7 @@ const Wishlist = () => {
             </div>
             
             <div className="wishlist-container">
-                {products.map((item, index) => (
+                {displayedProducts.map((item, index) => (
                     <div key={index} className="wishlist-item">
                         <input
                             type="checkbox"

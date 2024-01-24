@@ -1,0 +1,22 @@
+.sticky-menu {
+    position:sticky;
+    top: 0;
+    width: 95vw;
+    display: flex;
+    justify-content: space-around;
+    background-color: #fff;
+    z-index: 5;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .sticky-menu a {
+    padding: 10px 15px;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .sticky-menu .active {
+    border-bottom: 2px solid blue;
+  }
+
+  
