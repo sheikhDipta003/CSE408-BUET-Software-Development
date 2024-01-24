@@ -16,6 +16,7 @@ const ProductDetails = () => {
     const [showCouponPopup, setShowCouponPopup] = useState(false);
     const [selectedCoupon, setSelectedCoupon] = useState(null);
     const [couponsCount, setCouponsCount] = useState(0);
+    const [visibleStartIndex, setVisibleStartIndex] = useState(0);
 
     useEffect(() => {
         if (products.items) {
@@ -66,7 +67,7 @@ const ProductDetails = () => {
     };
 
     const renderProductHeaders = () => {
-        return headerData.map((product, index) => (
+        return headerData.slice(visibleStartIndex, visibleStartIndex + 2).map((product, index) => (
             <th key={index}>
                 <div className="product-header">
                     {showCouponPopup && <CouponDetailsPopup coupon={selectedCoupon} onClose={() => setShowCouponPopup(false)} />}
@@ -116,40 +117,52 @@ const ProductDetails = () => {
         return null;
     };
 
+    const slideRight = () => {
+        if (visibleStartIndex < headerData.length - 2) {
+            setVisibleStartIndex(visibleStartIndex + 1);
+        }
+    };
+
+    const slideLeft = () => {
+        if (visibleStartIndex > 0) {
+            setVisibleStartIndex(visibleStartIndex - 1);
+        }
+    };
+
     return (
         <div className="product-details">
-
             <h2>Product Comparison</h2>
 
-            <div className='arrow-table'>
-                <button className="arrow-button">
+            <div className='carousel'>
+                <button className="arrow-button" onClick={slideLeft} disabled={visibleStartIndex===0}>
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </button>
 
-                <table className="comparison-table">
-                    <thead>
-                        <tr>
-                            <th style={{textAlign: 'center'}}>Spec Name</th>
-                            {renderProductHeaders()}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {renderSpecKeys().map((key, idx) => (
-                            <tr key={idx} className={idx % 2 === 0 ? 'even' : 'odd'}>
-                                <td>{key}</td>
-                                {comparisonData.map((product, i) => (
-                                    <td key={i}>{product[key]}</td>
-                                ))}
+                <div className="carousel-table">
+                    <table className="comparison-table">
+                        <thead>
+                            <tr>
+                                <th style={{textAlign: 'center'}}>Spec Name</th>
+                                {renderProductHeaders()}
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {renderSpecKeys().map((key, idx) => (
+                                <tr key={idx} className={idx % 2 === 0 ? 'even' : 'odd'}>
+                                    <td>{key}</td>
+                                    {comparisonData.slice(visibleStartIndex, visibleStartIndex + 2).map((product, i) => (
+                                        <td key={i}>{product[key]}</td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
 
-                <button className="arrow-button">
+                <button className="arrow-button" onClick={slideRight} disabled={visibleStartIndex === headerData.length-2}>
                     <FontAwesomeIcon icon={faArrowRight} />
                 </button>
             </div>
-
         </div>
     );
 };

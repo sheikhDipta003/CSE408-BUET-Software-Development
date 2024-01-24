@@ -53,6 +53,7 @@ const Menu = () => {
                                 className="dropdown-content"
                                 value={categories[category][0]}
                                 onChange={(option) => handleSubcategoryChange(option, category)}
+                                style={{"z-index":"10"}}
                             />
                         )}
                     </div>
