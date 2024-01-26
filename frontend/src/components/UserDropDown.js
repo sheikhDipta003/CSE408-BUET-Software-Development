@@ -21,7 +21,7 @@ const UserDropDown = () => {
         <div className="dropdown-menu">
           <Link to="/home" className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200">Homepage</Link>
 
-          <div className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200">Wishlist</div>
+          <Link to="/user/1/wishlist" className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200">Wishlist</Link>
 
           <Link to="/user/1/viewprofile" className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200">Settings</Link>
 

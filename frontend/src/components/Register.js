@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
 import { Link } from "react-router-dom";
 import '../css/Register.css';
-import {format} from 'date-fns';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -65,14 +64,8 @@ const Register = () => {
             return;
         }
         try {
-            const new_user = {user_id: 100,
-                                name: user,
-                                email,
-                                password: pwd,
-                                reg_date: format(new Date(), 'yyyy-MM-dd')
-            };
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify(new_user),
+                JSON.stringify({username: user, email, password: pwd}),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
