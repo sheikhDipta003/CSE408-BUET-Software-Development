@@ -238,6 +238,7 @@ textarea {
   font-family: 'Nunito', sans-serif;
   font-size: 22px;
   padding: 0.25rem;
+  border: 2px solid black;
   border-radius: 0.5rem;
 }
 

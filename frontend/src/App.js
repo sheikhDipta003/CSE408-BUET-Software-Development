@@ -14,7 +14,6 @@ import ProductFilter from './components/ProductFilter';
 import ProductDetails from './components/ProductDetails';
 import Wishlist from './components/Wishlist';
 import UserDashboard from './components/UserDashboard';
-import Home2 from './components/Home2';
 import About from './components/About';
 import PersistLogin from './components/PersistLogin';
 import Logout from './components/Logout';
@@ -29,7 +28,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-      <Route path="home" element={<Home2 />} />
+      <Route path="home" element={<Home />} />
       <Route path="about" element={<About />} />
       <Route path="login" element={<Login />} />
       <Route path="logout" element={<Logout />} />

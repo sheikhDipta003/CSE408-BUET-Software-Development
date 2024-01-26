@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import CarouselSection from './CarouselSection';
 import StickyMenu from './StickyMenu';
-import '../css/ScrollToTopBtn.css';
 
 const recommendedProducts = [{
     "product_id": "p979",
@@ -110,35 +107,6 @@ const topOffers = recommendedProducts;
 const trendingProducts = recommendedProducts;
 
 const UserDashboard = () => {
-  const [showTopBtn, setShowTopBtn] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      console.log(window.scrollY);
-      if (window.scrollY > 300) {
-        setShowTopBtn(true);
-        console.log("Now the button will be shown");
-      } else {
-        setShowTopBtn(false);
-      }
-    };
-
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
-
-    // Clean up the event listener
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
   return (
     <div className="user-dashboard">
       <StickyMenu />
@@ -153,11 +121,6 @@ const UserDashboard = () => {
         style={{"padding": "10px 0", "min-height": "600px", "marginBottom":"10px"}}
       />
 
-      {showTopBtn && (
-        <button onClick={scrollToTop} className="top-btn">
-          <FontAwesomeIcon icon={faArrowUp} />
-        </button>
-      )}
     </div>
   );
 };
