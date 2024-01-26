@@ -2,11 +2,11 @@ import { useRef, useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-import axios from '../api/products';
+import axios from '../api/axios';
 const LOGIN_URL = '/auth';
 
 const Login = () => {
-    const { setAuth } = useAuth();
+    const { setAuth, persist, setPersist } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -65,6 +65,14 @@ const Login = () => {
         }
     }
 
+    const togglePersist = () => {
+        setPersist(prev => !prev);
+    };
+
+    useEffect(() => {
+        localStorage.setItem("persist", persist);
+    }, [persist]);
+
     return (
 
         <section>
@@ -91,6 +99,16 @@ const Login = () => {
                     required
                 />
                 <button>Sign In</button>
+                <div className="text-xs mt-2.5 flex justify-start items-end">
+                    <input 
+                        type="checkbox"
+                        id="persist"
+                        onChange={togglePersist}
+                        checked={persist}
+                        className="h-5 w-5 m-0 mx-1 my-0.5 ml-0.5"
+                    />
+                    <label htmlFor="persist" className="m-0">Trust this device</label>
+                </div>
             </form>
             <p>
                 Need an Account?<br />

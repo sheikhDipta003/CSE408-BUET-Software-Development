@@ -16,6 +16,8 @@ import Wishlist from './components/Wishlist';
 import UserDashboard from './components/UserDashboard';
 import Home2 from './components/Home2';
 import About from './components/About';
+import PersistLogin from './components/PersistLogin';
+import Logout from './components/Logout';
 
 const ROLES = {
   'User': 2001,
@@ -30,18 +32,32 @@ function App() {
       <Route path="home" element={<Home2 />} />
       <Route path="about" element={<About />} />
       <Route path="login" element={<Login />} />
+      <Route path="logout" element={<Logout />} />
       <Route path="register" element={<Register />} />
-      <Route path="user/:user_id/viewprofile" element={<UserProfile />} />
-      <Route path="user/:user_id/wishlist" element={<Wishlist />} />
-      <Route path="user/:user_id/dashboard" element={<UserDashboard />} />
       <Route path="products/filter" element={<ProductFilter />} />
+      <Route path="productlisting/:category/:subcategory" element={<ProductListing />} />
+      <Route path="productlisting/:product_id" element={<ProductDetails />} />
       <Route path="linkpage" element={<LinkPage />} />
       <Route path="unauthorized" element={<Unauthorized />} />
-      <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-        <Route path="admin" element={<Admin />} />
-      </Route>
-      <Route path="productlisting/:category/:subcategory" element={<ProductListing />} />
-      <Route path="productlisting/:category/:subcategory/:product_id" element={<ProductDetails />} />
+
+      {/* <Route element={<PersistLogin/>}> */}
+        {/* <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}> */}
+          <Route path="user/:user_id/viewprofile" element={<UserProfile />} />
+        {/* </Route> */}
+
+        {/* <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}> */}
+          <Route path="user/:user_id/wishlist" element={<Wishlist />} />
+        {/* </Route> */}
+
+        {/* <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}> */}
+          <Route path="user/:user_id/dashboard" element={<UserDashboard />} />
+        {/* </Route> */}
+        
+        {/* <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}> */}
+          <Route path="admin" element={<Admin />} />
+        {/* </Route> */}
+      {/* </Route> */}
+
       <Route path="*" element={<Missing />} />
       </Route>
     </Routes>
