@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const corsOptions = require('./config/corsOptions');
 const sequelize = require('./config/database');
 const User = require("./models/User");
 const Product = require("./models/Product");
@@ -7,16 +9,13 @@ const Website = require("./models/Website")
 const ProductWebsite = require("./models/ProductWebsite");
 const verifyJWT = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
-
+const credentials = require('./middleware/credentials');
 
 require('dotenv').config();
 
 const app = express();
 const port = 5000;
 
-app.use(cors());
-app.use(express.json());
-app.use(cookieParser());
 
 async function main(){
   try {
@@ -37,11 +36,21 @@ async function main(){
 
 main();
 
-app.get('/', (request, response) => {
-  console.log("in first page");
-  return response.status(234).send('Welcome');
-})
+app.use(credentials);
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(cookieParser());
+
+app.use('/', express.static(path.join(__dirname, '/public')));
+
+// app.get('/', (request, response) => {
+//   console.log("in first page");
+//   return response.status(234).send('Welcome');
+// })
+
+app.use('/', require('./routes/root'));
 app.use('/register', require('./routes/register'));
-app.use('/login', require('./routes/auth'));
+app.use('/auth', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
+app.use(verifyJWT);

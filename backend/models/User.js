@@ -28,8 +28,8 @@ const User = sequelize.define('User', {
     defaultValue: DataTypes.NOW, // Set the default value to the current timestamp
   },
   roles: {
-    type: DataTypes.ENUM('user', 'admin', 'collaborator'),
-    defaultValue: 'user',
+    type: DataTypes.ENUM('User', 'Admin', 'Collaborator'),
+    defaultValue: 'User',
     allowNull: false,
   },
   refreshToken: {

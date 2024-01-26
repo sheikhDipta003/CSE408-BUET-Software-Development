@@ -5,6 +5,8 @@ const handleNewUser = async (req, res) => {
     const { username, email, password } = req.body;
     if (!username || !email || !password) return res.status(400).json({ 'message': 'Username, email and password are required.' });
 
+    console.log("\nusername = ", username, ", pass = ", password);
+
     // check for duplicate usernames in the db
     const duplicate = await User.findOne({where: {email: email}});
     if (duplicate) return res.sendStatus(409); //Conflict 
