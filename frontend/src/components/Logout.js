@@ -5,9 +5,7 @@ const Logout = () => {
     const navigate = useNavigate();
     const logout = useLogout();
 
-    const signOut = async (e) => {
-        e.preventDefault();
-
+    const signOut = async () => {
         await logout();
         navigate('/home');
     }

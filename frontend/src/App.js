@@ -36,7 +36,7 @@ function App() {
       <Route path="register" element={<Register />} />
       <Route path="products/filter" element={<ProductFilter />} />
       <Route path="productlisting/:category/:subcategory" element={<ProductListing />} />
-      <Route path="productlisting/:product_id" element={<ProductDetails />} />
+      <Route path="productlisting/:category/:subcategory/:product_id" element={<ProductDetails />} />
       <Route path="linkpage" element={<LinkPage />} />
       <Route path="unauthorized" element={<Unauthorized />} />
 
@@ -58,7 +58,7 @@ function App() {
         {/* </Route> */}
       {/* </Route> */}
 
-      <Route path="*" element={<Missing />} />
+        <Route path="*" element={<Missing />} />
       </Route>
     </Routes>
   );

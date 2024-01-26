@@ -12,7 +12,7 @@ const ProductDetails = () => {
     const { products } = useContext(DataContext);
     const [comparisonData, setComparisonData] = useState([]);
     const [headerData, setHeaderData] = useState([]);
-    const { product_id } = useParams();
+    const {category, subcategory, product_id} = useParams();
     const [showCouponPopup, setShowCouponPopup] = useState(false);
     const [selectedCoupon, setSelectedCoupon] = useState(null);
     const [couponsCount, setCouponsCount] = useState(0);
@@ -32,7 +32,7 @@ const ProductDetails = () => {
                                 details.push(flattenSpecs(product.specs));
                                 headers.push(product);
 
-                                const coupons = product.coupon; // Assuming coupon is a property in your product data
+                                const coupons = product.coupon;
                                 if (coupons && coupons.length > 0) {
                                     setCouponsCount(coupons.length);
                                 }
