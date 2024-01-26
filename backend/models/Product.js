@@ -1,40 +1,51 @@
-const mongoose = require('mongoose');
+// models/Product.js
 
-const Schema = mongoose.Schema;
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+//const ProductImage = require('./ProductImage'); // Import the ProductImage model
+//const ProductWebsite = require('./ProductWebsite');
 
-const productSchema = new Schema({
-    name: {type: String, required: true},
-    brand: {type: String, required: true},
-    images: [
-        {
-            img_path: {type: String, required: true},
-            img_order: {type: Number, min: 1}
-        }
-    ],
-    category: [
-        {
-            cat_type: {type: String},
-        }
-    ],
-    subcategory: [
-        {
-            subcat_type: {type: String},
-        }
-    ],
-    specifications: [
-        {
-            spec_type: {type: String},
-            spec_val: {type: String},
-        }
-    ],
-    //should color and dimensions be general specifications????
-    //if not then delete the following: color width height
-    color: {type: String},
-    width: {type: Number, min: 0},
-    height: {type: Number, min: 0},
+const Product = sequelize.define('Product', {
+    productId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+  productName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  brand: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  category: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  subcategory: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  color: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  width: {
+    type: DataTypes.FLOAT,
+    allowNull: true,
+  },
+  height: {
+    type: DataTypes.FLOAT,
+    allowNull: true,
+  },
 });
 
+// Define the one-to-many association with ProductImage
+// Product.hasMany(ProductImage, {
+//   foreignKey: 'productId',
+//   onDelete: 'CASCADE', // Delete associated images when a product is deleted
+// });
+//Product.belongsToMany(Website, { through: ProductWebsite });
 
-const Product = mongoose.model('Product', productSchema);
-  
 module.exports = Product;

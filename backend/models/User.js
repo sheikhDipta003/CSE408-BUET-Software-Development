@@ -1,82 +1,42 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
 
-const Schema = mongoose.Schema;
-
-const userSchema = new Schema({
+const User = sequelize.define('User', {
+  userId: {
+    type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+  },
   username: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    minlength: 3
+    type: DataTypes.STRING,
+    allowNull: false, // This field is required
   },
   email: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false, // This field is required
+    unique: true, // Ensures the email is unique in the database
+    validate: {
+      isEmail: true, // Validates that the value is an email address
+    },
   },
   password: {
-      type: String,
-      required: true,
+    type: DataTypes.STRING,
+    allowNull: false, // This field is required
   },
   dob: {
-    type: Date, 
-    required: true,
+    type: DataTypes.DATE,
   },
-  wishlist: [
-    {
-      product: mongoose.Schema.Types.ObjectId,
-      date: {
-        type: Date,
-        default: Date.now
-      }
-    }
-  ],
-  notifications: [
-    {
-      title: {type: String},
-      message: {type: String},
-      date: {type: Date, default: Date.now},
-      is_read: {type: Boolean, default: false},
-    }
-  ],
-  price_drop: [
-    {
-      product: mongoose.Schema.Types.ObjectId,
-      price: {type: Number}, 
-      date: {type: Date, default: Date.now}
-    }
-  ],
-  searches: [
-    {
-      search: {type: String},
-      date: {type: Date, default: Date.now}
-    }
-  ], 
-  //suggest change
-  //1st option: keep voucher info both in user and in website, no need for expensive joins
-  vouchers: [
-    {
-      web_id: {type: String, required: true}, 
-      code: {type: String, required: true},
-      description: {type: String},
-      start_date: {type: Date},
-      end_date: {type: Date},
-      percent: {type: Number, min: 0},
-      max_amount: {type: Number, min: 0},
-    }
-  ],
-  //2nd option: keep voucher _id and website id in the user
-  vouchers2: [{
-    web_id: {type: String, required: true},
-    voucher_id: mongoose.Schema.Types.ObjectId,
+  registrationDate: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW, // Set the default value to the current timestamp
+  },
+  address: {
+    type: DataTypes.STRING,
+  },
+  refreshToken: {
+    type: DataTypes.STRING,
   }
-  ]
-}, 
-
-{
-  timestamps: true,
 });
-
-const User = mongoose.model('User', userSchema);
-
+//User.belongsToMany(Voucher, { through: UserVoucher });
+//User.hasMany(Wishlist);
 module.exports = User;
