@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const sequelize = require('./config/database');
 const User = require("./models/User");
-const Admin = require("./models/Admin");
 const Product = require("./models/Product");
 const Website = require("./models/Website")
 const ProductWebsite = require("./models/ProductWebsite");
@@ -25,7 +24,7 @@ async function main(){
     console.log('Connection to the database has been established successfully.');
   
     // Synchronize models with the database
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
   
     // Start your Express app after successful database connection
     app.listen(port, () => {
