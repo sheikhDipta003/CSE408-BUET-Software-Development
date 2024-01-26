@@ -36,6 +36,9 @@ const ProductWebsite = sequelize.define('ProductWebsite', {
     type: DataTypes.FLOAT,
     allowNull: true,
   },
+}, 
+{
+  timestamps: false,
 });
 
 //Product.belongsToMany(Website, {through: ProductWebsite});
