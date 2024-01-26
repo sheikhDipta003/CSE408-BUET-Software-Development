@@ -23,6 +23,8 @@ const ProductListing = () => {
     };
 
     const combinedSpecsRef = useRef({
+        websites:[],
+        brands:[],
         ProcessorBrand: [],
         ProcessorModel: [],
         ProcessorFrequency: [],
@@ -47,7 +49,13 @@ const ProductListing = () => {
                 productsData.items.forEach(item => {
                     item.brands.forEach(brand => {
                         if(item.category === category.toLowerCase() && (item.subcategory === subcategory.toLowerCase() || subcategory.toLowerCase() === "all") ){
+                            if (!specs["brands"].includes(brand.brand_name)) {
+                                specs["brands"].push(brand.brand_name);
+                            }
                             brand.platform_products.forEach(platform => {
+                                if (!specs["websites"].includes(platform.website_name)) {
+                                    specs["websites"].push(platform.website_name);
+                                }
                                 platform.products_info.forEach(product => {
                                     const productSpecs = product.specs;
                                     for (const specKey in productSpecs) {
@@ -82,8 +90,12 @@ const ProductListing = () => {
         // Checkbox Filters
         for (const specKey in selectedFilters) {
             const selectedOptions = selectedFilters[specKey];
-            if (selectedOptions.length > 0 && !selectedOptions.includes(product.specs[specKey])) {
-                return false;
+            for (const specCategory in product.specs) {
+                if (product.specs[specCategory].hasOwnProperty(specKey)) {
+                    if (selectedOptions.length > 0 && !selectedOptions.includes(product.specs[specCategory][specKey])) {
+                        return false;
+                    }
+                }
             }
         }
 
@@ -92,12 +104,18 @@ const ProductListing = () => {
 
     useEffect(() => {
         let tempProductCards = [];
+        let selectedBrands = selectedFilters["brands"] || [];
+        let selectedWebsites = selectedFilters["websites"] || [];
+
         products?.items?.forEach(item => {
             item.brands.forEach(brand => {
                 if(item.category === category.toLowerCase() && (item.subcategory === subcategory.toLowerCase() || subcategory.toLowerCase() === "all") ){
                     brand.platform_products.forEach(platform => {
                         platform.products_info.forEach(product => {
-                            if (filterProducts(product)) {
+                            if (filterProducts(product) && 
+                                (selectedBrands.length === 0 || selectedBrands.includes(brand.brand_name)) && 
+                                (selectedWebsites.length === 0 || selectedWebsites.includes(platform.website_name))
+                            ) {
                                 tempProductCards.push(
                                     <div className="product-card" onClick={() => goToProductDetail(product.product_id)} key={product.id} price={product.price} rating={product.rating} brand={brand.brand_name}>
                                         <img src={product.image} alt={product.name} />
@@ -122,9 +140,6 @@ const ProductListing = () => {
                 break;
             case 'topRated':
                 tempProductCards.sort((a, b) => b.props.rating - a.props.rating);
-                break;
-            case 'brandName':
-                tempProductCards.sort((a, b) => (a.props.brand_name  || "").localeCompare(b.props.brand_name || ""));
                 break;
             default:
                 // default case is already sorted
@@ -172,8 +187,6 @@ const ProductListing = () => {
 
     return (
         <main className='ProductListing'>
-            <h2 style={{color:"black"}}>List of {subcategory} in {category} category</h2>
-
             <div className="content-container">
                 {products?.items && 
                 <ProductFilter 
@@ -185,7 +198,15 @@ const ProductListing = () => {
                 <div className="content">
                     <div className="topBar">
                         <div className="results-count">
-                            Showing {itemsPerPage === 'all' ? productCards.length : Math.min((currentPage * itemsPerPage) + 1, productCards.length)} - {itemsPerPage === 'all' ? productCards.length : Math.min((currentPage + 1) * itemsPerPage, productCards.length)} of {productCards.length} results for "{category}/{subcategory}"
+                            {
+                                Math.min((currentPage * itemsPerPage) + 1, productCards.length) === Math.min((currentPage + 1) * itemsPerPage, productCards.length) ?
+                                <p>
+                                    Showing {Math.min((currentPage * itemsPerPage) + 1, productCards.length)} results for "{category}/{subcategory}"
+                                </p> : 
+                                <p>
+                                    Showing {itemsPerPage === 'all' ? productCards.length : Math.min((currentPage * itemsPerPage) + 1, productCards.length)} - {itemsPerPage === 'all' ? productCards.length : Math.min((currentPage + 1) * itemsPerPage, productCards.length)} of {productCards.length} results for "{category}/{subcategory}"
+                                </p>
+                            }
                         </div>
 
                         <div className="select-boxes">
@@ -201,7 +222,6 @@ const ProductListing = () => {
                                 <option value="priceLowToHigh">Price (Low to High)</option>
                                 <option value="priceHighToLow">Price (High to Low)</option>
                                 <option value="topRated">Top Rated</option>
-                                <option value="brandName">Brand Name</option>
                             </select>
                         </div>
                     </div>
