@@ -23,19 +23,21 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false, // This field is required
   },
-  dob: {
-    type: DataTypes.DATE,
-  },
   registrationDate: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW, // Set the default value to the current timestamp
   },
-  address: {
-    type: DataTypes.STRING,
+  roles: {
+    type: DataTypes.ENUM('user', 'admin', 'collaborator'),
+    defaultValue: 'user',
+    allowNull: false,
   },
   refreshToken: {
     type: DataTypes.STRING,
   }
+}, 
+{
+  timestamps: false,
 });
 //User.belongsToMany(Voucher, { through: UserVoucher });
 //User.hasMany(Wishlist);
