@@ -5,13 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 const Menu = () => {
     const categories = {
-        computers: ["Laptop", "Desktop", "PC"],
-        mobiles: ["Android", "Tablet"],
-        books: [],
-        fashion: [],
-        artsAndCrafts: [],
-        sports: []
-        // Add more categories and subcategories as needed
+        computers: ["all", "laptop", "desktop"],
+        mobiles: ["all", "android", "tablet"],
+        books: ["all"],
+        fashion: ["all"],
+        artsAndCrafts: ["all"],
+        sports: ["all"]
     };
     const [activeCategory, setActiveCategory] = useState(null);
     const navigate = useNavigate();
@@ -58,7 +57,6 @@ const Menu = () => {
                         )}
                     </div>
                 ))}
-                <div className="more">More...</div>
             </div>
         </div>
     );

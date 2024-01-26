@@ -212,12 +212,10 @@ label {
 section {
     width: 100%;
     max-width: 80vw;
-    min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding: 1rem;
-    /* background-color: rgba(0,0,0,0.4); */
 }
 
 form {
