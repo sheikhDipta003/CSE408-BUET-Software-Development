@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import '../css/ProductFilter.css';
 
 const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {
@@ -62,7 +64,7 @@ const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {
             <div key={key} className="filter-group">
                 <div className="filter-header" onClick={() => toggleExpand(key)}>
                     <label>{key}</label>
-                    <label>{expanded[key] ? 'Hide' : 'Show'}</label>
+                    <FontAwesomeIcon icon={expanded[key] ? faCaretUp : faCaretDown} color="black" />
                 </div>
                 {expanded[key] && (
                     <div className="filter-options">

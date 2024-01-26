@@ -25,7 +25,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -105,7 +105,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -191,7 +191,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -357,7 +357,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -394,7 +394,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -437,7 +437,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -474,7 +474,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -529,7 +529,7 @@
                                 "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                 "ProcessorCore": 2,
                                 "ProcessorThread": 2,
-                                "CPUCache": "4MB"
+                                "CPUCache": "4 MB"
                               },
                               "Display": {
                                 "DisplaySize": 14,
@@ -572,7 +572,7 @@
                                 "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                 "ProcessorCore": 2,
                                 "ProcessorThread": 2,
-                                "CPUCache": "4MB"
+                                "CPUCache": "4 MB"
                               },
                               "Display": {
                                 "DisplaySize": 14,
@@ -658,7 +658,7 @@
                                 "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                 "ProcessorCore": 2,
                                 "ProcessorThread": 2,
-                                "CPUCache": "4MB"
+                                "CPUCache": "4 MB"
                               },
                               "Display": {
                                 "DisplaySize": 14,
@@ -824,7 +824,7 @@
                                 "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                 "ProcessorCore": 2,
                                 "ProcessorThread": 2,
-                                "CPUCache": "4MB"
+                                "CPUCache": "4 MB"
                               },
                               "Display": {
                                 "DisplaySize": 14,
@@ -861,7 +861,7 @@
                                 "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                 "ProcessorCore": 2,
                                 "ProcessorThread": 2,
-                                "CPUCache": "4MB"
+                                "CPUCache": "4 MB"
                               },
                               "Display": {
                                 "DisplaySize": 14,
@@ -904,7 +904,7 @@
                                 "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                 "ProcessorCore": 2,
                                 "ProcessorThread": 2,
-                                "CPUCache": "4MB"
+                                "CPUCache": "4 MB"
                               },
                               "Display": {
                                 "DisplaySize": 14,
@@ -941,7 +941,7 @@
                                 "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                 "ProcessorCore": 2,
                                 "ProcessorThread": 2,
-                                "CPUCache": "4MB"
+                                "CPUCache": "4 MB"
                               },
                               "Display": {
                                 "DisplaySize": 14,
