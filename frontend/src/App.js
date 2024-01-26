@@ -5,7 +5,6 @@ import Layout from './components/Layout';
 import Admin from './components/Admin';
 import Missing from './components/Missing';
 import Unauthorized from './components/Unauthorized';
-import LinkPage from './components/LinkPage';
 import RequireAuth from './components/RequireAuth';
 import ProductListing from './components/ProductListing';
 import UserProfile from './components/UserProfile';
@@ -19,9 +18,10 @@ import PersistLogin from './components/PersistLogin';
 import Logout from './components/Logout';
 
 const ROLES = {
-  'User': 2001,
-  'Admin': 5150
-}
+  "Admin": 5150,
+  "Collaborator": 1984,
+  "User": 2001
+};
 
 function App() {
 
@@ -36,26 +36,25 @@ function App() {
       <Route path="products/filter" element={<ProductFilter />} />
       <Route path="productlisting/:category/:subcategory" element={<ProductListing />} />
       <Route path="productlisting/:category/:subcategory/:product_id" element={<ProductDetails />} />
-      <Route path="linkpage" element={<LinkPage />} />
       <Route path="unauthorized" element={<Unauthorized />} />
 
-      {/* <Route element={<PersistLogin/>}> */}
-        {/* <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}> */}
+      <Route element={<PersistLogin/>}>
+        <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
           <Route path="user/:user_id/viewprofile" element={<UserProfile />} />
-        {/* </Route> */}
+        </Route>
 
-        {/* <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}> */}
+        <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
           <Route path="user/:user_id/wishlist" element={<Wishlist />} />
-        {/* </Route> */}
+        </Route>
 
-        {/* <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}> */}
+        <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
           <Route path="user/:user_id/dashboard" element={<UserDashboard />} />
-        {/* </Route> */}
+        </Route>
         
-        {/* <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}> */}
+        <Route element={<RequireAuth allowedRoles={ROLES.Admin} />}>
           <Route path="admin" element={<Admin />} />
-        {/* </Route> */}
-      {/* </Route> */}
+        </Route>
+      </Route>
 
         <Route path="*" element={<Missing />} />
       </Route>

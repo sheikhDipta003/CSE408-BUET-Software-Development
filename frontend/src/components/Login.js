@@ -29,24 +29,22 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user);
-        console.log(pwd);
         setUser('');
         setPwd('');
-        // navigate('/user/1/viewprofile');
 
         try {
             const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
+                JSON.stringify({ username: user, password: pwd }),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
                 }
             );
             console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
+            console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
+            console.log("frontend -> roles ", roles);
             setAuth({ user, pwd, roles, accessToken });
             setUser('');
             setPwd('');
