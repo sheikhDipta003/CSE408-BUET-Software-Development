@@ -1,32 +1,38 @@
-const mongoose = require('mongoose');
+// models/Website.js
 
-const Schema = mongoose.Schema;
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+//const ProductWebsite = require('./ProductWebsite');
 
-const webSchema = new Schema({
-    name: {type: String, required: true},
-    url: {type: String, required: true},
-    date_added: {type: Date, default: Date.now},
-    vouchers: [
-        {
-            description: {type: String},
-            code: {type: String, required: true},
-            start_date: {type: Date},
-            end_date: {type: Date},
-            percent: {type: Number, min: 0},
-            max_amount: {type: Number, min: 0},
-        }
-    ],
-    events: [
-        {
-            name: {type: String},
-            venue: {type: String}, 
-            date: {type: Date},
-            desciption: {type: String},
-        }
-    ],
-    //should website contain the list of products instead of separate product_website table????
+const Website = sequelize.define('Website', {
+  websiteId: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  imagePath: {
+    type: DataTypes.STRING,
+    allowNull: true, // Adjust as needed
+  },
+  url: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isUrl: true, // Validate that the value is a URL
+    },
+  },
+  collaboration: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false, // Default value if not provided
+  },
 });
 
-const Wesite = mongoose.model('Website', webSchema);
-  
+//Website.belongsToMany(Product, { through: ProductWebsite });
+//Website.hasMany(Voucher);
 module.exports = Website;

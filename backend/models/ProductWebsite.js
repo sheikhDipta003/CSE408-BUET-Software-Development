@@ -1,30 +1,44 @@
-const mongoose = require('mongoose');
+// models/ProductWebsite.js
 
-const Schema = mongoose.Schema;
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+const Product = require('./Product');
+const Website = require('./Website')
 
-const prwebSchema = new Schema({
-    //store the _id created in product and website schema as a string
-    product_id: {type: String, required: true},
-    website_id: {type: String, required: true}, 
-    shipping_time: {type: Number, min: 0},
-    is_free: {type: Boolean},
-    price: {type: Number, min: 0},
-    stock: {type: Number, min: 0},
-    price_record: [
-        {
-            date: {type: Date},
-            price: {type: Number, min: 0},
-        }
-    ], 
-    rating: {type: Number, min: 0},
-    reviews:[
-        {
-            text: {type: String},
-        }
-    ]
+const ProductWebsite = sequelize.define('ProductWebsite', {
+  productId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Product, // 'Movies' would also work
+      key: 'productId'
+    }
+  },
+  websiteId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Website, // 'Actors' would also work
+      key: 'websiteId'
+    }
+  },
+  shippingTime: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  price: {
+    type: DataTypes.DECIMAL(10, 2), // Adjust precision and scale as needed
+    allowNull: false,
+  },
+  stock: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  rating: {
+    type: DataTypes.FLOAT,
+    allowNull: true,
+  },
 });
 
+//Product.belongsToMany(Website, {through: ProductWebsite});
+//Website.belongsToMany(Product, {through: ProductWebsite});
 
-const PrWeb = mongoose.model('PrWeb', prwebSchema);
-  
-module.exports = PrWeb;
+module.exports = ProductWebsite;
