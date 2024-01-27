@@ -10,7 +10,7 @@ const allWishlist = async (req, res) => {
   
         // Fetch the user's wishlist with associated products
         const wishlistDetails = await Wishlist.findAll({
-            where: { UserUserId: userId },
+            where: { userId: userId },
             include: [
               {
                 model: ProductWebsite,
@@ -46,7 +46,7 @@ const getOneWishItem = async(req, res) => {
         const wishlistId = req.params.wishlistId;
         // Fetch the list of users from the database
         const wishlistDetails = await Wishlist.findOne({
-            where: { UserUserId: userId, wishlistId: wishlistId },
+            where: { userId: userId, wishlistId: wishlistId },
             include: [
               {
                 model: ProductWebsite,
