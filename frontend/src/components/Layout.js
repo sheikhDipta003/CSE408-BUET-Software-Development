@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Nav from './Nav';
 import Menu from './Menu';
 import { DataProvider } from '../context/DataContext';
+import ScrollToTop from './ScrollToTop';
 
 const Layout = () => {
     return (
@@ -13,10 +14,11 @@ const Layout = () => {
                 <Nav />
                 <Menu/>
                 <Outlet />
+                <ScrollToTop/>
             </DataProvider>
             <Footer />
         </main>
     )
 }
 
-export default Layout
+export default Layout;

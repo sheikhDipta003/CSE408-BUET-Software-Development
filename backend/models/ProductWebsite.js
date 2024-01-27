@@ -27,7 +27,8 @@ const ProductWebsite = sequelize.define('ProductWebsite', {
     type: DataTypes.FLOAT,
     allowNull: true,
   },
-}, {
+}, 
+{
   timestamps: false,
 });
 

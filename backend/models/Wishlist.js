@@ -19,7 +19,8 @@ const Wishlist = sequelize.define('Wishlist', {
     allowNull: false,
     defaultValue: DataTypes.NOW,
   },
-}, {
+}, 
+{
   timestamps: false,
 });
 

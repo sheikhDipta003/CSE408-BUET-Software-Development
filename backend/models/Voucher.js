@@ -30,7 +30,8 @@ const Voucher = sequelize.define('Voucher', {
     type: DataTypes.DATE,
     allowNull: false,
   },
-}, {
+}, 
+{
   timestamps: false,
 });
 

@@ -5,7 +5,7 @@ import '../css/Wishlist.css';
 
 const Wishlist = () => {
   const categories = {
-    computers: ["Laptop", "Desktop", "PC"],
+    computers: ["Laptop", "Desktop"],
     mobiles: ["Android", "Tablet"],
     books: [],
     fashion: [],

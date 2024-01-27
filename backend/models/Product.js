@@ -19,6 +19,9 @@ const Product = sequelize.define('Product', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  imagePath:{
+    type: DataTypes.STRING,
+  },
   category: {
     type: DataTypes.STRING,
     allowNull: true,
@@ -39,7 +42,8 @@ const Product = sequelize.define('Product', {
     type: DataTypes.FLOAT,
     allowNull: true,
   },
-}, {
+}, 
+{
   timestamps: false,
 });
 

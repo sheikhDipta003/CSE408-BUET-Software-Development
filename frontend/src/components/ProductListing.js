@@ -19,7 +19,7 @@ const ProductListing = () => {
     const navigate = useNavigate();
 
     const goToProductDetail = (productId) => {
-        navigate(`/productlisting/${productId}`);
+        navigate(`/productlisting/${category}/${subcategory}/${productId}`);
     };
 
     const combinedSpecsRef = useRef({
@@ -211,14 +211,14 @@ const ProductListing = () => {
 
                         <div className="select-boxes">
                             <label htmlFor="items-per-page">Show:</label>
-                            <select id="items-per-page" className="items-per-page" onChange={handleItemsPerPageChange}>
+                            <select id="items-per-page" className="items-per-page border-2 border-black rounded-sm" onChange={handleItemsPerPageChange}>
                                 {generateItemsPerPageOptions().map((option) => (
                                     <option key={option} value={option}>{option}</option>
                                 ))}
                             </select>
 
                             <label htmlFor="sort-by">Sort by:</label>
-                            <select id="sort-by" className="sort-by" onChange={handleSortChange}>
+                            <select id="sort-by" className="sort-by border-2 border-black rounded-sm" onChange={handleSortChange}>
                                 <option value="priceLowToHigh">Price (Low to High)</option>
                                 <option value="priceHighToLow">Price (High to Low)</option>
                                 <option value="topRated">Top Rated</option>
@@ -227,7 +227,7 @@ const ProductListing = () => {
                     </div>
 
                     <div className="main-content">
-                        {isLoading && <p className="statusMsg">Loading products...</p>}
+                        {isLoading && <p className="statusMsg text-green-500">Loading products...</p>}
                         {!isLoading && fetchError && <p className="statusMsg" style={{ color: "red" }}>{fetchError}</p>}
                         {!isLoading && !fetchError && (currentItems.length ? currentItems : <p className="statusMsg">No products to display.</p>)}
                     </div>

@@ -5,15 +5,15 @@ const ROLES_LIST = require('../config/roles');
 require('dotenv').config();
 
 const handleLogin = async (req, res) => {
-    const { email, password } = req.body;
-    if (!email || !password) return res.status(400).json({ 'message': 'Email and password are required.' });
+    const { username, password } = req.body;
+    if (!username || !password) return res.status(400).json({ 'message': 'username and password are required.' });
 
-    const foundUser = await User.findOne({where: {email: email} });
+    const foundUser = await User.findOne({where: {username: username} });
     if (!foundUser) return res.sendStatus(401); //Unauthorized 
     // evaluate password 
     const match = await bcrypt.compare(password, foundUser.password);
     if (match) {
-        //const roles = Object.values(foundUser.roles).filter(Boolean);
+        const roles = ROLES_LIST[foundUser.roles];
         // create JWTs
         const roles = ROLES_LIST[foundUser.roles];
         const accessToken = jwt.sign(
@@ -21,20 +21,22 @@ const handleLogin = async (req, res) => {
                 "UserInfo": {
                     "username": foundUser.username,
                     "email": foundUser.email,
-                    //"roles": roles
+                    "roles": foundUser.roles
                 }
             },
             process.env.ACCESS_TOKEN_SECRET,
             { expiresIn: '15m' }
         );
         const refreshToken = jwt.sign(
-            { "username": foundUser.username },
+            { "email": foundUser.email },
             process.env.REFRESH_TOKEN_SECRET,
             { expiresIn: '1d' }
         );
         // Saving refreshToken with current user
-        foundUser.refreshToken = refreshToken;
-        const result = await foundUser.save();
+        //foundUser.refreshToken = refreshToken;
+        //const result = await foundUser.save();
+        const result = await User.update({refreshToken: refreshToken}, 
+                            {where: {email: foundUser.email}});
         console.log(result);
         //console.log(roles);
 

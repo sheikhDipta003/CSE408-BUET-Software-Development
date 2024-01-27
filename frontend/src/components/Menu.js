@@ -17,10 +17,9 @@ const Menu = () => {
     const menuRef = useRef(null);
 
     useEffect(() => {
-        // Event listener to handle clicks outside the menu
         const handleClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
-                setActiveCategory(null); // Close the dropdown if clicked outside
+                setActiveCategory(null);
             }
         };
 
@@ -35,7 +34,7 @@ const Menu = () => {
     };
 
     const handleSubcategoryChange = (option, category) => {
-        setActiveCategory(null); // Close the dropdown upon selection
+        setActiveCategory(null);
         navigate(`/productlisting/${category}/${option.value}`);
     };
 
@@ -49,7 +48,7 @@ const Menu = () => {
                             <Dropdown 
                                 options={categories[category]}
                                 placeholder="Select an option"
-                                className="dropdown-content"
+                                className="dropdown-content text-base bg-slate-50"
                                 value={categories[category][0]}
                                 onChange={(option) => handleSubcategoryChange(option, category)}
                                 style={{"z-index":"10"}}

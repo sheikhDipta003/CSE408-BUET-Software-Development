@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
 import { Link } from "react-router-dom";
 import '../css/Register.css';
-import {format} from 'date-fns';
+import ROLES from '../App';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -34,11 +34,7 @@ const Register = () => {
     const [validEmail, setValidEmail] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
 
-    const [address, setAddress] = useState('');
-
-    const [dobYear, setDobYear] = useState('');
-    const [dobMonth, setDobMonth] = useState('');
-    const [dobDay, setDobDay] = useState('');
+    const [role, setRole] = useState(ROLES.User);
 
     useEffect(() => {
         userRef.current.focus();
@@ -61,39 +57,9 @@ const Register = () => {
         setErrMsg('');
     }, [user, pwd, matchPwd]);
 
-    // function to generate year options
-    const generateYearOptions = () => {
-        const currentYear = new Date().getFullYear();
-        let years = [];
-        for (let i = currentYear; i >= currentYear - 100; i--) {
-            years.push(<option key={i} value={i}>{i}</option>);
-        }
-        return years;
-    };
-
-    // Function to generate month options
-    const generateMonthOptions = () => {
-        const months = [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-        return months.map((month, index) => (
-            <option key={index} value={index + 1}>{month}</option>
-        ));
-    };
-
-    // Function to generate day options
-    const getDaysInMonth = (year, month) => {
-        return new Date(year, month, 0).getDate();
-    };
-    const generateDayOptions = () => {
-        let days = [];
-        const daysInMonth = getDaysInMonth(dobYear, dobMonth);
-        for (let i = 1; i <= daysInMonth; i++) {
-            days.push(<option key={i} value={i}>{i}</option>);
-        }
-        return days;
-    };
+    useEffect(() => {
+        console.log('role = ', role);
+    }, [role]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -105,16 +71,8 @@ const Register = () => {
             return;
         }
         try {
-            const new_user = {user_id: 100,
-                                name: user,
-                                email,
-                                password: pwd,
-                                reg_date: format(new Date(), 'yyyy-MM-dd'),
-                                address,
-                                date_of_birth: format(new Date(dobYear, dobMonth - 1, dobDay), 'yyyy-MM-dd')
-            };
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify(new_user),
+                JSON.stringify({username: user, email, password: pwd, role}),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -145,8 +103,8 @@ const Register = () => {
             {success ? (
                 <section>
                     <h1>Success!</h1>
-                    <p>
-                        <a href="#">Sign In</a>
+                    <p className="text-green-600">
+                        <Link to="/login">Sign In</Link>
                     </p>
                 </section>
             ) : (
@@ -241,37 +199,26 @@ const Register = () => {
                             onBlur={() => setEmailFocus(false)}
                         />
 
-                        <label htmlFor="address">
-                            Address:
-                        </label>
-                        <textarea
-                            id="address"
-                            onChange={(e) => setAddress(e.target.value)}
-                            value={address}
-                        />
-
-                        <div className="dob">
-                            <label>Date of Birth:</label>
-                            <select value={dobYear} onChange={(e) => setDobYear(e.target.value)}>
-                                <option value="">Year</option>
-                                {generateYearOptions()}
-                            </select>
-                            <select value={dobMonth} onChange={(e) => setDobMonth(e.target.value)}>
-                                <option value="">Month</option>
-                                {generateMonthOptions()}
-                            </select>
-                            <select value={dobDay} onChange={(e) => setDobDay(e.target.value)}>
-                                <option value="">Day</option>
-                                {generateDayOptions()}
-                            </select>
-                        </div>
+                        <label htmlFor="role">Role:</label>
+                        <select
+                            id="role"
+                            value={role}
+                            onChange={(e) => {
+                                setRole(e.target.value);
+                            }}
+                            className="border-2 border-black rounded-md p-2"
+                        >
+                            <option value={ROLES.User}>User</option>
+                            <option value={ROLES.Admin}>Admin</option>
+                            <option value={ROLES.Collaborator}>Collaborator</option>
+                        </select>
 
                         <button disabled={!validName || !validPwd || !validMatch || !validEmail ? true : false}>Sign Up</button>
                     </form>
-                    <p>
+                    <p className="text-green-600">
                         Already registered?<br />
                         <span className="line">
-                            <Link to="/">Sign In</Link>
+                            <Link to="/login">Sign In</Link>
                         </span>
                     </p>
                 </section>
