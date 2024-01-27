@@ -9,6 +9,7 @@ const Website = require("./models/Website")
 const ProductWebsite = require("./models/ProductWebsite");
 const Wishlist = require("./models/Wishlist");
 const Notification = require("./models/Notification");
+const Voucher = require("./models/Voucher");
 const verifyJWT = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');

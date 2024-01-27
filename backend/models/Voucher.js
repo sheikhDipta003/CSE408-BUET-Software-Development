@@ -3,8 +3,14 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const Website = require('./Website');
+const User = require('./User');
 
 const Voucher = sequelize.define('Voucher', {
+  voucherId: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
   voucherCode: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -36,7 +42,7 @@ const Voucher = sequelize.define('Voucher', {
 });
 
 // Define associations
-Voucher.belongsTo(Website);
-Voucher.belongsToMany(User, { through: UserVoucher });
+Voucher.belongsTo(Website, {foreignKey: {field: 'websiteId', allowNull: false}});
+Website.hasMany(Voucher, {foreignKey: {field: 'websiteId', allowNull: false}, onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
 module.exports = Voucher;
