@@ -1,19 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const UserController = require('../../controllers/userController');
-const ROLES_LIST = require('../../config/roles');
-const verifyRoles = require('../../middleware/verifyRole');
+const wishlist = require('../../controllers/userWishlistController');
+const notif = require('../../controllers/userNotifController');
 
-router.get('/:userId', UserController.getUser);
-router.put('/:userId', UserController.updateUser);
-router.delete('/:userId', UserController.deleteUser);
+//wishlist
+router.get('/:userId/wishlist/:wishlistId/delete', wishlist.deleteWishItem);
+router.get('/:userId/wishlist/:wishlistId', wishlist.getOneWishItem)
+router.get('/:userId/wishlist', wishlist.allWishlist);
 
-// router.route('/:userId')
-//     .get(verifyRoles(ROLES_LIST.User), UserController.getUser);
-// router.route('/:userId')
-//     .put(verifyRoles(ROLES_LIST.User), UserController.updateUser);
-// router.route('/:userId')
-//     .delete(verifyRoles(ROLES_LIST.User), UserController.deleteUser);
-
+//notifications
+router.get('/:userId/notification', notif.getAllNotifications);
+router.get('/:userId/notification/:notifId/mark', notif.markAsRead);
+router.get('/:userId/notification/:notifId/delete', notif.deleteNotification);
 
 module.exports = router;

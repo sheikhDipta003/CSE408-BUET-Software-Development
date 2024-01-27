@@ -6,19 +6,10 @@ const Product = require('./Product');
 const Website = require('./Website')
 
 const ProductWebsite = sequelize.define('ProductWebsite', {
-  productId: {
+  pwId: {
     type: DataTypes.INTEGER,
-    references: {
-      model: Product, // 'Movies' would also work
-      key: 'productId'
-    }
-  },
-  websiteId: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Website, // 'Actors' would also work
-      key: 'websiteId'
-    }
+    primaryKey: true,
+    autoIncrement: true,
   },
   shippingTime: {
     type: DataTypes.INTEGER,
@@ -41,7 +32,12 @@ const ProductWebsite = sequelize.define('ProductWebsite', {
   timestamps: false,
 });
 
-//Product.belongsToMany(Website, {through: ProductWebsite});
-//Website.belongsToMany(Product, {through: ProductWebsite});
-
+//either add foreign key fields which will only act as foreign key and will add own primary key
+//or do the following to make composite key without any primary key
+Product.belongsToMany(Website, {through: ProductWebsite, foreignKey: {field: 'productId', allowNull: false}});
+Website.belongsToMany(Product, {through: ProductWebsite, foreignKey: {field: 'websiteId', allowNull: false}});
+Product.hasMany(ProductWebsite, {foreignKey: {field: 'productId', allowNull: false}});
+ProductWebsite.belongsTo(Product, {foreignKey: {field: 'productId', allowNull: false}});
+Website.hasMany(ProductWebsite, {foreignKey: {field: 'websiteId', allowNull: false}});
+ProductWebsite.belongsTo(Website, {foreignKey: {field: 'websiteId', allowNull: false}});
 module.exports = ProductWebsite;

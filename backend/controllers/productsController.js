@@ -1,5 +1,4 @@
 const Product = require('../models/Product');
-const ProductImage = require('../models/ProductImage');
 const ProductWebsite = require('../models/ProductWebsite');
 
 // Create a new product
