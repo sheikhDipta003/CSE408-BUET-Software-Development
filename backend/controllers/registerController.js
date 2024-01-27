@@ -2,8 +2,10 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
 const handleNewUser = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, role } = req.body;
     if (!username || !email || !password) return res.status(400).json({ 'message': 'Username, email and password are required.' });
+
+    console.log("\nusername = ", username, ", pass = ", password, ' role = ', role);
 
     // check for duplicate usernames in the db
     const duplicate = await User.findOne({where: {email: email}});
@@ -17,12 +19,13 @@ const handleNewUser = async (req, res) => {
         const result = await User.create({
             username: username,
             email: email,
-            password: hashedPwd
+            password: hashedPwd,
+            roles: role
         });
 
         console.log(result);
 
-        res.status(201).json({ 'success': `New user ${username} created!` });
+        res.status(201).json({ 'success': `New user ${username} created with role ${role}!` });
     } catch (err) {
         res.status(500).json({ 'message': err.message });
     }

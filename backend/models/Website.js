@@ -31,6 +31,8 @@ const Website = sequelize.define('Website', {
     allowNull: false,
     defaultValue: false, // Default value if not provided
   },
+}, {
+  timestamps: false,
 });
 
 //Website.belongsToMany(Product, { through: ProductWebsite });

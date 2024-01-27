@@ -9,6 +9,7 @@ const User = sequelize.define('User', {
   },
   username: {
     type: DataTypes.STRING,
+    unique: true,
     allowNull: false, // This field is required
   },
   email: {
@@ -23,19 +24,21 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false, // This field is required
   },
-  dob: {
-    type: DataTypes.DATE,
-  },
   registrationDate: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW, // Set the default value to the current timestamp
   },
-  address: {
-    type: DataTypes.STRING,
+  roles: {
+    type: DataTypes.ENUM('User', 'Admin', 'Collaborator'),
+    defaultValue: 'User',
+    allowNull: false,
   },
   refreshToken: {
     type: DataTypes.STRING,
   }
+}, 
+{
+  timestamps: false,
 });
 //User.belongsToMany(Voucher, { through: UserVoucher });
 //User.hasMany(Wishlist);

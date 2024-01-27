@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const ROLES_LIST = require('../config/roles');
 require('dotenv').config();
 
 const handleLogin = async (req, res) => {
@@ -14,6 +15,7 @@ const handleLogin = async (req, res) => {
     if (match) {
         //const roles = Object.values(foundUser.roles).filter(Boolean);
         // create JWTs
+        const roles = ROLES_LIST[foundUser.roles];
         const accessToken = jwt.sign(
             {
                 "UserInfo": {
@@ -43,7 +45,7 @@ const handleLogin = async (req, res) => {
         //res.cookie('jwt', refreshToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
 
         // Send authorization roles and access token to user
-        res.json(accessToken);
+        res.json({roles, accessToken});
 
     } else {
         res.sendStatus(401);
