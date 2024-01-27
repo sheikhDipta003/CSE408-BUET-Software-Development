@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
 import { Link } from "react-router-dom";
 import '../css/Register.css';
+import ROLES from '../App';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -33,6 +34,8 @@ const Register = () => {
     const [validEmail, setValidEmail] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
 
+    const [role, setRole] = useState(ROLES.User);
+
     useEffect(() => {
         userRef.current.focus();
     }, []);
@@ -54,6 +57,10 @@ const Register = () => {
         setErrMsg('');
     }, [user, pwd, matchPwd]);
 
+    useEffect(() => {
+        console.log('role = ', role);
+    }, [role]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         // if button enabled with JS hack
@@ -65,7 +72,7 @@ const Register = () => {
         }
         try {
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify({username: user, email, password: pwd}),
+                JSON.stringify({username: user, email, password: pwd, role}),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -96,7 +103,7 @@ const Register = () => {
             {success ? (
                 <section>
                     <h1>Success!</h1>
-                    <p>
+                    <p className="text-green-600">
                         <Link to="/login">Sign In</Link>
                     </p>
                 </section>
@@ -192,9 +199,23 @@ const Register = () => {
                             onBlur={() => setEmailFocus(false)}
                         />
 
+                        <label htmlFor="role">Role:</label>
+                        <select
+                            id="role"
+                            value={role}
+                            onChange={(e) => {
+                                setRole(e.target.value);
+                            }}
+                            className="border-2 border-black rounded-md p-2"
+                        >
+                            <option value={ROLES.User}>User</option>
+                            <option value={ROLES.Admin}>Admin</option>
+                            <option value={ROLES.Collaborator}>Collaborator</option>
+                        </select>
+
                         <button disabled={!validName || !validPwd || !validMatch || !validEmail ? true : false}>Sign Up</button>
                     </form>
-                    <p>
+                    <p className="text-green-600">
                         Already registered?<br />
                         <span className="line">
                             <Link to="/login">Sign In</Link>

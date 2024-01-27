@@ -23,7 +23,7 @@ async function main(){
     console.log('Connection to the database has been established successfully.');
   
     // Synchronize models with the database
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
   
     // Start your Express app after successful database connection
     app.listen(port, () => {
