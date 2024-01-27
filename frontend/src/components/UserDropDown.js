@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import '../css/UserDropDown.css';
 import Logout from './Logout';
+import useAuth from "../hooks/useAuth";
 
-const UserDropDown = () => {
+const UserDropDown = ({userId}) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -44,7 +45,7 @@ const UserDropDown = () => {
 
           <Link to="/user/1/wishlist" className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200" onClick={closeDropdown}>Wishlist</Link>
 
-          <Link to="/user/1/viewprofile" className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200" onClick={closeDropdown}>Settings</Link>
+          <Link to={`/user/${userId}/viewprofile`} className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200" onClick={closeDropdown}>Settings</Link>
 
           <div className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200" onClick={closeDropdown}>Vouchers</div>
 

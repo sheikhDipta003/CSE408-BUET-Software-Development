@@ -84,7 +84,7 @@ const SearchBar = () => {
                 placeholder="Search for categories, subcategories..."
             />
             {suggestions.length > 0 && (
-                <div className="absolute top-full left-0 right-0 bg-white border mt-1 max-h-40 overflow-auto">
+                <div className="absolute top-full left-0 right-0 bg-white border mt-1 max-h-40 overflow-auto z-50">
                     {suggestions.map((suggestion, index) => (
                         <div 
                             key={index} 

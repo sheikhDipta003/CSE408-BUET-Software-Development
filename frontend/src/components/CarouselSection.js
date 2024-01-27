@@ -16,8 +16,8 @@ const CarouselSection = ({ title, id, products }) => {
   
   return (
     <div id={id} style={{"width":"95vw", "marginBottom":"10px"}}>
-      <h2>{title}</h2>
-      <div style={{"width":"95vw", "height":"0.5vh","backgroundColor":"red", "marginBottom":"5px"}}></div>
+      <h2 className="text-4xl font-bold mb-2 mt-8 text-center">{title}</h2>
+      <div className="border-b-2 border-red-500 mb-3"></div>
       <Carousel showArrows={true} showStatus={false} showIndicators={false} showThumbs={false} infiniteLoop={true}>
       {productChunks.map((chunk, index) => (
         <div key={index} className="flex justify-center items-center bg-antiquewhite">

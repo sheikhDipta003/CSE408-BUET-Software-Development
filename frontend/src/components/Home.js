@@ -42,7 +42,7 @@ const Home = () => {
 
       {/* Features Section */}
       <section className="mb-8 scroll-smooth">
-        <h2 className="text-4xl font-bold mb-4 text-center">Features</h2>
+        <h2 className="text-4xl font-bold mb-4 text-center">Welcome</h2>
         <div className="border-b-2 border-red-500 mb-8"></div>
 
         <div className="flex flex-col items-center space-y-8">

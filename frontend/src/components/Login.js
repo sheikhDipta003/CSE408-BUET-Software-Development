@@ -47,10 +47,12 @@ const Login = () => {
             );
             console.log(JSON.stringify(response?.data));
             console.log(JSON.stringify(response));
+            console.log(JSON.stringify(response?.data.userId));
+            const userId = response?.data.userId;
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             console.log("frontend -> roles ", roles);
-            setAuth({ user, pwd, roles, accessToken });
+            setAuth({ user, pwd, roles, accessToken, userId });
             setUser('');
             setPwd('');
             if(roles === ROLES.User) navigate(from, { replace: true });

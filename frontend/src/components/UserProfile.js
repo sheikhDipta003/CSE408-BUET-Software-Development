@@ -1,18 +1,65 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import useAuth from "../hooks/useAuth";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 
 function UserProfile() {
     const [user, setUser] = useState({
-        name: 'John Doe',
-        password: 'password123',
-        email: 'johndoe@example.com',
-        address: '123 Main St, Anytown, AT 12345',
-        regDate: '2023-01-01',
+        username: '',
+        password: '',
+        email: '',
+        registrationDate: ''
     });
 
+    const { userId } = useParams();
+    const axiosPrivate = useAxiosPrivate();
+    const navigate = useNavigate();
+    const location = useLocation();
     const [isEditing, setIsEditing] = useState(false);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        const getUsers = async () => {
+            try {
+                const response = await axiosPrivate.get(`/users/${userId}`);
+                console.log("from userprofile = ", response.data);
+                isMounted && setUser({
+                    username: response.data.username,
+                    password: response.data.password,
+                    email: response.data.email,
+                    registrationDate: response.data.registrationDate
+                });
+            } catch (err) {
+                console.error(err);
+                navigate('/login', { state: { from: location }, replace: true });
+            }
+        }
+
+        getUsers();
+
+        return () => {
+            isMounted = false;
+        }
+    }, [])
 
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            await axiosPrivate.put(`/users/${userId}`, {
+                username: user.username,
+                password: user.password,
+                email: user.email
+            });
+            setIsEditing(false);
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     const toggleEdit = () => {
@@ -25,9 +72,9 @@ function UserProfile() {
             <div className="user-info">
                 <label>Name:</label>
                 {isEditing ? (
-                    <input type="text" name="name" value={user.name} onChange={handleChange} />
+                    <input type="text" name="name" value={user.username} onChange={handleChange} />
                 ) : (
-                    <p style={{color:"black"}}>{user.name}</p>
+                    <p style={{color:"black"}}>{user.username}</p>
                 )}
 
                 <label>Password:</label>
@@ -44,17 +91,10 @@ function UserProfile() {
                     <p style={{color:"black"}}>{user.email}</p>
                 )}
 
-                <label>Address:</label>
-                {isEditing ? (
-                    <input type="text" name="address" value={user.address} onChange={handleChange} />
-                ) : (
-                    <p style={{color:"black"}}>{user.address}</p>
-                )}
-
                 <label>Registration Date:</label>
-                <p style={{color:"black"}}>{user.regDate}</p>
+                <p style={{color:"black"}}>{user.registrationDate}</p>
 
-                <button id="saveProfileInfo" onClick={toggleEdit}>{isEditing ? 'Save' : 'Edit'}</button>
+                <button id="saveProfileInfo" onClick={isEditing ? handleSubmit : toggleEdit}>{isEditing ? 'Save' : 'Edit'}</button>
             </div>
         </div>
     );

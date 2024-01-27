@@ -162,35 +162,33 @@ const Wishlist = () => {
     }, [filters, sortOption]);
   
     const applyFilters = () => {
-      let filtered = products.filter(item => {
-          return (filters.category ? item.category.toLowerCase() === filters.category.toLowerCase() : true) &&
-                 (filters.subcategory ? item.subcategory.toLowerCase() === filters.subcategory.toLowerCase() : true) &&
-                 (filters.brand ? item.brand.toLowerCase() === filters.brand.toLowerCase() : true) &&
-                 (filters.website ? item.website_name.toLowerCase().includes(filters.website.toLowerCase()) : true);
-      });
-      
-      setFilteredProducts(filtered);
-      applySort(filtered);
-      setDisplayedProducts(filtered);
-  };
+        let filtered = products.filter(item => {
+            return (filters.category ? item.category.toLowerCase() === filters.category.toLowerCase() : true) &&
+                  (filters.subcategory ? item.subcategory.toLowerCase() === filters.subcategory.toLowerCase() : true) &&
+                  (filters.brand ? item.brand.toLowerCase() === filters.brand.toLowerCase() : true) &&
+                  (filters.website ? item.website_name.toLowerCase().includes(filters.website.toLowerCase()) : true);
+        });
+        
+        setFilteredProducts(filtered);
+        applySort(filtered);
+        setDisplayedProducts(filtered);
+    };
 
-  const applySort = (list) => {
-    let sorted = [...list];
-    if (sortOption === 'priceLowHigh') {
-        sorted.sort((a, b) => a.currrent_price - b.currrent_price);
-    } else if (sortOption === 'priceHighLow') {
-        sorted.sort((a, b) => b.currrent_price - a.currrent_price);
-    }
-    setFilteredProducts(sorted);
-};
+    const applySort = (list) => {
+        let sorted = [...list];
+        if (sortOption === 'priceLowHigh') {
+            sorted.sort((a, b) => a.currrent_price - b.currrent_price);
+        } else if (sortOption === 'priceHighLow') {
+            sorted.sort((a, b) => b.currrent_price - a.currrent_price);
+        }
+        setFilteredProducts(sorted);
+    };
   
     const handleFilterChange = (e) => {
-      e.preventDefault();
       setFilters({ ...filters, [e.target.name]: e.target.value });
     };
 
     const handleSortChange = (e) => {
-      e.preventDefault();
       setSortOption(e.target.value);
       applySort(filteredProducts);
     };
@@ -200,7 +198,7 @@ const Wishlist = () => {
             <div className="filters">
                 <div>
                     <label>Category:</label>
-                    <select name="category" onChange={handleFilterChange}>
+                    <select name="category" onChange={handleFilterChange} className="border-2 border-black rounded-sm">
                         <option value="">All</option>
                         {Object.keys(categories).map((cat, index) => (
                             <option key={index} value={cat}>{cat}</option>
@@ -209,7 +207,7 @@ const Wishlist = () => {
                 </div>
                 <div>
                     <label>Subcategory:</label>
-                    <select name="subcategory" onChange={handleFilterChange}>
+                    <select name="subcategory" onChange={handleFilterChange} className="border-2 border-black rounded-sm">
                         <option value="">All</option>
                         {filters.category && categories[filters.category].map((sub, index) => (
                             <option key={index} value={sub}>{sub}</option>
@@ -218,7 +216,7 @@ const Wishlist = () => {
                 </div>
                 <div>
                     <label>Brand:</label>
-                    <select name="brand" onChange={handleFilterChange}>
+                    <select name="brand" onChange={handleFilterChange} className="border-2 border-black rounded-sm">
                         <option value="">All</option>
                         {filters.subcategory && brands.map((brand, index) => (
                             <option key={index} value={brand}>{brand}</option>
@@ -227,7 +225,7 @@ const Wishlist = () => {
                 </div>
                 <div>
                     <label>Website:</label>
-                    <select name="website" onChange={handleFilterChange}>
+                    <select name="website" onChange={handleFilterChange} className="border-2 border-black rounded-sm">
                         <option value="">All</option>
                         {websites.map((site, index) => (
                             <option key={index} value={site}>{site}</option>
@@ -239,7 +237,7 @@ const Wishlist = () => {
             <div className="sorting-and-products-container">
               <div className="sorting-container">
                 <label htmlFor="sort-by">Sort By: </label>
-                <select id="sort-by" value={sortOption} onChange={handleSortChange}>
+                <select id="sort-by" value={sortOption} onChange={handleSortChange} className="border-2 border-black rounded-sm">
                   <option value="">None</option>
                   <option value="priceLowHigh">Price (Low -{'>'} High)</option>
                   <option value="priceHighLow">Price (High -{'>'} Low)</option>

@@ -38,7 +38,7 @@ function App() {
 
       <Route element={<PersistLogin/>}>
         <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
-          <Route path="user/:user_id/viewprofile" element={<UserProfile />} />
+          <Route path="user/:userId/viewprofile" element={<UserProfile />} />
         </Route>
 
         <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
