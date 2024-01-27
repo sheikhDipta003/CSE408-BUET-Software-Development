@@ -9,7 +9,6 @@ import RequireAuth from './components/RequireAuth';
 import ProductListing from './components/ProductListing';
 import UserProfile from './components/UserProfile';
 import { Routes, Route } from 'react-router-dom';
-import ProductFilter from './components/ProductFilter';
 import ProductDetails from './components/ProductDetails';
 import Wishlist from './components/Wishlist';
 import UserDashboard from './components/UserDashboard';
@@ -33,7 +32,6 @@ function App() {
       <Route path="login" element={<Login />} />
       <Route path="logout" element={<Logout />} />
       <Route path="register" element={<Register />} />
-      <Route path="products/filter" element={<ProductFilter />} />
       <Route path="productlisting/:category/:subcategory" element={<ProductListing />} />
       <Route path="productlisting/:category/:subcategory/:product_id" element={<ProductDetails />} />
       <Route path="unauthorized" element={<Unauthorized />} />

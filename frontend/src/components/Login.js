@@ -1,9 +1,14 @@
 import { useRef, useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-
 import axios from '../api/axios';
+
 const LOGIN_URL = '/auth';
+const ROLES = {
+    "Admin": 5150,
+    "Collaborator": 1984,
+    "User": 2001
+};
 
 const Login = () => {
     const { setAuth, persist, setPersist } = useAuth();
@@ -48,7 +53,9 @@ const Login = () => {
             setAuth({ user, pwd, roles, accessToken });
             setUser('');
             setPwd('');
-            navigate(from, { replace: true });
+            if(roles === ROLES.User) navigate(from, { replace: true });
+            else if(roles === ROLES.Admin)   navigate('/admin', { replace: true });
+            console.log('roles = ', roles, ', ROLES.roles = ', ROLES.roles, ', ROLES.User = ', ROLES.User);
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -108,7 +115,7 @@ const Login = () => {
                     <label htmlFor="persist" className="m-0">Trust this device</label>
                 </div>
             </form>
-            <p>
+            <p className='text-red-500'>
                 Need an Account?<br />
                 <span className="line">
                     <Link to="/register">Sign Up</Link>

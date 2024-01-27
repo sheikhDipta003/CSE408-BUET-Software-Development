@@ -82,12 +82,12 @@ const Home = () => {
     </section>
 
       {/* Contact Us Section */}
-      <section id="contact" class="widescreen:section-min-height tallscreen:section-min-height my-12 scroll-mt-16 p-6">
+      <section id="contact" className="widescreen:section-min-height tallscreen:section-min-height my-12 scroll-mt-16 p-6">
         <h2 className="text-4xl font-bold mb-4 text-center">Contact Us</h2>
         <div className="border-b-2 border-red-500 mb-8"></div>
         <form action="" className="items-left mx-auto flex max-w-4xl flex-col gap-4 text-2xl sm:text-3xl">
           <label htmlFor="subject">Subject:</label>
-          <input type="text" id="subject" name="subject" required minlength="3" maxlength="60" placeholder="Your Subject"
+          <input type="text" id="subject" name="subject" required minLength="3" maxLength="60" placeholder="Your Subject"
             className="w-full rounded-xl border border-solid border-slate-900 p-3 text-2xl text-black dark:border-none sm:text-3xl" />
           <label htmlFor="message">Message:</label>
           <textarea name="message" id="message" cols="30" rows="10" placeholder="Your Message" required
