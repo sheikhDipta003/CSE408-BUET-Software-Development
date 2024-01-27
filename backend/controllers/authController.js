@@ -15,7 +15,6 @@ const handleLogin = async (req, res) => {
     if (match) {
         const roles = ROLES_LIST[foundUser.roles];
         // create JWTs
-        const roles = ROLES_LIST[foundUser.roles];
         const accessToken = jwt.sign(
             {
                 "UserInfo": {
