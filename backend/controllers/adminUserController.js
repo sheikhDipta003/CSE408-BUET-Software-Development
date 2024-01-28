@@ -5,7 +5,7 @@ const getUsers = async (req, res) => {
       // Fetch the list of users from the database
       const users = await User.findAll({
         where: {roles: ['User', 'Collaborator']},
-        attributes: ['userId', 'username', 'email', 'roles'], // Adjust the attributes based on your User model
+        attributes: ['userId', 'username', 'email', 'roles'],
       });
 
       res.status(200).json({ users });
@@ -21,7 +21,7 @@ const getUsers = async (req, res) => {
         // Fetch the list of users from the database
         const user = await User.findOne({
           where: {userId: userId},
-          attributes: ['userId', 'username', 'email', 'roles'], // Adjust the attributes based on your User model
+          attributes: ['userId', 'username', 'email', 'roles'],
         });
 
         if(!user){

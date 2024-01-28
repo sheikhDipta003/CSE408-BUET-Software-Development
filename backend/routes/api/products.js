@@ -12,5 +12,7 @@ const verifyRoles = require('../../middleware/verifyRole');
 // router.route('/')
 //     .post(productsController.createProduct);
 router.get('/', productsController.getProductsByCategoryAndSubcategory);
+router.get('/:productId', productsController.getProductDetails);
+router.get('/:productId/:websiteId', productsController.getProductWebsite);
 
 module.exports = router;

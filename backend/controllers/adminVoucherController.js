@@ -25,7 +25,7 @@ const viewAllVouchers = async (req, res) => {
         include: [
           {
             model: Website,
-            attributes: ['name', 'url'], // Add other website attributes as needed
+            attributes: ['name', 'url'],
           },
         ],
         order: [

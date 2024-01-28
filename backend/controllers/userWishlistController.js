@@ -18,11 +18,11 @@ const allWishlist = async (req, res) => {
                 include: [
                   {
                     model: Product,
-                    attributes: ['productName'], // Add other product attributes as needed
+                    attributes: ['productName'],
                   },
                   {
                     model: Website,
-                    attributes: ['name'], // Add other website attributes as needed
+                    attributes: ['name'],
                   },
                 ],
               },
@@ -43,10 +43,10 @@ const allWishlist = async (req, res) => {
 const getOneWishItem = async(req, res) => {
     try {
         const userId = req.params.userId;
-        const wishlistId = req.params.wishlistId;
+        const pwId = req.params.pwId;
         // Fetch the list of users from the database
         const wishlistDetails = await Wishlist.findOne({
-            where: { userId: userId, wishlistId: wishlistId },
+            where: { userId: userId, pwId: pwId },
             include: [
               {
                 model: ProductWebsite,
@@ -54,11 +54,11 @@ const getOneWishItem = async(req, res) => {
                 include: [
                   {
                     model: Product,
-                    attributes: ['productName'], // Add other product attributes as needed
+                    attributes: ['productName'],
                   },
                   {
                     model: Website,
-                    attributes: ['name'], // Add other website attributes as needed
+                    attributes: ['name'],
                   },
                 ],
               },
