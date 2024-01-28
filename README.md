@@ -1,7 +1,7 @@
 # TechShoppers - Your One-Stop Tech Shop for Price Comparsion accross the Web
 
 ## Introduction
-Welcome to the repository for our Price Comparison Website. This platform is designed to help users find the best prices for products across various online retailers. We leverage a microservices architecture to ensure scalability and reliability.
+Welcome to the repository for our Price Comparison Website. This platform is designed to help users find the best prices for products across various online retailers. We leverage an MVC architecture for ease of implementation, modularity and separation of concerns.
 
 ## Features
 - Search functionality for a wide range of products.
@@ -15,9 +15,9 @@ Welcome to the repository for our Price Comparison Website. This platform is des
 
 ## Technology Stack
 
-- **Frontend**: React.js
+- **Frontend**: React.js, Tailwind css
 - **Backend**: Node.js, Express.js
-- **Database**: MongoDB with Mongoose
+- **Database**: PostgreSQL, Supabase; access and use with sequelize library of npmjs
 
 ## Installation
 
@@ -32,46 +32,45 @@ Welcome to the repository for our Price Comparison Website. This platform is des
    # Install backend dependencies
    cd backend
    npm install
+   npm update(optional)
 
    # Install frontend dependencies
    cd ../frontend
    npm install
+   npm update(optional)
    ```
 
 3. **Configure Environment Variables:**
-   - Create a `.env` file in the `backend` directory and set up your MongoDB connection string, e.g., `MONGODB_URI=your-mongodb-uri`.
+   - Create a `.env` file in the `backend` directory and set up your PostgreSQL DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME and other settings.
 
 4. **Run the Application:**
    ```bash
    # Start the backend server
    cd backend
-   npm start
+   npm run dev (or, nodemon server or node server)
 
    # Start the backend server (uses the node package named 'json-server'; fetch sample data for temporary use in the frontend)
    cd frontend
-   npx json-server -p 3500 -w .\data\products.json
+   npm run jsonserver
 
    # Start the frontend development server
    cd ../frontend
-   npm start
+   npm run start
+
+   # format all the js files with proper spacing and alignment for better readability
+   npm run prettier
    ```
 
 5. **Open in Browser:**
-   Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to access TechShoppers.
+   Open your browser and navigate to [http://localhost:3000/home](http://localhost:3000/home) to access homepage of TechShoppers.
 
 ### Configuration
+- Need to create an account in [Supabase](https://supabase.com/)
 - Configure environment variables in `.env` files for database connection settings, API keys, and other sensitive information.
 
 ## API Documentation
 
 - The API documentation, ERD and System Architecture details can be found in the `system-design` directory.
-
-## Running Tests
-Instructions for running automated tests for this system.
-```
-cd microservice-name
-npm test
-```
 
 ## Authors
 - **Sheikh Intiser Uddin Dipta** - *1905003* - [sheikhDipta003](https://github.com/sheikhDipta003)
