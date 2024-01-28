@@ -8,7 +8,7 @@ const adminWebsiteController = require('../../controllers/adminWebsiteController
 router.get('/users', adminUserControl.getUsers);
 router.get('/users/:userId', adminUserControl.getOneUser);
 router.get('/users/:userId/delete', adminUserControl.deleteUser);
--
+
 //manage vouchers
 router.get('/vouchers', adminVoucherControl.viewAllVouchers);
 router.get('/vouchers/:voucherId', adminVoucherControl.viewOneVoucher);

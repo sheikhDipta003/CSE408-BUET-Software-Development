@@ -3,46 +3,48 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Users = () => {
-    const [users, setUsers] = useState([]);
-    const axiosPrivate = useAxiosPrivate();
-    const navigate = useNavigate();
-    const location = useLocation();
+  const [users, setUsers] = useState([]);
+  const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    useEffect(() => {
-        let isMounted = true;
+  useEffect(() => {
+    let isMounted = true;
 
-        const getUsers = async () => {
-            try {
-                const response = await axiosPrivate.get('/admin/users');
-                console.log(response.data.users);
-                console.log(isMounted);
-                isMounted && setUsers(response.data.users);
-                console.log(users);
-            } catch (err) {
-                console.error(err);
-                navigate('/login', { state: { from: location }, replace: true });
-            }
-        }
+    const getUsers = async () => {
+      try {
+        const response = await axiosPrivate.get("/admin/users");
+        console.log(response.data.users);
+        console.log(isMounted);
+        isMounted && setUsers(response.data.users);
+        console.log(users);
+      } catch (err) {
+        console.error(err);
+        navigate("/login", { state: { from: location }, replace: true });
+      }
+    };
 
-        getUsers();
+    getUsers();
 
-        return () => {
-            isMounted = false;
-        }
-    }, []);
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
-    return (
-        <article>
-            <h2>Users List</h2>
-            {users?.length
-                ? (
-                    <ul>
-                        {users.map((user, i) => <li key={i}>{user?.username}</li>)}
-                    </ul>
-                ) : <p>No users to display</p>
-            }
-        </article>
-    );
+  return (
+    <article>
+      <h2>Users List</h2>
+      {users?.length ? (
+        <ul>
+          {users.map((user, i) => (
+            <li key={i}>{user?.username}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No users to display</p>
+      )}
+    </article>
+  );
 };
 
 export default Users;
