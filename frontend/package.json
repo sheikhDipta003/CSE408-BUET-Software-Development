@@ -31,7 +31,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "npx prettier --write **/*.js"
+    "prettier": "npx prettier --write **/*.js",
+    "jsonserver": "npx json-server -p 3500 -w .\\data\\products.json"
   },
   "eslintConfig": {
     "extends": [
