@@ -4,7 +4,7 @@ const sequelize = require('../config/database');
 const Website = require('./Website');
 
 const Event = sequelize.define('Event', {
-  id: {
+  eId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,

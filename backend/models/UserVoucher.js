@@ -30,7 +30,11 @@ const UserVoucher = sequelize.define('UserVoucher', {
     timestamps: false,
   });
 
-User.belongsToMany(Voucher, { through: UserVoucher, foreignKey: 'userId' });
-Voucher.belongsToMany(User, { through: UserVoucher, foreignKey: 'voucherId' });
+User.belongsToMany(Voucher, { through: UserVoucher, foreignKey: {field: 'userId', allowNull: false} });
+Voucher.belongsToMany(User, { through: UserVoucher, foreignKey: {field: 'voucherId', allowNull: false}});
+User.hasMany(UserVoucher, {foreignKey: {field: 'userId', allowNull: false}});
+Voucher.hasMany(UserVoucher, {foreignKey: {field: 'voucherId', allowNull: false}});
+UserVoucher.belongsTo(User, {foreignKey: {field: 'userId', allowNull: false}});
+UserVoucher.belongsTo(Voucher, {foreignKey: {field: 'voucherId', allowNull: false}});
 
 module.exports = UserVoucher;
