@@ -51,7 +51,7 @@ function UserProfile() {
         e.preventDefault();
 
         try {
-            await axiosPrivate.put(`/users/${userId}`, {
+            await axiosPrivate.put(`/users/${userId}/update`, {
                 username: user.username,
                 password: user.password,
                 email: user.email
