@@ -38,15 +38,15 @@ function App() {
 
       <Route element={<PersistLogin/>}>
         <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
-          <Route path="user/:userId/viewprofile" element={<UserProfile />} />
+          <Route path="users/:userId/viewprofile" element={<UserProfile />} />
         </Route>
 
         <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
-          <Route path="user/:user_id/wishlist" element={<Wishlist />} />
+          <Route path="users/:user_id/wishlist" element={<Wishlist />} />
         </Route>
 
         <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
-          <Route path="user/:user_id/dashboard" element={<UserDashboard />} />
+          <Route path="users/:user_id/dashboard" element={<UserDashboard />} />
         </Route>
         
         <Route element={<RequireAuth allowedRoles={ROLES.Admin} />}>

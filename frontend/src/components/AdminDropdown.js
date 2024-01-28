@@ -6,7 +6,7 @@ import '../css/UserDropDown.css';
 import Logout from './Logout';
 import useAuth from "../hooks/useAuth";
 
-const UserDropDown = ({userId}) => {
+const AdminDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -39,15 +39,7 @@ const UserDropDown = ({userId}) => {
 
       {isOpen && (
         <div className="dropdown-menu">
-          <Link to="/home" className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200" onClick={closeDropdown}>Homepage</Link>
-
-          <Link to="/users/1/dashboard" className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200" onClick={closeDropdown}>Dashboard</Link>
-
-          <Link to="/users/1/wishlist" className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200" onClick={closeDropdown}>Wishlist</Link>
-
-          <Link to={`/users/${userId}/viewprofile`} className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200" onClick={closeDropdown}>Settings</Link>
-
-          <div className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200" onClick={closeDropdown}>Vouchers</div>
+          <Link to="/admin" className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200" onClick={closeDropdown}>Home</Link>
 
           <Logout/>
         </div>
@@ -56,4 +48,4 @@ const UserDropDown = ({userId}) => {
   );
 };
 
-export default UserDropDown;
+export default AdminDropdown;

@@ -5,13 +5,13 @@ const adminVoucherControl = require('../../controllers/adminVoucherController');
 const adminWebsiteController = require('../../controllers/adminWebsiteController');
 
 //manage users
-router.get('/users/:userId/delete', adminUserControl.deleteUser);
-router.get('/users/:userId', adminUserControl.getOneUser);
 router.get('/users', adminUserControl.getUsers);
-
+router.get('/users/:userId', adminUserControl.getOneUser);
+router.get('/users/:userId/delete', adminUserControl.deleteUser);
+-
 //manage vouchers
-router.get('/vouchers/:voucherId', adminVoucherControl.viewOneVoucher);
 router.get('/vouchers', adminVoucherControl.viewAllVouchers);
+router.get('/vouchers/:voucherId', adminVoucherControl.viewOneVoucher);
 router.get('/vouchers/:voucherId/delete', adminVoucherControl.deleteVoucher);
 
 //manage websites

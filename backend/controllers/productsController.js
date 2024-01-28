@@ -35,7 +35,7 @@ exports.createProduct = async (req, res) => {
 // Get products by category and subcategory
 exports.getProductsByCategoryAndSubcategory = async (req, res) => {
     try {
-        const { category, subcategory } = req.query;
+        const { category, subcategory } = req.params;
 
         console.log(category);
         console.log(subcategory);
@@ -43,7 +43,6 @@ exports.getProductsByCategoryAndSubcategory = async (req, res) => {
         const products = await Product.findAll({
             where: { category, subcategory },
             include: [
-                { model: ProductImage },
                 { model: ProductWebsite }
             ]
         });
