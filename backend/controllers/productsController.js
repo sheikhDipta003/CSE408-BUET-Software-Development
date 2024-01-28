@@ -1,39 +1,9 @@
 const Product = require('../models/Product');
+const Website = require('../models/Website');
 const ProductWebsite = require('../models/ProductWebsite');
 
-// Create a new product
-exports.createProduct = async (req, res) => {
-    try {
-        // Extract data from request body
-        const { productName, brand, imagePath, category, subcategory, color, width, height, images, websites } = req.body;
-
-        // Create the product
-        const product = await Product.create({
-            productName,
-            brand,
-            imagePath,
-            category,
-            subcategory,
-            color,
-            width,
-            height
-        });
-
-        // Create product images
-        await ProductImage.bulkCreate(images.map(image => ({ imageUrl: image.imageUrl, productId: product.productId })));
-
-        // Create product websites
-        await ProductWebsite.bulkCreate(websites.map(website => ({ ...website, productId: product.productId })));
-
-        res.status(201).json({ message: 'Product created successfully', product });
-    } catch (error) {
-        console.error('Error creating product:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-};
-
 // Get products by category and subcategory
-exports.getProductsByCategoryAndSubcategory = async (req, res) => {
+const getProductsByCategoryAndSubcategory = async (req, res) => {
     try {
         const { category, subcategory } = req.params;
 
@@ -41,10 +11,7 @@ exports.getProductsByCategoryAndSubcategory = async (req, res) => {
         console.log(subcategory);
 
         const products = await Product.findAll({
-            where: { category, subcategory },
-            include: [
-                { model: ProductWebsite }
-            ]
+            where: { category:category, subcategory:subcategory }
         });
 
         res.status(200).json({ products });
@@ -54,20 +21,67 @@ exports.getProductsByCategoryAndSubcategory = async (req, res) => {
     }
 };
 
-// Delete a product by productId
-exports.deleteProduct = async (req, res) => {
+const getProductDetails = async (req, res) => {
     try {
-        const { productId } = req.params;
-
-        // Delete product and associated images and websites (cascading delete)
-        await Product.destroy({
-            where: { productId },
-            cascade: true
+        const productId = req.params.productId;
+  
+        // Fetch product details along with associated websites
+        const productDetails = await Product.findOne(
+            {where: {productId:productId},
+          include: [
+            {
+              model: ProductWebsite,
+              include: [
+                {
+                  model: Website,
+                  attributes: ['name', 'url'],
+                },
+              ],
+              attributes: ['shippingTime', 'price', 'stock'],
+            },
+          ],
         });
-
-        res.status(200).json({ message: 'Product deleted successfully' });
-    } catch (error) {
-        console.error('Error deleting product:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
+  
+        if (!productDetails) {
+          return res.status(404).json({ message: 'Product not found' });
+        }
+  
+        res.status(200).json({ productDetails });
+      } catch (error) {
+        console.error('Error retrieving product details:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      }
 };
+
+const getProductWebsite = async (req, res) =>{
+    try {
+        const productId = req.params.productId;
+        const websiteId = req.params.websiteId;
+        // Fetch the list of users from the database
+        const product = await ProductWebsite.findOne({
+            where: { productId: productId, websiteId: websiteId },
+            include: [
+              {
+                    model: Product,
+                    attributes: ['productName', 'brand', 'category', 'subcategory', 'imagePath'],
+                  },
+                  {
+                    model: Website,
+                    attributes: ['name', 'imagePath', 'url'],
+                  },
+                ],
+              attributes: ['shippingTime', 'price', 'stock', 'rating']
+          });
+
+          if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+          }
+    
+          res.status(200).json({ product });
+      } catch (error) {
+        console.error('Error retrieving wishItem:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      }
+};
+
+module.exports={getProductsByCategoryAndSubcategory, getProductDetails, getProductWebsite};

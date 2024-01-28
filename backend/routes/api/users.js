@@ -1,11 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const profile = require('../../controllers/userController');
 const wishlist = require('../../controllers/userWishlistController');
 const notif = require('../../controllers/userNotifController');
 
+//profile
+router.get('/:userId', profile.getUser);
+router.put('/:userId/update', profile.updateUser);
+router.get('/:userId/delete', profile.deleteUser);
+
 //wishlist
-router.get('/:userId/wishlist/:wishlistId/delete', wishlist.deleteWishItem);
-router.get('/:userId/wishlist/:wishlistId', wishlist.getOneWishItem)
+router.get('/:userId/wishlist/:pwId/delete', wishlist.deleteWishItem);
+router.get('/:userId/wishlist/:pwId', wishlist.getOneWishItem)
 router.get('/:userId/wishlist', wishlist.allWishlist);
 
 //notifications
