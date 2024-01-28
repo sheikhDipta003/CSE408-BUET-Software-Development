@@ -13,7 +13,7 @@ const PriceDrop = sequelize.define('PriceDrop', {
     defaultValue: DataTypes.NOW,
   },
   price: {
-    type: DataTypes.DECIMAL(10, 2), // Adjust precision and scale as needed
+    type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
   }
 }, {
@@ -21,11 +21,11 @@ const PriceDrop = sequelize.define('PriceDrop', {
   });
 
 // Define associations
-User.belongsToMany(ProductWebsite, {through: PriceDrop});
-ProductWebsite.belongsToMany(User, {through: PriceDrop});
-User.hasMany(PriceDrop, {onDelete: 'CASCADE', onUpdate: 'CASCADE'});
-ProductWebsite.hasMany(PriceDrop, {onDelete: 'CASCADE', onUpdate: 'CASCADE'});
-PriceDrop.belongsTo(User);
-PriceDrop.belongsTo(ProductWebsite);
+User.belongsToMany(ProductWebsite, {through: PriceDrop, foreignKey: {field: 'userId', allowNull: false}});
+ProductWebsite.belongsToMany(User, {through: PriceDrop, foreignKey: {field: 'pwId', allowNull: false}});
+User.hasMany(PriceDrop, {foreignKey: {field: 'userId', allowNull: false}});
+ProductWebsite.hasMany(PriceDrop, {foreignKey: {field: 'pwId', allowNull: false}});
+PriceDrop.belongsTo(User, {foreignKey: {field: 'userId', allowNull: false}});
+PriceDrop.belongsTo(ProductWebsite, {foreignKey: {field: 'pwId', allowNull: false}});
 
 module.exports = Wishlist;
