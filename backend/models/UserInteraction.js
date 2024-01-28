@@ -2,32 +2,13 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const User = require('./User');
+const ProductWebsite = require('./ProductWebsite');
 
 const UserInteraction = sequelize.define('UserInteraction', {
-  id: {
+  intId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-  },
-  userId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: User, // Assuming the User model is named Users
-      key: 'userId',
-    },
-  },
-  productId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'Products', // Assuming the Product model is named Products
-      key: 'id',
-    },
-  },
-  interactionType: {
-    type: DataTypes.ENUM('search', 'click'), // Interaction type: search or click
-    allowNull: false,
   },
   createdAt: {
     type: DataTypes.DATE,
@@ -37,5 +18,12 @@ const UserInteraction = sequelize.define('UserInteraction', {
 }, {
   timestamps: false,
 });
+
+User.belongsToMany(ProductWebsite, {through: UserInteraction, foreignKey: {field: 'userId', allowNull: false}}),
+ProductWebsite.belongsToMany(User, {through: UserInteraction, foreignKey: {field: 'pwId', allowNull: false}})
+User.hasMany(UserInteraction, {foreignKey: {field: 'userId', allowNull: false}}),
+UserInteraction.belongsTo(User, {foreignKey: {field: 'userId', allowNull: false}}),
+ProductWebsite.hasMany(UserInteraction, {foreignKey: {field: 'pwId', allowNull: false}}),
+UserInteraction.belongsTo(ProductWebsite, {foreignKey: {field: 'pwId', allowNull: false}})
 
 module.exports = UserInteraction;
