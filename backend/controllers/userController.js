@@ -1,7 +1,6 @@
 const User = require('../models/User'); // Import the User model
 
-const UserController = {
-  getUser: async (req, res) => {
+const getUser = async (req, res) => {
     const userId = req.params.userId;
     try {
       const user = await User.findByPk(userId);
@@ -13,9 +12,9 @@ const UserController = {
       console.error('Error getting user:', error);
       res.status(500).json({ message: 'Error getting user' });
     }
-  },
+  };
 
-  updateUser: async (req, res) => {
+const updateUser = async (req, res) => {
     console.log("inside updateUser");
     const userId = req.params.userId;
     const { username, email, password } = req.body;
@@ -34,9 +33,9 @@ const UserController = {
       console.error('Error updating user:', error);
       res.status(500).json({ message: 'Error updating user' });
     }
-  },
+  };
 
-  deleteUser: async (req, res) => {
+const deleteUser = async (req, res) => {
     const userId = req.params.userId;
     try {
       const user = await User.findByPk(userId);
@@ -49,7 +48,7 @@ const UserController = {
       console.error('Error deleting user:', error);
       res.status(500).json({ message: 'Error deleting user' });
     }
-  },
-};
+  };
 
-module.exports = UserController;
+
+module.exports = {getUser, updateUser, deleteUser};

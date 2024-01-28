@@ -9,9 +9,8 @@ const verifyRoles = require('../../middleware/verifyRole');
 //     .post(verifyRoles(ROLES_LIST.User), productsController.createProduct);
 // router.route('/:category/:subcategory')
 //     .get(verifyRoles(ROLES_LIST.User), productsController.getProductsByCategoryAndSubcategory);
-router.route('/')
-    .post(productsController.createProduct);
-router.route('/:category/:subcategory')
-    .get(productsController.getProductsByCategoryAndSubcategory);
+// router.route('/')
+//     .post(productsController.createProduct);
+router.get('/', productsController.getProductsByCategoryAndSubcategory);
 
 module.exports = router;

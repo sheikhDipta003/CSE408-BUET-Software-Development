@@ -62,4 +62,5 @@ app.use('/products', require('./routes/api/products'));
 
 app.use('/users', require('./routes/api/users'));
 app.use('/admin', require('./routes/api/users'));
+app.use('/collab', require('./routes/api/collab'));
 
