@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 * {
@@ -18,7 +22,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     display: flex;
-    background-color: #efefef;
+    /* background-color: #efefef; */
 }
 
 label {
@@ -208,12 +212,10 @@ label {
 section {
     width: 100%;
     max-width: 80vw;
-    min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding: 1rem;
-    background-color: rgba(0,0,0,0.4);
 }
 
 form {
@@ -231,11 +233,12 @@ a, a:visited {
 input[type="text"],
 input[type="password"],
 input[type="email"],
-button,
+button
 textarea {
   font-family: 'Nunito', sans-serif;
   font-size: 22px;
   padding: 0.25rem;
+  border: 2px solid black;
   border-radius: 0.5rem;
 }
 

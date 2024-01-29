@@ -25,7 +25,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -68,7 +68,7 @@
                                   "DisplaySize": "15.6 Inch",
                                   "DisplayType": "FHD LED",
                                   "DisplayResolution": "1920 x 1080",
-                                  "TouchScreen": "No"
+                                  "TouchScreen": "Yes"
                                 },
                                 "Memory": {
                                   "RAM": "8GB",
@@ -94,7 +94,7 @@
                         "website_url": "https://www.ebay.com",
                         "products_info": [
                         {
-                            "product_id": "2457",
+                            "product_id": "2458",
                             "product_name": "HP 14 Laptop, Intel Celeron N4020",
                             "image": "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/81vzIB8T1wS._AC_SL1500_.jpg",
                             "price": 65000,
@@ -105,7 +105,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -139,10 +139,10 @@
                                 "Processor": {
                                   "ProcessorBrand": "Intel",
                                   "ProcessorModel": "Core i3-1115G4",
-                                  "ProcessorFrequency": "3.00 GHz up to 4.10 GHz",
+                                  "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
-                                  "ProcessorThread": 4,
-                                  "CPUCache": "6 MB"
+                                  "ProcessorThread": 2,
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": "15.6 Inch",
@@ -191,7 +191,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -357,7 +357,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -394,7 +394,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -437,7 +437,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -474,7 +474,7 @@
                                   "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
                                   "ProcessorCore": 2,
                                   "ProcessorThread": 2,
-                                  "CPUCache": "4MB"
+                                  "CPUCache": "4 MB"
                                 },
                                 "Display": {
                                   "DisplaySize": 14,
@@ -504,7 +504,474 @@
                     ]
                 }
                 ]
-            }
+            },
+            {
+              "category": "computers",
+              "subcategory": "desktop",
+              "brands": [
+              {
+                  "brand_name" : "HP",
+                  "available_count": 15,
+                  "platform_products": [
+                  {
+                      "website_name": "startech",
+                      "website_url": "https://www.startech.com.bd",
+                      "products_info": [
+                      {
+                          "product_id": "4563",
+                          "product_name": "AMD Ryzen 5 2400G Desktop PC",
+                          "image": "https://www.startech.com.bd/image/cache/catalog/desktop-pc/desktop-offer/ryzen-5-2400g-desktop-pc02-500x500.webp",
+                          "price": 23499,
+                          "specs": {
+                              "Processor": {
+                                "ProcessorBrand": "AMD",
+                                "ProcessorModel": "AMD Ryzen 5 2400G Desktop Processor with Radeon RX Vega 11 Graphics",
+                                "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
+                                "ProcessorCore": 2,
+                                "ProcessorThread": 2,
+                                "CPUCache": "4 MB"
+                              },
+                              "Display": {
+                                "DisplaySize": 14,
+                                "DisplayType": "LED",
+                                "DisplayResolution": "HD (1366X768)",
+                                "TouchScreen": "No"
+                              },
+                              "Memory": {
+                                "RAM": "8GB",
+                                "RAMType": "DDR4 U-DIMM Desktop RAM",
+                                "BusSpeed": "3200MHz"
+                              }
+                          },
+                          "coupon" : {
+                              "code":"SAVE25DESKTOP",
+                              "discount_percentage": 25,
+                              "discount_amount": null,
+                              "description":"Save 25% on selected laptop brands",
+                              "terms":"Valid on specific brands only. Excludes already discounted items",
+                              "start_date":"2024-01-08",
+                              "end_date":"2024-01-10"
+                          },
+                          "rating": 4.2
+                      }
+                      ]
+                  },
+                  {
+                      "website_name": "ebay",
+                      "website_url": "https://www.ebay.com",
+                      "products_info": [
+                      {
+                          "product_id": "2458",
+                          "product_name": "HP 14 Laptop, Intel Celeron N4020",
+                          "image": "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/81vzIB8T1wS._AC_SL1500_.jpg",
+                          "price": 65000,
+                          "specs": {
+                              "Processor": {
+                                "ProcessorBrand": "Intel",
+                                "ProcessorModel": "Celeron Processor N4020",
+                                "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
+                                "ProcessorCore": 2,
+                                "ProcessorThread": 2,
+                                "CPUCache": "4 MB"
+                              },
+                              "Display": {
+                                "DisplaySize": 14,
+                                "DisplayType": "LED",
+                                "DisplayResolution": "HD (1366X768)",
+                                "TouchScreen": "Yes"
+                              },
+                              "Memory": {
+                                "RAM": "4GB(onboard)",
+                                "RAMType": "DDR4",
+                                "BusSpeed": "2666MHz"
+                              }
+                          },
+                          "coupon" : {
+                              "code":"SAVE12LAPTOP",
+                              "discount_percentage": 12,
+                              "discount_amount": null,
+                              "description":"Save 12% on selected laptop brands",
+                              "terms":"Valid on specific brands only. Excludes already discounted items",
+                              "start_date":"2024-01-06",
+                              "end_date":"2024-01-10"
+                          },
+                          "rating": 4.3
+                      },
+                      {
+                          "product_id": "2458",
+                          "product_name": "Hp 15.6\" HD Laptop Intel N200 (Pentium) Processor",
+                          "image": "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/51KupiNLuHL._AC_SL1280_.jpg",
+                          "price": 38000,
+                          "specs":{
+                              "Processor": {
+                                "ProcessorBrand": "Intel",
+                                "ProcessorModel": "Core i3-1115G4",
+                                "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
+                                "ProcessorCore": 2,
+                                "ProcessorThread": 2,
+                                "CPUCache": "4 MB"
+                              },
+                              "Display": {
+                                "DisplaySize": "15.6 Inch",
+                                "DisplayType": "FHD LED",
+                                "DisplayResolution": "1920 x 1080",
+                                "TouchScreen": "No"
+                              },
+                              "Memory": {
+                                "RAM": "8GB",
+                                "RAMType": "DDR4",
+                                "BusSpeed": "3200MHz"
+                              }
+                          },
+                          "coupon" : {
+                              "code":"CASHBACK63",
+                              "discount_percentage": null,
+                              "discount_amount": null,
+                              "description":"Receive BDT 6300 cashback on laptops over BDT 28000.",
+                              "terms":"Cashback to be credited after purchase. Applies only to full-priced laptops.",
+                              "start_date":"2024-01-07",
+                              "end_date":"2024-01-09"
+                          },
+                          "rating": 4.1
+                      }
+                      ]
+                  }
+                  ]
+              },
+              {
+                  "brand_name" : "Asus",
+                  "available_count": 10,
+                  "platform_products": [
+                  {
+                      "website_name": "amazon",
+                      "website_url": "https://www.amazon.com",
+                      "products_info": [
+                      {
+                          "product_id": "1234",
+                          "product_name": "ASUS ROG Strix G15 (2022) Gaming Laptop",
+                          "image": "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71OyrTkxpGL._AC_SL1500_.jpg",
+                          "price": 59000,
+                          "specs": {
+                              "Processor": {
+                                "ProcessorBrand": "Intel",
+                                "ProcessorModel": "Celeron Processor N4020",
+                                "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
+                                "ProcessorCore": 2,
+                                "ProcessorThread": 2,
+                                "CPUCache": "4 MB"
+                              },
+                              "Display": {
+                                "DisplaySize": 14,
+                                "DisplayType": "LED",
+                                "DisplayResolution": "HD (1366X768)",
+                                "TouchScreen": "No"
+                              },
+                              "Memory": {
+                                "RAM": "4GB(onboard)",
+                                "RAMType": "DDR4",
+                                "BusSpeed": "2666MHz"
+                              }
+                          },
+                          "coupon" : {
+                              "code":"SAVE13LAPTOP",
+                              "discount_percentage": 13,
+                              "discount_amount": null,
+                              "description":"Save 13% on selected laptop brands",
+                              "terms":"Valid on specific brands only. Excludes already discounted items",
+                              "start_date":"2024-01-08",
+                              "end_date":"2024-01-10"
+                          },
+                          "rating": 4.6
+                      },
+                      {
+                          "product_id": "1235",
+                          "product_name": "ASUS ROG Strix G15 (2022) Gaming Laptop",
+                          "image": "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71OyrTkxpGL._AC_SL1500_.jpg",
+                          "price": 33000,
+                          "specs":{
+                              "Processor": {
+                                "ProcessorBrand": "Intel",
+                                "ProcessorModel": "Core i3-1115G4",
+                                "ProcessorFrequency": "3.00 GHz up to 4.10 GHz",
+                                "ProcessorCore": 2,
+                                "ProcessorThread": 4,
+                                "CPUCache": "6 MB"
+                              },
+                              "Display": {
+                                "DisplaySize": "15.6 Inch",
+                                "DisplayType": "FHD LED",
+                                "DisplayResolution": "1920 x 1080",
+                                "TouchScreen": "No"
+                              },
+                              "Memory": {
+                                "RAM": "8GB",
+                                "RAMType": "DDR4",
+                                "BusSpeed": "3200MHz"
+                              }
+                          },
+                          "coupon" : {
+                              "code":"CASHBACK60",
+                              "discount_percentage": null,
+                              "discount_amount": null,
+                              "description":"Receive BDT 6000 cashback on laptops over BDT 28000.",
+                              "terms":"Cashback to be credited after purchase. Applies only to full-priced laptops.",
+                              "start_date":"2024-01-09",
+                              "end_date":"2024-01-11"
+                          },
+                          "rating": 3.8
+                      }
+                      ]
+                  },
+                  {
+                      "website_name": "startech",
+                      "website_url": "https://www.startech.com.bd",
+                      "products_info": [
+                      {
+                          "product_id": "1236",
+                          "product_name": "Asus Vivobook E410MA Celeron N4020 14\" HD Laptop",
+                          "image": "https://www.startech.com.bd/image/cache/catalog/laptop/asus/e410ma/e410ma-01-500x500.jpg",
+                          "price": 60000,
+                          "specs":{
+                              "Processor": {
+                                "ProcessorBrand": "Intel",
+                                "ProcessorModel": "Core i3-1115G4",
+                                "ProcessorFrequency": "3.00 GHz up to 4.10 GHz",
+                                "ProcessorCore": 2,
+                                "ProcessorThread": 4,
+                                "CPUCache": "6 MB"
+                              },
+                              "Display": {
+                                "DisplaySize": "15.6 Inch",
+                                "DisplayType": "FHD LED",
+                                "DisplayResolution": "1920 x 1080",
+                                "TouchScreen": "No"
+                              },
+                              "Memory": {
+                                "RAM": "8GB",
+                                "RAMType": "DDR4",
+                                "BusSpeed": "3200MHz"
+                              }
+                          },
+                          "coupon" : {
+                              "code":"SAVE11LAPTOP",
+                              "discount_percentage": 11,
+                              "discount_amount": null,
+                              "description":"Save 11% on selected laptop brands",
+                              "terms":"Valid on specific brands only. Excludes already discounted items",
+                              "start_date":"2024-01-09",
+                              "end_date":"2024-01-10"
+                          },
+                          "rating": 4.5
+                      },
+                      {
+                          "product_id": "1237",
+                          "product_name": "Asus VivoBook 15 E510MA Intel Celeron N4020 15.6\" FHD Laptop",
+                          "image": "https://www.startech.com.bd/image/cache/catalog/laptop/asus/e410ma/e410ma-01-500x500.jpg",
+                          "price": 31000,
+                          "specs":{
+                              "Processor": {
+                                "ProcessorBrand": "Intel",
+                                "ProcessorModel": "Core i3-1115G4",
+                                "ProcessorFrequency": "3.00 GHz up to 4.10 GHz",
+                                "ProcessorCore": 2,
+                                "ProcessorThread": 4,
+                                "CPUCache": "6 MB"
+                              },
+                              "Display": {
+                                "DisplaySize": "15.6 Inch",
+                                "DisplayType": "FHD LED",
+                                "DisplayResolution": "1920 x 1080",
+                                "TouchScreen": "No"
+                              },
+                              "Memory": {
+                                "RAM": "8GB",
+                                "RAMType": "DDR4",
+                                "BusSpeed": "3200MHz"
+                              }
+                          },
+                          "coupon" : {
+                              "code":"CASHBACK61",
+                              "discount_percentage": null,
+                              "discount_amount": null,
+                              "description":"Receive BDT 6100 cashback on laptops over BDT 30000.",
+                              "terms":"Cashback to be credited after purchase. Applies only to full-priced laptops.",
+                              "start_date":"2024-01-10",
+                              "end_date":"2024-01-11"
+                          },
+                          "rating": 4.4
+                      }
+                      ]
+                  }
+                  ]
+              },
+              {
+                  "brand_name" : "Dell",
+                  "available_count": 20,
+                  "platform_products": [
+                  {
+                      "website_name": "startech",
+                      "website_url": "https://www.startech.com.bd",
+                      "products_info": [
+                      {
+                          "product_id": "3456",
+                          "product_name": "Dell D1918H 18.5 Inch LED Monitor",
+                          "image": "https://www.startech.com.bd/image/cache/catalog/monitor/dell/d1918h/d1918h-01-500x500.jpg",
+                          "price": 60000,
+                          "specs": {
+                              "Processor": {
+                                "ProcessorBrand": "Intel",
+                                "ProcessorModel": "Celeron Processor N4020",
+                                "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
+                                "ProcessorCore": 2,
+                                "ProcessorThread": 2,
+                                "CPUCache": "4 MB"
+                              },
+                              "Display": {
+                                "DisplaySize": 14,
+                                "DisplayType": "LED",
+                                "DisplayResolution": "HD (1366X768)",
+                                "TouchScreen": "No"
+                              },
+                              "Memory": {
+                                "RAM": "4GB(onboard)",
+                                "RAMType": "DDR4",
+                                "BusSpeed": "2666MHz"
+                              }
+                          },
+                          "coupon" : {
+                              "code":"SAVE15LAPTOP",
+                              "discount_percentage": 15,
+                              "discount_amount": null,
+                              "description":"Save 15% on selected laptop brands",
+                              "terms":"Valid on specific brands only. Excludes already discounted items",
+                              "start_date":"2024-01-08",
+                              "end_date":"2024-01-10"
+                          },
+                          "rating": 4.5
+                      },
+                      {
+                          "product_id": "3457",
+                          "product_name": "Dell D1920H 18.5 Inch LED Monitor",
+                          "image": "https://www.startech.com.bd/image/cache/catalog/monitor/dell/d1918h/d1918h-01-500x500.jpg",
+                          "price": 30000,
+                          "specs": {
+                              "Processor": {
+                                "ProcessorBrand": "Intel",
+                                "ProcessorModel": "Celeron Processor N4020",
+                                "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
+                                "ProcessorCore": 2,
+                                "ProcessorThread": 2,
+                                "CPUCache": "4 MB"
+                              },
+                              "Display": {
+                                "DisplaySize": 14,
+                                "DisplayType": "LED",
+                                "DisplayResolution": "HD (1366X768)",
+                                "TouchScreen": "No"
+                              },
+                              "Memory": {
+                                "RAM": "4GB(onboard)",
+                                "RAMType": "DDR4",
+                                "BusSpeed": "2666MHz"
+                              }
+                          },
+                          "coupon" : {
+                              "code":"CASHBACK75",
+                              "discount_percentage": null,
+                              "discount_amount": null,
+                              "description":"Receive BDT 6400 cashback on laptops over BDT 28000.",
+                              "terms":"Cashback to be credited after purchase. Applies only to full-priced laptops.",
+                              "start_date":"2024-01-09",
+                              "end_date":"2024-01-11"
+                          },
+                          "rating": 4.4
+                      }
+                      ]
+                  },
+                  {
+                      "website_name": "ryans",
+                      "website_url": "https://www.ryanscomputers.com",
+                      "products_info": [
+                      {
+                          "product_id": "3458",
+                          "product_name": "Dell Inspiron 15 3520 Intel Core i3",
+                          "image": "https://www.ryanscomputers.com/storage/products/main/dell-inspiron-15-3520-intel-core-i3-1215u-8gb-ram-61699100387.webp",
+                          "price": 60000,
+                          "specs": {
+                              "Processor": {
+                                "ProcessorBrand": "Intel",
+                                "ProcessorModel": "Celeron Processor N4020",
+                                "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
+                                "ProcessorCore": 2,
+                                "ProcessorThread": 2,
+                                "CPUCache": "4 MB"
+                              },
+                              "Display": {
+                                "DisplaySize": 14,
+                                "DisplayType": "LED",
+                                "DisplayResolution": "HD (1366X768)",
+                                "TouchScreen": "No"
+                              },
+                              "Memory": {
+                                "RAM": "4GB(onboard)",
+                                "RAMType": "DDR4",
+                                "BusSpeed": "2666MHz"
+                              }
+                          },
+                          "coupon" : {
+                              "code":"SAVE15LAPTOP",
+                              "discount_percentage": 15,
+                              "discount_amount": null,
+                              "description":"Save 15% on selected laptop brands",
+                              "terms":"Valid on specific brands only. Excludes already discounted items",
+                              "start_date":"2024-01-08",
+                              "end_date":"2024-01-10"
+                          },
+                          "rating": 4.5
+                      },
+                      {
+                          "product_id": "3459",
+                          "product_name": "Dell Inspiron 15 3520 Intel Core i3",
+                          "image": "https://www.ryanscomputers.com/storage/products/main/dell-inspiron-15-3520-intel-core-i3-1215u-8gb-ram-61699100387.webp",
+                          "price": 30000,
+                          "specs": {
+                              "Processor": {
+                                "ProcessorBrand": "Intel",
+                                "ProcessorModel": "Celeron Processor N4020",
+                                "ProcessorFrequency": "1.10 GHz up to 2.80 GHz",
+                                "ProcessorCore": 2,
+                                "ProcessorThread": 2,
+                                "CPUCache": "4 MB"
+                              },
+                              "Display": {
+                                "DisplaySize": 14,
+                                "DisplayType": "LED",
+                                "DisplayResolution": "HD (1366X768)",
+                                "TouchScreen": "No"
+                              },
+                              "Memory": {
+                                "RAM": "4GB(onboard)",
+                                "RAMType": "DDR4",
+                                "BusSpeed": "2666MHz"
+                              }
+                          },
+                          "coupon" : {
+                              "code":"CASHBACK75",
+                              "discount_percentage": null,
+                              "discount_amount": null,
+                              "description":"Receive BDT 6400 cashback on laptops over BDT 28000.",
+                              "terms":"Cashback to be credited after purchase. Applies only to full-priced laptops.",
+                              "start_date":"2024-01-09",
+                              "end_date":"2024-01-11"
+                          },
+                          "rating": 4.4
+                      }
+                      ]
+                  }
+                  ]
+              }
+              ]
+          }
         ]
     }
 }

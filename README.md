@@ -1,7 +1,7 @@
 # TechShoppers - Your One-Stop Tech Shop for Price Comparsion accross the Web
 
 ## Introduction
-Welcome to the repository for our Price Comparison Website. This platform is designed to help users find the best prices for products across various online retailers. We leverage a microservices architecture to ensure scalability and reliability.
+Welcome to the repository for our Price Comparison Website. This platform is designed to help users find the best prices for products across various online retailers. We leverage an MVC architecture for ease of implementation, modularity and separation of concerns.
 
 ## Features
 - Search functionality for a wide range of products.
@@ -13,72 +13,66 @@ Welcome to the repository for our Price Comparison Website. This platform is des
 
 ## Getting Started
 
-### Prerequisites
-List of software/tools required:
-- Docker
-- Kubernetes
-- Node.js
-- Python 3.x
-- MongoDB/MySQL
-- Any IDE (like VSCode)
+## Technology Stack
 
-### Installation
-Step-by-step guide to set up the project locally:
+- **Frontend**: React.js, Tailwind css
+- **Backend**: Node.js, Express.js
+- **Database**: PostgreSQL, Supabase; access and use with sequelize library of npmjs
+
+## Installation
 
 1. **Clone the Repository:**
-   ```
-   git clone https://github.com/sheikhDipta003/CSE408-BUET-Software-Development.git TechShoppers
+   ```bash
+   git clone https://github.com/your-username/TechShoppers.git
    cd TechShoppers
    ```
 
-2. **Set Up Backend Services:**
-   - Navigate to each microservice directory and build Docker containers.
-     ```
-     cd microservice-name
-     docker build -t microservice-name .
-     ```
-   - Use Kubernetes to orchestrate the containers.
-     ```
-     kubectl apply -f deployment.yml
-     ```
-
-3. **Initialize Frontend:**
-   ```
-   cd frontend
+2. **Install Dependencies:**
+   ```bash
+   # Install backend dependencies
+   cd backend
    npm install
-   npm start
+   npm update(optional)
+
+   # Install frontend dependencies
+   cd ../frontend
+   npm install
+   npm update(optional)
    ```
 
-4. **Access the Application:**
-   - The website should be running on `http://localhost:3000` (or another port specified).
+3. **Configure Environment Variables:**
+   - Create a `.env` file in the `backend` directory and set up your PostgreSQL DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME and other settings.
+
+4. **Run the Application:**
+   ```bash
+   # Start the backend server
+   cd backend
+   npm run dev (or, nodemon server or node server)
+
+   # Start the backend server (uses the node package named 'json-server'; fetch sample data for temporary use in the frontend)
+   cd frontend
+   npm run jsonserver
+
+   # Start the frontend development server
+   cd ../frontend
+   npm run start
+
+   # format all the js files with proper spacing and alignment for better readability
+   npm run prettier
+   ```
+
+5. **Open in Browser:**
+   Open your browser and navigate to [http://localhost:3000/home](http://localhost:3000/home) to access homepage of TechShoppers.
 
 ### Configuration
-- Configure environment variables in `.env` files for each microservice.
-- Adjust database connection settings, API keys, and other sensitive information.
+- Need to create an account in [Supabase](https://supabase.com/)
+- Configure environment variables in `.env` files for database connection settings, API keys, and other sensitive information.
 
-## Usage
-Describe how to use the website, including:
-- How to search for products.
-- How to compare prices.
-- Managing user accounts.
+## API Documentation
 
-## Running Tests
-Instructions for running automated tests for this system.
-```
-cd microservice-name
-npm test
-```
-
-## Deployment
-Guidelines for deploying the application on a live system.
-
-## Contributing
-Please read [CONTRIBUTING.md](LINK_TO_CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](LINK_TO_TAGS).
+- The API documentation, ERD and System Architecture details can be found in the `system-design` directory.
 
 ## Authors
 - **Sheikh Intiser Uddin Dipta** - *1905003* - [sheikhDipta003](https://github.com/sheikhDipta003)
 - **Tanhiat Fatema Afnan** - *1905014* - [Afnan312](https://github.com/Afnan312)
-- **Nazmus Sakib Sami** - *1905030* - [tormentor57](https://github.com/tormentor57)
+- **Nazmus Sakib Sami** - *1905030* - [mahito57](https://github.com/mahito57)

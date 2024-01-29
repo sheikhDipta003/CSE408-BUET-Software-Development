@@ -1,22 +1,43 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import UserDropDown from "./UserDropDown.js";
+import SearchBar from "./SearchBar.js";
+import useAuth from "../hooks/useAuth";
+import AdminDropdown from "./AdminDropdown.js";
+
+const ROLES = {
+  Admin: 5150,
+  Collaborator: 1984,
+  User: 2001,
+};
 
 const Nav = () => {
-    return (
-        <nav className="Nav">
-            <form className="searchForm" onSubmit={(e) => e.preventDefault()}>
-                <label htmlFor="search">Search Posts</label>
-                <input
-                    id="search"
-                    type="text"
-                    placeholder="Search for products, brands"
-                />
-            </form>
-            <ul>
-                <li><Link to="/login">Login</Link></li>
-                <li><Link to="/register">Register</Link></li>
-            </ul>
-        </nav>
-    )
-}
+  const { auth } = useAuth();
 
-export default Nav
+  console.log("from Nav.js = ", auth.userId);
+
+  return (
+    <nav className="Nav">
+      <SearchBar />
+      <ul>
+        {auth?.accessToken ? (
+          auth.roles === ROLES.Admin || auth.roles === "Admin" ? (
+            <AdminDropdown />
+          ) : (
+            <UserDropDown userId={auth.userId} />
+          )
+        ) : (
+          <>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+          </>
+        )}
+      </ul>
+    </nav>
+  );
+};
+
+export default Nav;
