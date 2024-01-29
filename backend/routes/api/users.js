@@ -4,9 +4,15 @@ const profile = require('../../controllers/userController');
 const wishlist = require('../../controllers/userWishlistController');
 const notif = require('../../controllers/userNotifController');
 const review = require('../../controllers/reviewController');
+const pricedrop = require('../../controllers/priceDropController');
+const event = require('../../controllers/eventController');
 
 // get all reviews
 router.get('/reviews', review.getAllReviews);
+
+// view all events organized by all websites
+router.get('/events', event.getUserEvents);
+router.get('/events/:eid', event.getEventDetails);
 
 //profile
 router.get('/:userId', profile.getUser);
@@ -29,5 +35,10 @@ router.post('/:userId/reviews', review.createReview);
 router.get('/:userId/reviews/:reviewId', review.getReviewById);
 router.get('/:userId/reviews/:reviewId/edit', review.updateReview);
 router.get('/:userId/reviews/:reviewId/delete', review.deleteReview);
+
+//price-drop alerts
+router.get('/:userId/alerts/pricedrop', pricedrop.viewPriceDropAlerts);
+router.delete('/:userId/alerts/pricedrop', pricedrop.removePriceDropAlert);
+
 
 module.exports = router;
