@@ -2,8 +2,7 @@
 
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-//const ProductImage = require('./ProductImage'); // Import the ProductImage model
-//const ProductWebsite = require('./ProductWebsite');
+const Brand = require('./Brand');
 
 const Product = sequelize.define('Product', {
     productId: {
@@ -15,43 +14,15 @@ const Product = sequelize.define('Product', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  brand: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
   imagePath:{
     type: DataTypes.STRING,
-  },
-  category: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  subcategory: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  color: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  width: {
-    type: DataTypes.FLOAT,
-    allowNull: true,
-  },
-  height: {
-    type: DataTypes.FLOAT,
-    allowNull: true,
-  },
+  }
 }, 
 {
   timestamps: false,
 });
 
-// Define the one-to-many association with ProductImage
-// Product.hasMany(ProductImage, {
-//   foreignKey: 'productId',
-//   onDelete: 'CASCADE', // Delete associated images when a product is deleted
-// });
-//Product.belongsToMany(Website, { through: ProductWebsite });
+Product.belongsTo(Brand, {foreignKey: {field: 'brandId', allowNull: false}});
+Brand.hasMany(Product, {foreignKey: {field: 'brandId', allowNull: false}, onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
 module.exports = Product;
