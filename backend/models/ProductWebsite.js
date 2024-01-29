@@ -15,10 +15,6 @@ const ProductWebsite = sequelize.define('ProductWebsite', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  price: {
-    type: DataTypes.DECIMAL(10, 2), // Adjust precision and scale as needed
-    allowNull: false,
-  },
   stock: {
     type: DataTypes.INTEGER,
     allowNull: true,

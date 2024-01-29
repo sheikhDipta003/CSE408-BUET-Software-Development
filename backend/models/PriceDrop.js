@@ -28,4 +28,4 @@ ProductWebsite.hasMany(PriceDrop, {foreignKey: {field: 'pwId', allowNull: false}
 PriceDrop.belongsTo(User, {foreignKey: {field: 'userId', allowNull: false}});
 PriceDrop.belongsTo(ProductWebsite, {foreignKey: {field: 'pwId', allowNull: false}});
 
-module.exports = Wishlist;
+module.exports = PriceDrop;

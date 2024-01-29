@@ -1,7 +1,7 @@
 // models/Spec.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Product = require('./Product');
+const ProductWebsite = require('./ProductWebsite');
 
 const Spec = sequelize.define('Spec', {
   specId: {
@@ -25,6 +25,6 @@ const Spec = sequelize.define('Spec', {
   timestamps: false,
 });
 
-Spec.belongsTo(Product, {foreignKey: {field: 'productId', allowNull: false}});
-Product.hasMany(Spec, {foreignKey: {field: 'productId', allowNull: false}, onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+Spec.belongsTo(ProductWebsite, {foreignKey: {field: 'productId', allowNull: false}});
+ProductWebsite.hasMany(Spec, {foreignKey: {field: 'productId', allowNull: false}, onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 module.exports = Spec;
