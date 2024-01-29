@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const Review = require('./Review');
 
 const User = sequelize.define('User', {
   userId: {
@@ -42,4 +43,7 @@ const User = sequelize.define('User', {
 });
 //User.belongsToMany(Voucher, { through: UserVoucher });
 //User.hasMany(Wishlist);
+User.hasMany(Review, {foreignKey: {field: 'userId', allowNull: false}});
+Review.belongsTo(User, {foreignKey: {field: 'userId', allowNull: false}});
+
 module.exports = User;
