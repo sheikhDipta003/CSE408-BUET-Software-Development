@@ -6,6 +6,7 @@ const notif = require('../../controllers/userNotifController');
 const review = require('../../controllers/reviewController');
 const pricedrop = require('../../controllers/priceDropController');
 const event = require('../../controllers/eventController');
+const uservoucher = require('../../controllers/userVoucherController');
 
 // get all reviews
 router.get('/reviews', review.getAllReviews);
@@ -39,6 +40,10 @@ router.get('/:userId/reviews/:reviewId/delete', review.deleteReview);
 //price-drop alerts
 router.get('/:userId/alerts/pricedrop', pricedrop.viewPriceDropAlerts);
 router.delete('/:userId/alerts/pricedrop', pricedrop.removePriceDropAlert);
+
+// vouchers
+router.get('/:userId/vouchers', uservoucher.getUserVouchers);
+router.delete('/:userId/vouchers/:voucherId/remove', uservoucher.removeUserVoucher);
 
 
 module.exports = router;
