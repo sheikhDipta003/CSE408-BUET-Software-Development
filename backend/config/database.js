@@ -1,6 +1,6 @@
-const { Sequelize } = require('sequelize');
+const { Sequelize } = require("sequelize");
 
-require('dotenv').config();
+require("dotenv").config();
 
 // const sequelize = new Sequelize(process.env.KB_URL, {
 //     //host: process.env.DARABASE_HOST,
@@ -11,12 +11,16 @@ require('dotenv').config();
 //     //logging: false,
 //   });
 
-  const sequelize = new Sequelize('postgres', process.env.USER, process.env.PASSWORD, {
+const sequelize = new Sequelize(
+  "postgres",
+  process.env.USER,
+  process.env.PASSWORD,
+  {
     host: process.env.HOST,
-    dialect: 'postgres',
+    dialect: "postgres",
     port: process.env.PORT,
     //logging: false,
-  });
-
+  },
+);
 
 module.exports = sequelize;
