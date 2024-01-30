@@ -10,7 +10,7 @@ const UserVoucher = sequelize.define('UserVoucher', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Users', // Assuming the User model is named Users
+      model: 'Users',
       key: 'id',
     },
   },
@@ -18,7 +18,7 @@ const UserVoucher = sequelize.define('UserVoucher', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Vouchers', // Assuming the Voucher model is named Vouchers
+      model: 'Vouchers',
       key: 'id',
     },
   },
