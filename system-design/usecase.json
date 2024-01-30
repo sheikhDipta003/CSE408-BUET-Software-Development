@@ -1,0 +1,214 @@
+[
+    {
+        "usecase": {
+            "name": "Product Price Comparison",
+            "scenario": "User compares prices for multiple products from different online retailers.",
+            "actors": "User",
+            "preconditions": "User is registered and logged in",
+            "steps": [
+                "User enters search criteria for a product",
+                "User views the list of product results with prices from multiple retailers",
+                "User selects a product to view detailed information",
+                "User compares prices and retailer ratings",
+                "User adds the selected product to the cart"
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Product Search",
+                "description": "Verify that a user can successfully search for a product and view prices from multiple retailers.",
+                "input": {
+                    "searchQuery": "mobiles"
+                },
+                "expected": {
+                    "outcome": "Product search successful",
+                    "status": "Viewed results"
+                }
+            },
+            {
+                "name": "Product Comparison",
+                "description": "Verify that the user can compare prices and ratings for a selected product.",
+                "input": {
+                    "selectedProduct": "iPhone 15"
+                },
+                "expected": {
+                    "outcome": "Product comparison successful",
+                    "status": "Viewed prices and ratings"
+                }
+            },
+            {
+                "name": "Add to Cart",
+                "description": "Verify that the user can add a product to the shopping cart.",
+                "input": {
+                    "selectedProduct": "iPhone 15"
+                },
+                "expected": {
+                    "outcome": "Product added to cart",
+                    "status": "Added to cart"
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Price Drop Alerts",
+            "scenario": "User sets up price drop alerts for specific products.",
+            "actors": "User",
+            "preconditions": "User is registered and logged in, selected product in the wishlist",
+            "steps": [
+                "User navigates to the product details page",
+                "User sets up a price drop alert for the selected product"
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Set Price Drop Alert",
+                "description": "Verify that the user can successfully set up a price drop alert for a selected product.",
+                "input": {
+                    "selectedProduct": "AMD Ryzen 5 2400G Desktop PC",
+                    "targetPrice": 20000.00
+                },
+                "expected": {
+                    "outcome": "Price drop alert set",
+                    "status": "Alert active"
+                }
+            },
+            {
+                "name": "Invalid Target Price",
+                "description": "Verify that the system handles the case where the user sets an invalid target price.",
+                "input": {
+                    "selectedProduct": "iPhone 15",
+                    "targetPrice": -50.00
+                },
+                "expected": {
+                    "outcome": "Invalid target price",
+                    "status": "Alert not set"
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "View Product Details",
+            "scenario": "User explores detailed information about a specific product.",
+            "actors": "User",
+            "preconditions": "User is registered and logged in",
+            "steps": [
+                "User enters search criteria for a product",
+                "User selects a product from the search results",
+                "User views detailed information about the selected product"
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Product Selection",
+                "description": "Verify that a user can successfully select a product and view its detailed information.",
+                "input": {
+                    "selectedProduct": "HP 14 Laptop"
+                },
+                "expected": {
+                    "outcome": "Product details viewed",
+                    "status": "Details displayed"
+                }
+            },
+            {
+                "name": "Invalid Product Selection",
+                "description": "Verify that the system handles the case where the user tries to view details for a non-existing product.",
+                "input": {
+                    "selectedProduct": "Nonexistent Product"
+                },
+                "expected": {
+                    "outcome": "Product details not found",
+                    "status": "Details not displayed"
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Search Using Filters",
+            "scenario": "User narrows down product search results by applying filters.",
+            "actors": "User",
+            "preconditions": "User is registered and logged in",
+            "steps": [
+                "User enters search criteria for a product",
+                "User applies filters such as price range, brand, websites etc.",
+                "User views refined search results"
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Filter by Price Range",
+                "description": "Verify that a user can successfully filter search results by a specified price range.",
+                "input": {
+                    "searchQuery": "Smartwatch",
+                    "priceRange": "$100 - $200"
+                },
+                "expected": {
+                    "outcome": "Filtered search results",
+                    "status": "Results within specified price range"
+                }
+            },
+            {
+                "name": "Filter by Brand",
+                "description": "Verify that a user can successfully filter search results by a specific brand.",
+                "input": {
+                    "searchQuery": "Headphones",
+                    "selectedBrand": "Sony"
+                },
+                "expected": {
+                    "outcome": "Filtered search results",
+                    "status": "Results from Sony brand only"
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Product Recommendations",
+            "scenario": "User receives personalized product recommendations based on their previous interactions with the website.",
+            "actors": "User, Recommendation Engine",
+            "preconditions": "User is registered and logged in, has previous interactions with the website",
+            "steps": [
+                "User logs in with their credentials",
+                "User views the homepage or a dedicated recommendations section",
+                "Recommendation Engine analyzes user's browsing and purchase history",
+                "User receives personalized product recommendations"
+            ]
+        },
+        "testcases": [
+            {
+                "name": "View Recommended Products",
+                "description": "Verify that a user can view personalized product recommendations.",
+                "input": {},
+                "expected": {
+                    "outcome": "Recommended products displayed",
+                    "status": "Viewed recommendations"
+                }
+            },
+            {
+                "name": "Relevance of Recommendations",
+                "description": "Verify that recommended products are relevant to the user's preferences and history.",
+                "input": {},
+                "expected": {
+                    "outcome": "Relevant recommendations",
+                    "status": "Products align with user's preferences"
+                }
+            },
+            {
+                "name": "Dynamic Recommendations",
+                "description": "Verify that recommended products dynamically update based on the user's ongoing interactions.",
+                "input": {
+                    "userInteractions": [
+                        "Viewed products in the 'Electronics' category",
+                        "Purchased a laptop"
+                    ]
+                },
+                "expected": {
+                    "outcome": "Dynamic recommendations",
+                    "status": "Updated based on recent interactions"
+                }
+            }
+        ]
+    }           
+]
