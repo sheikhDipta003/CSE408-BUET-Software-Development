@@ -4,7 +4,6 @@
             "name": "Product Price Comparison",
             "scenario": "User compares prices for multiple products from different online retailers.",
             "actors": "User",
-            "preconditions": "User is registered and logged in",
             "steps": [
                 "User enters search criteria for a product",
                 "User views the list of product results with prices from multiple retailers",
@@ -54,7 +53,6 @@
             "name": "Price Drop Alerts",
             "scenario": "User sets up price drop alerts for specific products.",
             "actors": "User",
-            "preconditions": "User is registered and logged in, selected product in the wishlist",
             "steps": [
                 "User navigates to the product details page",
                 "User sets up a price drop alert for the selected product"
@@ -92,7 +90,6 @@
             "name": "View Product Details",
             "scenario": "User explores detailed information about a specific product.",
             "actors": "User",
-            "preconditions": "User is registered and logged in",
             "steps": [
                 "User enters search criteria for a product",
                 "User selects a product from the search results",
@@ -126,45 +123,6 @@
     },
     {
         "usecase": {
-            "name": "Search Using Filters",
-            "scenario": "User narrows down product search results by applying filters.",
-            "actors": "User",
-            "preconditions": "User is registered and logged in",
-            "steps": [
-                "User enters search criteria for a product",
-                "User applies filters such as price range, brand, websites etc.",
-                "User views refined search results"
-            ]
-        },
-        "testcases": [
-            {
-                "name": "Filter by Price Range",
-                "description": "Verify that a user can successfully filter search results by a specified price range.",
-                "input": {
-                    "searchQuery": "Smartwatch",
-                    "priceRange": "$100 - $200"
-                },
-                "expected": {
-                    "outcome": "Filtered search results",
-                    "status": "Results within specified price range"
-                }
-            },
-            {
-                "name": "Filter by Brand",
-                "description": "Verify that a user can successfully filter search results by a specific brand.",
-                "input": {
-                    "searchQuery": "Headphones",
-                    "selectedBrand": "Sony"
-                },
-                "expected": {
-                    "outcome": "Filtered search results",
-                    "status": "Results from Sony brand only"
-                }
-            }
-        ]
-    },
-    {
-        "usecase": {
             "name": "Product Recommendations",
             "scenario": "User receives personalized product recommendations based on their previous interactions with the website.",
             "actors": "User, Recommendation Engine",
@@ -172,7 +130,7 @@
             "steps": [
                 "User logs in with their credentials",
                 "User views the homepage or a dedicated recommendations section",
-                "Recommendation Engine analyzes user's browsing and purchase history",
+                "Recommendation Engine analyzes user's browsing history",
                 "User receives personalized product recommendations"
             ]
         },
@@ -188,7 +146,7 @@
             },
             {
                 "name": "Relevance of Recommendations",
-                "description": "Verify that recommended products are relevant to the user's preferences and history.",
+                "description": "Verify that recommended products are relevant to the user's browsing history.",
                 "input": {},
                 "expected": {
                     "outcome": "Relevant recommendations",
@@ -200,8 +158,7 @@
                 "description": "Verify that recommended products dynamically update based on the user's ongoing interactions.",
                 "input": {
                     "userInteractions": [
-                        "Viewed products in the 'Electronics' category",
-                        "Purchased a laptop"
+                        "Viewed products in the 'Electronics' category"
                     ]
                 },
                 "expected": {
@@ -210,5 +167,113 @@
                 }
             }
         ]
-    }           
+    },
+    {
+        "usecase": {
+            "name": "Admin Adds Website for Product Integration",
+            "scenario": "Admin adds a new website to integrate its products.",
+            "actors": "Admin",
+            "preconditions": "Admin is authenticated and has appropriate permissions",
+            "steps": [
+                "Admin logs in with admin credentials",
+                "Admin navigates to the admin dashboard",
+                "Admin selects the option to add a new website for integration",
+                "Admin provides details of the new website, such as name, URL",
+                "Admin saves the new website configuration"
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Successful Website Addition",
+                "description": "Verify that the admin can successfully add a new website for product integration.",
+                "input": {
+                    "websiteName": "NewElecStore",
+                    "websiteURL": "https://www.newelecstore.com"
+                },
+                "expected": {
+                    "outcome": "Website added successfully",
+                    "status": "Integration configured"
+                }
+            },
+            {
+                "name": "Invalid Website URL",
+                "description": "Verify that the system handles the case where the admin provides an invalid website URL.",
+                "input": {
+                    "websiteName": "InvalidStore",
+                    "websiteURL": "invalid-url"
+                },
+                "expected": {
+                    "outcome": "Invalid website URL",
+                    "status": "Integration not configured"
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Collaborator Submits Offers/Events",
+            "scenario": "Collaborator submits offers or events to be featured as top offers or events.",
+            "actors": "Collaborator, Admin",
+            "preconditions": "Collaborator is registered and authenticated, Admin is authenticated",
+            "steps": [
+                "Collaborator logs in with their credentials",
+                "Collaborator navigates to the collaboration dashboard",
+                "Collaborator submits details of the offer or event, including product details, discount information, and validity period",
+                "Admin reviews and approves the submitted offer or event",
+                "Approved offer or event is displayed as a top offer or event on the Website"
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Collaborator Submits Offer",
+                "description": "Verify that a collaborator can successfully submit an offer to be displayed as a top offer on the website.",
+                "input": {
+                    "offerType": "Discount",
+                    "productName": "Smart TV",
+                    "discountPercentage": 20,
+                    "validityPeriod": "2024-03-01 to 2024-03-15"
+                },
+                "expected": {
+                    "outcome": "Offer submitted successfully",
+                    "status": "Pending admin approval"
+                }
+            },
+            {
+                "name": "Collaborator Submits Event",
+                "description": "Verify that a collaborator can successfully submit an event to be displayed as an event on the website.",
+                "input": {
+                    "eventType": "Launch Event",
+                    "productName": "New Smartphone Model",
+                    "eventDescription": "Join us for the exclusive launch of our latest smartphone model.",
+                    "eventDate": "2024-04-01"
+                },
+                "expected": {
+                    "outcome": "Event submitted successfully",
+                    "status": "Pending admin approval"
+                }
+            },
+            {
+                "name": "Admin Approval",
+                "description": "Verify that the admin can review and approve the submitted offer or event.",
+                "input": {
+                    "adminApproval": true
+                },
+                "expected": {
+                    "outcome": "Offer or event approved",
+                    "status": "Displayed as top offer or event"
+                }
+            },
+            {
+                "name": "Admin Rejection",
+                "description": "Verify that the admin can reject the submitted offer or event.",
+                "input": {
+                    "adminApproval": false
+                },
+                "expected": {
+                    "outcome": "Offer or event rejected",
+                    "status": "Not displayed"
+                }
+            }
+        ]
+    }                  
 ]
