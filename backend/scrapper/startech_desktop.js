@@ -21,11 +21,14 @@ async function getStartechDesktops(page = 1) {
             const producturl = $(element).find('.p-item-inner > .p-item-details > .p-item-name a').attr('href');
             const productAttributes = await getproductdetails(producturl);
             
-            items.push({
-                Name,
-                Price,
-                Attributes: productAttributes
-            });
+            if(Price != "TBA"){
+                items.push({
+                    Name,
+                    Price,
+                    Attributes: productAttributes
+                });
+            }
+            
         });
 
         // Check if there is a next page and recursively call the function
