@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const ROLES_LIST = require("../config/roles");
 require("dotenv").config();
 
 const handleRefreshToken = async (req, res) => {
@@ -14,7 +15,7 @@ const handleRefreshToken = async (req, res) => {
   // evaluate jwt
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
     if (err || foundUser.email !== decoded.email) return res.sendStatus(403);
-    const roles = foundUser.roles;
+    const roles = ROLES_LIST[foundUser.roles];
     const accessToken = jwt.sign(
       {
         UserInfo: {
