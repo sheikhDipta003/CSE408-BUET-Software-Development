@@ -11,6 +11,8 @@ const recommend = require("../../controllers/recommendController");
 
 // get all reviews
 router.get("/reviews", review.getAllReviews);
+router.get("/recommend", recommend.getAllUserClickcount);
+router.get("/trending", recommend.getTrendingProducts);
 
 // view all events organized by all websites or a specific event details
 router.get("/events", event.getUserEvents);
@@ -39,6 +41,7 @@ router.get("/:userId/reviews/:reviewId/edit", review.updateReview);
 router.get("/:userId/reviews/:reviewId/delete", review.deleteReview);
 
 //price-drop alerts
+router.post("/:userId/alerts/pricedrop", pricedrop.setPriceDropAlert);
 router.get("/:userId/alerts/pricedrop", pricedrop.viewPriceDropAlerts);
 router.delete("/:userId/alerts/pricedrop", pricedrop.removePriceDropAlert);
 
@@ -51,6 +54,7 @@ router.delete(
 
 // recommndations
 router.post("/:userId/recommend", recommend.getClicksCount);
+router.get("/:userId/recommend2", recommend.generateRecommendations);
 router.get("/:userId/recommend/all", recommend.getAllClickCounts);
 router.put("/:userId/recommend/update", recommend.updateClicksCount);
 
