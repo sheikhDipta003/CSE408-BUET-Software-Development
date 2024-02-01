@@ -8,6 +8,8 @@ const pricedrop = require("../../controllers/priceDropController");
 const event = require("../../controllers/eventController");
 const uservoucher = require("../../controllers/userVoucherController");
 const recommend = require("../../controllers/recommendController");
+const ROLES_LIST = require("../../config/roles");
+const verifyRole = require("../../middleware/verifyRole");
 
 // get all reviews
 router.get("/reviews", review.getAllReviews);
@@ -41,7 +43,7 @@ router.get("/:userId/reviews/:reviewId/edit", review.updateReview);
 router.get("/:userId/reviews/:reviewId/delete", review.deleteReview);
 
 //price-drop alerts
-router.post("/:userId/alerts/pricedrop", pricedrop.setPriceDropAlert);
+router.route("/:userId/alerts/pricedrop").post(verifyRole(ROLES_LIST.User), pricedrop.setPriceDropAlert);
 router.get("/:userId/alerts/pricedrop", pricedrop.viewPriceDropAlerts);
 router.delete("/:userId/alerts/pricedrop", pricedrop.removePriceDropAlert);
 
