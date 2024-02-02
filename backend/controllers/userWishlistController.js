@@ -78,7 +78,7 @@ const getOneWishItem = async (req, res) => {
 
 const deleteWishItem = async (req, res) => {
   try {
-    const userId = req.user.userId;
+    const userId = req.params.userId;
     const wishlistId = req.params.wishlistId;
 
     // Check if the user has the product in their wishlist
