@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const SearchBar = () => {
   const categories = {
     computers: ["all", "laptop", "desktop"],
-    mobiles: ["all", "android", "tablet"],
+    accessories: ["all", "keyboard", "mouse"],
   };
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -16,11 +16,11 @@ const SearchBar = () => {
       const matchedSuggestions = [];
       Object.entries(categories).forEach(([category, subcategories]) => {
         if (category.includes(input.toLowerCase())) {
-          matchedSuggestions.push(category);
+          matchedSuggestions.push(`Category: ${category}`);
         }
         subcategories.forEach((subcategory) => {
           if (subcategory.includes(input.toLowerCase())) {
-            matchedSuggestions.push(`${category}/${subcategory}`);
+            matchedSuggestions.push(`Subcategory: ${category}/${subcategory}`);
           }
         });
       });
@@ -48,26 +48,39 @@ const SearchBar = () => {
 
   const handleEnter = (e) => {
     if (e.key === "Enter") {
-      const lowerInput = input.toLowerCase();
-      let path = "";
-      Object.entries(categories).forEach(([category, subcategories]) => {
-        if (category.includes(lowerInput)) {
-          path = `productlisting/${category}/all`;
-        }
-        subcategories.forEach((subcategory) => {
-          if (subcategory.includes(lowerInput)) {
-            path = `productlisting/${category}/${subcategory}`;
-          }
-        });
-      });
-      if (path) navigate(path);
-      setSuggestions([]);
-      setInput("");
+      // const lowerInput = input.toLowerCase();
+      // let path = "";
+      // Object.entries(categories).forEach(([category, subcategories]) => {
+      //   if (category.includes(lowerInput)) {
+      //     path = `productlisting/${category}/all`;
+      //   }
+      //   subcategories.forEach((subcategory) => {
+      //     if (subcategory.includes(lowerInput)) {
+      //       path = `productlisting/${category}/${subcategory}`;
+      //     }
+      //   });
+      // });
+      // if (path) navigate(path);
+      // setSuggestions([]);
+      // setInput("");
+      if (input.length > 0) {
+        navigate(`/search/?keyword=${encodeURIComponent(input)}`);
+        setSuggestions([]);
+        setInput("");
+      }
     }
   };
 
   const handleSuggestionClick = (suggestion) => {
-    navigate(`productlisting/${suggestion}`);
+    // navigate(`productlisting/${suggestion}`);
+    // setSuggestions([]);
+    // setInput("");
+    const [type, value] = suggestion.split(": ");
+    if (type === "Category") {
+      navigate(`productlisting/${value}/all`);
+    } else if (type === "Subcategory") {
+      navigate(`productlisting/${value}`);
+    }
     setSuggestions([]);
     setInput("");
   };
@@ -80,7 +93,7 @@ const SearchBar = () => {
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={handleEnter}
         className="border p-2 w-full"
-        placeholder="Search for categories, subcategories..."
+        placeholder="Search for product, categories, subcategories..."
       />
       {suggestions.length > 0 && (
         <div className="absolute top-full left-0 right-0 bg-white border mt-1 max-h-40 overflow-auto z-50">

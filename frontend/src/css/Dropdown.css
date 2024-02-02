@@ -1,0 +1,26 @@
+.menu-item {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .subcategory-menu {
+    position: absolute;
+    top: 100%;
+    left: 20%;
+    /* transform: translate(-50%, -50%); */
+    background-color: #ddd8d8;
+    padding: 50px;
+    border-radius: 4px;
+    width: 500px;
+  }
+  
+  .subcategory-item {
+    padding: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .subcategory-item:hover {
+    background-color: #f1d2d2;
+  }
+  
