@@ -4,15 +4,11 @@ const ProductWebsite = require("../models/ProductWebsite");
 // Controller function to set an alert for a price drop on a specific product
 async function setPriceDropAlert(req, res) {
   try {
-    const { productId, userId, websiteId } = req.params;
-    const price = req.body;
+    const { productId, userId, websiteId, price } = req.body;
 
     // Find the corresponding ProductWebsite entry
     const productWebsite = await ProductWebsite.findOne({
-      where: { 
-        productId: productId, 
-        websiteId: websiteId 
-      },
+      where: { productId, websiteId },
     });
 
     if (!productWebsite) {
@@ -23,9 +19,9 @@ async function setPriceDropAlert(req, res) {
 
     // Create a new PriceDrop entry
     const priceDrop = await PriceDrop.create({
-      userId: userId,
-      pwId: productWebsite.pwId,
-      price: price,
+      UserUserId: userId,
+      ProductWebsitePwId: productWebsite.pwId,
+      price,
       dateAdded: new Date(),
     });
 
@@ -74,7 +70,7 @@ async function removePriceDropAlert(req, res) {
 
     // Delete the price drop entry
     await PriceDrop.destroy({
-      where: { userId: userId, pwId: productWebsite.pwId },
+      where: { UserUserId: userId, ProductWebsitePwId: productWebsite.pwId },
     });
 
     return res
