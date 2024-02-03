@@ -1,5 +1,269 @@
 [
     {
+        "Name": "ASUS ExpertCenter D700MD Core i5 12th Gen Desktop PC",
+        "Price": "67,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 12th Gen Core i5-12400 (2.5 GHz to 4.0 GHz, 18 MB)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel B660 Chipset"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB DDR4 3200MHz U-DIMM"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB SATA 7200RPM 3.5\" HDD"
+            }
+        ]
+    },
+    {
+        "Name": "Intel 10th Gen Core i3-10100 Desktop PC",
+        "Price": "30,780৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 10th Gen Core i3-10100 Processor\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "GIGABYTE H470M H 11th and 10th Gen Micro ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Team MP33 256GB M.2 PCIe SSD\n"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 5 2400G Budget Gaming Desktop PC",
+        "Price": "22,999৳25,600৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 5 2400G Desktop Processor with Radeon RX Vega 11 Graphics"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI A520M-A Pro AM4 AMD Micro-ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Team Elite Plus Red 8GB 3200MHz DDR4 U-DIMM Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Western Digital Green SN350 240GB M.2 NVMe Gen3 SSD"
+            }
+        ]
+    },
+    {
+        "Name": "DELL OptiPlex 7010 Core i3 13th Gen Tower Desktop PC",
+        "Price": "56,500৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Core i3-13100 (12 MB cache, 4 cores, 8 threads, 3.40 GHz to 4.50 GHz turbo, 60 W)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel Q670"
+            },
+            {
+                "name": "RAM",
+                "value": "4 GB, 1 x 4 GB, DDR4, 3200 MT/s, single-channel"
+            },
+            {
+                "name": "Storage",
+                "value": "256GB  M.2 2230 PCIe NVMe Class 35 Solid State Drive\nSlot:\n1 M.2 2230 slot for WiFi and Bluetooth combo card \n1 M.2 2230/2280 slot for solid-state drive \n3 SATA 3.0 slots for 2.5-inch/3.5-inch hard drive and slim optical drive \n1 Full-height Gen 3 PCIe x16 slot \n2 Full-height Gen 3 PCIe x1 slot"
+            }
+        ]
+    },
+    {
+        "Name": "Dell OptiPlex 3000 Core i3 12th Gen Tower Brand PC",
+        "Price": "54,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i3-12100 (12M Cache, 3.30 GHz  to 4.30 GHz)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel B660 Chipset"
+            },
+            {
+                "name": "RAM",
+                "value": "4GB DDR4 RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB HDD"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 5 5600G Budget Gaming Desktop PC",
+        "Price": "28,399৳30,200৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 5 5600G Processor with Radeon Graphics (Chinese Edition)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI A520M-A Pro AM4 AMD Micro-ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Team Elite Plus Red 8GB 3200MHz DDR4 U-DIMM Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Western Digital Green SN350 240GB M.2 NVMe Gen3 SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Intel 12th Gen Core i3-12100 Desktop PC",
+        "Price": "35,899৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i3-12100 12th Gen Alder Lake Processor\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI PRO H610M-G DDR4 12th Gen Micro-ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Team MP33 256GB M.2 PCIe SSD\n"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 7 5700G Custom Desktop PC",
+        "Price": "39,199৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 7 5700G Processor with Radeon Graphics"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI B450M-A PRO MAX AMD AM4 Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Team MP33 256GB M.2 PCIe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Intel 10th Gen Core i3-10100 Custom Desktop PC",
+        "Price": "31,600৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 10th Gen Core i3 10100 Processor"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Gigabyte H510M H Intel 10th and 11th Gen Micro ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Team MP33 256GB M.2 PCIe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 5 5600G Custom Desktop PC",
+        "Price": "30,700৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 5 5600G Processor with Radeon Graphics (Chinese Edition)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI A520M-A Pro AM4 AMD Micro-ATX Motherboard (C)"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "HP EX900 M.2 250GB PCIe NVMe Internal SSD"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 3 3200G Budget Gaming Desktop PC",
+        "Price": "25,800৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 3 3200G Processor with Radeon RX Vega 8 Graphics\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI A520M-A Pro AM4 AMD Micro-ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "HP V6 8GB 3200MHz DDR4 Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Western Digital Green SN350 240GB M.2 NVMe Gen3 SSD\n"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 7 5700G Budget Desktop PC",
+        "Price": "38,000৳39,380৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 7 5700G Processor with Radeon Graphics"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI A520M-A PRO AM4 AMD ATX MOTHERBOARD (CN)"
+            },
+            {
+                "name": "RAM",
+                "value": "G.Skill RIPJAWS-V 8GB DDR4 3200MHz Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "HP EX900 M.2 250GB PCIe NVMe Internal SSD"
+            }
+        ]
+    },
+    {
         "Name": "Intel Pentium Gold G7400 Desktop PC",
         "Price": "21,999৳23,000৳",
         "Attributes": [
@@ -18,6 +282,72 @@
             {
                 "name": "Storage",
                 "value": "Team MP33 256GB M.2 PCIe SSD\n"
+            }
+        ]
+    },
+    {
+        "Name": "DELL OptiPlex 7010 Tower Plus Core i7 13th Gen Desktop PC",
+        "Price": "107,500৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "13th Gen Intel Core i7-13700 (30 MB cache, 16 cores, 24 threads, 2.10 GHz to 5.10 GHz Turbo, 65 W)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel Q670"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB (1X8GB) DDR5 Non-ECC Memory"
+            },
+            {
+                "name": "Storage",
+                "value": "M.2 2230 512GB PCIe NVMe Solid State Drive"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 5 2400G Desktop PC",
+        "Price": "25,400৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 5 2400G Desktop Processor with Radeon RX Vega 11 Graphics"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI B450M-A PRO MAX AMD AM4 Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Team Elite Plus Red 8GB 3200MHz DDR4 U-DIMM Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Kimtigo TP3000 256GB M.2 NVMe PCIe Gen3x4 SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Intel Pentium Gold G7400 Budget Desktop PC",
+        "Price": "23,999৳26,350৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Pentium Gold G7400 Alder Lake Processor\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI PRO H610M-E DDR4 mATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Kimtigo WOLFRINE 8GB 3200MHz DDR4 UDIMM Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Western Digital Green SN350 240GB M.2 NVMe Gen3 SSD\n"
             }
         ]
     },
@@ -62,12 +392,12 @@
         ]
     },
     {
-        "Name": "Dell OptiPlex 3000 Core i3 12th Gen Tower Brand PC",
-        "Price": "54,000৳",
+        "Name": "Dell Vostro 3020T Core i3 13th Gen Desktop PC",
+        "Price": "56,500৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel Core i3-12100 (12M Cache, 3.30 GHz  to 4.30 GHz)"
+                "value": "Intel Core i3-13100 13th Gen (12 MB cache, 4 cores, 8 threads, 3.40 GHz to 4.50 GHz Turbo)"
             },
             {
                 "name": "Motherboard",
@@ -75,143 +405,11 @@
             },
             {
                 "name": "RAM",
-                "value": "4GB DDR4 RAM"
+                "value": "8GB (1x8GB) 3200MHz DDR4"
             },
             {
                 "name": "Storage",
-                "value": "1TB HDD"
-            }
-        ]
-    },
-    {
-        "Name": "Intel Pentium Gold G7400 Budget Desktop PC",
-        "Price": "23,999৳26,800৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Pentium Gold G7400 Alder Lake Processor\n"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI PRO H610M-E DDR4 mATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Kimtigo WOLFRINE 8GB 3200MHz DDR4 UDIMM Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Western Digital Green SN350 240GB M.2 NVMe Gen3 SSD\n"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 5 5600G Budget Gaming Desktop PC",
-        "Price": "28,399৳30,200৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 5 5600G Processor with Radeon Graphics (Chinese Edition)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI A520M-A Pro AM4 AMD Micro-ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Team Elite Plus Red 8GB 3200MHz DDR4 U-DIMM Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Western Digital Green SN350 240GB M.2 NVMe Gen3 SSD"
-            }
-        ]
-    },
-    {
-        "Name": "DELL OptiPlex 7010 Core i3 13th Gen Tower Desktop PC",
-        "Price": "56,500৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Core i3-13100 (12 MB cache, 4 cores, 8 threads, 3.40 GHz to 4.50 GHz turbo, 60 W)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel Q670"
-            },
-            {
-                "name": "RAM",
-                "value": "4 GB, 1 x 4 GB, DDR4, 3200 MT/s, single-channel"
-            },
-            {
-                "name": "Storage",
-                "value": "256GB  M.2 2230 PCIe NVMe Class 35 Solid State Drive\nSlot:\n1 M.2 2230 slot for WiFi and Bluetooth combo card \n1 M.2 2230/2280 slot for solid-state drive \n3 SATA 3.0 slots for 2.5-inch/3.5-inch hard drive and slim optical drive \n1 Full-height Gen 3 PCIe x16 slot \n2 Full-height Gen 3 PCIe x1 slot"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 5 2400G Budget Gaming Desktop PC",
-        "Price": "22,999৳25,600৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 5 2400G Desktop Processor with Radeon RX Vega 11 Graphics"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI A520M-A Pro AM4 AMD Micro-ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Team Elite Plus Red 8GB 3200MHz DDR4 U-DIMM Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Western Digital Green SN350 240GB M.2 NVMe Gen3 SSD"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 5 5600G Custom Desktop PC",
-        "Price": "30,700৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 5 5600G Processor with Radeon Graphics (Chinese Edition)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI A520M-A Pro AM4 AMD Micro-ATX Motherboard (C)"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "HP EX900 M.2 250GB PCIe NVMe Internal SSD"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 5 2400G Desktop PC",
-        "Price": "25,400৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 5 2400G Desktop Processor with Radeon RX Vega 11 Graphics"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI B450M-A PRO MAX AMD AM4 Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Team Elite Plus Red 8GB 3200MHz DDR4 U-DIMM Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Kimtigo TP3000 256GB M.2 NVMe PCIe Gen3x4 SSD"
+                "value": "256GB M.2 PCIe NVMe SSD"
             }
         ]
     },
@@ -238,200 +436,24 @@
         ]
     },
     {
-        "Name": "AMD Ryzen 7 5700G Budget Desktop PC",
-        "Price": "38,000৳39,380৳",
+        "Name": "Lenovo IdeaCentre 3 07IAB7 Core i3 12th Gen 8GB RAM Desktop PC",
+        "Price": "48,000৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "AMD Ryzen 7 5700G Processor with Radeon Graphics"
+                "value": "Intel Core i3-12100 (12M Cache, up to 4.30 GHz)"
             },
             {
                 "name": "Motherboard",
-                "value": "MSI A520M-A PRO AM4 AMD ATX MOTHERBOARD (CN)"
+                "value": "Intel B660"
             },
             {
                 "name": "RAM",
-                "value": "G.Skill RIPJAWS-V 8GB DDR4 3200MHz Desktop RAM"
+                "value": "8GB UDIMM DDR4-3200\nUp to 32GB DDR4-3200\n"
             },
             {
                 "name": "Storage",
-                "value": "HP EX900 M.2 250GB PCIe NVMe Internal SSD"
-            }
-        ]
-    },
-    {
-        "Name": "DELL OptiPlex 7010 Tower Plus Core i7 13th Gen Desktop PC",
-        "Price": "107,500৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "13th Gen Intel Core i7-13700 (30 MB cache, 16 cores, 24 threads, 2.10 GHz to 5.10 GHz Turbo, 65 W)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel Q670"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB (1X8GB) DDR5 Non-ECC Memory"
-            },
-            {
-                "name": "Storage",
-                "value": "M.2 2230 512GB PCIe NVMe Solid State Drive"
-            }
-        ]
-    },
-    {
-        "Name": "Intel 12th Gen Core i3-12100 Desktop PC",
-        "Price": "35,899৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i3-12100 12th Gen Alder Lake Processor\n"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI PRO H610M-G DDR4 12th Gen Micro-ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Team MP33 256GB M.2 PCIe SSD\n"
-            }
-        ]
-    },
-    {
-        "Name": "Intel 10th Gen Core i3-10100 Custom Desktop PC",
-        "Price": "31,600৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 10th Gen Core i3 10100 Processor"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Gigabyte H510M H Intel 10th and 11th Gen Micro ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Team MP33 256GB M.2 PCIe SSD"
-            }
-        ]
-    },
-    {
-        "Name": "ASUS ExpertCenter D700MD Core i5 12th Gen Desktop PC",
-        "Price": "67,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 12th Gen Core i5-12400 (2.5 GHz to 4.0 GHz, 18 MB)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel B660 Chipset"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB DDR4 3200MHz U-DIMM"
-            },
-            {
-                "name": "Storage",
-                "value": "1TB SATA 7200RPM 3.5\" HDD"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 3 3200G Budget Gaming Desktop PC",
-        "Price": "25,800৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 3 3200G Processor with Radeon RX Vega 8 Graphics\n"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI A520M-A Pro AM4 AMD Micro-ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "HP V6 8GB 3200MHz DDR4 Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Western Digital Green SN350 240GB M.2 NVMe Gen3 SSD\n"
-            }
-        ]
-    },
-    {
-        "Name": "Intel 10th Gen Core i3-10100 Desktop PC",
-        "Price": "30,780৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 10th Gen Core i3-10100 Processor\n"
-            },
-            {
-                "name": "Motherboard",
-                "value": "GIGABYTE H470M H 11th and 10th Gen Micro ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Team MP33 256GB M.2 PCIe SSD\n"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 7 5700G Custom Desktop PC",
-        "Price": "39,199৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 7 5700G Processor with Radeon Graphics"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI B450M-A PRO MAX AMD AM4 Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Team MP33 256GB M.2 PCIe SSD"
-            }
-        ]
-    },
-    {
-        "Name": "Dell Vostro 3020T Core i3 13th Gen Desktop PC",
-        "Price": "56,500৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i3-13100 13th Gen (12 MB cache, 4 cores, 8 threads, 3.40 GHz to 4.50 GHz Turbo)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel B660 Chipset"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB (1x8GB) 3200MHz DDR4"
-            },
-            {
-                "name": "Storage",
-                "value": "256GB M.2 PCIe NVMe SSD"
+                "value": "1TB HDD 7200rpm 3.5\"\n• 3.5\" HDD up to 2TB\n• M.2 SSD up to 1TB"
             }
         ]
     },
@@ -454,6 +476,28 @@
             {
                 "name": "Storage",
                 "value": "Team MP33 256GB M.2 PCIe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 7 5700G GIGABYTE Special Desktop PC",
+        "Price": "50,300৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 7 5700G Processor with Radeon Graphics"
+            },
+            {
+                "name": "Motherboard",
+                "value": "GIGABYTE B450M DS3H V2 AM4 AMD Micro ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "CORSAIR VENGEANCE RGB RS 8GB DDR4 3200MHz RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "GIGABYTE 256GB NVMe M.2 SSD"
             }
         ]
     },
@@ -502,110 +546,8 @@
         ]
     },
     {
-        "Name": "ASUS PN63-S1 Core i3 11th Gen 4GB RAM Ultracompact Mini PC with Keyboard Mouse",
-        "Price": "46,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i3-1115G4 Processor (6M Cache, 3.0GHz up to 4.1GHz)"
-            },
-            {
-                "name": "RAM",
-                "value": "4GB DDR4 3200 MHz"
-            },
-            {
-                "name": "Storage",
-                "value": "Supports 1x 2.5-inch HDD and 2x M.2 PCIe Gen 4x4 SSD"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 7 5700G GIGABYTE Special Desktop PC",
-        "Price": "50,300৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 7 5700G Processor with Radeon Graphics"
-            },
-            {
-                "name": "Motherboard",
-                "value": "GIGABYTE B450M DS3H V2 AM4 AMD Micro ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "CORSAIR VENGEANCE RGB RS 8GB DDR4 3200MHz RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "GIGABYTE 256GB NVMe M.2 SSD"
-            }
-        ]
-    },
-    {
-        "Name": "Lenovo IdeaCentre 3 07ADA05 AMD Ryzen 5 3500U Brand PC",
-        "Price": "45,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 5 3500U (4C / 8T, 2.1 / 3.7GHz, 2MB L2 / 4MB L3)"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB RAM 2600 Bus Speed-Expandable Up to 16 GB"
-            },
-            {
-                "name": "Storage",
-                "value": "512GB SSD M.2 2242 PCIe NVMe"
-            }
-        ]
-    },
-    {
-        "Name": "Intel 11th Gen Core i7-11700 Desktop PC",
-        "Price": "53,389৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 11th Gen Core i7-11700 Rocket Lake Processor\n"
-            },
-            {
-                "name": "Motherboard",
-                "value": "GIGABYTE B560M H Intel 10th and 11th Gen Micro ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair Vengeance LPX 16GB DDR4 DRAM 3200MHz RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "HP EX900 PLUS 256GB M.2 PCIe NVMe Internal SSD\n"
-            }
-        ]
-    },
-    {
-        "Name": "Intel 12th Gen Core i5-12400 Desktop PC",
-        "Price": "41,699৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 12th Gen Core i5-12400 Alder Lake Processor\n"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI PRO H610M-G DDR4 12th Gen Micro-ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "HP EX900 PLUS 256GB M.2 PCIe NVMe Internal SSD\n"
-            }
-        ]
-    },
-    {
-        "Name": "HP Pro Tower 280 G9 Core i3 12th Gen 4GB RAM Desktop PC",
-        "Price": "53,000৳",
+        "Name": "HP Pro Tower 280 G9 Core i3 12th Gen 4GB RAM 256GB SSD Desktop PC",
+        "Price": "53,500৳",
         "Attributes": [
             {
                 "name": "Processor",
@@ -621,17 +563,73 @@
             },
             {
                 "name": "Storage",
-                "value": "1TB 7200rpm HDD"
+                "value": "256GB SSD"
             }
         ]
     },
     {
-        "Name": "Lenovo ThinkCentre neo 50t Core i3 12th Gen Tower Business Brand PC",
-        "Price": "61,500৳",
+        "Name": "AMD Ryzen 5 5600G Custom Desktop PC with Monitor",
+        "Price": "40,700৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel Core i3-12100 (12M Cache, 3.30 GHz to 4.30 GHz)"
+                "value": "AMD Ryzen 5 5600G Processor with Radeon Graphics (Chinese Edition)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI A520M-A Pro AM4 AMD Micro-ATX Motherboard (CN)"
+            },
+            {
+                "name": "RAM",
+                "value": "Team Elite Plus Red 8GB 3200MHz DDR4 U-DIMM Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Team MP33 256GB M.2 PCIe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 7 5700X Gaming Desktop PC",
+        "Price": "58,498৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 7 5700X Processor"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI B450M-A PRO MAX AMD AM4 Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Team MP33 PRO 512GB M.2 PCIe Gen3 NVMe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Lenovo ThinkCentre Neo 50s SFF Core i5 12th Gen Small Tower Brand PC",
+        "Price": "62,500৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 12th Gen Core i5-12400 (6-core, 12 Threads, 2.50GHz to 4.40GHz, 18 MB Cache)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel B660"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB DDR4 3200 MHz\nRAM Support: Up to 64GB"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB 7200RPM SATA HDD"
             }
         ]
     },
@@ -680,68 +678,38 @@
         ]
     },
     {
-        "Name": "Lenovo IdeaCentre 3 07IAB7 Core i3 12th Gen 8GB RAM Desktop PC",
-        "Price": "48,000৳",
+        "Name": "ASUS PN63-S1 Core i3 11th Gen 4GB RAM Ultracompact Mini PC with Keyboard Mouse",
+        "Price": "46,000৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel Core i3-12100 (12M Cache, up to 4.30 GHz)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel B660"
+                "value": "Intel Core i3-1115G4 Processor (6M Cache, 3.0GHz up to 4.1GHz)"
             },
             {
                 "name": "RAM",
-                "value": "8GB UDIMM DDR4-3200\nUp to 32GB DDR4-3200\n"
+                "value": "4GB DDR4 3200 MHz"
             },
             {
                 "name": "Storage",
-                "value": "1TB HDD 7200rpm 3.5\"\n• 3.5\" HDD up to 2TB\n• M.2 SSD up to 1TB"
+                "value": "Supports 1x 2.5-inch HDD and 2x M.2 PCIe Gen 4x4 SSD"
             }
         ]
     },
     {
-        "Name": "HP Pro Tower 280 G9 Core i3 12th Gen 4GB RAM 256GB SSD Desktop PC",
-        "Price": "53,500৳",
+        "Name": "Lenovo IdeaCentre 3 07ADA05 AMD Ryzen 5 3500U Brand PC",
+        "Price": "45,000৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel Core i3-12100 (12M Cache, 3.30 GHz to 4.30 GHz)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel H670 Chipset"
+                "value": "AMD Ryzen 5 3500U (4C / 8T, 2.1 / 3.7GHz, 2MB L2 / 4MB L3)"
             },
             {
                 "name": "RAM",
-                "value": "4GB DDR4 RAM"
+                "value": "8GB RAM 2600 Bus Speed-Expandable Up to 16 GB"
             },
             {
                 "name": "Storage",
-                "value": "256GB SSD"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 5 5600G Custom Desktop PC with Monitor",
-        "Price": "40,700৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 5 5600G Processor with Radeon Graphics (Chinese Edition)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI A520M-A Pro AM4 AMD Micro-ATX Motherboard (CN)"
-            },
-            {
-                "name": "RAM",
-                "value": "Team Elite Plus Red 8GB 3200MHz DDR4 U-DIMM Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Team MP33 256GB M.2 PCIe SSD"
+                "value": "512GB SSD M.2 2242 PCIe NVMe"
             }
         ]
     },
@@ -768,38 +736,60 @@
         ]
     },
     {
-        "Name": "Lenovo ThinkCentre Neo 50s SFF Core i5 12th Gen Small Tower Brand PC",
-        "Price": "62,500৳",
+        "Name": "HP Pro Tower 280 G9 Core i3 12th Gen 4GB RAM Desktop PC",
+        "Price": "53,000৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel 12th Gen Core i5-12400 (6-core, 12 Threads, 2.50GHz to 4.40GHz, 18 MB Cache)"
+                "value": "Intel Core i3-12100 (12M Cache, 3.30 GHz to 4.30 GHz)"
             },
             {
                 "name": "Motherboard",
-                "value": "Intel B660"
+                "value": "Intel H670 Chipset"
             },
             {
                 "name": "RAM",
-                "value": "8GB DDR4 3200 MHz\nRAM Support: Up to 64GB"
+                "value": "4GB DDR4 RAM"
             },
             {
                 "name": "Storage",
-                "value": "1TB 7200RPM SATA HDD"
+                "value": "1TB 7200rpm HDD"
             }
         ]
     },
     {
-        "Name": "AMD Ryzen 7 5700X Gaming Desktop PC",
-        "Price": "58,498৳",
+        "Name": "Intel 11th Gen Core i7-11700 Desktop PC",
+        "Price": "53,389৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "AMD Ryzen 7 5700X Processor"
+                "value": "Intel 11th Gen Core i7-11700 Rocket Lake Processor\n"
             },
             {
                 "name": "Motherboard",
-                "value": "MSI B450M-A PRO MAX AMD AM4 Motherboard"
+                "value": "GIGABYTE B560M H Intel 10th and 11th Gen Micro ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair Vengeance LPX 16GB DDR4 DRAM 3200MHz RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "HP EX900 PLUS 256GB M.2 PCIe NVMe Internal SSD\n"
+            }
+        ]
+    },
+    {
+        "Name": "Intel 12th Gen Core i5-12400 Desktop PC",
+        "Price": "41,699৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 12th Gen Core i5-12400 Alder Lake Processor\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI PRO H610M-G DDR4 12th Gen Micro-ATX Motherboard"
             },
             {
                 "name": "RAM",
@@ -807,25 +797,83 @@
             },
             {
                 "name": "Storage",
-                "value": "Team MP33 PRO 512GB M.2 PCIe Gen3 NVMe SSD"
+                "value": "HP EX900 PLUS 256GB M.2 PCIe NVMe Internal SSD\n"
             }
         ]
     },
     {
-        "Name": "HP 280 Pro G6 MT Core i5 10th Gen Microtower Desktop PC",
+        "Name": "Lenovo ThinkCentre neo 50t Core i3 12th Gen Tower Business Brand PC",
+        "Price": "61,500৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i3-12100 (12M Cache, 3.30 GHz to 4.30 GHz)"
+            }
+        ]
+    },
+    {
+        "Name": "Acer Veriton M4690G Core i5 12th Gen Tower Brand PC",
+        "Price": "63,500৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 12th Gen Core i5-12400 (2.5 GHz to 4.0 GHz, 18 MB)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel B660 Chipset"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB DDR4 RAM 3200MHz"
+            },
+            {
+                "name": "Storage",
+                "value": "512GB SSD M.2 NVMe"
+            }
+        ]
+    },
+    {
+        "Name": "DELL OptiPlex 7010 Core i5 13th Gen Tower Desktop PC",
         "Price": "70,000৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel Core i5-10500 Processor (12M Cache, 3.10 GHz up to 4.50 GHz)"
+                "value": "Core i5-13500 (24 MB cache, 14 cores, 20 threads, 2.50 GHz to 4.80 GHz turbo, 65 W)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel Q670"
             },
             {
                 "name": "RAM",
-                "value": "8GB DDR4 2666MHz RAM"
+                "value": "8GB (1x8GB) DDR4 3200 MT/s Non-ECC Memory"
             },
             {
                 "name": "Storage",
-                "value": "1 TB SATA-7200rpm HDD"
+                "value": "256GB  M.2 2230 PCIe NVMe Class 35 Solid State Drive\nSlot:\n1 M.2 2230 slot for WiFi and Bluetooth combo card \n1 M.2 2230/2280 slot for solid-state drive \n3 SATA 3.0 slots for 2.5-inch/3.5-inch hard drive and slim optical drive \n1 Full-height Gen 3 PCIe x16 slot \n2 Full-height Gen 3 PCIe x1 slot"
+            }
+        ]
+    },
+    {
+        "Name": "HP ProDesk 400 G9 Core i5 12th Gen Desktop PC",
+        "Price": "69,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i5-12500 (18M Cache, 3.00 GHz to 4.60 GHz)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel Q470"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB DDR4 3200MHz"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB SATA HDD"
             }
         ]
     },
@@ -874,330 +922,12 @@
         ]
     },
     {
-        "Name": "HP Pro 240 G9 Core i3 12th Gen All-in-One Desktop PC",
-        "Price": "74,500৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i3-1215U (10M Cache, up to 4.40 GHz)"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB DDR4 3200MHz RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "512GB SSD"
-            }
-        ]
-    },
-    {
-        "Name": "Dell Vostro 3910 MT Core i5 12th Gen Tower Brand PC",
-        "Price": "65,500৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 12th Gen Core i5-12400 (2.5 GHz to 4.0 GHz, 18 MB)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel B660 Chipset"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB DDR4 RAM 3200MHz"
-            },
-            {
-                "name": "Storage",
-                "value": "1TB HDD"
-            }
-        ]
-    },
-    {
-        "Name": "HP Pro Tower 280 G9 Core i5 12th Gen Desktop PC",
-        "Price": "64,500৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 12th Gen Core i5-12500 processor (3.0 GHz to 4.6 GHz, 18 MB)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel H670 Chipset"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB DDR4 RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "1TB 7200rpm HDD"
-            }
-        ]
-    },
-    {
-        "Name": "HP 200 Pro G4 Core i3 10th Gen All-in-One PC",
-        "Price": "65,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i3-10110U Processor (4M Cache, 2.10 GHz up to 4.10 GHz)"
-            },
-            {
-                "name": "RAM",
-                "value": "4GB DDR4 2666 MHz RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "1TB HDD"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 5 5600 Gaming Desktop PC",
-        "Price": "74,400৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 5 5600 Processor"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Asrock B450M Steel Legend AMD Micro-ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "HP EX900 PLUS 512GB M.2 PCIe NVMe Internal SSD"
-            }
-        ]
-    },
-    {
-        "Name": "Intel Core i7-11700 11th Gen Desktop PC",
-        "Price": "68,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 11th Gen Core i7-11700 Rocket Lake Processor (3 years warranty)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "ASRock B560M-HDV 10th and 11th Gen Micro ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair Vengeance LPX 16GB DDR4 DRAM 3200MHz RAM (Lifetime warranty)"
-            },
-            {
-                "name": "Storage",
-                "value": "Transcend 110S 256GB M.2 (M-Key) PCIe SSD (5 years warranty)"
-            }
-        ]
-    },
-    {
-        "Name": "Intel 13th Gen Core i5 13400 Gaming Desktop PC",
-        "Price": "69,849৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 13th Gen Core i5 13400 Raptor Lake Processor\n"
-            },
-            {
-                "name": "Motherboard",
-                "value": "GIGABYTE B760M H DDR4 mATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair Vengeance LPX 16GB DDR4 DRAM 3200MHz RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Samsung 980 500GB PCIe 3.0 M.2 NVMe SSD"
-            }
-        ]
-    },
-    {
-        "Name": "Acer Veriton M200-H510 Core I5 11th Gen 8GB RAM 1TB HDD Brand PC",
-        "Price": "65,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i5-11400 Processor (12M Cache, 2.60 GHz, up to 4.40 GHz)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel H510"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB DDR4 RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "1TB 7200 RPM 3.5\" SATA Hard Drive"
-            }
-        ]
-    },
-    {
-        "Name": "Lenovo IdeaCentre AIO 3 24ITL6 i3 11th Gen 4GB 23.8-inch All-in-One Desktop PC",
-        "Price": "73,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i3-1115G4 (6M Cache, 3.00 GHz up to 4.10 GHz)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel SoC Platform"
-            },
-            {
-                "name": "RAM",
-                "value": "1x 4GB SO-DIMM DDR4-3200"
-            },
-            {
-                "name": "Storage",
-                "value": "1TB HDD 5400rpm 2.5\""
-            }
-        ]
-    },
-    {
-        "Name": "Acer Veriton M4690G Core i5 12th Gen Tower Brand PC",
-        "Price": "63,500৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 12th Gen Core i5-12400 (2.5 GHz to 4.0 GHz, 18 MB)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel B660 Chipset"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB DDR4 RAM 3200MHz"
-            },
-            {
-                "name": "Storage",
-                "value": "512GB SSD M.2 NVMe"
-            }
-        ]
-    },
-    {
-        "Name": "Acer Veriton S2680G Core I5 11th Gen 8GB Ram 1TB HDD Brand PC",
-        "Price": "65,500৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "11TH GEN. INTEL CORE 15-11400 2.60GHz TO 4.40GHZ (12MB)"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB DDR4 RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "1TB HDD"
-            }
-        ]
-    },
-    {
-        "Name": "HP ProDesk 400 G9 Core i5 12th Gen Desktop PC",
-        "Price": "69,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i5-12500 (18M Cache, 3.00 GHz to 4.60 GHz)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel Q470"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB DDR4 3200MHz"
-            },
-            {
-                "name": "Storage",
-                "value": "1TB SATA HDD"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 7 7700 Desktop PC",
-        "Price": "73,900৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 7 7700 Gaming Processor"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI PRO B650M-P DDR5 AMD AM5 mATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair VENGEANCE RGB 16GB DDR5 6000MHz RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "HP EX900 PLUS 512GB M.2 PCIe NVMe Internal SSD"
-            }
-        ]
-    },
-    {
         "Name": "Lenovo ThinkCentre neo 50t Core i5 12th Gen Tower Business PC",
         "Price": "70,000৳",
         "Attributes": [
             {
                 "name": "Processor",
                 "value": "Intel Core i5-12500 (18M Cache, 3.00 GHz to 4.60 GHz)"
-            }
-        ]
-    },
-    {
-        "Name": "Intel 12th Gen Core i7-12700 Desktop PC",
-        "Price": "60,999৳63,490৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 12th Gen Core i7-12700 Alder Lake Processor\n"
-            },
-            {
-                "name": "Motherboard",
-                "value": "GIGABYTE B760M D2H DDR4 mATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair Vengeance LPX 16GB DDR4 DRAM 3200MHz RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Team MP33 PRO 512GB M.2 PCIe Gen3 NVMe SSD\n"
-            }
-        ]
-    },
-    {
-        "Name": "DELL OptiPlex 7010 Core i5 13th Gen Tower Desktop PC",
-        "Price": "70,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Core i5-13500 (24 MB cache, 14 cores, 20 threads, 2.50 GHz to 4.80 GHz turbo, 65 W)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel Q670"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB (1x8GB) DDR4 3200 MT/s Non-ECC Memory"
-            },
-            {
-                "name": "Storage",
-                "value": "256GB  M.2 2230 PCIe NVMe Class 35 Solid State Drive\nSlot:\n1 M.2 2230 slot for WiFi and Bluetooth combo card \n1 M.2 2230/2280 slot for solid-state drive \n3 SATA 3.0 slots for 2.5-inch/3.5-inch hard drive and slim optical drive \n1 Full-height Gen 3 PCIe x16 slot \n2 Full-height Gen 3 PCIe x1 slot"
             }
         ]
     },
@@ -1224,20 +954,184 @@
         ]
     },
     {
-        "Name": "Intel 13th Gen Core i7-13700 Desktop PC",
-        "Price": "83,999৳85,099৳",
+        "Name": "Dell Vostro 3910 MT Core i5 12th Gen Tower Brand PC",
+        "Price": "65,500৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel 13th Gen Core i7 13700 Raptor Lake Processor\n"
+                "value": "Intel 12th Gen Core i5-12400 (2.5 GHz to 4.0 GHz, 18 MB)"
             },
             {
                 "name": "Motherboard",
-                "value": "ASRock B760 Pro RS/D4 ATX Motherboard"
+                "value": "Intel B660 Chipset"
             },
             {
                 "name": "RAM",
-                "value": "CORSAIR VENGEANCE RGB RS 16GB DDR4 3600MHz RAM"
+                "value": "8GB DDR4 RAM 3200MHz"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB HDD"
+            }
+        ]
+    },
+    {
+        "Name": "HP 200 Pro G4 Core i3 10th Gen All-in-One PC",
+        "Price": "65,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i3-10110U Processor (4M Cache, 2.10 GHz up to 4.10 GHz)"
+            },
+            {
+                "name": "RAM",
+                "value": "4GB DDR4 2666 MHz RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB HDD"
+            }
+        ]
+    },
+    {
+        "Name": "Intel Core i7-11700 11th Gen Desktop PC",
+        "Price": "68,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 11th Gen Core i7-11700 Rocket Lake Processor (3 years warranty)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "ASRock B560M-HDV 10th and 11th Gen Micro ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair Vengeance LPX 16GB DDR4 DRAM 3200MHz RAM (Lifetime warranty)"
+            },
+            {
+                "name": "Storage",
+                "value": "Transcend 110S 256GB M.2 (M-Key) PCIe SSD (5 years warranty)"
+            }
+        ]
+    },
+    {
+        "Name": "Intel 12th Gen Core i7-12700 Desktop PC",
+        "Price": "60,999৳63,490৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 12th Gen Core i7-12700 Alder Lake Processor\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "GIGABYTE B760M D2H DDR4 mATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair Vengeance LPX 16GB DDR4 DRAM 3200MHz RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Team MP33 PRO 512GB M.2 PCIe Gen3 NVMe SSD\n"
+            }
+        ]
+    },
+    {
+        "Name": "Acer Veriton S2680G Core I5 11th Gen 8GB Ram 1TB HDD Brand PC",
+        "Price": "65,500৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "11TH GEN. INTEL CORE 15-11400 2.60GHz TO 4.40GHZ (12MB)"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB DDR4 RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB HDD"
+            }
+        ]
+    },
+    {
+        "Name": "HP Pro 240 G9 Core i3 12th Gen All-in-One Desktop PC",
+        "Price": "74,500৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i3-1215U (10M Cache, up to 4.40 GHz)"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB DDR4 3200MHz RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "512GB SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Lenovo IdeaCentre AIO 3 24ITL6 i3 11th Gen 4GB 23.8-inch All-in-One Desktop PC",
+        "Price": "73,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i3-1115G4 (6M Cache, 3.00 GHz up to 4.10 GHz)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel SoC Platform"
+            },
+            {
+                "name": "RAM",
+                "value": "1x 4GB SO-DIMM DDR4-3200"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB HDD 5400rpm 2.5\""
+            }
+        ]
+    },
+    {
+        "Name": "Intel 13th Gen Core i5 13400 Gaming Desktop PC",
+        "Price": "69,849৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 13th Gen Core i5 13400 Raptor Lake Processor\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "GIGABYTE B760M H DDR4 mATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair Vengeance LPX 16GB DDR4 DRAM 3200MHz RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Samsung 980 500GB PCIe 3.0 M.2 NVMe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 7 7700 Desktop PC",
+        "Price": "73,900৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 7 7700 Gaming Processor"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI PRO B650M-P DDR5 AMD AM5 mATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair VENGEANCE RGB 16GB DDR5 6000MHz RAM"
             },
             {
                 "name": "Storage",
@@ -1246,12 +1140,12 @@
         ]
     },
     {
-        "Name": "HP Pro Tower 280 G9 Core i7 12th Gen Desktop PC",
-        "Price": "81,000৳",
+        "Name": "HP Pro Tower 280 G9 Core i5 12th Gen Desktop PC",
+        "Price": "64,500৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel Core i7-12700 (25M Cache, 2.10 GHz up to 4.90 GHz)"
+                "value": "Intel 12th Gen Core i5-12500 processor (3.0 GHz to 4.6 GHz, 18 MB)"
             },
             {
                 "name": "Motherboard",
@@ -1268,104 +1162,64 @@
         ]
     },
     {
-        "Name": "AMD Ryzen 7 7800X3D Desktop PC",
-        "Price": "122,600৳",
+        "Name": "Acer Veriton M200-H510 Core I5 11th Gen 8GB RAM 1TB HDD Brand PC",
+        "Price": "65,000৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "AMD Ryzen 7 7800X3D Processor"
+                "value": "Intel Core i5-11400 Processor (12M Cache, 2.60 GHz, up to 4.40 GHz)"
             },
             {
                 "name": "Motherboard",
-                "value": "Asus TUF GAMING B650M-PLUS WIFI DDR5 AM5 mATX Motherboard"
+                "value": "Intel H510"
             },
             {
                 "name": "RAM",
-                "value": "Corsair VENGEANCE RGB 16GB DDR5 6000MHz RAM"
+                "value": "8GB DDR4 RAM"
             },
             {
                 "name": "Storage",
-                "value": "Samsung 980 Pro 500GB PCIe 4.0 M.2 NVMe SSD"
+                "value": "1TB 7200 RPM 3.5\" SATA Hard Drive"
             }
         ]
     },
     {
-        "Name": "Intel 14th Gen Core i5-14600K Desktop PC",
-        "Price": "115,000৳",
+        "Name": "AMD Ryzen 5 5600 Gaming Desktop PC",
+        "Price": "74,400৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel 14th Gen Raptor Lake Core i5 14600K Processor\n"
+                "value": "AMD Ryzen 5 5600 Processor"
             },
             {
                 "name": "Motherboard",
-                "value": "GIGABYTE Z790 UD ATX Motherboard"
+                "value": "Asrock B450M Steel Legend AMD Micro-ATX Motherboard"
             },
             {
                 "name": "RAM",
-                "value": "Corsair VENGEANCE RGB 16GB DDR5 6000MHz RAM"
+                "value": "Corsair Vengeance LPX 8GB 3200MHz DDR4 Desktop RAM"
             },
             {
                 "name": "Storage",
-                "value": "Samsung 980 Pro 500GB PCIe 4.0 M.2 NVMe SSD"
+                "value": "HP EX900 PLUS 512GB M.2 PCIe NVMe Internal SSD"
             }
         ]
     },
     {
-        "Name": "Intel 14th Gen Core i7 14700K Desktop PC",
-        "Price": "138,800৳",
+        "Name": "HP 280 Pro G6 MT Core i5 10th Gen Microtower Desktop PC",
+        "Price": "70,000৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel 14th Gen Raptor Lake Core i7 14700K Processor\n"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI Z790 GAMING PRO WIFI ATX Motherboard"
+                "value": "Intel Core i5-10500 Processor (12M Cache, 3.10 GHz up to 4.50 GHz)"
             },
             {
                 "name": "RAM",
-                "value": "Corsair VENGEANCE RGB 16GB DDR5 6600MHz Desktop RAM"
+                "value": "8GB DDR4 2666MHz RAM"
             },
             {
                 "name": "Storage",
-                "value": "Samsung 980 Pro 1TB PCIe 4.0 M.2 NVMe SSD"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 9 7900X Desktop PC",
-        "Price": "141,250৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 9 7900X Processor"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI PRO B650M-A WIFI DDR5 AMD AM5 mATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair VENGEANCE RGB 16GB DDR5 6000MHz RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Samsung 980 Pro 1TB PCIe 4.0 M.2 NVMe SSD"
-            }
-        ]
-    },
-    {
-        "Name": "Apple Mac Mini M2 chip with 8-core Processor, 10-Core GPU, 8GB Memory, 512GB Storage",
-        "Price": "120,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Apple M2 chip, 8-core CPU with 4 performance & 4 efficiency cores"
-            },
-            {
-                "name": "Storage",
-                "value": "8GB unified memory\n"
+                "value": "1 TB SATA-7200rpm HDD"
             }
         ]
     },
@@ -1392,28 +1246,6 @@
         ]
     },
     {
-        "Name": "Lenovo IdeaCentre AIO 3 24IAP7 Core i3 12th Gen 8GB 23.8\" All-in-One Desktop PC",
-        "Price": "78,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i3-1220P (12M Cache, up to 4.40 GHz)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel SoC Platform"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB SO-DIMM DDR4-3200"
-            },
-            {
-                "name": "Storage",
-                "value": "1TB 5400rpm 2.5 HDD\n"
-            }
-        ]
-    },
-    {
         "Name": "Dell Vostro 3020T Core i5 13th Gen Desktop PC",
         "Price": "75,000৳",
         "Attributes": [
@@ -1432,46 +1264,6 @@
             {
                 "name": "Storage",
                 "value": "512GB M.2 PCIe NVMe SSD\n"
-            }
-        ]
-    },
-    {
-        "Name": "Lenovo IdeaCentre AIO 3 24IAP7 Core i7 13th Gen 23.8\" All-in-One Desktop PC",
-        "Price": "140,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i7-13620H, 10C (6P + 4E) / 16T, P-core up to 4.9GHz, E-core up to 3.6GHz, 24MB"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel SoC Platform"
-            },
-            {
-                "name": "RAM",
-                "value": "2x 8GB SO-DIMM DDR4-3200\nUp to 16GB DDR4-3200"
-            },
-            {
-                "name": "Storage",
-                "value": "512GB SSD M.2 2280 PCIe 4.0x4 NVMe\n• 2.5\" HDD up to 1TB\n• M.2 SSD up to 1TB\n"
-            }
-        ]
-    },
-    {
-        "Name": "HP Pro 240 G9 Core i5 12th Gen All-in-One Desktop PC",
-        "Price": "99,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i5-1235U (12M Cache, 1.30 GHz, up to 4.40 GHz)"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB DDR4 3200MHz RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "512GB SSD"
             }
         ]
     },
@@ -1498,42 +1290,108 @@
         ]
     },
     {
-        "Name": "Dell OptiPlex 7000 Core i7 12th Gen DDR5 RAM Tower Brand PC",
-        "Price": "97,500৳",
+        "Name": "Lenovo IdeaCentre AIO 3 24IAP7 Core i3 12th Gen 8GB 23.8\" All-in-One Desktop PC",
+        "Price": "78,000৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel Core i7-12700 (25MB Cache, 2.1 GHz up to 4.9 GHz)"
+                "value": "Intel Core i3-1220P (12M Cache, up to 4.40 GHz)"
             },
             {
                 "name": "Motherboard",
-                "value": "Intel Q670"
+                "value": "Intel SoC Platform"
             },
             {
                 "name": "RAM",
-                "value": "8GB (1x8GB) DDR5 non-ECC"
+                "value": "8GB SO-DIMM DDR4-3200"
             },
             {
                 "name": "Storage",
-                "value": "1TB 7200 RPM SATA HDD"
+                "value": "1TB 5400rpm 2.5 HDD\n"
             }
         ]
     },
     {
-        "Name": "MSI PRO AP241Z 5M Ryzen 5 5600G 8GB RAM 512GB SSD 24\" FHD All-in-One PC",
-        "Price": "88,900৳",
+        "Name": "Lenovo IdeaCentre AIO 3 24ITL6 i5 11th Gen 4GB 23.8-inch All-in-One Desktop PC",
+        "Price": "86,000৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "AMD Ryzen 5 5600G (16MB cache, 3.9GHz, Up to 4.4GHz)"
+                "value": "Intel Core i5-1135G7 (8M Cache, 2.40 GHz up to 4.20 GHz)"
             },
             {
                 "name": "Motherboard",
-                "value": "AMD A520"
+                "value": "Intel SoC Platform"
             },
             {
                 "name": "RAM",
-                "value": "8GB"
+                "value": "1x 4GB SO-DIMM DDR4-3200"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB HDD 5400rpm 2.5\""
+            }
+        ]
+    },
+    {
+        "Name": "HP Pro Tower 280 G9 Core i7 12th Gen Desktop PC",
+        "Price": "81,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i7-12700 (25M Cache, 2.10 GHz up to 4.90 GHz)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel H670 Chipset"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB DDR4 RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB 7200rpm HDD"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 9 7900X Desktop PC",
+        "Price": "141,250৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 9 7900X Processor"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI PRO B650M-A WIFI DDR5 AMD AM5 mATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair VENGEANCE RGB 16GB DDR5 6000MHz RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Samsung 980 Pro 1TB PCIe 4.0 M.2 NVMe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "HP Pro Tower 280 G9 Core i7 12th Gen 512GB SSD Desktop PC",
+        "Price": "83,500৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i7-12700 (25M Cache, 2.10 GHz up to 4.90 GHz)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel H670 Chipset"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB DDR4 RAM"
             },
             {
                 "name": "Storage",
@@ -1586,6 +1444,86 @@
         ]
     },
     {
+        "Name": "Apple Mac Mini M2 chip with 8-core Processor, 10-Core GPU, 8GB Memory, 512GB Storage",
+        "Price": "120,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Apple M2 chip, 8-core CPU with 4 performance & 4 efficiency cores"
+            },
+            {
+                "name": "Storage",
+                "value": "8GB unified memory\n"
+            }
+        ]
+    },
+    {
+        "Name": "Intel 13th Gen Core i7-13700 Desktop PC",
+        "Price": "83,999৳85,099৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 13th Gen Core i7 13700 Raptor Lake Processor\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "ASRock B760 Pro RS/D4 ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "CORSAIR VENGEANCE RGB RS 16GB DDR4 3600MHz RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "HP EX900 PLUS 512GB M.2 PCIe NVMe Internal SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Intel 14th Gen Core i7 14700K Desktop PC",
+        "Price": "138,800৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 14th Gen Raptor Lake Core i7 14700K Processor\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI Z790 GAMING PRO WIFI ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair VENGEANCE RGB 16GB DDR5 6600MHz Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Samsung 980 Pro 1TB PCIe 4.0 M.2 NVMe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Intel 14th Gen Core i5-14600K Desktop PC",
+        "Price": "115,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 14th Gen Raptor Lake Core i5 14600K Processor\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "GIGABYTE Z790 UD ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair VENGEANCE RGB 16GB DDR5 6000MHz RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Samsung 980 Pro 500GB PCIe 4.0 M.2 NVMe SSD"
+            }
+        ]
+    },
+    {
         "Name": "Apple Mac Mini M2 chip with 8-core Processor 10-Core GPU 8GB Memory 256GB Storage",
         "Price": "82,000৳",
         "Attributes": [
@@ -1600,20 +1538,108 @@
         ]
     },
     {
-        "Name": "HP Pro Tower 280 G9 Core i7 12th Gen 512GB SSD Desktop PC",
-        "Price": "83,500৳",
+        "Name": "Lenovo IdeaCentre AIO 3 24IAP7 Core i7 13th Gen 23.8\" All-in-One Desktop PC",
+        "Price": "140,000৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel Core i7-12700 (25M Cache, 2.10 GHz up to 4.90 GHz)"
+                "value": "Intel Core i7-13620H, 10C (6P + 4E) / 16T, P-core up to 4.9GHz, E-core up to 3.6GHz, 24MB"
             },
             {
                 "name": "Motherboard",
-                "value": "Intel H670 Chipset"
+                "value": "Intel SoC Platform"
             },
             {
                 "name": "RAM",
-                "value": "8GB DDR4 RAM"
+                "value": "2x 8GB SO-DIMM DDR4-3200\nUp to 16GB DDR4-3200"
+            },
+            {
+                "name": "Storage",
+                "value": "512GB SSD M.2 2280 PCIe 4.0x4 NVMe\n• 2.5\" HDD up to 1TB\n• M.2 SSD up to 1TB\n"
+            }
+        ]
+    },
+    {
+        "Name": "Intel 13th Gen Core i5-13600K Custom Gaming Desktop PC",
+        "Price": "143,800৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 13th Gen Core i5 13600K Raptor Lake Processor\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "GIGABYTE B760M DS3H mATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair VENGEANCE RGB 16GB DDR5 6000MHz RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Samsung 980 Pro 500GB PCIe 4.0 M.2 NVMe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 7 7800X3D Desktop PC",
+        "Price": "122,600৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 7 7800X3D Processor"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Asus TUF GAMING B650M-PLUS WIFI DDR5 AM5 mATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Corsair VENGEANCE RGB 16GB DDR5 6000MHz RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Samsung 980 Pro 500GB PCIe 4.0 M.2 NVMe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Dell OptiPlex 7000 Core i7 12th Gen DDR5 RAM Tower Brand PC",
+        "Price": "97,500৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i7-12700 (25MB Cache, 2.1 GHz up to 4.9 GHz)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel Q670"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB (1x8GB) DDR5 non-ECC"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB 7200 RPM SATA HDD"
+            }
+        ]
+    },
+    {
+        "Name": "MSI PRO AP241Z 5M Ryzen 5 5600G 8GB RAM 512GB SSD 24\" FHD All-in-One PC",
+        "Price": "88,900৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 5 5600G (16MB cache, 3.9GHz, Up to 4.4GHz)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "AMD A520"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
             },
             {
                 "name": "Storage",
@@ -1622,24 +1648,82 @@
         ]
     },
     {
-        "Name": "Lenovo IdeaCentre AIO 3 24ITL6 i5 11th Gen 4GB 23.8-inch All-in-One Desktop PC",
-        "Price": "86,000৳",
+        "Name": "Intel 13th Gen Core i9 13900K Gaming Desktop PC",
+        "Price": "374,999৳380,300৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel Core i5-1135G7 (8M Cache, 2.40 GHz up to 4.20 GHz)"
+                "value": "Intel 13th Gen Core i9 13900K Raptor Lake Processor\n"
             },
             {
                 "name": "Motherboard",
-                "value": "Intel SoC Platform"
+                "value": "GIGABYTE Z790 UD AX ATX Motherboard"
             },
             {
                 "name": "RAM",
-                "value": "1x 4GB SO-DIMM DDR4-3200"
+                "value": "Kingston FURY Beast 16GB 6000MHz DDR5 RGB Desktop RAM"
             },
             {
                 "name": "Storage",
-                "value": "1TB HDD 5400rpm 2.5\""
+                "value": "Samsung PM9A1 2TB M.2 PCIe Gen 4.0 NVMe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Intel 12th Gen Core i7-12700K Gaming Desktop PC",
+        "Price": "147,999৳149,589৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 12th Gen Core i7-12700K Alder Lake Processor\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "GIGABYTE Z790 UD AX ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Kingston FURY Beast 16GB 6000MHz DDR5 RGB Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Samsung 980 Pro 500GB PCIe 4.0 M.2 NVMe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Intel 14th Gen Core i9 14900K Desktop PC",
+        "Price": "214,100৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel 14th Gen Core i9 14900K Raptor Lake Processor\n"
+            },
+            {
+                "name": "Motherboard",
+                "value": "GIGABYTE Z790 AERO G ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "CORSAIR DOMINATOR PLATINUM RGB DDR5 32GB DDR5 5600MHz CL40 Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Samsung 990 Pro 2TB PCIe 4.0 M.2 NVMe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Apple Mac Mini M1 chip with 8-core Processor, 8-Core GPU, 512GB storage",
+        "Price": "110,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Apple M1 chip 8-core CPU with 4 performance cores and 4 efficiency cores; 8-core GPU; 16-core Neural Engine"
+            },
+            {
+                "name": "Storage",
+                "value": "512GB storage"
             }
         ]
     },
@@ -1676,6 +1760,46 @@
             {
                 "name": "RAM",
                 "value": "8GB (1x8GB) DDR5 non-ECC"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB 7200 RPM SATA HDD"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 9 7950X Gaming Desktop PC",
+        "Price": "374,898৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 9 7950X Processor"
+            },
+            {
+                "name": "Motherboard",
+                "value": "GIGABYTE B650M AORUS ELITE AX DDR5 AMD AM5 Micro-ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Kingston FURY Beast 16GB 6000MHz DDR5 RGB Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Samsung PM9A1 2TB M.2 PCIe Gen 4.0 NVMe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Dell OptiPlex 7000 Core i7 12th Gen Tower Brand PC",
+        "Price": "99,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i7-12700 (25M Cache, up to 4.90 GHz)"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB (1x8GB) DDR4 non-ECC"
             },
             {
                 "name": "Storage",
@@ -1728,272 +1852,24 @@
         ]
     },
     {
-        "Name": "Intel 13th Gen Core i5-13600K Custom Gaming Desktop PC",
-        "Price": "143,800৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 13th Gen Core i5 13600K Raptor Lake Processor\n"
-            },
-            {
-                "name": "Motherboard",
-                "value": "GIGABYTE B760M DS3H mATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Corsair VENGEANCE RGB 16GB DDR5 6000MHz RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Samsung 980 Pro 500GB PCIe 4.0 M.2 NVMe SSD"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 9 5900X Gaming Desktop PC",
-        "Price": "141,999৳144,288৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 9 5900X Processor"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI MAG B550M MORTAR MAX WIFI AMD AM4 Micro-ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "TEAM T-Force DELTA TUF Gaming RGB 16GB 3200MHz DDR4 CL16 RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Samsung 980 1TB PCIe 3.0 M.2 NVMe SSD"
-            }
-        ]
-    },
-    {
-        "Name": "Intel 14th Gen Core i9 14900K Desktop PC",
-        "Price": "214,100৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 14th Gen Core i9 14900K Raptor Lake Processor\n"
-            },
-            {
-                "name": "Motherboard",
-                "value": "GIGABYTE Z790 AERO G ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "CORSAIR DOMINATOR PLATINUM RGB DDR5 32GB DDR5 5600MHz CL40 Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Samsung 990 Pro 2TB PCIe 4.0 M.2 NVMe SSD"
-            }
-        ]
-    },
-    {
-        "Name": "Apple iMac 24\" 4.5K Retina Display M3 8GB 256GB SSD Silver All-in-One PC (Late 2023)",
-        "Price": "240,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Apple M3 8-Core CPU 8-Core GPU, 16-Core Neural Engine"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "256GB SSD"
-            }
-        ]
-    },
-    {
-        "Name": "HP ProDesk 400 G9 Core i7 12th Gen Desktop PC with Windows 11 Pro",
-        "Price": "98,500৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Processor: Intel Core i7-12700 (25M Cache, 2.10 GHz up to 4.90 GHz)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel Q470"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB DDR4 3200MHz"
-            },
-            {
-                "name": "Storage",
-                "value": "1TB SATA HDD"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 7 7800X3D Gaming Desktop PC",
-        "Price": "189,999৳199,999৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 7 7800X3D Processor"
-            },
-            {
-                "name": "Motherboard",
-                "value": "MSI MAG B650M MORTAR WIFI DDR5 AMD AM5 mATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "2x TEAM T-FORCE DELTA RGB 16GB 6000MHz DDR5 Gaming RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Team MP44L 500GB M.2 PCIe Gen4 NVMe SSD"
-            }
-        ]
-    },
-    {
-        "Name": "AMD Ryzen 9 7950X Gaming Desktop PC",
-        "Price": "374,898৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "AMD Ryzen 9 7950X Processor"
-            },
-            {
-                "name": "Motherboard",
-                "value": "GIGABYTE B650M AORUS ELITE AX DDR5 AMD AM5 Micro-ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Kingston FURY Beast 16GB 6000MHz DDR5 RGB Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Samsung PM9A1 2TB M.2 PCIe Gen 4.0 NVMe SSD"
-            }
-        ]
-    },
-    {
-        "Name": "Dell OptiPlex 7000 Core i7 12th Gen Tower Brand PC",
+        "Name": "Dell Vostro 3020T Core i7 13th Gen Desktop PC",
         "Price": "99,000৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel Core i7-12700 (25M Cache, up to 4.90 GHz)"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB (1x8GB) DDR4 non-ECC"
-            },
-            {
-                "name": "Storage",
-                "value": "1TB 7200 RPM SATA HDD"
-            }
-        ]
-    },
-    {
-        "Name": "Intel 13th Gen Core i9 13900K Gaming Desktop PC",
-        "Price": "374,999৳380,300৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 13th Gen Core i9 13900K Raptor Lake Processor\n"
+                "value": "Intel Core i5-13700 13th Gen (24 MB cache, 16 cores, 24 threads, 2.10 GHz to 5.10 GHz Turbo)"
             },
             {
                 "name": "Motherboard",
-                "value": "GIGABYTE Z790 UD AX ATX Motherboard"
+                "value": "Intel B660 Chipset"
             },
             {
                 "name": "RAM",
-                "value": "Kingston FURY Beast 16GB 6000MHz DDR5 RGB Desktop RAM"
+                "value": "8GB 3200MHz DDR4"
             },
             {
                 "name": "Storage",
-                "value": "Samsung PM9A1 2TB M.2 PCIe Gen 4.0 NVMe SSD"
-            }
-        ]
-    },
-    {
-        "Name": "Intel 12th Gen Core i7-12700K Gaming Desktop PC",
-        "Price": "147,999৳149,589৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel 12th Gen Core i7-12700K Alder Lake Processor\n"
-            },
-            {
-                "name": "Motherboard",
-                "value": "GIGABYTE Z790 UD AX ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Kingston FURY Beast 16GB 6000MHz DDR5 RGB Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Samsung 980 Pro 500GB PCIe 4.0 M.2 NVMe SSD"
-            }
-        ]
-    },
-    {
-        "Name": "GIGABYTE Intel Core i9 14900K 14th Gen Desktop PC",
-        "Price": "290,000৳294,400৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i9 14900K 14th Gen Raptor Lake Processor"
-            },
-            {
-                "name": "Motherboard",
-                "value": "GIGABYTE Z790 AORUS ELITE X WIFI7 ATX Motherboard"
-            },
-            {
-                "name": "RAM",
-                "value": "Gigabyte AORUS RGB 16GB DDR5 6000MHz Desktop RAM"
-            },
-            {
-                "name": "Storage",
-                "value": "Gigabyte 256GB NVMe M.2 SSD"
-            }
-        ]
-    },
-    {
-        "Name": "Apple Mac Mini M1 chip with 8-core Processor, 8-Core GPU, 512GB storage",
-        "Price": "110,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Apple M1 chip 8-core CPU with 4 performance cores and 4 efficiency cores; 8-core GPU; 16-core Neural Engine"
-            },
-            {
-                "name": "Storage",
-                "value": "512GB storage"
-            }
-        ]
-    },
-    {
-        "Name": "Lenovo IdeaCentre AIO 3 24IAP7 i5 12th Gen 8GB 23.8\" All-in-One Desktop PC",
-        "Price": "103,000৳",
-        "Attributes": [
-            {
-                "name": "Processor",
-                "value": "Intel Core i5-1240P (12M Cache, up to 4.40 GHz)"
-            },
-            {
-                "name": "Motherboard",
-                "value": "Intel SoC Platform"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB SO-DIMM DDR4-3200"
-            },
-            {
-                "name": "Storage",
-                "value": "1TB 5400rpm 2.5 HDD\n"
+                "value": "512GB M.2 PCIe NVMe SSD"
             }
         ]
     },
@@ -2020,24 +1896,130 @@
         ]
     },
     {
-        "Name": "Dell Vostro 3020T Core i7 13th Gen Desktop PC",
-        "Price": "99,000৳",
+        "Name": "HP ProDesk 400 G9 Core i7 12th Gen Desktop PC with Windows 11 Pro",
+        "Price": "98,500৳",
         "Attributes": [
             {
                 "name": "Processor",
-                "value": "Intel Core i5-13700 13th Gen (24 MB cache, 16 cores, 24 threads, 2.10 GHz to 5.10 GHz Turbo)"
+                "value": "Processor: Intel Core i7-12700 (25M Cache, 2.10 GHz up to 4.90 GHz)"
             },
             {
                 "name": "Motherboard",
-                "value": "Intel B660 Chipset"
+                "value": "Intel Q470"
             },
             {
                 "name": "RAM",
-                "value": "8GB 3200MHz DDR4"
+                "value": "8GB DDR4 3200MHz"
             },
             {
                 "name": "Storage",
-                "value": "512GB M.2 PCIe NVMe SSD"
+                "value": "1TB SATA HDD"
+            }
+        ]
+    },
+    {
+        "Name": "Apple iMac 24\" 4.5K Retina Display M3 8GB 256GB SSD Silver All-in-One PC (Late 2023)",
+        "Price": "240,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Apple M3 8-Core CPU 8-Core GPU, 16-Core Neural Engine"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "256GB SSD"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 9 5900X Gaming Desktop PC",
+        "Price": "141,999৳144,288৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 9 5900X Processor"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI MAG B550M MORTAR MAX WIFI AMD AM4 Micro-ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "TEAM T-Force DELTA TUF Gaming RGB 16GB 3200MHz DDR4 CL16 RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Samsung 980 1TB PCIe 3.0 M.2 NVMe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "AMD Ryzen 7 7800X3D Gaming Desktop PC",
+        "Price": "189,999৳199,999৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "AMD Ryzen 7 7800X3D Processor"
+            },
+            {
+                "name": "Motherboard",
+                "value": "MSI MAG B650M MORTAR WIFI DDR5 AMD AM5 mATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "2x TEAM T-FORCE DELTA RGB 16GB 6000MHz DDR5 Gaming RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Team MP44L 500GB M.2 PCIe Gen4 NVMe SSD"
+            }
+        ]
+    },
+    {
+        "Name": "Lenovo IdeaCentre AIO 3 24IAP7 i5 12th Gen 8GB 23.8\" All-in-One Desktop PC",
+        "Price": "103,000৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i5-1240P (12M Cache, up to 4.40 GHz)"
+            },
+            {
+                "name": "Motherboard",
+                "value": "Intel SoC Platform"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB SO-DIMM DDR4-3200"
+            },
+            {
+                "name": "Storage",
+                "value": "1TB 5400rpm 2.5 HDD\n"
+            }
+        ]
+    },
+    {
+        "Name": "GIGABYTE Intel Core i9 14900K 14th Gen Desktop PC",
+        "Price": "290,000৳294,400৳",
+        "Attributes": [
+            {
+                "name": "Processor",
+                "value": "Intel Core i9 14900K 14th Gen Raptor Lake Processor"
+            },
+            {
+                "name": "Motherboard",
+                "value": "GIGABYTE Z790 AORUS ELITE X WIFI7 ATX Motherboard"
+            },
+            {
+                "name": "RAM",
+                "value": "Gigabyte AORUS RGB 16GB DDR5 6000MHz Desktop RAM"
+            },
+            {
+                "name": "Storage",
+                "value": "Gigabyte 256GB NVMe M.2 SSD"
             }
         ]
     },
