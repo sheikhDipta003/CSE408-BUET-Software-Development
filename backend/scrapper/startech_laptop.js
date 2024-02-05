@@ -63,8 +63,14 @@ async function getproductdetails(url) {
         const body = await response.text();
         const $ = cheerio.load(body);
         //console.log($('.pd-full > .container > .row ').length);
+        const MPN = $('.pd-summary ul li:contains("MPN")').text().replace('MPN: ', '');
+        const Model = $('.pd-summary ul li:contains("Model")').text().replace('Model: ', '');
 
         const attributes = [];
+        
+        attributes.push({name: 'MPN', value: MPN});
+        attributes.push({name: 'Model', value: Model});
+
         $('.pd-full > .container > .row > .col-lg-9 > .specification-tab > .data-table tbody tr').map((index, element) => {
             const name = $(element).find('td.name').text();
             const value = $(element).find('td.value').text().replace(/\n.*/, '');
