@@ -41,9 +41,9 @@ async function getRyansLaptops(page = 1) {
 }
 
 async function scrapeAndStoreData() {
-    const allDesktopData = await getRyansLaptops();
+    const allLaptopData = await getRyansLaptops();
     
-    fs.writeFile('ryans_laptops.json', JSON.stringify(allDesktopData), function (err) {
+    fs.writeFile('ryans_laptops.json', JSON.stringify(allLaptopData), function (err) {
         if (err) return console.log(err);
         console.log('All data successfully written to ryans_laptops.json');
     });
