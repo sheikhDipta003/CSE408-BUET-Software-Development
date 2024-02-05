@@ -72,7 +72,19 @@ async function getproductdetails(url) {
         const attributes = [];
         $('.table-hr-remove').map((index, element) => {
             const name = $(element).find('.col-lg-4 span').text().replace(/\n.*/, '');
-            const value = $(element).find('.col-lg-8 span').text();
+            let value = $(element).find('.col-lg-8 span').text();
+
+            // Model name has multiple words, remove the first word
+            if (name === 'Model') {
+                const words = value.split(' ');
+                if (words.length > 1) {
+                    // Remove the first word
+                    words.shift();
+                    // Join the remaining words back into a string
+                    value = words.join(' ');
+                }
+                attributes.push({name, value});
+            }
            
             //console.log(name + " : " + value + "\n"); 
             if (name === 'Part No' || name === 'Processor Type' || name === 'RAM' || name === 'Hard Disk Drive (HDD)' || name === 'Solid-State Drive (SSD)' || name === 'Graphics Chipset'){

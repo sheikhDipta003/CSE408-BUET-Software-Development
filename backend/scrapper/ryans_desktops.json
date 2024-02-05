@@ -1,360 +1,12 @@
 [
     {
-        "Name": " Lenovo IdeaCentre 3 07IAB7 Intel Core i3 12100 4GB Ram 1TB HDD Mineral Grey Brand PC #90SM001WLK (4GB RAM+HDD)",
-        "Price": "47500",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "90SM001WLK"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "4GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Integrated Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " HP 280 Pro G9 12th Gen Intel Core i3 12100 4GB DDR4 Tower Brand PC #827Q3PA",
-        "Price": "52000",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "827Q3PA"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "4GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "256GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Lenovo IdeaCentre 3 07IAB7 Intel Core i5 12400 8GB RAM 1TB HDD Mineral Grey Brand PC #90SM001XLK",
-        "Price": "58000",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "90SM001XLK"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Dell Vostro 3910 MT Intel Core i3 12100 8GB RAM 1TB HDD Black Mid Tower Brand PC #DOLPHINMTADL22057585",
-        "Price": "55000",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "DOLPHINMTADL22057585"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Lenovo IdeaCentre 3 07IAB7 Intel Core i3 12100 8GB DDR4, 1TB HDD + 256GB SSD Mid Tower Mineral Grey Brand PC #90SM001WLK",
-        "Price": "49500",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "90SM001WLK"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "256GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics"
-            }
-        ]
-    },
-    {
-        "Name": " Lenovo ThinkCentre Neo 50s SFF 12th Gen Intel Core i5 12400 8GB DDR4 RAM 1TB HDD Black Small Tower Brand PC #11SWS0NS00 (i5+HDD)",
-        "Price": "63000",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "11SWS0NS00"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
-            }
-        ]
-    },
-    {
-        "Name": " Lenovo ThinkCentre Neo 50t 12th Gen Intel Core i3 12100 8GB RAM Black Tower Brand PC #11SES0HM00 (8GB RAM + 260W PSU)",
-        "Price": "55000",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "11SES0HM00"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Dell OptiPlex 7010 13th Gen Intel Core i3 13100 4GB DDR4 256GB SSD Black Tower Brand PC",
-        "Price": "57000",
-        "Attributes": [
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "4GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "256GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel HD Graphics"
-            }
-        ]
-    },
-    {
-        "Name": " Lenovo ThinkCentre Neo 50s SFF 12th Gen Intel Core i5 12400 8GB DDR4 RAM 1TB SSD Black Small Tower Brand PC #11SWS0NS00 (i5+SSD)",
-        "Price": "62500",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "11SWS0NS00"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
-            }
-        ]
-    },
-    {
-        "Name": " HP ProDesk 400 G7 MT 10th Gen Intel Core i3 10100 4GB RAM, 1TB HDD Mid Tower Brand PC #31P82PA",
-        "Price": "57000",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "31P82PA"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "4GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 630"
-            }
-        ]
-    },
-    {
-        "Name": " HP 280 Pro G9 12th Gen Intel Core i3 12100 4GB RAM 1TB HDD Tower Brand PC #6Q2P8PA",
-        "Price": "53500",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "6Q2P8PA"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "4GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Dell OptiPlex 3000 Intel Core i3 12100 4GB RAM 1TB HDD Black Tower Brand PC",
-        "Price": "54500",
-        "Attributes": [
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "4GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel Integrated Graphics"
-            }
-        ]
-    },
-    {
         "Name": " HP 280 Pro G9 12th Gen Intel Core i3 12100 8GB RAM 1TB HDD Tower Brand PC #6Q2N1PA",
         "Price": "54500",
         "Attributes": [
+            {
+                "name": "Model",
+                "value": "280 Pro G9"
+            },
             {
                 "name": "Part No",
                 "value": "6Q2N1PA"
@@ -382,9 +34,179 @@
         ]
     },
     {
+        "Name": " Lenovo IdeaCentre 3 07IAB7 Intel Core i3 12100 4GB Ram 1TB HDD Mineral Grey Brand PC #90SM001WLK (4GB RAM+HDD)",
+        "Price": "47500",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "IdeaCentre 3 07IAB7"
+            },
+            {
+                "name": "Part No",
+                "value": "90SM001WLK"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "4GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Integrated Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " HP ProDesk 400 G7 MT 10th Gen Intel Core i3 10100 4GB RAM, 1TB HDD Mid Tower Brand PC #31P82PA",
+        "Price": "57000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ProDesk 400 G7 MT"
+            },
+            {
+                "name": "Part No",
+                "value": "31P82PA"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "4GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 630"
+            }
+        ]
+    },
+    {
+        "Name": " Lenovo ThinkCentre Neo 50s SFF 12th Gen Intel Core i5 12400 8GB DDR4 RAM 1TB HDD Black Small Tower Brand PC #11SWS0NS00 (i5+HDD)",
+        "Price": "63000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ThinkCentre Neo 50s SFF"
+            },
+            {
+                "name": "Part No",
+                "value": "11SWS0NS00"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 770"
+            }
+        ]
+    },
+    {
+        "Name": " Dell OptiPlex 3000 Intel Core i3 12100 4GB RAM 1TB HDD Black Tower Brand PC",
+        "Price": "54500",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "OptiPlex 3000"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "4GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel Integrated Graphics"
+            }
+        ]
+    },
+    {
+        "Name": " HP ProDesk 400 G7 MT 10th Gen Intel Core i3 10100 8GB RAM 1TB HDD Mid Tower Brand PC #31P84PA",
+        "Price": "59000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ProDesk 400 G7 MT"
+            },
+            {
+                "name": "Part No",
+                "value": "31P84PA"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 630"
+            }
+        ]
+    },
+    {
         "Name": " Lenovo ThinkCentre Neo 50t 12th Gen Intel Core i3 12100 8GB RAM 1TB HDD Black Tower Brand PC #11SES0HM00 (8GB RAM + 180W PSU)",
         "Price": "53000",
         "Attributes": [
+            {
+                "name": "Model",
+                "value": "ThinkCentre Neo 50t"
+            },
             {
                 "name": "Part No",
                 "value": "11SES0HM00"
@@ -412,38 +234,16 @@
         ]
     },
     {
-        "Name": " Dell Vostro 3020T 13th Gen Intel Core i3 13100 8GB RAM, 256GB SSD Black Tower Brand PC",
-        "Price": "56000",
+        "Name": " Asus ExpertCenter D7 D700MD 12th Gen Intel Core i5 12400 8GB DDR4 1TB HDD Black Mini Tower Brand PC #5124000110",
+        "Price": "68000",
         "Attributes": [
             {
-                "name": "Processor Type",
-                "value": "Core i3"
+                "name": "Model",
+                "value": "ExpertCenter D7 D700MD"
             },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "256GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Lenovo ThinkCentre Neo 50s Gen 3 SFF 12th Gen Intel Core i5 12500 8GB RAM, 1TB HDD Raven Black Small Tower Brand PC #11SYS23300",
-        "Price": "63500",
-        "Attributes": [
             {
                 "name": "Part No",
-                "value": "11SYS23300"
+                "value": "5124000110"
             },
             {
                 "name": "Processor Type",
@@ -463,17 +263,21 @@
             },
             {
                 "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
+                "value": "Intel UHD Graphics 730"
             }
         ]
     },
     {
-        "Name": " Acer Veriton M200 12th Gen Intel Core i3 12100 4GB RAM 1TB HDD Black Mini Tower Brand PC #UX.VWNSI.178",
-        "Price": "52000",
+        "Name": " Lenovo ThinkCentre Neo 50t 12th Gen Intel Core i3 12100 8GB RAM Black Tower Brand PC #11SES0HM00 (8GB RAM + 260W PSU)",
+        "Price": "55000",
         "Attributes": [
             {
+                "name": "Model",
+                "value": "ThinkCentre Neo 50t"
+            },
+            {
                 "name": "Part No",
-                "value": "UX.VWNSI.178"
+                "value": "11SES0HM00"
             },
             {
                 "name": "Processor Type",
@@ -481,7 +285,7 @@
             },
             {
                 "name": "RAM",
-                "value": "4GB"
+                "value": "8GB"
             },
             {
                 "name": "Hard Disk Drive (HDD)",
@@ -498,9 +302,47 @@
         ]
     },
     {
+        "Name": " Dell Vostro 3910 MT 12th Gen Intel Core i5 12400 8GB RAM, 1TB HDD Black Mid Tower Brand PC #DOLPHINMTADL23014343",
+        "Price": "66000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "Vostro 3910 MT"
+            },
+            {
+                "name": "Part No",
+                "value": "DOLPHINMTADL23014343"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics"
+            }
+        ]
+    },
+    {
         "Name": " Acer Veriton M200 12th Gen Intel Core i5 12400 8GB RAM, 1TB HDD Black Mini Tower Brand PC #UX.VWNSI.177",
         "Price": "62000",
         "Attributes": [
+            {
+                "name": "Model",
+                "value": "Veriton M200"
+            },
             {
                 "name": "Part No",
                 "value": "UX.VWNSI.177"
@@ -532,6 +374,10 @@
         "Price": "53800",
         "Attributes": [
             {
+                "name": "Model",
+                "value": "Veriton M200"
+            },
+            {
                 "name": "Part No",
                 "value": "UX.BH5SI.B42"
             },
@@ -558,12 +404,178 @@
         ]
     },
     {
-        "Name": " HP ProDesk 400 G7 MT 10th Gen Intel Core i3 10100 8GB RAM 1TB HDD Mid Tower Brand PC #31P84PA",
-        "Price": "59000",
+        "Name": " Lenovo ThinkCentre Neo 50s SFF 12th Gen Intel Core i5 12400 8GB DDR4 RAM 1TB SSD Black Small Tower Brand PC #11SWS0NS00 (i5+SSD)",
+        "Price": "62500",
         "Attributes": [
             {
+                "name": "Model",
+                "value": "ThinkCentre Neo 50s SFF"
+            },
+            {
                 "name": "Part No",
-                "value": "31P84PA"
+                "value": "11SWS0NS00"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 770"
+            }
+        ]
+    },
+    {
+        "Name": " Dell Vostro 3020T 13th Gen Intel Core i3 13100 8GB RAM, 256GB SSD Black Tower Brand PC",
+        "Price": "56000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "Vostro 3020T"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "256GB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " Lenovo IdeaCentre 3 07IAB7 Intel Core i5 12400 8GB RAM 1TB HDD Mineral Grey Brand PC #90SM001XLK",
+        "Price": "58000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "IdeaCentre 3 07IAB7"
+            },
+            {
+                "name": "Part No",
+                "value": "90SM001XLK"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " Dell OptiPlex 7010 13th Gen Intel Core i3 13100 4GB DDR4 256GB SSD Black Tower Brand PC",
+        "Price": "57000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "OptiPlex 7010"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "4GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "256GB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel HD Graphics"
+            }
+        ]
+    },
+    {
+        "Name": " Acer Veriton M200 12th Gen Intel Core i3 12100 4GB RAM 1TB HDD Black Mini Tower Brand PC #UX.VWNSI.178",
+        "Price": "52000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "Veriton M200"
+            },
+            {
+                "name": "Part No",
+                "value": "UX.VWNSI.178"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "4GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " Dell Vostro 3910 MT Intel Core i3 12100 8GB RAM 1TB HDD Black Mid Tower Brand PC #DOLPHINMTADL22057585",
+        "Price": "55000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "Vostro 3910 MT"
+            },
+            {
+                "name": "Part No",
+                "value": "DOLPHINMTADL22057585"
             },
             {
                 "name": "Processor Type",
@@ -583,59 +595,7 @@
             },
             {
                 "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 630"
-            }
-        ]
-    },
-    {
-        "Name": " Dell Optiplex 3090 Micro 10th Gen Intel Core i5 10500T 8GB RAM, 512GB SSD Black Micro Tower Brand PC",
-        "Price": "75500",
-        "Attributes": [
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "512GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 630"
-            }
-        ]
-    },
-    {
-        "Name": " HP 280 Pro G9 12th Gen Intel Core i7 12700 8GB RAM, 512GB SSD Tower Brand PC #950J8PA",
-        "Price": "83500",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "950J8PA"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i7"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "512GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
+                "value": "Intel UHD Graphics 730"
             }
         ]
     },
@@ -643,6 +603,10 @@
         "Name": " HP 280 Pro G9 12th Gen Intel Core i5 12400 8GB RAM, 512GB SSD Tower Brand PC #950J6PA",
         "Price": "67000",
         "Attributes": [
+            {
+                "name": "Model",
+                "value": "280 Pro G9"
+            },
             {
                 "name": "Part No",
                 "value": "950J6PA"
@@ -670,20 +634,28 @@
         ]
     },
     {
-        "Name": " Dell Vostro 3020T 13th Gen Intel Core i5 13400 8GB DDR4, 1TB HDD + 256GB SSD Black Tower Brand PC",
-        "Price": "78500",
+        "Name": " HP 280 Pro G9 12th Gen Intel Core i3 12100 4GB DDR4 Tower Brand PC #827Q3PA",
+        "Price": "52000",
         "Attributes": [
             {
+                "name": "Model",
+                "value": "280 Pro G9"
+            },
+            {
+                "name": "Part No",
+                "value": "827Q3PA"
+            },
+            {
                 "name": "Processor Type",
-                "value": "Core i5"
+                "value": "Core i3"
             },
             {
                 "name": "RAM",
-                "value": "8GB"
+                "value": "4GB"
             },
             {
                 "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
+                "value": "No"
             },
             {
                 "name": "Solid-State Drive (SSD)",
@@ -700,6 +672,10 @@
         "Price": "75500",
         "Attributes": [
             {
+                "name": "Model",
+                "value": "Vostro 3020T"
+            },
+            {
                 "name": "Processor Type",
                 "value": "Core i5"
             },
@@ -718,308 +694,6 @@
             {
                 "name": "Graphics Chipset",
                 "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Dell Vostro 3020T 13th Gen Intel Core i7 13700 8GB DDR4 512GB SSD Silver Mesh Tower Brand PC",
-        "Price": "99500",
-        "Attributes": [
-            {
-                "name": "Processor Type",
-                "value": "Core i7"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "512GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Dell Vostro 3888 MT 10th Gen Intel Core i7 10700 8GB RAM 512GB SSD Black Mid Tower Brand PC",
-        "Price": "81000",
-        "Attributes": [
-            {
-                "name": "Processor Type",
-                "value": "Core i7"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "512GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 630"
-            }
-        ]
-    },
-    {
-        "Name": " Dell OptiPlex 7000 Intel Core i7 12700 8GB RAM 1TB HDD Black Tower Brand PC",
-        "Price": "99500",
-        "Attributes": [
-            {
-                "name": "Processor Type",
-                "value": "Core i7"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel Integrated Graphics"
-            }
-        ]
-    },
-    {
-        "Name": " Lenovo ThinkCentre Neo 50s SFF 12th Gen Intel Core i7 12700 8GB DDR4 RAM 1TB HDD Black Small Tower Brand PC #11SWS0NB00 (i7+HDD)",
-        "Price": "82500",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "11SWS0NB00"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i7"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
-            }
-        ]
-    },
-    {
-        "Name": " Dell OptiPlex 7010 13th Gen Intel Core i5 13500 8GB RAM DDR4 256GB SSD Black Tower Brand PC",
-        "Price": "70500",
-        "Attributes": [
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "256GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
-            }
-        ]
-    },
-    {
-        "Name": " Dell OptiPlex 3000 Intel Core i5 12500 8GB RAM 1TB HDD Black Tower Brand PC (RAM-8GB)",
-        "Price": "74000",
-        "Attributes": [
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel Integrated Graphics"
-            }
-        ]
-    },
-    {
-        "Name": " Dell OptiPlex 3000 Micro 12th Gen Intel Core i5 12500T 8GB DDR4, 1TB HDD Black Micro Tower Brand PC",
-        "Price": "69500",
-        "Attributes": [
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
-            }
-        ]
-    },
-    {
-        "Name": " Dell OptiPlex 7000 12th Gen Intel Core i5 12500 8GB DDR5, 1TB HDD Black Tower Brand PC",
-        "Price": "84000",
-        "Attributes": [
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
-            }
-        ]
-    },
-    {
-        "Name": " HP ProDesk 400 G9 12th Gen Intel Core i5 12500 8GB RAM 1TB HDD Tower Brand PC #6Q2Q6PA",
-        "Price": "69000",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "6Q2Q6PA"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
-            }
-        ]
-    },
-    {
-        "Name": " Asus ExpertCenter D7 D700MD 12th Gen Intel Core i5 12400 8GB DDR4 1TB HDD Black Mini Tower Brand PC #5124000110",
-        "Price": "68000",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "5124000110"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Dell Vostro 3910 MT Intel Core i7 12700 8GB RAM 512GB SSD Black Mid Tower Brand PC #DOLPHINMTADL22057600",
-        "Price": "90000",
-        "Attributes": [
-            {
-                "name": "Part No",
-                "value": "DOLPHINMTADL22057600"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i7"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "512GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
             }
         ]
     },
@@ -1027,6 +701,10 @@
         "Name": " Dell Optiplex 3090 SFF 10th Gen Intel Core i5 10505 8GB RAM, 1TB HDD + 256GB SSD Small Tower Brand PC",
         "Price": "76000",
         "Attributes": [
+            {
+                "name": "Model",
+                "value": "Optiplex 3090 SFF"
+            },
             {
                 "name": "Processor Type",
                 "value": "Core i5"
@@ -1050,12 +728,12 @@
         ]
     },
     {
-        "Name": " Dell Vostro 3910 MT 12th Gen Intel Core i5 12400 8GB RAM, 1TB HDD Black Mid Tower Brand PC #DOLPHINMTADL23014343",
-        "Price": "66000",
+        "Name": " Dell OptiPlex 7000 12th Gen Intel Core i5 12500 8GB DDR5, 1TB HDD Black Tower Brand PC",
+        "Price": "84000",
         "Attributes": [
             {
-                "name": "Part No",
-                "value": "DOLPHINMTADL23014343"
+                "name": "Model",
+                "value": "OptiPlex 7000"
             },
             {
                 "name": "Processor Type",
@@ -1075,21 +753,47 @@
             },
             {
                 "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics"
+                "value": "Intel UHD Graphics 770"
             }
         ]
     },
     {
-        "Name": " Lenovo ThinkCentre Neo 50s SFF 12th Gen Intel Core i7 12700 8GB DDR4 RAM 1TB SSD Black Small Tower Brand PC #11SWS0NB00 (i7+SSD)",
-        "Price": "86500",
+        "Name": " Dell Optiplex 3090 Micro 10th Gen Intel Core i5 10500T 8GB RAM, 512GB SSD Black Micro Tower Brand PC",
+        "Price": "75500",
         "Attributes": [
             {
-                "name": "Part No",
-                "value": "11SWS0NB00"
+                "name": "Model",
+                "value": "Optiplex 3090 Micro"
             },
             {
                 "name": "Processor Type",
-                "value": "Core i7"
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "512GB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 630"
+            }
+        ]
+    },
+    {
+        "Name": " Dell Vostro 3020T 13th Gen Intel Core i5 13400 8GB DDR4, 1TB HDD + 256GB SSD Black Tower Brand PC",
+        "Price": "78500",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "Vostro 3020T"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
             },
             {
                 "name": "RAM",
@@ -1097,25 +801,25 @@
             },
             {
                 "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
                 "value": "1TB"
             },
             {
+                "name": "Solid-State Drive (SSD)",
+                "value": "256GB"
+            },
+            {
                 "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
+                "value": "Intel UHD Graphics 730"
             }
         ]
     },
     {
-        "Name": " HP ProDesk 400 G9 12th Gen Intel Core i5 12500 8GB DDR4, 1TB HDD Tower Brand PC #6Q2P3PA",
-        "Price": "72000",
+        "Name": " Dell OptiPlex 3000 Micro 12th Gen Intel Core i5 12500T 8GB DDR4, 1TB HDD Black Micro Tower Brand PC",
+        "Price": "69500",
         "Attributes": [
             {
-                "name": "Part No",
-                "value": "6Q2P3PA"
+                "name": "Model",
+                "value": "OptiPlex 3000 Micro"
             },
             {
                 "name": "Processor Type",
@@ -1144,6 +848,10 @@
         "Price": "298500",
         "Attributes": [
             {
+                "name": "Model",
+                "value": "Mac Pro"
+            },
+            {
                 "name": "Processor Type",
                 "value": "Intel Xeon"
             },
@@ -1162,6 +870,360 @@
             {
                 "name": "Graphics Chipset",
                 "value": "Dual Fire Pro D700 GDDR5 Graphics"
+            }
+        ]
+    },
+    {
+        "Name": " HP ProDesk 400 G9 12th Gen Intel Core i5 12500 8GB DDR4, 1TB HDD Tower Brand PC #6Q2P3PA",
+        "Price": "72000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ProDesk 400 G9"
+            },
+            {
+                "name": "Part No",
+                "value": "6Q2P3PA"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 770"
+            }
+        ]
+    },
+    {
+        "Name": " HP ProDesk 400 G9 12th Gen Intel Core i5 12500 8GB RAM 1TB HDD Tower Brand PC #6Q2Q6PA",
+        "Price": "69000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ProDesk 400 G9"
+            },
+            {
+                "name": "Part No",
+                "value": "6Q2Q6PA"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 770"
+            }
+        ]
+    },
+    {
+        "Name": " Dell Vostro 3020T 13th Gen Intel Core i7 13700 8GB DDR4 512GB SSD Silver Mesh Tower Brand PC",
+        "Price": "99500",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "Vostro 3020T"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i7"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "512GB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " Lenovo ThinkCentre Neo 50s SFF 12th Gen Intel Core i7 12700 8GB DDR4 RAM 1TB HDD Black Small Tower Brand PC #11SWS0NB00 (i7+HDD)",
+        "Price": "82500",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ThinkCentre Neo 50s SFF"
+            },
+            {
+                "name": "Part No",
+                "value": "11SWS0NB00"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i7"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 770"
+            }
+        ]
+    },
+    {
+        "Name": " Lenovo ThinkCentre Neo 50s SFF 12th Gen Intel Core i7 12700 8GB DDR4 RAM 1TB SSD Black Small Tower Brand PC #11SWS0NB00 (i7+SSD)",
+        "Price": "86500",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ThinkCentre Neo 50s SFF"
+            },
+            {
+                "name": "Part No",
+                "value": "11SWS0NB00"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i7"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 770"
+            }
+        ]
+    },
+    {
+        "Name": " Dell OptiPlex 7010 13th Gen Intel Core i5 13500 8GB RAM DDR4 256GB SSD Black Tower Brand PC",
+        "Price": "70500",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "OptiPlex 7010"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "256GB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 770"
+            }
+        ]
+    },
+    {
+        "Name": " Dell Vostro 3888 MT 10th Gen Intel Core i7 10700 8GB RAM 512GB SSD Black Mid Tower Brand PC",
+        "Price": "81000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "Vostro 3888 MT"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i7"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "512GB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 630"
+            }
+        ]
+    },
+    {
+        "Name": " Dell OptiPlex 7000 Intel Core i7 12700 8GB RAM 1TB HDD Black Tower Brand PC",
+        "Price": "99500",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "OptiPlex 7000"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i7"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel Integrated Graphics"
+            }
+        ]
+    },
+    {
+        "Name": " HP 280 Pro G9 12th Gen Intel Core i7 12700 8GB RAM, 512GB SSD Tower Brand PC #950J8PA",
+        "Price": "83500",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "280 Pro G9"
+            },
+            {
+                "name": "Part No",
+                "value": "950J8PA"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i7"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "512GB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 770"
+            }
+        ]
+    },
+    {
+        "Name": " Dell OptiPlex 3000 Intel Core i5 12500 8GB RAM 1TB HDD Black Tower Brand PC (RAM-8GB)",
+        "Price": "74000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "OptiPlex 3000"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel Integrated Graphics"
+            }
+        ]
+    },
+    {
+        "Name": " Dell Vostro 3910 MT Intel Core i7 12700 8GB RAM 512GB SSD Black Mid Tower Brand PC #DOLPHINMTADL22057600",
+        "Price": "90000",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "Vostro 3910 MT"
+            },
+            {
+                "name": "Part No",
+                "value": "DOLPHINMTADL22057600"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i7"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "512GB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 770"
             }
         ]
     }
