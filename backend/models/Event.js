@@ -27,6 +27,12 @@ const Event = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    url: {
+      type: DataTypes.STRING,
+      validate: {
+        isUrl: true, // Validate that the value is a URL
+      },
+    },
   },
   {
     timestamps: false,
