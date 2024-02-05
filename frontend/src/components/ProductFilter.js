@@ -7,13 +7,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "../css/ProductFilter.css";
 
-const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {
-  const [expanded, setExpanded] = useState({});
-  const [selectedOptions, setSelectedOptions] = useState({});
-  const [lowerValue, setLowerValue] = useState(0);
-  const [upperValue, setUpperValue] = useState(400000);
+const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {//gets the inputs from ProductListing
+  const [expanded, setExpanded] = useState({});//expand the options
+  const [selectedOptions, setSelectedOptions] = useState({});//choose the options
+  const [lowerValue, setLowerValue] = useState(0);//price lower value
+  const [upperValue, setUpperValue] = useState(400000);//price upper value
 
-  const handleLowerSliderChange = async (event) => {
+  const handleLowerSliderChange = async (event) => {//when the slide is changed, the lowervalue is changed
     try {
       const value = Math.min(Number(event.target.value), 200000);
       setLowerValue(value);
@@ -22,7 +22,7 @@ const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {
     }
   };
 
-  const handleUpperSliderChange = async (event) => {
+  const handleUpperSliderChange = async (event) => {//when the slide is changed, the upper value is changed
     try {
       const value = Math.max(Number(event.target.value), 200000);
       setUpperValue(value);
@@ -35,23 +35,23 @@ const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {
     // Initialize the `expanded` state with all keys set to true
     const initialExpandedState = {};
     const initialSelectedOptions = {};
-    for (const key in specs) {
+    for (const key in specs) {//iterate through specs
       initialExpandedState[key] = true; // Set all to true for default expanded
-      initialSelectedOptions[key] = [];
+      initialSelectedOptions[key] = [];//nothing is selected at the beginning
     }
     setExpanded(initialExpandedState);
     setSelectedOptions(initialSelectedOptions);
   }, [specs]);
 
-  useEffect(() => {
+  useEffect(() => {//change in price range
     onPriceRangeChange({ lower: lowerValue, upper: upperValue });
   }, [lowerValue, upperValue]);
 
-  const handleCheckboxChange = (key, option) => {
-    setSelectedOptions((prevSelectedOptions) => {
+  const handleCheckboxChange = (key, option) => {//change in check box
+    setSelectedOptions((prevSelectedOptions) => {//checks the previous options
       const updatedOptions = prevSelectedOptions[key].includes(option)
-        ? prevSelectedOptions[key].filter((o) => o !== option)
-        : [...prevSelectedOptions[key], option];
+        ? prevSelectedOptions[key].filter((o) => o !== option)//option exists, remove from prev selected
+        : [...prevSelectedOptions[key], option];//doesn't exist, add to updated option
 
       const newSelectedOptions = {
         ...prevSelectedOptions,

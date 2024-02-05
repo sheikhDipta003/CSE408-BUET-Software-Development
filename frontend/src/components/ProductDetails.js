@@ -19,9 +19,9 @@ const ProductDetails = () => {
   const [comparisonData, setComparisonData] = useState([]);
   const [headerData, setHeaderData] = useState([]);
   const { category, subcategory, product_id } = useParams();
-  const [showCouponPopup, setShowCouponPopup] = useState(false);
-  const [selectedCoupon, setSelectedCoupon] = useState(null);
-  const [couponsCount, setCouponsCount] = useState(0);
+  // const [showCouponPopup, setShowCouponPopup] = useState(false);
+  // const [selectedCoupon, setSelectedCoupon] = useState(null);
+  // const [couponsCount, setCouponsCount] = useState(0);
   const [visibleStartIndex, setVisibleStartIndex] = useState(0);
   const [showSidebar, setShowSidebar] = useState(false);
   const [alertPrice, setAlertPrice] = useState("");
@@ -35,6 +35,7 @@ const ProductDetails = () => {
       navigate("/login");
     } else {
       console.log("Performing action for logged-in user");
+      //price drop enter
     }
   };
 

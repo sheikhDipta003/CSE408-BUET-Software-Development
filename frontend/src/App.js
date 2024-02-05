@@ -9,7 +9,8 @@ import RequireAuth from "./components/RequireAuth";
 import ProductListing from "./components/ProductListing";
 import UserProfile from "./components/UserProfile";
 import { Routes, Route } from "react-router-dom";
-import ProductDetails from "./components/ProductDetails";
+import ProductDetails from "./components/ProductDet";
+import ProductComparisonPage from "./components/ProductCompare";
 import Wishlist from "./components/Wishlist";
 import UserDashboard from "./components/UserDashboard";
 import About from "./components/About";
@@ -25,7 +26,7 @@ const ROLES = {
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<ProductComparisonPage />}>
         <Route path="home" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="login" element={<Login />} />
@@ -35,10 +36,10 @@ function App() {
           path="productlisting/:category/:subcategory"
           element={<ProductListing />}
         />
-        <Route
+        {/* <Route
           path="productlisting/:category/:subcategory/:product_id"
           element={<ProductDetails />}
-        />
+        /> */}
         <Route path="unauthorized" element={<Unauthorized />} />
 
         <Route element={<PersistLogin />}>

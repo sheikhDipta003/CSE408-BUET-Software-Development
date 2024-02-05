@@ -19,7 +19,7 @@ const ProductListing = () => {
   const navigate = useNavigate();
 
   const goToProductDetail = (productId) => {
-    navigate(`/productlisting/${category}/${subcategory}/${productId}`);
+    navigate(`/productlisting/${productId}`);
   };
 
   const combinedSpecsRef = useRef({
