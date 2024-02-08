@@ -8,7 +8,7 @@ async function getUserVouchers(req, res) {
   try {
     // Retrieve all voucherIds associated with the userId from UserVoucher table
     const userVouchers = await UserVoucher.findAll({
-      where: { userId: userId },
+      where: { userId: userId }
     });
 
     // Extract voucherIds from the userVouchers
@@ -17,21 +17,16 @@ async function getUserVouchers(req, res) {
     // Retrieve voucher details from the Voucher table based on voucherIds
     const vouchers = await Voucher.findAll({
       where: { voucherId: voucherIds },
-    });
-
-    // Extract websiteIds from the retrieved vouchers
-    const websiteIds = vouchers.map((voucher) => voucher.websiteId);
-
-    // Retrieve website names from the Website table based on websiteIds
-    const websites = await Website.findAll({
-      where: { websiteId: websiteIds },
+      include:[
+        {
+          model: Website,
+          attributes: ["name"]
+        }
+      ]
     });
 
     // Construct the response data including voucher details and website names
     const userVoucherDetails = vouchers.map((voucher) => {
-      const website = websites.find(
-        (site) => site.websiteId === voucher.websiteId,
-      );
       return {
         voucherId: voucher.voucherId,
         voucherCode: voucher.voucherCode,
@@ -39,7 +34,7 @@ async function getUserVouchers(req, res) {
         maxAmountForDiscount: voucher.maxAmountForDiscount,
         minAmountForDiscount: voucher.minAmountForDiscount,
         endDate: voucher.endDate,
-        websiteName: website ? website.name : "Unknown Website",
+        websiteName: voucher.Website.name ? voucher.Website.name : "Unknown Website",
       };
     });
 
