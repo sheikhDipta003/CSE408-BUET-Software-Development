@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation, useParams, Link } from "react-router-dom";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import Wishlist from './Wishlist';
+import UserVoucher from "./UserVoucher";
+import Notifications from "./Notifications";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -165,11 +167,19 @@ function UserProfile() {
             Reviews
           </li>
 
+          <li
+            className={`menu-item ${activeMenuItem === "Notifs" ? "active" : ""}`}
+            onClick={() => handleMenuClick("Notifs")}
+          >
+            Notifications
+          </li>
+
         </ul>
       </div>
 
       {/* Right Section - Content */}
-      <div className="w-3/4 p-4">
+      <div className="min-w-60 p-4">
+        
         {activeMenuItem === "Profile" && (
           <div className="user-info">
             <label>Name:</label>
@@ -215,6 +225,10 @@ function UserProfile() {
               {isEditing ? "Save" : "Edit"}
             </button>
           </div>
+        )}
+
+        {activeMenuItem === "Vouchers" && (
+          <UserVoucher userId={userId}/>
         )}
 
         {activeMenuItem === "Wishlist" && (
@@ -330,6 +344,10 @@ function UserProfile() {
                 </div>
               )}
           </div>
+        )}
+
+        {activeMenuItem === "Notifs" && (
+          <Notifications userId={userId}/>
         )}
       </div>
     </div>
