@@ -22,7 +22,10 @@ const reviewController = {
   // Get all reviews
   async getAllReviews(req, res) {
     try {
-      const reviews = await Review.findAll();
+      const reviews = await Review.findAll({
+          order: [['createdAt', 'DESC']],
+          limit: 3
+      });
       return res.status(200).json(reviews);
     } catch (error) {
       console.error("Error fetching reviews:", error);
@@ -35,6 +38,7 @@ const reviewController = {
     try {
       const userReviews = await Review.findAll({
         where: { UserUserId: userId },
+        order: [['createdAt', 'DESC']]
       });
       res.status(200).json(userReviews);
     } catch (error) {

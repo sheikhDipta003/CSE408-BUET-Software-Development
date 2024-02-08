@@ -10,7 +10,7 @@ const credentials = require("./middleware/credentials");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = 5000;
 
 async function main() {
   try {
@@ -46,6 +46,7 @@ app.use("/auth", require("./routes/auth"));
 app.use("/refresh", require("./routes/refresh"));
 app.use("/logout", require("./routes/logout"));
 app.use("/products", require("./routes/api/products"));
+
 app.use(verifyJWT);
 
 app.use("/users", require("./routes/api/users"));
