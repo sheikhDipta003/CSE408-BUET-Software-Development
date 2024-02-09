@@ -19,10 +19,6 @@ const UserNotification = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    type: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     isRead: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
