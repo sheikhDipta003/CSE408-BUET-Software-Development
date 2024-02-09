@@ -2,13 +2,16 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faCheckSquare, faSquare, faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import AdminReview from './AdminReview';
 
 const Users = () => {
     const axiosPrivate = useAxiosPrivate();
     const [users, setUsers] = useState([]);
     const [selectAll, setSelectAll] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
+    const [sortBy, setSortBy] = useState(null);
+    const [sortOrder, setSortOrder] = useState('asc');
 
     useEffect(() => {
       const fetchUsers = async () => {
@@ -23,6 +26,15 @@ const Users = () => {
       fetchUsers();
     }, []);
 
+    const handleSort = (field) => {
+        if (field === sortBy) {
+          setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+        } else {
+          setSortBy(field);
+          setSortOrder('asc');
+        }
+    };
+
     const handleDelete = async (userId) => {
         try {
             await axiosPrivate.get(`admin/users/${userId}/delete`);
@@ -32,7 +44,6 @@ const Users = () => {
         }
     };
 
-    // Function to handle deleting all selected vouchers
     const handleDeleteSelected = async () => {
         const selectedVouchers = users.filter(user => user.isSelected);
         try {
@@ -58,20 +69,32 @@ const Users = () => {
         setSelectAll(!selectAll);
     };
 
-    const filteredUsers = users.filter(user =>
+    const sortedUsers = users.sort((a, b) => {
+        if (sortBy) {
+            const valueA = a[sortBy];
+            const valueB = b[sortBy];
+
+            if (valueA < valueB) return sortOrder === 'asc' ? -1 : 1;
+            if (valueA > valueB) return sortOrder === 'asc' ? 1 : -1;
+        }
+        return 0;
+    });
+
+    const filteredUsers = sortedUsers.filter(user =>
       user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      new Date(user.registrationDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).toLowerCase().includes(searchTerm.toLowerCase())
+      new Date(user.registrationDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.roles.toLowerCase().includes(searchTerm.toLowerCase())
     );
     
     return (
         <div>
             <input
               type="text"
-              placeholder="Search by username, email, or registration date"
+              placeholder="Search by username, email, registration date or role"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-3/4 p-2 mb-4 border border-gray-300 rounded"
+              className="w-3/4 p-4 mb-4 border border-gray-300 rounded"
             />
             
             <div className="flex justify-between items-center mb-4">
@@ -95,10 +118,30 @@ const Users = () => {
                     <thead>
                         <tr>
                             <th className="border border-gray-200 px-4 py-2"></th>
-                            <th className="border border-gray-200 px-4 py-2">User Name</th>
-                            <th className="border border-gray-200 px-4 py-2">Email</th>
-                            <th className="border border-gray-200 px-4 py-2">Registration Date</th>
-                            <th className="border border-gray-200 px-4 py-2">User Role</th>
+                            <th onClick={() => handleSort('username')} className="border border-gray-200 px-4 py-2 cursor-pointer">
+                                Username
+                                {sortBy === 'username' && sortOrder === 'asc' && <FontAwesomeIcon icon={faSortUp} className="ml-2 text-black" />}
+                                {sortBy === 'username' && sortOrder === 'desc' && <FontAwesomeIcon icon={faSortDown} className="ml-2 text-black" />}
+                                {sortBy !== 'username' && <FontAwesomeIcon icon={faSort} className="ml-2 text-black" />}
+                            </th>
+                            <th onClick={() => handleSort('email')} className="border border-gray-200 px-4 py-2 cursor-pointer">
+                                Email
+                                {sortBy === 'email' && sortOrder === 'asc' && <FontAwesomeIcon icon={faSortUp} className="ml-2 text-black" />}
+                                {sortBy === 'email' && sortOrder === 'desc' && <FontAwesomeIcon icon={faSortDown} className="ml-2 text-black" />}
+                                {sortBy !== 'email' && <FontAwesomeIcon icon={faSort} className="ml-2 text-black" />}
+                            </th>
+                            <th onClick={() => handleSort('registrationDate')} className="border border-gray-200 px-4 py-2 cursor-pointer">
+                                Registration Date
+                                {sortBy === 'registrationDate' && sortOrder === 'asc' && <FontAwesomeIcon icon={faSortUp} className="ml-2 text-black" />}
+                                {sortBy === 'registrationDate' && sortOrder === 'desc' && <FontAwesomeIcon icon={faSortDown} className="ml-2 text-black" />}
+                                {sortBy !== 'registrationDate' && <FontAwesomeIcon icon={faSort} className="ml-2 text-black" />}
+                            </th>
+                            <th onClick={() => handleSort('userRole')} className="border border-gray-200 px-4 py-2 cursor-pointer">
+                                User Role
+                                {sortBy === 'userRole' && sortOrder === 'asc' && <FontAwesomeIcon icon={faSortUp} className="ml-2 text-black" />}
+                                {sortBy === 'userRole' && sortOrder === 'desc' && <FontAwesomeIcon icon={faSortDown} className="ml-2 text-black" />}
+                                {sortBy !== 'userRole' && <FontAwesomeIcon icon={faSort} className="ml-2 text-black" />}
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,6 +166,8 @@ const Users = () => {
                     </tbody>
                 </table>
             </div>
+
+            <AdminReview/>
         </div>
     )
 }

@@ -3,10 +3,16 @@ const router = express.Router();
 const adminUserControl = require("../../controllers/adminUserController");
 const adminVoucherControl = require("../../controllers/adminVoucherController");
 const adminWebsiteController = require("../../controllers/adminWebsiteController");
+const reviewController = require("../../controllers/reviewController");
+
+router.get("/reviews", reviewController.getUnapprovedReviews);
+router.put("/reviews/:reviewId/approve", reviewController.approveReview);
+router.delete("/reviews/:reviewId/delete", reviewController.deleteReview);
 
 //manage users
 router.get("/users", adminUserControl.getUsers);
 router.get("/users/:userId", adminUserControl.getOneUser);
+router.post("/users/:userId/notify", adminUserControl.createNotification);
 router.get("/users/:userId/delete", adminUserControl.deleteUser);
 
 //manage vouchers

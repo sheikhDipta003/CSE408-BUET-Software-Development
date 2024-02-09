@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Notification = require("../models/Notification");
 
 const getUsers = async (req, res) => {
   try {
@@ -61,4 +62,24 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { getUsers, deleteUser, getOneUser };
+const createNotification = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { title, message, isRead } = req.body;
+
+    const notification = await Notification.create({
+      title,
+      message,
+      isRead,
+      UserUserId: userId
+    });
+
+    res.status(201).json({ notification });
+  } catch (error) {
+    console.error("Error creating notification:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+module.exports = { getUsers, deleteUser, getOneUser, createNotification };

@@ -6,6 +6,7 @@ const rootController = {
     async getAllReviews(req, res) {
         try {
         const reviews = await Review.findAll({
+            where: { approved: ["True"] },
             order: [['createdAt', 'DESC']],
             limit: 3,
             include: [
