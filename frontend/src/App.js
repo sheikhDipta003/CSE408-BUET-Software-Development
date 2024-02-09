@@ -15,6 +15,7 @@ import UserDashboard from "./components/UserDashboard";
 import About from "./components/About";
 import PersistLogin from "./components/PersistLogin";
 import Logout from "./components/Logout";
+import useAuth from "./hooks/useAuth";
 
 const ROLES = {
   Admin: 5150,
@@ -23,6 +24,8 @@ const ROLES = {
 };
 
 function App() {
+  const { auth } = useAuth();
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -58,7 +61,7 @@ function App() {
           </Route>
 
           <Route element={<RequireAuth allowedRoles={ROLES.Admin} />}>
-            <Route path="admin" element={<Admin />} />
+            <Route path="admin" element={<Admin adminId={auth.userId}/>} />
           </Route>
         </Route>
 

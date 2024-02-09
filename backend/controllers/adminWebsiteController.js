@@ -67,10 +67,11 @@ const updateWebsite = async (req, res) => {
 
 const viewAllWebsites = async (req, res) => {
   try {
-    // Fetch all websites from the database
     const allWebsites = await Website.findAll();
+    const collabSites = await Website.count({ where: { collaboration: true } });
+    const nonCollabSites = await Website.count({ where: { collaboration: false } });
 
-    res.status(200).json({ allWebsites });
+    res.status(200).json({ allWebsites, collabSites, nonCollabSites });
   } catch (error) {
     console.error("Error retrieving all websites:", error);
     res.status(500).json({ message: "Internal server error" });

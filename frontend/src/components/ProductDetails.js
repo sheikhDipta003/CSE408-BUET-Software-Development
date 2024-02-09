@@ -13,6 +13,7 @@ import { faTicketAlt } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import CouponDetailsPopup from "./CouponDetailsPopup";
 import useAuth from "../hooks/useAuth";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 const ProductDetails = () => {
   const { products } = useContext(DataContext);
@@ -29,12 +30,14 @@ const ProductDetails = () => {
   const [inputError, setInputError] = useState("");
   const { auth } = useAuth();
   const navigate = useNavigate();
+  const axiosPrivate = useAxiosPrivate();
 
   const handleCreatePriceDropClick = () => {
     if (!auth?.accessToken) {
       navigate("/login");
     } else {
       console.log("Performing action for logged-in user");
+      
     }
   };
 
@@ -285,19 +288,6 @@ const ProductDetails = () => {
             </button>
           </div>
 
-          <div
-            style={{
-              width: "95%",
-              height: "0.5vh",
-              backgroundColor: "red",
-              marginTop: "20px",
-              marginBottom: "5px",
-            }}
-          ></div>
-
-          <div className="price-history-section mt-4 text-center">
-            <h3 className="text-xl font-semibold">Price History</h3>
-          </div>
         </div>
       )}
     </div>

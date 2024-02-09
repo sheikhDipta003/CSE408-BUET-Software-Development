@@ -1,14 +1,18 @@
-const User = require("../models/User"); // Adjust the import path based on your actual project structure
+const User = require("../models/User");
 
 const getUsers = async (req, res) => {
   try {
     // Fetch the list of users from the database
     const users = await User.findAll({
       where: { roles: ["User", "Collaborator"] },
-      attributes: ["userId", "username", "email", "roles"],
+      attributes: ["userId", "username", "email", "roles", "registrationDate"],
     });
 
-    res.status(200).json({ users });
+    const totalUsers = await User.count({
+      where: { roles: ["User"] }
+    });
+
+    res.status(200).json({ users, totalUsers });
   } catch (error) {
     console.error("Error retrieving users:", error);
     res.status(500).json({ message: "Internal server error" });
@@ -21,7 +25,7 @@ const getOneUser = async (req, res) => {
     // Fetch the list of users from the database
     const user = await User.findOne({
       where: { userId: userId },
-      attributes: ["userId", "username", "email", "roles"],
+      attributes: ["userId", "username", "email", "roles", "registrationDate"],
     });
 
     if (!user) {
