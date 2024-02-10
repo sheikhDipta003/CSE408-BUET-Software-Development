@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
   const categories = {
-    computers: ["all", "laptop", "desktop"],
+    computer: ["all", "laptop", "desktop"],
     accessories: ["all", "keyboard", "mouse"],
   };
   const [activeCategory, setActiveCategory] = useState(null);
