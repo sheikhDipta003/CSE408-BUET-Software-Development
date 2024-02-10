@@ -3,7 +3,6 @@ import UserManagement from './UserManagement';
 import ContentManagement from './ContentManagement';
 import AnalyticsReports from './AnalyticsReports';
 import CustomerSupport from './CustomerSupport';
-import { useParams } from 'react-router-dom';
 
 const Admin = ({adminId}) => {
     const [activeMenu, setActiveMenu] = useState('Dashboard');

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faCheckSquare, faSquare, faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faCheckSquare, faSquare, faSort, faSortUp, faSortDown, faArrowRight, faTimes, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import AdminReview from './AdminReview';
 
 const Users = () => {
@@ -12,6 +12,31 @@ const Users = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortBy, setSortBy] = useState(null);
     const [sortOrder, setSortOrder] = useState('asc');
+    const [showUserDetails, setShowUserDetails] = useState(false);
+
+    const [openSections, setOpenSections] = useState({
+        interactions: true,
+        notifications: false,
+        vouchers: false,
+        wishlist: false,
+    });
+    
+    const toggleAccordion = (section) => {
+        setOpenSections(prevState => ({
+            ...prevState,
+            [section]: !prevState[section],
+        }));
+    };
+
+    useEffect(() => {
+        console.log(showUserDetails);
+    }, [showUserDetails]);
+    
+    const handleViewDetails = (userId) => {
+        console.log("show details of user = ", userId);
+        setShowUserDetails(true);
+    }
+    const closeSidebar = () => setShowUserDetails(false);
 
     useEffect(() => {
       const fetchUsers = async () => {
@@ -146,7 +171,7 @@ const Users = () => {
                     </thead>
                     <tbody>
                         {filteredUsers.length === 0
-                        ? <div className='px-4 text-red-500 font-bold'>No users to display</div>
+                        ? <tr className='px-4 text-red-500 font-bold'><td>No users to display</td></tr>
                         : filteredUsers.map((user) => (
                             <tr key={user.userId}>
                                 <td className="border border-gray-200 px-4 py-2">
@@ -157,7 +182,12 @@ const Users = () => {
                                         onChange={() => handleCheckboxChange(user.userId)}
                                     />
                                 </td>
-                                <td className="border border-gray-200 px-4 py-2">{user.username}</td>
+                                <td className="border border-gray-200 px-4 py-2 relative flex items-center">
+                                    <span className="flex-grow items-center">{user.username}</span>
+                                    <button className="ml-4 bg-stone-200 mt-0 mb-0" onClick={() => handleViewDetails(user.userId)}>
+                                        <FontAwesomeIcon icon={faArrowRight} className="text-blue-500 hover:text-red-700" />
+                                    </button>
+                                </td>
                                 <td className="border border-gray-200 px-4 py-2">{user.email}</td>
                                 <td className="border border-gray-200 px-4 py-2">{new Date(user.registrationDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</td>
                                 <td className='border border-gray-200 px-4 py-2'>{user.roles}</td>
@@ -165,6 +195,93 @@ const Users = () => {
                         ))}
                     </tbody>
                 </table>
+                {showUserDetails && (
+                    <div
+                        className={`sidebar fixed top-0 right-0 w-5/12 bg-white h-screen overflow-y-auto p-4 transform ${showUserDetails ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 ease-in-out h-full shadow-lg z-50`}
+                    >
+                        <div className="sidebar-header flex justify-end">
+                            <button onClick={closeSidebar}>
+                            <FontAwesomeIcon icon={faTimes} />
+                            </button>
+                        </div>
+                        
+                        <div className="bg-white w-full h-full mt-10">
+                            <div className="p-2 border-b border-gray-200">
+                                <h2 className="text-lg font-semibold inline items-center">Interactions</h2>
+                                <button
+                                    onClick={() => toggleAccordion('interactions')}
+                                    className="mt-0 float-right focus:outline-none size-7"
+                                >
+                                    <FontAwesomeIcon
+                                        icon={faChevronDown}
+                                        className={`transition-transform transform ${openSections.interactions ? 'rotate-180' : ''}`}
+                                    />
+                                </button>
+                            </div>
+                            <div className={`p-4 border-b border-gray-200 ${openSections.interactions ? '' : 'hidden'}`}>
+                                <h2 className="text-lg font-semibold">Interactions Content</h2>
+                            </div>
+
+                            <div className="p-2 border-b border-gray-200">
+                                <h2 className="text-lg font-semibold inline">Notifications</h2>
+                                <button
+                                    onClick={() => toggleAccordion('notifications')}
+                                    className="mt-0 float-right focus:outline-none size-7"
+                                >
+                                    <FontAwesomeIcon
+                                        icon={faChevronDown}
+                                        className={`transition-transform transform ${openSections.notifications ? 'rotate-180' : ''}`}
+                                    />
+                                </button>
+                            </div>
+                            <div className={`p-4 border-b border-gray-200 ${openSections.notifications ? '' : 'hidden'}`}>
+                                <h2 className="text-lg font-semibold">Notifications Content</h2>
+                            </div>
+
+                            <div className="p-2 border-b border-gray-200">
+                                <h2 className="text-lg font-semibold inline">Vouchers</h2>
+                                <button
+                                    onClick={() => toggleAccordion('vouchers')}
+                                    className="mt-0 float-right focus:outline-none size-7"
+                                >
+                                    <FontAwesomeIcon
+                                        icon={faChevronDown}
+                                        className={`transition-transform transform ${openSections.vouchers ? 'rotate-180' : ''}`}
+                                    />
+                                </button>
+                            </div>
+                            <div className={`p-4 border-b border-gray-200 ${openSections.vouchers ? '' : 'hidden'}`}>
+                                <h2 className="text-lg font-semibold">Vouchers Content</h2>
+                            </div>
+
+                            <div className="p-2 border-b border-gray-200">
+                                <h2 className="text-lg font-semibold inline">Wishlist</h2>
+                                <button
+                                    onClick={() => toggleAccordion('wishlist')}
+                                    className="mt-0 float-right focus:outline-none size-7"
+                                >
+                                    <FontAwesomeIcon
+                                        icon={faChevronDown}
+                                        className={`transition-transform transform ${openSections.wishlist ? 'rotate-180' : ''}`}
+                                    />
+                                </button>
+                            </div>
+                            <div className={`p-4 border-b border-gray-200 ${openSections.wishlist ? '' : 'hidden'}`}>
+                                <h2 className="text-lg font-semibold">Wishlist Content</h2>
+                            </div>
+
+                        </div>
+
+                        <div className="sidebar-footer flex justify-between mt-4 px-2">
+                            <button
+                                className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded-l"
+                                onClick={closeSidebar}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
 
             <AdminReview/>
