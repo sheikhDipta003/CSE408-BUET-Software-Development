@@ -1,4 +1,4 @@
-const Admin = require("../models/Admin");
+const Admin = require("../models/User");
 
 // Get admin profile by admin_id
 const getAdminProfile = async (req, res) => {
