@@ -3,16 +3,39 @@ import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const categories = {
-    computers: ["all", "laptop", "desktop"],
+    computer: ["all", "laptop", "desktop"],
     accessories: ["all", "keyboard", "mouse"],
   };
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [productSuggest, setProductSuggest] = useState([]);
   const navigate = useNavigate();
   const searchBarRef = useRef(null);
 
   useEffect(() => {
+    const fetchProductSuggestions = async () => {
+      try {
+        // Replace 'your-backend-endpoint' with your actual backend endpoint for fetching product suggestions
+        const response = await fetch(`http://localhost:5000/products/search/${encodeURIComponent(input)}`);
+        const data = await response.json();
+        console.log(data);
+        if (!data || data.length === 0) {
+          setProductSuggest([]);
+          return;
+        }
+        const matchedSuggestions = data.products.map((product) => ({
+          label: `Product: ${product.productName}`,
+          productId: product.id,
+        }));
+
+        setProductSuggest(matchedSuggestions);
+      } catch (error) {
+        console.error('Error fetching product suggestions:', error);
+      }
+    };
+    console.log(input.length)
     if (input.length > 0) {
+      fetchProductSuggestions();
       const matchedSuggestions = [];
       Object.entries(categories).forEach(([category, subcategories]) => {
         if (category.includes(input.toLowerCase())) {
@@ -26,6 +49,7 @@ const SearchBar = () => {
       });
       setSuggestions(matchedSuggestions);
     } else {
+      setProductSuggest([]);
       setSuggestions([]);
     }
   }, [input]);
@@ -36,6 +60,7 @@ const SearchBar = () => {
         searchBarRef.current &&
         !searchBarRef.current.contains(event.target)
       ) {
+        setProductSuggest([]);
         setSuggestions([]);
       }
     }
@@ -48,23 +73,9 @@ const SearchBar = () => {
 
   const handleEnter = (e) => {
     if (e.key === "Enter") {
-      // const lowerInput = input.toLowerCase();
-      // let path = "";
-      // Object.entries(categories).forEach(([category, subcategories]) => {
-      //   if (category.includes(lowerInput)) {
-      //     path = `productlisting/${category}/all`;
-      //   }
-      //   subcategories.forEach((subcategory) => {
-      //     if (subcategory.includes(lowerInput)) {
-      //       path = `productlisting/${category}/${subcategory}`;
-      //     }
-      //   });
-      // });
-      // if (path) navigate(path);
-      // setSuggestions([]);
-      // setInput("");
       if (input.length > 0) {
-        navigate(`/search/?keyword=${encodeURIComponent(input)}`);
+        navigate(`/search/${encodeURIComponent(input)}`);
+        setProductSuggest([]);
         setSuggestions([]);
         setInput("");
       }
@@ -72,18 +83,24 @@ const SearchBar = () => {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    // navigate(`productlisting/${suggestion}`);
-    // setSuggestions([]);
-    // setInput("");
     const [type, value] = suggestion.split(": ");
     if (type === "Category") {
       navigate(`productlisting/${value}/all`);
     } else if (type === "Subcategory") {
       navigate(`productlisting/${value}`);
     }
+    setProductSuggest([]);
     setSuggestions([]);
     setInput("");
   };
+
+  const  handleProductSuggestClick = (suggestion) => {
+    const id = suggestion.productId;
+    navigate(`product/${id}`);
+    setProductSuggest([]);
+    setSuggestions([]);
+    setInput("");
+   }
 
   return (
     <div className="relative w-5/6" ref={searchBarRef}>
@@ -95,9 +112,18 @@ const SearchBar = () => {
         className="border p-2 w-full"
         placeholder="Search for product, categories, subcategories..."
       />
-      {suggestions.length > 0 && (
+      {(productSuggest.length > 0 || suggestions.length > 0) && (
         <div className="absolute top-full left-0 right-0 bg-white border mt-1 max-h-40 overflow-auto z-50">
-          {suggestions.map((suggestion, index) => (
+          {productSuggest.length > 0 && productSuggest.map((suggestion, index) => (
+            <div
+              key={index}
+              className="p-2 hover:bg-gray-100 cursor-pointer"
+              onClick={() => handleProductSuggestClick(suggestion)}
+            >
+              {suggestion.label}
+            </div>
+          ))}
+          {suggestions.length > 0 && suggestions.map((suggestion, index) => (
             <div
               key={index}
               className="p-2 hover:bg-gray-100 cursor-pointer"

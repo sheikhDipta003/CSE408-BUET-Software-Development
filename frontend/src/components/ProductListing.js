@@ -2,158 +2,159 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../css/ProductListing.css";
 import api from "../api/axios";
-import DataContext from "../context/DataContext";
 import ProductFilter from "./ProductFilter";
 import { useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 
 const ProductListing = () => {
   const { category, subcategory } = useParams();
-  const { products, fetchError, isLoading } = useContext(DataContext);
   const [productCards, setProductCards] = useState([]);
   const [sortType, setSortType] = useState("priceLowToHigh");
   const [selectedFilters, setSelectedFilters] = useState({});
   const [priceRange, setPriceRange] = useState({ lower: 0, upper: 400000 });
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [productData, setProductData] = useState([]);
   const navigate = useNavigate();
+  const [brandings, setBrands] = useState([]);
+  const [specifics, setSpecs] = useState(new Map());
+
+  
 
   const goToProductDetail = (productId) => {
-    navigate(`/productlisting/${productId}`);
+    navigate(`/products/${productId}`);
   };
 
-  const combinedSpecsRef = useRef({
-    websites: [],
-    brands: [],
-    ProcessorBrand: [],
-    ProcessorModel: [],
-    ProcessorFrequency: [],
-    ProcessorCore: [],
-    ProcessorThread: [],
-    CPUCache: [],
-    DisplaySize: [],
-    DisplayType: [],
-    DisplayResolution: [],
-    TouchScreen: [],
-    RAM: [],
-    RAMType: [],
-    BusSpeed: [],
-  });
+  
+  const [selectedBrands, setSelectedBrands] = useState([]);
 
   useEffect(() => {
-    const extractAndCombineSpecs = async (productsData) => {
+    let specs = new Map();
+    const addToSet = (key, value) => {
+      if (!specs.has(key)) {
+        specs.set(key, new Set());
+      }
+    
+      specs.get(key).add(value);
+    }
+    //fetch the product details and then iterate through them for the filtereing data
+    const fetchData1 = async () => {
       try {
-        const specs = combinedSpecsRef.current;
-
-        productsData.items.forEach((item) => {
-          item.brands.forEach((brand) => {
-            if (
-              item.category === category.toLowerCase() &&
-              (item.subcategory === subcategory.toLowerCase() ||
-                subcategory.toLowerCase() === "all")
-            ) {
-              if (!specs["brands"].includes(brand.brand_name)) {
-                specs["brands"].push(brand.brand_name);
-              }
-              brand.platform_products.forEach((platform) => {
-                if (!specs["websites"].includes(platform.website_name)) {
-                  specs["websites"].push(platform.website_name);
-                }
-                platform.products_info.forEach((product) => {
-                  const productSpecs = product.specs;
-                  for (const specKey in productSpecs) {
-                    for (const detailKey in productSpecs[specKey]) {
-                      if (
-                        !specs[detailKey].includes(
-                          productSpecs[specKey][detailKey],
-                        )
-                      ) {
-                        specs[detailKey].push(productSpecs[specKey][detailKey]);
-                      }
-                    }
-                  }
-                });
-              });
-            }
-          });
+        let response = await fetch(`http://localhost:5000/products/search/${category}/${subcategory}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
-      } catch (err) {
-        console.log(`Error: ${err.message}`);
+  
+        response = await response.json();
+        console.log(response);
+        setProductData(response.products);
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
     };
 
-    if (products?.items) {
-      extractAndCombineSpecs(products);
-    }
-  }, [products, category, subcategory]);
+    const fetchData2 = async () => {
+      try {
+        let response = await fetch(`http://localhost:5000/products/all/${category}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+  
+        response = await response.json();
+        setProductData(response.products);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    // Call fetchData function inside useEffect
+    if(subcategory === "all")
+      fetchData2();
+    else
+      fetchData1();
+    let brands =[];
+    
+     productData.forEach((item) => {
+      if (!brands.includes(item.brand)) {
+        brands.push(item.brand);
+      }
+      setBrands(brands);
+      console.log(brandings);
+      item.ProductSpecs.forEach((line)=>{
+        addToSet(line.specName, line.value);
+      })
+      specs.forEach((value, key) => {
+        console.log(`Key: ${key}`);
+        console.log('Values:');
+        value.forEach((v) => {
+          console.log(`  ${v}`);
+        });
+        console.log('---');
+      });
+      setSpecs(specs);
+      console.log(specifics);
+    });
+  }, [category, subcategory]);
+
+  const handleFilterChange = (filters) => {
+    setSelectedFilters(filters);
+  };
+
+  const handleBrandChange = (brands) => {
+    setSelectedBrands(brands);
+  }
 
   const filterProducts = (product) => {
     // Price Range Filter
-    if (product.price < priceRange.lower || product.price > priceRange.upper) {
+    if (product.minPrice < priceRange.lower || product.minPrice > priceRange.upper) {
       return false;
     }
 
-    // Checkbox Filters
+    //Checkbox Filters
     for (const specKey in selectedFilters) {
       const selectedOptions = selectedFilters[specKey];
-      for (const specCategory in product.specs) {
-        if (product.specs[specCategory].hasOwnProperty(specKey)) {
+      product.ProductSpecs.forEach((item) => {
+        if (item.specName === specKey) {
           if (
             selectedOptions.length > 0 &&
-            !selectedOptions.includes(product.specs[specCategory][specKey])
+            !selectedOptions.includes(item.value)
           ) {
             return false;
           }
         }
       }
+      )
     }
-
     return true;
   };
 
   useEffect(() => {
     let tempProductCards = [];
-    let selectedBrands = selectedFilters["brands"] || [];
-    let selectedWebsites = selectedFilters["websites"] || [];
-
-    products?.items?.forEach((item) => {
-      item.brands.forEach((brand) => {
-        if (
-          item.category === category.toLowerCase() &&
-          (item.subcategory === subcategory.toLowerCase() ||
-            subcategory.toLowerCase() === "all")
-        ) {
-          brand.platform_products.forEach((platform) => {
-            platform.products_info.forEach((product) => {
-              if (
-                filterProducts(product) &&
-                (selectedBrands.length === 0 ||
-                  selectedBrands.includes(brand.brand_name)) &&
-                (selectedWebsites.length === 0 ||
-                  selectedWebsites.includes(platform.website_name))
-              ) {
-                tempProductCards.push(
-                  <div
-                    className="product-card"
-                    onClick={() => goToProductDetail(product.product_id)}
-                    key={product.id}
-                    price={product.price}
-                    rating={product.rating}
-                    brand={brand.brand_name}
-                  >
-                    <img src={product.image} alt={product.name} />
-                    <h3>{product.product_name}</h3>
-                    <p>{product.price}</p>
-                    <p>{product.rating}</p>
-                  </div>,
-                );
-              }
-            });
-          });
-        }
-      });
-    });
-
+    productData.forEach((product, index) =>{
+      if (
+        filterProducts(product) 
+        &&
+        (selectedBrands.length === 0 || selectedBrands.includes(product.brand)) 
+      ) {
+        tempProductCards.push(
+          <div
+            className="product-card"
+            onClick={() => goToProductDetail(product.productId)}
+            key={index}
+            price={product.minPrice}
+            brand={product.brand}
+          >
+            <img src={product.imagePath} alt={product.productName} />
+            <h3>{product.productName}</h3>
+            <p>{product.minPrice}</p>
+          </div>,
+        );
+      }
+    })
     switch (sortType) {
       case "priceLowToHigh":
         tempProductCards.sort((a, b) => a.props.price - b.props.price);
@@ -161,22 +162,15 @@ const ProductListing = () => {
       case "priceHighToLow":
         tempProductCards.sort((a, b) => b.props.price - a.props.price);
         break;
-      case "topRated":
-        tempProductCards.sort((a, b) => b.props.rating - a.props.rating);
-        break;
       default:
       // default case is already sorted
     }
 
     setProductCards(tempProductCards);
-  }, [products, sortType, selectedFilters, priceRange, category, subcategory]);
+  }, [productData, sortType, selectedFilters, selectedBrands, priceRange, category, subcategory]);
 
   const handleSortChange = (e) => {
     setSortType(e.target.value);
-  };
-
-  const handleFilterChange = (filters) => {
-    setSelectedFilters(filters);
   };
 
   const handlePriceRangeChange = (range) => {
@@ -211,17 +205,19 @@ const ProductListing = () => {
     itemsPerPage === "all"
       ? productCards
       : productCards.slice(
-          currentPage * itemsPerPage,
-          (currentPage + 1) * itemsPerPage,
-        );
+        currentPage * itemsPerPage,
+        (currentPage + 1) * itemsPerPage,
+      );
 
   return (
     <main className="ProductListing">
       <div className="content-container">
-        {products?.items && (
+        {productData.items && (
           <ProductFilter
-            specs={combinedSpecsRef.current}
+            specs={specifics}
+            brands={brandings}
             onFilterChange={handleFilterChange}
+            onBrandChange={handleBrandChange}
             onPriceRangeChange={handlePriceRangeChange}
           />
         )}
@@ -230,10 +226,10 @@ const ProductListing = () => {
           <div className="topBar">
             <div className="results-count">
               {Math.min(currentPage * itemsPerPage + 1, productCards.length) ===
-              Math.min(
-                (currentPage + 1) * itemsPerPage,
-                productCards.length,
-              ) ? (
+                Math.min(
+                  (currentPage + 1) * itemsPerPage,
+                  productCards.length,
+                ) ? (
                 <p>
                   Showing{" "}
                   {Math.min(
@@ -248,16 +244,16 @@ const ProductListing = () => {
                   {itemsPerPage === "all"
                     ? productCards.length
                     : Math.min(
-                        currentPage * itemsPerPage + 1,
-                        productCards.length,
-                      )}{" "}
+                      currentPage * itemsPerPage + 1,
+                      productCards.length,
+                    )}{" "}
                   -{" "}
                   {itemsPerPage === "all"
                     ? productCards.length
                     : Math.min(
-                        (currentPage + 1) * itemsPerPage,
-                        productCards.length,
-                      )}{" "}
+                      (currentPage + 1) * itemsPerPage,
+                      productCards.length,
+                    )}{" "}
                   of {productCards.length} results for "{category}/{subcategory}
                   "
                 </p>
@@ -286,27 +282,16 @@ const ProductListing = () => {
               >
                 <option value="priceLowToHigh">Price (Low to High)</option>
                 <option value="priceHighToLow">Price (High to Low)</option>
-                <option value="topRated">Top Rated</option>
               </select>
             </div>
           </div>
 
           <div className="main-content">
-            {isLoading && (
-              <p className="statusMsg text-green-500">Loading products...</p>
-            )}
-            {!isLoading && fetchError && (
-              <p className="statusMsg" style={{ color: "red" }}>
-                {fetchError}
-              </p>
-            )}
-            {!isLoading &&
-              !fetchError &&
-              (currentItems.length ? (
+            {currentItems.length ? (
                 currentItems
               ) : (
                 <p className="statusMsg">No products to display.</p>
-              ))}
+              )}
           </div>
 
           <ReactPaginate

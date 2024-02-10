@@ -2,7 +2,6 @@
 
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Brand = require("./Brand");
 
 const Product = sequelize.define(
   "Product",
@@ -19,19 +18,24 @@ const Product = sequelize.define(
     imagePath: {
       type: DataTypes.STRING,
     },
+    brand: {
+      type: DataTypes.STRING,
+    },
+    category: {
+      type: DataTypes.STRING,
+    },
+    subcategory: {
+      type: DataTypes.STRING,
+    },
+    model: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   },
   {
     timestamps: false,
   },
 );
 
-Product.belongsTo(Brand, {
-  foreignKey: { field: "brandId", allowNull: false },
-});
-Brand.hasMany(Product, {
-  foreignKey: { field: "brandId", allowNull: false },
-  onDelete: "CASCADE",
-  onUpdate: "CASCADE",
-});
 
 module.exports = Product;

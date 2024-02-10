@@ -1,25 +1,21 @@
 // models/Spec.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const ProductWebsite = require("./ProductWebsite");
+const Product = require("./Product");
 
-const Spec = sequelize.define(
-  "Spec",
+const ProductSpec = sequelize.define(
+  "ProductSpec",
   {
-    specId: {
+    psId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-    },
-    specTitle: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     specName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    specValue: {
+    value: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -29,12 +25,12 @@ const Spec = sequelize.define(
   },
 );
 
-Spec.belongsTo(ProductWebsite, {
+ProductSpec.belongsTo(Product, {
   foreignKey: { field: "productId", allowNull: false },
 });
-ProductWebsite.hasMany(Spec, {
+Product.hasMany(ProductSpec, {
   foreignKey: { field: "productId", allowNull: false },
   onDelete: "CASCADE",
   onUpdate: "CASCADE",
 });
-module.exports = Spec;
+module.exports = ProductSpec;
