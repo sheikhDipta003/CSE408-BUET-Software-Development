@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import api from '../api/axios';
 import feature1 from "../images/feature1.png";
 import feature2 from "../images/feature2.png";
 import feature3 from "../images/feature3.png";
+import RatingStar from "./RatingStar";
 
 const Home = () => {
   const features = [
@@ -25,23 +28,28 @@ const Home = () => {
     },
   ];
 
-  const testimonials = [
-    {
-      comment:
-        "TechShoppers has been a game-changer for me! The intuitive interface and real-time price updates make it a breeze to find the best deals on tech products. The comprehensive comparisons have saved me both time and money. Highly recommended for anyone looking to make informed tech purchases!",
-      username: "Lynna Sewill",
-    },
-    {
-      comment:
-        "TechShoppers is my go-to destination for tech deals. The website's clean design and user-friendly layout make it easy to navigate. I love how it provides detailed information and price comparisons on a wide range of gadgets. It's like having a personal tech advisor at my fingertips!",
-      username: "Mariana Ezzle",
-    },
-    {
-      comment:
-        "Discovering TechShoppers was a revelation! The ability to compare prices across various platforms is a game-changer for someone like me who loves a good deal. The notifications for price drops have saved me a significant amount on my recent purchases. TechShoppers is a must-have tool for any savvy shopper!",
-      username: "Luigi Cotsford",
-    },
-  ];
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const getReviews = async () => {
+      try {
+          const response = await api.get('/reviews');
+          console.log(response.data);
+          console.log(isMounted);
+          isMounted && setReviews(response.data);
+      } catch (err) {
+          console.log(`Error: ${err.message}`);
+      }
+    };
+
+    getReviews();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <div className="mx-auto p-8">
@@ -79,12 +87,14 @@ const Home = () => {
       >
         <h2 className="text-4xl font-bold mb-4 text-center">Testimonials</h2>
         <div className="border-b-2 border-red-500 mb-8"></div>
-        {testimonials.map((testimonial, index) => (
+        {reviews.map((testimonial, index) => (
           <figure key={index} className="my-12">
             <blockquote className="relative rounded-3xl bg-teal-400 py-12 pl-14 pr-8 dark:bg-black">
               <p className="mt-2 text-left text-2xl text-black before:absolute before:top-0 before:left-0 before:translate-x-2 before:translate-y-2 before:transform before:font-serif before:text-9xl before:text-white before:opacity-25 before:content-['\201C'] after:absolute after:-bottom-20 after:right-0 after:-translate-x-2 after:-translate-y-2 after:transform after:font-serif after:text-9xl after:text-white after:opacity-25 after:content-['\201D'] dark:text-slate-400 sm:text-3xl">
-                {testimonial.comment}
+                {testimonial.content}
               </p>
+
+              <RatingStar rating={testimonial.rating}/>
             </blockquote>
             <figcaption className="mt-2 text-right text-xl italic text-slate-500 dark:text-slate-400 sm:text-2xl">
               &#8212;{testimonial.username}

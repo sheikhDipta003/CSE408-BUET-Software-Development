@@ -8,9 +8,13 @@ const pricedrop = require("../../controllers/priceDropController");
 const event = require("../../controllers/eventController");
 const uservoucher = require("../../controllers/userVoucherController");
 const recommend = require("../../controllers/recommendController");
+const ROLES_LIST = require("../../config/roles");
+const verifyRole = require("../../middleware/verifyRole");
 
 // get all reviews
 router.get("/reviews", review.getAllReviews);
+router.get("/recommend", recommend.getAllUserClickcount);
+router.get("/trending", recommend.getTrendingProducts);
 
 // view all events organized by all websites or a specific event details
 router.get("/events", event.getUserEvents);
@@ -24,7 +28,7 @@ router.get("/:userId/delete", profile.deleteUser);
 //wishlist
 router.get("/:userId/wishlist", wishlist.allWishlist);
 router.get("/:userId/wishlist/:pwId", wishlist.getOneWishItem);
-router.get("/:userId/wishlist/:pwId/delete", wishlist.deleteWishItem);
+router.get("/:userId/wishlist/:wishlistId/delete", wishlist.deleteWishItem);
 
 //notifications
 router.get("/:userId/notification", notif.getAllNotifications);
@@ -39,6 +43,7 @@ router.get("/:userId/reviews/:reviewId/edit", review.updateReview);
 router.get("/:userId/reviews/:reviewId/delete", review.deleteReview);
 
 //price-drop alerts
+router.route("/:userId/alerts/pricedrop").post(verifyRole(ROLES_LIST.User), pricedrop.setPriceDropAlert);
 router.get("/:userId/alerts/pricedrop", pricedrop.viewPriceDropAlerts);
 router.delete("/:userId/alerts/pricedrop", pricedrop.removePriceDropAlert);
 
@@ -51,6 +56,7 @@ router.delete(
 
 // recommndations
 router.post("/:userId/recommend", recommend.getClicksCount);
+router.get("/:userId/recommend2", recommend.generateRecommendations);
 router.get("/:userId/recommend/all", recommend.getAllClickCounts);
 router.put("/:userId/recommend/update", recommend.updateClicksCount);
 

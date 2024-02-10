@@ -1,4 +1,5 @@
 const Review = require("../models/Review");
+const User = require("../models/User");
 
 const reviewController = {
   // Create a new review
@@ -22,7 +23,10 @@ const reviewController = {
   // Get all reviews
   async getAllReviews(req, res) {
     try {
-      const reviews = await Review.findAll();
+      const reviews = await Review.findAll({
+          order: [['createdAt', 'DESC']],
+          limit: 3
+      });
       return res.status(200).json(reviews);
     } catch (error) {
       console.error("Error fetching reviews:", error);
@@ -35,6 +39,7 @@ const reviewController = {
     try {
       const userReviews = await Review.findAll({
         where: { UserUserId: userId },
+        order: [['createdAt', 'DESC']]
       });
       res.status(200).json(userReviews);
     } catch (error) {
@@ -92,6 +97,51 @@ const reviewController = {
       return res.status(500).json({ message: "Failed to delete review" });
     }
   },
+
+  async getUnapprovedReviews(req, res){
+    try {
+      const reviews = await Review.findAll({
+          where: { approved: ["False"] },
+          include: [
+            {
+                model: User,
+                attributes: ['username', 'userId']
+            }
+          ]
+      });
+
+      const formattedReviews = reviews.map(review => ({
+        reviewId: review.reviewId,
+        content: review.content,
+        rating: review.rating,
+        userId: review.User.userId,
+        approved: review.approved,
+        username: review.User.username
+      }));
+      
+      return res.status(200).json(formattedReviews);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+      return res.status(500).json({ message: "Failed to fetch reviews" });
+    }
+  },
+  
+  async approveReview(req, res){
+    try {
+        const reviewId = req.params.reviewId;
+        const review = await Review.findByPk(reviewId);
+  
+        if (!review) {
+            return res.status(404).json({ message: "Review not found" });
+        }
+        await review.update({ approved: true });
+  
+        return res.status(200).json({ message: "Review approved successfully" });
+    } catch (error) {
+        console.error("Error approving review:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+  }
 };
 
 module.exports = reviewController;

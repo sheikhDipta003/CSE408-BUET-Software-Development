@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 const Category = require("./Category");
-const Brand = require("./Brand");
+const Product = require("./Product");
 
 const Subcategory = sequelize.define("Subcategory", {
   subcategoryId: {
@@ -20,9 +20,6 @@ Category.hasMany(Subcategory, {
 });
 Subcategory.belongsTo(Category, {
   foreignKey: { field: "categoryId", allowNull: false },
-});
-Subcategory.hasMany(Product, {
-  foreignKey: { field: "subcategoryId", allowNull: false },
 });
 
 module.exports = Subcategory;

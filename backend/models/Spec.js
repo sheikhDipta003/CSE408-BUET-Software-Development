@@ -25,12 +25,14 @@ const ProductSpec = sequelize.define(
   },
 );
 
+
 ProductSpec.belongsTo(Product, {
   foreignKey: { field: "productId", allowNull: false },
 });
 Product.hasMany(ProductSpec, {
+
   foreignKey: { field: "productId", allowNull: false },
-  onDelete: "CASCADE",
-  onUpdate: "CASCADE",
 });
+
 module.exports = ProductSpec;
+

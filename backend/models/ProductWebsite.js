@@ -13,6 +13,10 @@ const ProductWebsite = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    pwURL: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     shippingTime: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -37,14 +41,16 @@ const ProductWebsite = sequelize.define(
       type: DataTypes.FLOAT,
       allowNull: true,
     },
+    price: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+    },
   },
   {
     timestamps: false,
   },
 );
 
-//either add foreign key fields which will only act as foreign key and will add own primary key
-//or do the following to make composite key without any primary key
 Product.belongsToMany(Website, {
   through: ProductWebsite,
   foreignKey: { field: "productId", allowNull: false },
@@ -65,4 +71,5 @@ Website.hasMany(ProductWebsite, {
 ProductWebsite.belongsTo(Website, {
   foreignKey: { field: "websiteId", allowNull: false },
 });
+
 module.exports = ProductWebsite;

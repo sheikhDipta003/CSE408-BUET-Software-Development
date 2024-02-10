@@ -1,345 +1,174 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import DataContext from "../context/DataContext";
-import "../css/Wishlist.css";
+import React from 'react';
+import { useState, useEffect } from 'react';
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faCheckSquare, faSquare, faSort, faSortUp, faSortDown, faArrowRight, faTimes, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
-const Wishlist = () => {
-  const categories = {
-    computers: ["Laptop", "Desktop"],
-    mobiles: ["Android", "Tablet"],
-    books: [],
-    fashion: [],
-    artsAndCrafts: [],
-    sports: [],
-  };
+const Wishlist = ({userId}) => {
+    const axiosPrivate = useAxiosPrivate();
+    const [wishlist, setWishlist] = useState([]);
+    const [selectAll, setSelectAll] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [sortBy, setSortBy] = useState(null);
+    const [sortOrder, setSortOrder] = useState('asc');
 
-  const brands = ["HP", "Asus", "Dell"];
+    useEffect(() => {
+      const fetchWishlist = async () => {
+        try {
+          const response = await axiosPrivate.get(`/users/${userId}/wishlist`);
+          console.log(response.data.wishlistItems);
+          setWishlist(response.data.wishlistItems);
+        } catch (error) {
+          console.error('Error fetching wishlist:', error);
+        }
+      };
+  
+      fetchWishlist();
+    }, []);
 
-  const websites = ["Startech", "Ryans", "Daraz"];
+    const handleDelete = async (userId, wishlistId) => {
+        try {
+            await axiosPrivate.get(`users/${userId}/wishlist/${wishlistId}/delete`);
+            setWishlist(prevWishlist => prevWishlist.filter(wishlist => wishlist.wishlistId !== wishlistId));
+        } catch (error) {
+            console.error('Error deleting wishlist:', error);
+        }
+    };
 
-  const wishlistItems = [
-    {
-      product_id: "p979",
-      product_name: "HP 15 Laptop, Intel Celeron X941",
-      website_name: "Startech",
-      category: "computers",
-      subcategory: "laptop",
-      brand: "HP",
-      currrent_price: 275774,
-      date_added: "2023-03-19",
-      product_image:
-        "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71OyrTkxpGL._AC_SL1500_.jpg",
-    },
-    {
-      product_id: "p356",
-      product_name: "HP 16 Laptop, Intel Celeron L064",
-      website_name: "Startech",
-      category: "computers",
-      subcategory: "laptop",
-      brand: "HP",
-      currrent_price: 42467,
-      date_added: "2022-11-05",
-      product_image:
-        "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71OyrTkxpGL._AC_SL1500_.jpg",
-    },
-    {
-      product_id: "p482",
-      product_name: "HP 16 Laptop, Intel Celeron M085",
-      website_name: "Ryans",
-      category: "computers",
-      subcategory: "laptop",
-      brand: "HP",
-      currrent_price: 242773,
-      date_added: "2023-03-16",
-      product_image:
-        "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/51KupiNLuHL._AC_SL1280_.jpg",
-    },
-    {
-      product_id: "p716",
-      product_name: "HP 11 Laptop, Intel Celeron V665",
-      website_name: "Ryans",
-      category: "computers",
-      subcategory: "laptop",
-      brand: "HP",
-      currrent_price: 357010,
-      date_added: "2022-08-16",
-      product_image:
-        "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/51KupiNLuHL._AC_SL1280_.jpg",
-    },
-    {
-      product_id: "p152",
-      product_name: "HP 11 Laptop, Intel Celeron W025",
-      website_name: "Daraz",
-      category: "computers",
-      subcategory: "laptop",
-      brand: "HP",
-      currrent_price: 264211,
-      date_added: "2022-07-19",
-      product_image:
-        "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71OyrTkxpGL._AC_SL1500_.jpg",
-    },
-    {
-      product_id: "p400",
-      product_name: "HP 11 Laptop, Intel Celeron I927",
-      website_name: "Ryans",
-      category: "computers",
-      subcategory: "laptop",
-      brand: "HP",
-      currrent_price: 338670,
-      date_added: "2023-04-29",
-      product_image:
-        "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/51KupiNLuHL._AC_SL1280_.jpg",
-    },
-    {
-      product_id: "p624",
-      product_name: "HP 15 Laptop, Intel Celeron R812",
-      website_name: "Startech",
-      category: "computers",
-      subcategory: "laptop",
-      brand: "HP",
-      currrent_price: 93647,
-      date_added: "2023-02-07",
-      product_image:
-        "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/51KupiNLuHL._AC_SL1280_.jpg",
-    },
-    {
-      product_id: "p488",
-      product_name: "HP 10 Laptop, Intel Celeron B835",
-      website_name: "Startech",
-      category: "computers",
-      subcategory: "laptop",
-      brand: "HP",
-      currrent_price: 255692,
-      date_added: "2024-01-03",
-      product_image:
-        "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/51KupiNLuHL._AC_SL1280_.jpg",
-    },
-    {
-      product_id: "p076",
-      product_name: "HP 17 Laptop, Intel Celeron I617",
-      website_name: "Startech",
-      category: "computers",
-      subcategory: "laptop",
-      brand: "HP",
-      currrent_price: 47485,
-      date_added: "2022-09-09",
-      product_image:
-        "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71OyrTkxpGL._AC_SL1500_.jpg",
-    },
-    {
-      product_id: "p922",
-      product_name: "HP 13 Laptop, Intel Celeron Y926",
-      website_name: "Startech",
-      category: "computers",
-      subcategory: "laptop",
-      brand: "HP",
-      currrent_price: 235805,
-      date_added: "2022-06-13",
-      product_image:
-        "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/51KupiNLuHL._AC_SL1280_.jpg",
-    },
-  ];
+    const handleDeleteSelected = async () => {
+        const selectedWishlist = wishlist.filter(wishlist => wishlist.isSelected);
+        try {
+            await Promise.all(selectedWishlist.map(wishlist => handleDelete(userId, wishlist.wishlistId)));
+        } catch (error) {
+            console.error('Error deleting selected Wishlist:', error);
+        }
+    };
 
-  const [sortOption, setSortOption] = useState("");
-  const [filters, setFilters] = useState({
-    category: "",
-    subcategory: "",
-    brand: "",
-    website: "",
-  });
+    const handleCheckboxChange = (wishlistId) => {
+        const updatedWishlist = wishlist.map(wishlist => {
+            if (wishlist.wishlistId === wishlistId) {
+                return { ...wishlist, isSelected: !wishlist.isSelected };
+            }
+            return wishlist;
+        });
+        setWishlist(updatedWishlist);
+    };
 
-  const [products, setProducts] = useState(wishlistItems);
-  const [filteredProducts, setFilteredProducts] = useState(wishlistItems);
-  const [selectedProducts, setSelectedProducts] = useState(new Set());
-  const [displayedProducts, setDisplayedProducts] = useState(wishlistItems);
+    const handleSort = (field) => {
+      if (field === sortBy) {
+        setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+      } else {
+        setSortBy(field);
+        setSortOrder('asc');
+      }
+    };
 
-  const handleSelectProduct = (productId) => {
-    const newSelection = new Set(selectedProducts);
-    if (newSelection.has(productId)) {
-      newSelection.delete(productId);
-    } else {
-      newSelection.add(productId);
-    }
-    setSelectedProducts(newSelection);
-  };
+    const sortedWishlist = wishlist.sort((a, b) => {
+      if (sortBy) {
+          const valueA = a[sortBy];
+          const valueB = b[sortBy];
 
-  const handleSelectAll = () => {
-    if (selectedProducts.size === products.length) {
-      setSelectedProducts(new Set());
-    } else {
-      setSelectedProducts(
-        new Set(products.map((product) => product.product_id)),
-      );
-    }
-  };
-
-  const handleDeleteSelected = () => {
-    const newProducts = products.filter(
-      (product) => !selectedProducts.has(product.product_id),
-    );
-    setProducts(newProducts);
-    setDisplayedProducts(newProducts); // Update displayed products as well
-    setSelectedProducts(new Set()); // Clear selection
-  };
-
-  useEffect(() => {
-    applyFilters();
-  }, [filters, sortOption]);
-
-  const applyFilters = () => {
-    let filtered = products.filter((item) => {
-      return (
-        (filters.category
-          ? item.category.toLowerCase() === filters.category.toLowerCase()
-          : true) &&
-        (filters.subcategory
-          ? item.subcategory.toLowerCase() === filters.subcategory.toLowerCase()
-          : true) &&
-        (filters.brand
-          ? item.brand.toLowerCase() === filters.brand.toLowerCase()
-          : true) &&
-        (filters.website
-          ? item.website_name
-              .toLowerCase()
-              .includes(filters.website.toLowerCase())
-          : true)
-      );
+          if (sortBy.toLowerCase() === 'price') return sortOrder === 'asc' ? valueA - valueB : valueB - valueA;
+          if (valueA < valueB) return sortOrder === 'asc' ? -1 : 1;
+          if (valueA > valueB) return sortOrder === 'asc' ? 1 : -1;
+      }
+      return 0;
     });
 
-    setFilteredProducts(filtered);
-    applySort(filtered);
-    setDisplayedProducts(filtered);
-  };
+    const toggleSelectAll = () => {
+        const updatedWishlist = wishlist.map(wishlist => ({ ...wishlist, isSelected: !selectAll }));
+        setWishlist(updatedWishlist);
+        setSelectAll(!selectAll);
+    };
 
-  const applySort = (list) => {
-    let sorted = [...list];
-    if (sortOption === "priceLowHigh") {
-      sorted.sort((a, b) => a.currrent_price - b.currrent_price);
-    } else if (sortOption === "priceHighLow") {
-      sorted.sort((a, b) => b.currrent_price - a.currrent_price);
-    }
-    setFilteredProducts(sorted);
-  };
-
-  const handleFilterChange = (e) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value });
-  };
-
-  const handleSortChange = (e) => {
-    setSortOption(e.target.value);
-    applySort(filteredProducts);
-  };
-
-  return (
-    <div className="wishlist-wrapper">
-      <div className="filters">
+    const filteredWishlist = sortedWishlist.filter(w =>
+      w.productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      w.websiteName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      new Date(w.dateAdded).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    
+    return (
         <div>
-          <label>Category:</label>
-          <select
-            name="category"
-            onChange={handleFilterChange}
-            className="border-2 border-black rounded-sm"
-          >
-            <option value="">All</option>
-            {Object.keys(categories).map((cat, index) => (
-              <option key={index} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label>Subcategory:</label>
-          <select
-            name="subcategory"
-            onChange={handleFilterChange}
-            className="border-2 border-black rounded-sm"
-          >
-            <option value="">All</option>
-            {filters.category &&
-              categories[filters.category].map((sub, index) => (
-                <option key={index} value={sub}>
-                  {sub}
-                </option>
-              ))}
-          </select>
-        </div>
-        <div>
-          <label>Brand:</label>
-          <select
-            name="brand"
-            onChange={handleFilterChange}
-            className="border-2 border-black rounded-sm"
-          >
-            <option value="">All</option>
-            {filters.subcategory &&
-              brands.map((brand, index) => (
-                <option key={index} value={brand}>
-                  {brand}
-                </option>
-              ))}
-          </select>
-        </div>
-        <div>
-          <label>Website:</label>
-          <select
-            name="website"
-            onChange={handleFilterChange}
-            className="border-2 border-black rounded-sm"
-          >
-            <option value="">All</option>
-            {websites.map((site, index) => (
-              <option key={index} value={site}>
-                {site}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      <div className="sorting-and-products-container">
-        <div className="sorting-container">
-          <label htmlFor="sort-by">Sort By: </label>
-          <select
-            id="sort-by"
-            value={sortOption}
-            onChange={handleSortChange}
-            className="border-2 border-black rounded-sm"
-          >
-            <option value="">None</option>
-            <option value="priceLowHigh">Price (Low -{">"} High)</option>
-            <option value="priceHighLow">Price (High -{">"} Low)</option>
-          </select>
-
-          <button onClick={handleSelectAll}>
-            {selectedProducts.size === products.length
-              ? "Deselect All"
-              : "Select All"}
-          </button>
-          <button onClick={handleDeleteSelected}>Delete</button>
-        </div>
-      </div>
-
-      <div className="wishlist-container">
-        {displayedProducts.map((item, index) => (
-          <div key={index} className="wishlist-item">
             <input
-              type="checkbox"
-              checked={selectedProducts.has(item.product_id)}
-              onChange={() => handleSelectProduct(item.product_id)}
+              type="text"
+              placeholder="Search by product name, website name or date"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-3/4 p-4 mb-4 border border-gray-300 rounded"
             />
-            <img src={item.product_image} alt={item.product_name} />
-            <div className="item-details">
-              <h3>{item.product_name}</h3>
-              <p>Price: {item.currrent_price}</p>
-              <p>Added on: {item.date_added}</p>
-              <p>Website: {item.website_name}</p>
+            
+            <div className="flex justify-between items-center mb-4">
+                <div>
+                    <button onClick={toggleSelectAll} className="text-blue-700 hover:text-blue-800 mr-4 bg-teal-100" disabled={wishlist.length === 0}>
+                        {selectAll ? (
+                            <FontAwesomeIcon icon={faCheckSquare} />
+                        ) : (
+                            <FontAwesomeIcon icon={faSquare} />
+                        )}
+                        <span className="ml-2">Select All</span>
+                    </button>
+                    <button onClick={handleDeleteSelected} className="text-red-700 hover:text-red-800 bg-teal-100" disabled={wishlist.filter(wishlist => wishlist.isSelected).length === 0}>
+                        <FontAwesomeIcon icon={faTrash} />
+                        <span className="ml-2">Delete</span>
+                    </button>
+                </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+            <div className="overflow-x-auto">
+                <table className="table-auto w-full border-collapse border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th className="border border-gray-200 px-4 py-2"></th>
+                            <th onClick={() => handleSort('productName')} className="border border-gray-200 px-4 py-2 cursor-pointer">
+                                Product Name
+                                {sortBy === 'productName' && sortOrder === 'asc' && <FontAwesomeIcon icon={faSortUp} className="ml-2 text-black" />}
+                                {sortBy === 'productName' && sortOrder === 'desc' && <FontAwesomeIcon icon={faSortDown} className="ml-2 text-black" />}
+                                {sortBy !== 'productName' && <FontAwesomeIcon icon={faSort} className="ml-2 text-black" />}
+                            </th>
+                            <th onClick={() => handleSort('websiteName')} className="border border-gray-200 px-4 py-2 cursor-pointer">
+                                Website Name
+                                {sortBy === 'websiteName' && sortOrder === 'asc' && <FontAwesomeIcon icon={faSortUp} className="ml-2 text-black" />}
+                                {sortBy === 'websiteName' && sortOrder === 'desc' && <FontAwesomeIcon icon={faSortDown} className="ml-2 text-black" />}
+                                {sortBy !== 'websiteName' && <FontAwesomeIcon icon={faSort} className="ml-2 text-black" />}
+                            </th>
+                            <th onClick={() => handleSort('price')} className="border border-gray-200 px-4 py-2 cursor-pointer">
+                                Current Price
+                                {sortBy === 'price' && sortOrder === 'asc' && <FontAwesomeIcon icon={faSortUp} className="ml-2 text-black" />}
+                                {sortBy === 'price' && sortOrder === 'desc' && <FontAwesomeIcon icon={faSortDown} className="ml-2 text-black" />}
+                                {sortBy !== 'price' && <FontAwesomeIcon icon={faSort} className="ml-2 text-black" />}
+                            </th>
+                            <th onClick={() => handleSort('dateAdded')} className="border border-gray-200 px-4 py-2 cursor-pointer">
+                                Date Added
+                                {sortBy === 'dateAdded' && sortOrder === 'asc' && <FontAwesomeIcon icon={faSortUp} className="ml-2 text-black" />}
+                                {sortBy === 'dateAdded' && sortOrder === 'desc' && <FontAwesomeIcon icon={faSortDown} className="ml-2 text-black" />}
+                                {sortBy !== 'dateAdded' && <FontAwesomeIcon icon={faSort} className="ml-2 text-black" />}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {filteredWishlist.length === 0
+                        ? <tr className='px-4 text-red-500 font-bold'><td>No wishlist to display</td></tr>
+                        : filteredWishlist.map((wishlist) => (
+                            <tr key={wishlist.wishlistId}>
+                                <td className="border border-gray-200 px-4 py-2">
+                                    <input
+                                        type="checkbox"
+                                        className="form-checkbox h-4 w-4 text-blue-500"
+                                        checked={wishlist.isSelected || false}
+                                        onChange={() => handleCheckboxChange(wishlist.wishlistId)}
+                                    />
+                                </td>
+                                <td className="border border-gray-200 px-4 py-2">{wishlist.productName}</td>
+                                <td className="border border-gray-200 px-4 py-2">{wishlist.websiteName}</td>
+                                <td className="border border-gray-200 px-4 py-2">{wishlist.price}</td>
+                                <td className="border border-gray-200 px-4 py-2">{new Date(wishlist.dateAdded).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    )
+}
 
-export default Wishlist;
+export default Wishlist

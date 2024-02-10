@@ -29,11 +29,23 @@ const allWishlist = async (req, res) => {
       ],
     });
 
+    console.log(wishlistDetails.map((wishlist) => {return wishlist.ProductWebsite.price}));
+
     if (!wishlistDetails) {
       return res.status(404).json({ message: "Wishlist not found" });
     }
 
-    res.status(200).json({ wishlistDetails });
+    const result = wishlistDetails.map((wishlist) => {
+      return { 
+        wishlistId: wishlist.wishlistId,
+        dateAdded: wishlist.dateAdded,
+        price: wishlist.ProductWebsite.price,
+        productName: wishlist.ProductWebsite.Product.productName,
+        websiteName: wishlist.ProductWebsite.Website.name
+      };
+    });
+
+    res.status(200).json({ wishlistItems: result });
   } catch (error) {
     console.error("Error retrieving wishlist:", error);
     res.status(500).json({ message: "Internal server error" });

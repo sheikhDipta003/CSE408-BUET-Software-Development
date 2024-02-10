@@ -4,8 +4,10 @@ const ProductWebsite = require("../models/ProductWebsite");
 // Controller function to set an alert for a price drop on a specific product
 async function setPriceDropAlert(req, res) {
   try {
-    const { productId, userId, websiteId } = req.params;
-    const price = req.body;
+
+    const { userId } = req.params;
+    const { productId, websiteId, price } = req.body;
+
 
     // Find the corresponding ProductWebsite entry
     const productWebsite = await ProductWebsite.findOne({

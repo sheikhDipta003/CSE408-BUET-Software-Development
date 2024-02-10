@@ -1,5 +1,3 @@
-// models/Product.js
-
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
@@ -17,6 +15,11 @@ const Product = sequelize.define(
     },
     imagePath: {
       type: DataTypes.STRING,
+      allowNull: true,
+    },
+    mpn: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     brand: {
       type: DataTypes.STRING,
@@ -36,6 +39,5 @@ const Product = sequelize.define(
     timestamps: false,
   },
 );
-
 
 module.exports = Product;
