@@ -1,37 +1,39 @@
 import React, { useState, useRef, useEffect } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
+import "../css/Dropdown.css"
 import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
   const categories = {
-    computers: ["all", "laptop", "desktop"],
-    mobiles: ["all", "android", "tablet"],
+    computer: ["all", "laptop", "desktop"],
+    accessories: ["all", "keyboard", "mouse"],
   };
   const [activeCategory, setActiveCategory] = useState(null);
+  const [hoverSubcategory, setHoverSubcategory] = useState(null);
   const navigate = useNavigate();
   const menuRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setActiveCategory(null);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (menuRef.current && !menuRef.current.contains(event.target)) {
+  //       setActiveCategory(null);
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [menuRef]);
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [menuRef]);
 
-  const handleCategoryClick = (category) => {
+  const handleCategoryHover = (category) => {
     setActiveCategory(category);
   };
 
-  const handleSubcategoryChange = (option, category) => {
+  const handleSubcategoryClick = (subcategory, category) => {
     setActiveCategory(null);
-    navigate(`/productlisting/${category}/${option.value}`);
+    navigate(`/productlisting/${category}/${subcategory}`);
   };
 
   return (
@@ -40,19 +42,33 @@ const Menu = () => {
         {Object.keys(categories).map((category) => (
           <div
             key={category}
-            className="menu-item"
-            onClick={() => handleCategoryClick(category)}
+            className={`menu-item${activeCategory === category ? " active" : ""}`}
+            onMouseEnter={()=> handleCategoryHover(category)}
+            onMouseLeave={()=>{setActiveCategory(null); setHoverSubcategory(null)}}
           >
             {category.charAt(0).toUpperCase() + category.slice(1)}
             {activeCategory === category && (
-              <Dropdown
-                options={categories[category]}
-                placeholder="Select an option"
-                className="dropdown-content text-base bg-slate-50"
-                value={categories[category][0]}
-                onChange={(option) => handleSubcategoryChange(option, category)}
-                style={{ "z-index": "10" }}
-              />
+              // <Dropdown
+              //   options={categories[category]}
+              //   placeholder="Select an option"
+              //   className="dropdown-content text-base bg-slate-50"
+              //   //value={categories[category][0]}
+              //   onChange={(option) => handleSubcategoryChange(option, category)}
+              //   style={{ "z-index": "10" }}
+              // />
+              <div className="subcategory-menu">
+                {categories[category].map((subcategory) => (
+                  <div
+                    key={subcategory}
+                    className={`subcategory-item${hoverSubcategory === subcategory ? " hover" : ""}`}
+                    onClick={() => handleSubcategoryClick(subcategory, category)}
+                    onMouseEnter={() => setHoverSubcategory(subcategory)}
+                    onMouseLeave={() => setHoverSubcategory(null)}
+                  >
+                    {subcategory.charAt(0).toUpperCase() + subcategory.slice(1)}
+                  </div>
+                ))}
+              </div>
             )}
           </div>
         ))}

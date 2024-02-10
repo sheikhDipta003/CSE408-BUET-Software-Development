@@ -26,11 +26,11 @@ const ProductPrice = sequelize.define(
 );
 
 ProductWebsite.hasMany(ProductPrice, {
-  foreignKey: { field: "productId", allowNull: false },
+  foreignKey: { field: "pwId", allowNull: false },
   onDelete: "CASCADE",
   onUpdate: "CASCADE",
 });
 ProductPrice.belongsTo(ProductWebsite, {
-  foreignKey: { field: "productId", allowNull: false },
+  foreignKey: { field: "pwId", allowNull: false },
 });
 module.exports = ProductPrice;

@@ -3,6 +3,7 @@ const cors = require("cors");
 const path = require("path");
 const corsOptions = require("./config/corsOptions");
 const sequelize = require("./config/database");
+
 const verifyJWT = require("./middleware/verifyJWT");
 const cookieParser = require("cookie-parser");
 const credentials = require("./middleware/credentials");

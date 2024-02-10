@@ -21,11 +21,5 @@ Category.hasMany(Subcategory, {
 Subcategory.belongsTo(Category, {
   foreignKey: { field: "categoryId", allowNull: false },
 });
-Subcategory.hasMany(Product, {
-  foreignKey: { field: "subcategoryId", allowNull: false },
-});
-Product.belongsTo(Subcategory, {
-  foreignKey: { field: "subcategoryId", allowNull: false },
-});
 
 module.exports = Subcategory;

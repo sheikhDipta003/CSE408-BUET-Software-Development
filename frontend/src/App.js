@@ -7,9 +7,12 @@ import Missing from "./components/Missing";
 import Unauthorized from "./components/Unauthorized";
 import RequireAuth from "./components/RequireAuth";
 import ProductListing from "./components/ProductListing";
+import ProductSearch from "./components/ProductSearch";
 import UserProfile from "./components/UserProfile";
 import { Routes, Route } from "react-router-dom";
-import ProductDetails from "./components/ProductDetails";
+import ProductDetails from "./components/ProductDet";
+import ProductWebsite from "./components/PWdet";
+import ProductComparisonPage from "./components/ProductCompare";
 import Wishlist from "./components/Wishlist";
 import UserDashboard from "./components/UserDashboard";
 import About from "./components/About";
@@ -39,8 +42,16 @@ function App() {
           element={<ProductListing />}
         />
         <Route
-          path="productlisting/:category/:subcategory/:product_id"
+          path="productlisting/:keyword"
+          element={<ProductListing />}
+        />
+        <Route
+          path="products/:productId"
           element={<ProductDetails />}
+        />
+        <Route
+          path="products/:productId/:websiteId"
+          element={<ProductWebsite />}
         />
         <Route path="unauthorized" element={<Unauthorized />} />
 

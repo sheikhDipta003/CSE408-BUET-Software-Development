@@ -7,13 +7,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "../css/ProductFilter.css";
 
-const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {
-  const [expanded, setExpanded] = useState({});
-  const [selectedOptions, setSelectedOptions] = useState({});
-  const [lowerValue, setLowerValue] = useState(0);
-  const [upperValue, setUpperValue] = useState(400000);
+const ProductFilter = ({ specs, brands, onFilterChange, onBrandChange, onPriceRangeChange }) => {//gets the inputs from ProductListing
+  //const [expanded, setExpanded] = useState({});//expand the options
+  const [selectedOptions, setSelectedOptions] = useState({});//choose the options
+  const [lowerValue, setLowerValue] = useState(0);//price lower value
+  const [upperValue, setUpperValue] = useState(400000);//price upper value
+  const [selectedBrands, setSelectedBrands] = useState([]);
 
-  const handleLowerSliderChange = async (event) => {
+  const handleLowerSliderChange = async (event) => {//when the slide is changed, the lowervalue is changed
     try {
       const value = Math.min(Number(event.target.value), 200000);
       setLowerValue(value);
@@ -22,7 +23,7 @@ const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {
     }
   };
 
-  const handleUpperSliderChange = async (event) => {
+  const handleUpperSliderChange = async (event) => {//when the slide is changed, the upper value is changed
     try {
       const value = Math.max(Number(event.target.value), 200000);
       setUpperValue(value);
@@ -32,23 +33,30 @@ const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {
   };
 
   useEffect(() => {
-    // Initialize the `expanded` state with all keys set to true
-    const initialExpandedState = {};
+    const initialSelectedBrands = [];
     const initialSelectedOptions = {};
-    for (const key in specs) {
-      initialExpandedState[key] = true; // Set all to true for default expanded
+    for (const key of specs.keys()) {
       initialSelectedOptions[key] = [];
     }
-    setExpanded(initialExpandedState);
+    setSelectedBrands(initialSelectedBrands);
     setSelectedOptions(initialSelectedOptions);
   }, [specs]);
 
-  useEffect(() => {
+  useEffect(() => {//change in price range
     onPriceRangeChange({ lower: lowerValue, upper: upperValue });
   }, [lowerValue, upperValue]);
 
-  const handleCheckboxChange = (key, option) => {
-    setSelectedOptions((prevSelectedOptions) => {
+  const handleBrandChange = (brand) => {
+    setSelectedBrands((prevSelectedBrands) =>
+      prevSelectedBrands.includes(brand)
+        ? prevSelectedBrands.filter((selectedBrand) => selectedBrand !== brand)
+        : [...prevSelectedBrands, brand]
+    );
+    onBrandChange(selectedBrands);
+  };
+
+  const handleCheckboxChange = (key, option) => {//change in check box
+    setSelectedOptions((prevSelectedOptions) => {//checks the previous options
       const updatedOptions = prevSelectedOptions[key].includes(option)
         ? prevSelectedOptions[key].filter((o) => o !== option)
         : [...prevSelectedOptions[key], option];
@@ -62,24 +70,16 @@ const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {
     });
   };
 
-  const toggleExpand = (key) => {
-    setExpanded((prevExpanded) => ({
-      ...prevExpanded,
-      [key]: !prevExpanded[key],
-    }));
-  };
+  // const toggleExpand = (key) => {
+  //   setExpanded((prevExpanded) => ({
+  //     ...prevExpanded,
+  //     [key]: !prevExpanded[key],
+  //   }));
+  // };
 
-  const renderFilterGroup = (key, options) => {
+  const renderSpecFilterGroup = (key, options) => {
     return (
       <div key={key} className="filter-group">
-        <div className="filter-header" onClick={() => toggleExpand(key)}>
-          <label>{key}</label>
-          <FontAwesomeIcon
-            icon={expanded[key] ? faCaretUp : faCaretDown}
-            color="black"
-          />
-        </div>
-        {expanded[key] && (
           <div className="filter-options">
             {options.map((option) => (
               <label key={option} className="filter-option">
@@ -93,7 +93,7 @@ const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {
               </label>
             ))}
           </div>
-        )}
+        {/* )} */}
       </div>
     );
   };
@@ -129,8 +129,19 @@ const ProductFilter = ({ specs, onFilterChange, onPriceRangeChange }) => {
           <span style={{ color: "black" }}>{`BDT ${upperValue}`}</span>
         </div>
       </div>
+      {brands.map((brand) => (
+        <label key={brand}>
+          <input
+            type="checkbox"
+            value={brand}
+            checked={selectedBrands.includes(brand)}
+            onChange={() => handleBrandChange(brand)}
+          />
+          {brand}
+        </label>
+      ))}
       {Object.entries(specs).map(([key, options]) =>
-        renderFilterGroup(key, options),
+        renderSpecFilterGroup(key, options),
       )}
     </div>
   );

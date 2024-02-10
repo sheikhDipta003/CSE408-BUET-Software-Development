@@ -19,12 +19,24 @@ const ProductWebsite = sequelize.define(
     },
     shippingTime: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
-    instock: {
+    inStock: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
+    pwURL: {
+      type: DataTypes.TEXT,
+      validate: {
+        isUrl: true,
+      }
+    },
+    price: {
+      type: DataTypes.NUMBER,
+      validate: {
+        min: 0.00,
+      }
+    }, 
     rating: {
       type: DataTypes.FLOAT,
       allowNull: true,
