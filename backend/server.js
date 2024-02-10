@@ -10,7 +10,7 @@ const credentials = require("./middleware/credentials");
 require("dotenv").config();
 
 const app = express();
-const port = 5000;
+const port = process.env.LOCALPORT || 5000;
 
 async function main() {
   try {
