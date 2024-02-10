@@ -47,7 +47,7 @@ app.use("/refresh", require("./routes/refresh"));
 app.use("/logout", require("./routes/logout"));
 app.use("/products", require("./routes/api/products"));
 
-app.use(verifyJWT);
+//app.use(verifyJWT);
 
 app.use("/users", require("./routes/api/users"));
 app.use("/admin", require("./routes/api/admin"));
