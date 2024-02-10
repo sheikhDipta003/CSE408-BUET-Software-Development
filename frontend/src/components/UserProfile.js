@@ -232,7 +232,7 @@ function UserProfile() {
         )}
 
         {activeMenuItem === "Wishlist" && (
-          <Wishlist/>
+          <Wishlist userId={userId}/>
         )}
 
         {activeMenuItem === "Reviews" && (

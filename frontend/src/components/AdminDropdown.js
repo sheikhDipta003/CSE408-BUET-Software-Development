@@ -47,11 +47,19 @@ const AdminDropdown = () => {
       {isOpen && (
         <div className="dropdown-menu">
           <Link
-            to="/admin"
+            to="/home"
             className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200"
             onClick={closeDropdown}
           >
             Home
+          </Link>
+
+          <Link
+            to="/admin"
+            className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200"
+            onClick={closeDropdown}
+          >
+            Dashboard
           </Link>
 
           <Logout />
