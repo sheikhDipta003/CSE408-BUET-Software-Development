@@ -29,6 +29,10 @@ const ProductWebsite = sequelize.define(
       type: DataTypes.FLOAT,
       allowNull: true,
     },
+    price: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+    },
   },
   {
     timestamps: false,

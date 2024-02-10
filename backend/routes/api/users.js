@@ -28,7 +28,7 @@ router.get("/:userId/delete", profile.deleteUser);
 //wishlist
 router.get("/:userId/wishlist", wishlist.allWishlist);
 router.get("/:userId/wishlist/:pwId", wishlist.getOneWishItem);
-router.get("/:userId/wishlist/:pwId/delete", wishlist.deleteWishItem);
+router.get("/:userId/wishlist/:wishlistId/delete", wishlist.deleteWishItem);
 
 //notifications
 router.get("/:userId/notification", notif.getAllNotifications);
