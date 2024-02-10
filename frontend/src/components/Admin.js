@@ -3,6 +3,7 @@ import UserManagement from './UserManagement';
 import ContentManagement from './ContentManagement';
 import AnalyticsReports from './AnalyticsReports';
 import CustomerSupport from './CustomerSupport';
+import EventManagement from './EventManagement';
 
 const Admin = ({adminId}) => {
     const [activeMenu, setActiveMenu] = useState('Dashboard');
@@ -39,11 +40,13 @@ const Admin = ({adminId}) => {
                                 <li className={`cursor-pointer ${activeSubMenu === 'UserManagement' ? 'text-blue-700 bg-yellow-200 rounded-md p-2' : 'text-black p-2'} mb-6 mr-4`} onClick={() => handleSubMenuClick('UserManagement')}>User Management</li>
                                 <li className={`cursor-pointer ${activeSubMenu === 'ContentManagement' ? 'text-blue-700 bg-yellow-200 rounded-md p-2' : 'text-black p-2'} mb-6 mr-4`} onClick={() => handleSubMenuClick('ContentManagement')}>Content Management</li>
                                 <li className={`cursor-pointer ${activeSubMenu === 'CustomerSupport' ? 'text-blue-700 bg-yellow-200 rounded-md p-2' : 'text-black p-2'} mb-6 mr-4`} onClick={() => handleSubMenuClick('CustomerSupport')}>Customer Support</li>
+                                <li className={`cursor-pointer ${activeSubMenu === 'EventManagement' ? 'text-blue-700 bg-yellow-200 rounded-md p-2' : 'text-black p-2'} mb-6 mr-4`} onClick={() => handleSubMenuClick('EventManagement')}>Event Management</li>
                             </ul>
                             {activeSubMenu === 'UserManagement' && <UserManagement />}
                             {activeSubMenu === 'ContentManagement' && <ContentManagement />}
                             {activeSubMenu === 'Analytics' && <AnalyticsReports />}
                             {activeSubMenu === 'CustomerSupport' && <CustomerSupport />}
+                            {activeSubMenu === 'EventManagement' && <EventManagement />}
                         </div>
                     )}
                 </div>
