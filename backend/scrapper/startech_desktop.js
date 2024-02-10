@@ -16,15 +16,18 @@ async function getStartechDesktops(page = 1) {
         const promises = $('.main-content > .p-item').map(async (index, element) => {
             const Name = $(element).find('.p-item-inner > .p-item-details > .p-item-name a').text();
             const Price = $(element).find('.p-item-inner > .p-item-details > .p-item-price span:first').text();
+            const ImageUrl = $(element).find('.p-item-inner > .p-item-img > a > img').attr('src');
 
             // Get the product url and fetch the product information
-            const producturl = $(element).find('.p-item-inner > .p-item-details > .p-item-name a').attr('href');
-            const productAttributes = await getproductdetails(producturl);
+            const Producturl = $(element).find('.p-item-inner > .p-item-details > .p-item-name a').attr('href');
+            const productAttributes = await getproductdetails(Producturl);
             
             if(Price != "TBA"){
                 items.push({
                     Name,
                     Price,
+                    Producturl,
+                    ImageUrl,
                     Attributes: productAttributes
                 });
             }
