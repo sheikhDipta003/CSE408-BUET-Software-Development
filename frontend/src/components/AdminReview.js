@@ -106,7 +106,7 @@ const AdminReview = () => {
                     </button>
                 </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {reviews.map(review => (
                     <div key={review.reviewId} className="border-2 rounded p-4 relative border-blue-600">
                         <input
@@ -117,7 +117,7 @@ const AdminReview = () => {
                         />
                         <div className="text-lg font-semibold mb-2 mt-4 border-b-2 border-violet-500">{review.username}</div>
                         <div className="mb-2 border-b-2 border-violet-500">Rating: {review.rating}</div>
-                        <div className="mb-2 border-b-2 border-violet-500">{review.content}</div>
+                        <div className="mb-2">{review.content}</div>
                     </div>
                 ))}
             </div>
