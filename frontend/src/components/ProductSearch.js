@@ -42,7 +42,7 @@ const ProductListing = () => {
     //fetch the product details and then iterate through them for the filtereing data
     const fetchData = async () => {
       try {
-        let response = await fetch(`http://localhost:5000/products/search/${keyword}`, {
+        let response = await fetch(`http://localhost:5000/products/productlisting/${keyword}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -56,6 +56,7 @@ const ProductListing = () => {
         console.error("Error fetching data:", error);
       }
     };
+    fetchData();
     let brands =[];
 
      productData.forEach((item) => {

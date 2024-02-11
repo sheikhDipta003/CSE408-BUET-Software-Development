@@ -8,7 +8,7 @@ const { Op, Sequelize } = require("sequelize");
 // Get products by category and subcategory
 const getProductByQuery = async (req, res) => {
   try{
-    const keyword = req.query.keyword || '';
+    const keyword = req.params.keyword;
 
     console.log(keyword);
 
@@ -23,7 +23,7 @@ const getProductByQuery = async (req, res) => {
           {
             productName:
             {
-              [Op.iLike]: '%' + keyword + '%',
+              [Op.iLike]: `%${keyword}%`,
             }
           }
           ]
