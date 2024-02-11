@@ -2,14 +2,14 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../css/ProductListing.css";
 import api from "../api/axios";
-import DataContext from "../context/DataContext";//needs to be changed!!!!!
+//import DataContext from "../context/DataContext";//needs to be changed!!!!!
 import ProductFilter from "./ProductFilter";
 import { useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 
 const ProductListing = () => {
   const { keyword } = useParams();
-  const { fetchError, isLoading } = useContext(DataContext);
+  //const { fetchError, isLoading } = useContext(DataContext);
   const [productCards, setProductCards] = useState([]);
   const [sortType, setSortType] = useState("priceLowToHigh");
   const [selectedFilters, setSelectedFilters] = useState({});
@@ -18,25 +18,27 @@ const ProductListing = () => {
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [productData, setProductData] = useState([]);
   const navigate = useNavigate();
-  const [brands, setBrands] = useState([]);
-  const [specs, setSpecs] = useState(new Map());
+  const [brandings, setBrands] = useState([]);
+  const [specifics, setSpecs] = useState(new Map());
 
-  const addToSet = (key, value) => {
-    if (!specs.has(key)) {
-      specs.set(key, new Set());
-    }
   
-    specs.get(key).add(value);
-  }
 
   const goToProductDetail = (productId) => {
-    navigate(`/product/${productId}`);
+    navigate(`/products/${productId}`);
   };
 
   
   const [selectedBrands, setSelectedBrands] = useState([]);
 
   useEffect(() => {
+    let specs = new Map();
+    const addToSet = (key, value) => {
+      if (!specs.has(key)) {
+        specs.set(key, new Set());
+      }
+    
+      specs.get(key).add(value);
+    }
     //fetch the product details and then iterate through them for the filtereing data
     const fetchData = async () => {
       try {
@@ -55,7 +57,7 @@ const ProductListing = () => {
       }
     };
     let brands =[];
-    let specs = new Map();
+
      productData.forEach((item) => {
       if (!brands.includes(item.brand)) {
         brands.push(item.brand);
@@ -187,10 +189,10 @@ const ProductListing = () => {
   return (
     <main className="ProductListing">
       <div className="content-container">
-        {productData.items && (
+        {productData.length > 0 && (
           <ProductFilter
-            specs={specs}
-            brands={brands}
+            specs={specifics}
+            brands={brandings}
             onFilterChange={handleFilterChange}
             onBrandChange={handleBrandChange}
             onPriceRangeChange={handlePriceRangeChange}
@@ -257,22 +259,13 @@ const ProductListing = () => {
               >
                 <option value="priceLowToHigh">Price (Low to High)</option>
                 <option value="priceHighToLow">Price (High to Low)</option>
-                <option value="topRated">Top Rated</option>
               </select>
             </div>
           </div>
 
           <div className="main-content">
-            {isLoading && (
-              <p className="statusMsg text-green-500">Loading products...</p>
-            )}
-            {!isLoading && fetchError && (
-              <p className="statusMsg" style={{ color: "red" }}>
-                {fetchError}
-              </p>
-            )}
-            {!isLoading &&
-              !fetchError &&
+           
+            {
               (currentItems.length ? (
                 currentItems
               ) : (

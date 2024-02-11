@@ -63,7 +63,7 @@ const ProductDetails = () => {
   
     // Call fetchData function inside useEffect
     fetchData();
-  }, []); // Empty dependency array means this effect runs only once on mount
+  }, [productId, websiteId]); // Empty dependency array means this effect runs only once on mount
   
   useEffect(() => {
     // Convert prices to pricesConv and update state
