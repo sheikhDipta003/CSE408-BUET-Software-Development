@@ -17,10 +17,6 @@ const Product = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    mpn: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     brand: {
       type: DataTypes.STRING,
     },

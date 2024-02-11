@@ -212,7 +212,7 @@ const ProductListing = () => {
   return (
     <main className="ProductListing">
       <div className="content-container">
-        {productData.items && (
+        {productData.length > 0 && (
           <ProductFilter
             specs={specifics}
             brands={brandings}
