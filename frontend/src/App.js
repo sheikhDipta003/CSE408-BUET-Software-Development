@@ -42,8 +42,8 @@ function App() {
           element={<ProductListing />}
         />
         <Route
-          path="productlisting/:keyword"
-          element={<ProductListing />}
+          path="search/:keyword"
+          element={<ProductSearch />}
         />
         <Route
           path="products/:productId"
