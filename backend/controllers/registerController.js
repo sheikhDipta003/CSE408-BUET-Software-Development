@@ -1,12 +1,21 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const validator = require("email-validator");
 
 const handleNewUser = async (req, res) => {
   const { username, email, password, role } = req.body;
+  const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+
   if (!username || !email || !password)
     return res
       .status(400)
       .json({ message: "Username, email and password are required." });
+  
+  if (!USER_REGEX.test(username) || !PWD_REGEX.test(password) || !validator.validate(email))
+    return res
+      .status(400)
+      .json({ message: "This username, email and/or password is not acceptable." });
 
   console.log(
     "\nusername = ",
