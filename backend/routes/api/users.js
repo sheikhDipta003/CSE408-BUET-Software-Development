@@ -16,10 +16,6 @@ router.get("/reviews", review.getAllReviews);
 router.get("/recommend", recommend.getAllUserClickcount);
 router.get("/trending", recommend.getTrendingProducts);
 
-// view all events organized by all websites or a specific event details
-router.get("/events", event.getUserEvents);
-router.get("/events/:eid", event.getEventDetails);
-
 //profile
 router.get("/:userId", profile.getUser);
 router.put("/:userId/update", profile.updateUser);
@@ -52,8 +48,14 @@ router.get("/:userId/vouchers", uservoucher.getUserVouchers);
 router.delete(
   "/:userId/vouchers/:voucherId/remove",
   uservoucher.removeUserVoucher,
-);
+  );
 
+// view all events organized by all websites or a specific event details
+router.get("/:userId/events", event.getUserEvents);
+router.delete("/:userId/events/:eId/unfollow", event.unfollowEvent);
+router.get("/:userId/upcomingevents", event.getUpcomingEvents);
+router.get("/:userId/upcomingevents/:eId/follow", event.followEvent);
+  
 // recommndations
 router.post("/:userId/recommend", recommend.getClicksCount);
 router.get("/:userId/recommend2", recommend.generateRecommendations);

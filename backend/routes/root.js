@@ -9,5 +9,6 @@ router.get("^/$|/index(.html)?", (req, res) => {
 
 // get all reviews
 router.get("/reviews", rootController.getAllReviews);
+router.get("/events/:eId", rootController.getEventDetails);
 
 module.exports = router;

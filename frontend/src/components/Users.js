@@ -4,6 +4,9 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCheckSquare, faSquare, faSort, faSortUp, faSortDown, faArrowRight, faTimes, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import AdminReview from './AdminReview';
+import Notifications from './Notifications';
+import UserVoucher from './UserVoucher';
+import Wishlist from './Wishlist';
 
 const Users = () => {
     const axiosPrivate = useAxiosPrivate();
@@ -173,115 +176,108 @@ const Users = () => {
                         {filteredUsers.length === 0
                         ? <tr className='px-4 text-red-500 font-bold'><td>No users to display</td></tr>
                         : filteredUsers.map((user) => (
-                            <tr key={user.userId}>
-                                <td className="border border-gray-200 px-4 py-2">
-                                    <input
-                                        type="checkbox"
-                                        className="form-checkbox h-4 w-4 text-blue-500"
-                                        checked={user.isSelected || false}
-                                        onChange={() => handleCheckboxChange(user.userId)}
-                                    />
-                                </td>
-                                <td className="border border-gray-200 px-4 py-2 relative flex items-center">
-                                    <span className="flex-grow items-center">{user.username}</span>
-                                    <button className="ml-4 bg-stone-200 mt-0 mb-0" onClick={() => handleViewDetails(user.userId)}>
-                                        <FontAwesomeIcon icon={faArrowRight} className="text-blue-500 hover:text-red-700" />
-                                    </button>
-                                </td>
-                                <td className="border border-gray-200 px-4 py-2">{user.email}</td>
-                                <td className="border border-gray-200 px-4 py-2">{new Date(user.registrationDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</td>
-                                <td className='border border-gray-200 px-4 py-2'>{user.roles}</td>
-                            </tr>
+                            <>
+                                <tr key={user.userId}>
+                                    <td className="border border-gray-200 px-4 py-2">
+                                        <input
+                                            type="checkbox"
+                                            className="form-checkbox h-4 w-4 text-blue-500"
+                                            checked={user.isSelected || false}
+                                            onChange={() => handleCheckboxChange(user.userId)}
+                                        />
+                                    </td>
+                                    <td className="border border-gray-200 px-4 py-2 relative flex items-center">
+                                        <span className="flex-grow items-center">{user.username}</span>
+                                        <button className="ml-4 bg-stone-200 mt-0 mb-0" onClick={() => handleViewDetails(user.userId)}>
+                                            <FontAwesomeIcon icon={faArrowRight} className="text-blue-500 hover:text-red-700" />
+                                        </button>
+                                    </td>
+                                    <td className="border border-gray-200 px-4 py-2">{user.email}</td>
+                                    <td className="border border-gray-200 px-4 py-2">{new Date(user.registrationDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</td>
+                                    <td className='border border-gray-200 px-4 py-2'>{user.roles}</td>
+                                </tr>
+                                {showUserDetails && (
+                                    <div
+                                        className={`sidebar fixed top-0 right-0 w-2/3 bg-white h-screen overflow-y-auto transform ${showUserDetails ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 ease-in-out h-full shadow-lg z-50`}
+                                    >
+                                        <div className="sticky top-0 right-0 z-40 sidebar-header flex justify-center bg-violet-300 p-0 m-0">
+                                            <button onClick={closeSidebar} className='p-0 bg-transparent'>
+                                                <FontAwesomeIcon icon={faTimes} className='text-red-500 mb-2 size-6 hover:text-red-800'/>
+                                            </button>
+                                        </div>
+                                        
+                                        <div className="bg-white w-full h-full mt-10 px-4">
+                                            <div className="p-2 border-b-4 border-red-400">
+                                                <h2 className="text-lg font-semibold inline items-center">Interactions</h2>
+                                                <button
+                                                    onClick={() => toggleAccordion('interactions')}
+                                                    className="mt-0 float-right focus:outline-none size-7"
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={faChevronDown}
+                                                        className={`transition-transform transform ${openSections.interactions ? 'rotate-180' : ''}`}
+                                                    />
+                                                </button>
+                                            </div>
+                                            <div className={`p-4 border-b-4 border-red-400 ${openSections.interactions ? '' : 'hidden'}`}>
+                                                <h2 className="text-lg font-semibold">Interactions Content</h2>
+                                            </div>
+                
+                                            <div className="p-2 border-b-4 border-red-400">
+                                                <h2 className="text-lg font-semibold inline">Notifications</h2>
+                                                <button
+                                                    onClick={() => toggleAccordion('notifications')}
+                                                    className="mt-0 float-right focus:outline-none size-7"
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={faChevronDown}
+                                                        className={`transition-transform transform ${openSections.notifications ? 'rotate-180' : ''}`}
+                                                    />
+                                                </button>
+                                            </div>
+                                            <div className={`p-4 border-b-4 border-red-400 ${openSections.notifications ? '' : 'hidden'}`}>
+                                                <Notifications userId={user.userId}/>
+                                            </div>
+                
+                                            <div className="p-2 border-b-4 border-red-400">
+                                                <h2 className="text-lg font-semibold inline">Vouchers</h2>
+                                                <button
+                                                    onClick={() => toggleAccordion('vouchers')}
+                                                    className="mt-0 float-right focus:outline-none size-7"
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={faChevronDown}
+                                                        className={`transition-transform transform ${openSections.vouchers ? 'rotate-180' : ''}`}
+                                                    />
+                                                </button>
+                                            </div>
+                                            <div className={`p-4 border-b-4 border-red-400 ${openSections.vouchers ? '' : 'hidden'}`}>
+                                                <UserVoucher userId={user.userId}/>
+                                            </div>
+                
+                                            <div className="p-2 border-b-4 border-red-400">
+                                                <h2 className="text-lg font-semibold inline">Wishlist</h2>
+                                                <button
+                                                    onClick={() => toggleAccordion('wishlist')}
+                                                    className="mt-0 float-right focus:outline-none size-7"
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={faChevronDown}
+                                                        className={`transition-transform transform ${openSections.wishlist ? 'rotate-180' : ''}`}
+                                                    />
+                                                </button>
+                                            </div>
+                                            <div className={`p-4 border-b-4 border-red-400 ${openSections.wishlist ? '' : 'hidden'}`}>
+                                                <Wishlist userId={user.userId}/>
+                                            </div>
+                
+                                        </div>
+                                    </div>
+                                )}
+                            </>
                         ))}
                     </tbody>
                 </table>
-                {showUserDetails && (
-                    <div
-                        className={`sidebar fixed top-0 right-0 w-5/12 bg-white h-screen overflow-y-auto p-4 transform ${showUserDetails ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 ease-in-out h-full shadow-lg z-50`}
-                    >
-                        <div className="sidebar-header flex justify-end">
-                            <button onClick={closeSidebar}>
-                            <FontAwesomeIcon icon={faTimes} />
-                            </button>
-                        </div>
-                        
-                        <div className="bg-white w-full h-full mt-10">
-                            <div className="p-2 border-b border-gray-200">
-                                <h2 className="text-lg font-semibold inline items-center">Interactions</h2>
-                                <button
-                                    onClick={() => toggleAccordion('interactions')}
-                                    className="mt-0 float-right focus:outline-none size-7"
-                                >
-                                    <FontAwesomeIcon
-                                        icon={faChevronDown}
-                                        className={`transition-transform transform ${openSections.interactions ? 'rotate-180' : ''}`}
-                                    />
-                                </button>
-                            </div>
-                            <div className={`p-4 border-b border-gray-200 ${openSections.interactions ? '' : 'hidden'}`}>
-                                <h2 className="text-lg font-semibold">Interactions Content</h2>
-                            </div>
-
-                            <div className="p-2 border-b border-gray-200">
-                                <h2 className="text-lg font-semibold inline">Notifications</h2>
-                                <button
-                                    onClick={() => toggleAccordion('notifications')}
-                                    className="mt-0 float-right focus:outline-none size-7"
-                                >
-                                    <FontAwesomeIcon
-                                        icon={faChevronDown}
-                                        className={`transition-transform transform ${openSections.notifications ? 'rotate-180' : ''}`}
-                                    />
-                                </button>
-                            </div>
-                            <div className={`p-4 border-b border-gray-200 ${openSections.notifications ? '' : 'hidden'}`}>
-                                <h2 className="text-lg font-semibold">Notifications Content</h2>
-                            </div>
-
-                            <div className="p-2 border-b border-gray-200">
-                                <h2 className="text-lg font-semibold inline">Vouchers</h2>
-                                <button
-                                    onClick={() => toggleAccordion('vouchers')}
-                                    className="mt-0 float-right focus:outline-none size-7"
-                                >
-                                    <FontAwesomeIcon
-                                        icon={faChevronDown}
-                                        className={`transition-transform transform ${openSections.vouchers ? 'rotate-180' : ''}`}
-                                    />
-                                </button>
-                            </div>
-                            <div className={`p-4 border-b border-gray-200 ${openSections.vouchers ? '' : 'hidden'}`}>
-                                <h2 className="text-lg font-semibold">Vouchers Content</h2>
-                            </div>
-
-                            <div className="p-2 border-b border-gray-200">
-                                <h2 className="text-lg font-semibold inline">Wishlist</h2>
-                                <button
-                                    onClick={() => toggleAccordion('wishlist')}
-                                    className="mt-0 float-right focus:outline-none size-7"
-                                >
-                                    <FontAwesomeIcon
-                                        icon={faChevronDown}
-                                        className={`transition-transform transform ${openSections.wishlist ? 'rotate-180' : ''}`}
-                                    />
-                                </button>
-                            </div>
-                            <div className={`p-4 border-b border-gray-200 ${openSections.wishlist ? '' : 'hidden'}`}>
-                                <h2 className="text-lg font-semibold">Wishlist Content</h2>
-                            </div>
-
-                        </div>
-
-                        <div className="sidebar-footer flex justify-between mt-4 px-2">
-                            <button
-                                className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded-l"
-                                onClick={closeSidebar}
-                            >
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                )}
             </div>
 
             <AdminReview/>

@@ -1,16 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation, useParams, Link } from "react-router-dom";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import Wishlist from './Wishlist';
 import UserVoucher from "./UserVoucher";
 import Notifications from "./Notifications";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import UserEvent from './UserEvent';
 
-function UserProfile() {
+const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+const UserProfile = () => {
   const [user, setUser] = useState({
     username: "",
     password: "",
+    matchpassword: "",
     email: "",
     registrationDate: "",
   });
@@ -27,6 +33,34 @@ function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [reviews, setReviews] = useState([]);
+  const errRef = useRef();
+  const [validName, setValidName] = useState(true);
+  const [userFocus, setUserFocus] = useState(false);
+  const [validPwd, setValidPwd] = useState(true);
+  const [pwdFocus, setPwdFocus] = useState(false);
+  const [validMatch, setValidMatch] = useState(true);
+  const [matchFocus, setMatchFocus] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [validEmail, setValidEmail] = useState(true);
+  const [emailFocus, setEmailFocus] = useState(false);
+
+  useEffect(() => {
+    setValidName(USER_REGEX.test(user.username));
+  }, [user.username]);
+
+  useEffect(() => {
+    setValidPwd(PWD_REGEX.test(user.password));
+    setValidMatch(user.password === user.matchpassword);
+  }, [user.password, user.matchpassword]);
+
+  useEffect(() => {
+    setValidEmail(EMAIL_REGEX.test(user.email));
+  }, [user.email]);
+
+  useEffect(() => {
+    setErrMsg("");
+  }, [user.username, user.password, user.matchpassword]);
 
   useEffect(() => {
     let isMounted = true;
@@ -56,7 +90,7 @@ function UserProfile() {
   }, []);
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setUser({ ...user, [e.target.id]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -70,7 +104,9 @@ function UserProfile() {
       });
       setIsEditing(false);
     } catch (err) {
-      console.error(err);
+      console.error(err.response.status);
+      console.error(err.response.data.message);
+      alert(err.response.data.message);
     }
   };
 
@@ -140,90 +176,185 @@ function UserProfile() {
       <div className="min-w-32 p-4 border-r-4 border-red-500 mt-4 mb-4">
         <ul className="grid gap-4 grid-cols-1 grid-rows-4">
           <li
-            className={`menu-item ${activeMenuItem === "Profile" ? "active" : ""}`}
+            className={`menu-item ${activeMenuItem === "Profile" ? "active text-red-600 font-bold bg-yellow-300" : ""} hover:bg-yellow-200 rounded-md`}
             onClick={() => handleMenuClick("Profile")}
           >
             Profile
           </li>
 
           <li
-            className={`menu-item ${activeMenuItem === "Vouchers" ? "active" : ""}`}
+            className={`menu-item ${activeMenuItem === "Vouchers" ? "active text-red-600 font-bold bg-yellow-300" : ""} hover:bg-yellow-200 rounded-md`}
             onClick={() => handleMenuClick("Vouchers")}
           >
             Vouchers
           </li>
 
           <li
-            className={`menu-item ${activeMenuItem === "Wishlist" ? "active" : ""}`}
+            className={`menu-item ${activeMenuItem === "Wishlist" ? "active text-red-600 font-bold bg-yellow-300" : ""} hover:bg-yellow-200 rounded-md`}
             onClick={() => handleMenuClick("Wishlist")}
           >
             Wishlist
           </li>
 
           <li
-            className={`menu-item ${activeMenuItem === "Reviews" ? "active" : ""}`}
+            className={`menu-item ${activeMenuItem === "Reviews" ? "active text-red-600 font-bold bg-yellow-300" : ""} hover:bg-yellow-200 rounded-md`}
             onClick={() => handleMenuClick("Reviews")}
           >
             Reviews
           </li>
 
           <li
-            className={`menu-item ${activeMenuItem === "Notifs" ? "active" : ""}`}
+            className={`menu-item ${activeMenuItem === "Notifs" ? "active text-red-600 font-bold bg-yellow-300" : ""} hover:bg-yellow-200 rounded-md`}
             onClick={() => handleMenuClick("Notifs")}
           >
             Notifications
+          </li>
+
+          <li
+            className={`menu-item ${activeMenuItem === "Events" ? "active text-red-600 font-bold bg-yellow-300" : ""} hover:bg-yellow-200 rounded-md`}
+            onClick={() => handleMenuClick("Events")}
+          >
+            Events
           </li>
 
         </ul>
       </div>
 
       {/* Right Section - Content */}
-      <div className="min-w-60 p-4">
+      <div className="p-4 max-w-3xl">
         
         {activeMenuItem === "Profile" && (
           <div className="user-info">
             <label>Name:</label>
             {isEditing ? (
-              <input
-                type="text"
-                name="name"
-                value={user.username}
-                onChange={handleChange}
-              />
+              <>
+                <input
+                  type="text"
+                  id="username"
+                  autoComplete="off"
+                  onChange={handleChange}
+                  value={user.username}
+                  aria-invalid={validName ? "false" : "true"}
+                  aria-describedby="uidnote"
+                  onFocus={() => setUserFocus(true)}
+                  onBlur={() => setUserFocus(false)}
+                />
+                <p
+                  id="uidnote"
+                  className={
+                    userFocus && user.username && !validName ? "text-xs text-black rounded-md p-1 relative bottom-10" : "absolute left-[-9999px]"
+                  }
+                >
+                  <FontAwesomeIcon icon={faInfoCircle} color="black"/>
+                  4 to 24 characters.
+                  <br />
+                  Must begin with a letter.
+                  <br />
+                  Letters, numbers, underscores, hyphens allowed.
+                </p>
+              </>
             ) : (
               <p>{user.username}</p>
             )}
 
-            <label>Password:</label>
             {isEditing ? (
-              <input
-                type="password"
-                name="password"
-                value={user.password}
-                onChange={handleChange}
-              />
+              <>
+                <label>New Password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  onChange={handleChange}
+                  aria-invalid={validPwd ? "false" : "true"}
+                  aria-describedby="pwdnote"
+                  onFocus={() => setPwdFocus(true)}
+                  onBlur={() => setPwdFocus(false)}
+                />
+                <p
+                  id="pwdnote"
+                  className={pwdFocus && !validPwd ? "text-xs text-black rounded-md p-1 relative bottom-10" : "absolute left-[-9999px]"}
+                >
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  8 to 24 characters.
+                  <br />
+                  Must include uppercase and lowercase letters, a number and a
+                  special character.
+                  <br />
+                  Allowed special characters:{" "}
+                  <span aria-label="exclamation mark">!</span>{" "}
+                  <span aria-label="at symbol">@</span>{" "}
+                  <span aria-label="hashtag">#</span>{" "}
+                  <span aria-label="dollar sign">$</span>{" "}
+                  <span aria-label="percent">%</span>
+                </p>
+              </>
             ) : (
-              <p>{"*".repeat(user.password.length)}</p>
+              <>
+                <label>Password:</label>
+                <p className="h-8"></p>
+              </>
+            )}
+
+            <label>Confirm New Password:</label>
+            {isEditing ? (
+              <>
+                <input
+                  type="password"
+                  id="matchpassword"
+                  onChange={handleChange}
+                  aria-invalid={validMatch ? "false" : "true"}
+                  aria-describedby="confirmnote"
+                  onFocus={() => setMatchFocus(true)}
+                  onBlur={() => setMatchFocus(false)}
+                />
+                <p
+                  id="confirmnote"
+                  className={
+                    matchFocus && !validMatch ? "text-xs text-black rounded-md p-1 relative bottom-10" : "absolute left-[-9999px]"
+                  }
+                >
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  Must match the first password input field.
+                </p>
+              </>
+            ) : (
+              <p className="h-8"></p>
             )}
 
             <label>Email:</label>
             {isEditing ? (
               <input
                 type="email"
-                name="email"
-                value={user.email}
+                id="email"
                 onChange={handleChange}
+                value={user.email}
+                aria-invalid={validEmail ? "false" : "true"}
+                onFocus={() => setEmailFocus(true)}
+                onBlur={() => setEmailFocus(false)}
               />
             ) : (
               <p>{user.email}</p>
             )}
 
             <label>Registration Date:</label>
-            <p>{user.registrationDate}</p>
+            <p>{new Date(user.registrationDate).toLocaleDateString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</p>
 
-            <button onClick={isEditing ? handleSubmit : toggleEdit}>
-              {isEditing ? "Save" : "Edit"}
-            </button>
+            <div className="flex flex-wrap flex-row justify-evenly">
+              <button
+               onClick={isEditing ? handleSubmit : toggleEdit} 
+               className="w-1/2"
+               disabled={
+                  isEditing && (validName || validPwd || validMatch || validEmail)
+                    ? false
+                    : !isEditing? false: true
+                }
+              >
+                {isEditing ? "Save" : "Edit"}
+              </button>
+              
+              <button onClick={() => setIsEditing(false)} disabled={!isEditing} className="w-1/2">
+                Cancel
+              </button>
+            </div>
           </div>
         )}
 
@@ -240,16 +371,16 @@ function UserProfile() {
             {/* Navbar for reviews options */}
             <nav className="flex mb-4">
               <button
-                className={`mr-4 px-4 py-2 bg-gray-500 hover:bg-gray-800 rounded ${
-                  activeTab === "NewReview" ? "bg-blue-500 text-white" : ""
+                className={`mr-4 px-4 py-2 text-black ${
+                  activeTab === "NewReview" ? "bg-blue-500 text-white rounded" : "bg-slate-300 "
                 }`}
                 onClick={() => setActiveTab("NewReview")}
               >
                 New Review
               </button>
               <button
-                className={`px-4 py-2 bg-gray-500 hover:bg-gray-800 rounded ${
-                  activeTab === "ManageReviews" ? "bg-blue-500 text-white" : ""
+                className={`px-4 py-2 text-black ${
+                  activeTab === "ManageReviews" ? "bg-blue-500 text-white rounded" : "bg-slate-300 text-black"
                 }`}
                 onClick={() => setActiveTab("ManageReviews")}
               >
@@ -349,6 +480,11 @@ function UserProfile() {
         {activeMenuItem === "Notifs" && (
           <Notifications userId={userId}/>
         )}
+
+        {activeMenuItem === "Events" && (
+          <UserEvent userId={userId}/>
+        )}
+
       </div>
     </div>
   );
