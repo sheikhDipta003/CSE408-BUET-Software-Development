@@ -42,6 +42,10 @@ function App() {
           element={<ProductListing />}
         />
         <Route
+          path="compare"
+          element={<ProductComparisonPage />}
+        />
+        <Route
           path="search/:keyword"
           element={<ProductSearch />}
         />

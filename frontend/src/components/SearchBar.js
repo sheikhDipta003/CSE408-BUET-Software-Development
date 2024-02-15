@@ -33,7 +33,6 @@ const SearchBar = () => {
         console.error('Error fetching product suggestions:', error);
       }
     };
-    console.log(input.length)
     if (input.length > 0) {
       fetchProductSuggestions();
       const matchedSuggestions = [];
