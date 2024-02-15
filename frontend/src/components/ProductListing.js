@@ -10,7 +10,7 @@ const ProductListing = () => {
   const { category, subcategory } = useParams();
   const [productCards, setProductCards] = useState([]);
   const [sortType, setSortType] = useState("priceLowToHigh");
-  const [selectedFilters, setSelectedFilters] = useState({});
+  const [selectedFilters, setSelectedFilters] = useState(new Map());
   const [priceRange, setPriceRange] = useState({ lower: 0, upper: 400000 });
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(4);
@@ -18,25 +18,15 @@ const ProductListing = () => {
   const navigate = useNavigate();
   const [brandings, setBrands] = useState([]);
   const [specifics, setSpecs] = useState(new Map());
-
-  
+  const [selectedBrands, setSelectedBrands] = useState([]);
 
   const goToProductDetail = (productId) => {
     navigate(`/products/${productId}`);
   };
 
-  
-  const [selectedBrands, setSelectedBrands] = useState([]);
+
 
   useEffect(() => {
-    let specs = new Map();
-    const addToSet = (key, value) => {
-      if (!specs.has(key)) {
-        specs.set(key, new Set());
-      }
-    
-      specs.get(key).add(value);
-    }
     //fetch the product details and then iterate through them for the filtereing data
     const fetchData1 = async () => {
       try {
@@ -46,9 +36,8 @@ const ProductListing = () => {
             "Content-Type": "application/json",
           },
         });
-  
+
         response = await response.json();
-        console.log(response);
         setProductData(response.products);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -63,42 +52,52 @@ const ProductListing = () => {
             "Content-Type": "application/json",
           },
         });
-  
+
         response = await response.json();
         setProductData(response.products);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-  
+
     // Call fetchData function inside useEffect
-    if(subcategory === "all")
+    if (subcategory === "all")
       fetchData2();
     else
       fetchData1();
-    let brands =[];
-    
-     productData.forEach((item) => {
+    //console.log(productData);
+  }, [category, subcategory]);
+
+  useEffect(() => {
+    let specs = new Map();
+    const addToSet = (key, value) => {
+      if (!specs.has(key)) {
+        specs.set(key, new Set());
+      }
+
+      specs.get(key).add(value);
+    }
+    let brands = [];
+    productData.forEach((item) => {
       if (!brands.includes(item.brand)) {
         brands.push(item.brand);
       }
       setBrands(brands);
-      console.log(brandings);
-      item.ProductSpecs.forEach((line)=>{
+      item.ProductSpecs.forEach((line) => {
         addToSet(line.specName, line.value);
       })
-      specs.forEach((value, key) => {
-        console.log(`Key: ${key}`);
-        console.log('Values:');
-        value.forEach((v) => {
-          console.log(`  ${v}`);
-        });
-        console.log('---');
-      });
+      // specs.forEach((value, key) => {
+      //   console.log(`Key: ${key}`);
+      //   console.log('Values:');
+      //   value.forEach((v) => {
+      //     console.log(`  ${v}`);
+      //   });
+      //   console.log('---');
+      // });
       setSpecs(specs);
-      console.log(specifics);
+      //console.log(specifics);
     });
-  }, [category, subcategory]);
+  }, [productData]);
 
   const handleFilterChange = (filters) => {
     setSelectedFilters(filters);
@@ -115,30 +114,26 @@ const ProductListing = () => {
     }
 
     //Checkbox Filters
-    for (const specKey in selectedFilters) {
-      const selectedOptions = selectedFilters[specKey];
-      product.ProductSpecs.forEach((item) => {
-        if (item.specName === specKey) {
-          if (
-            selectedOptions.length > 0 &&
-            !selectedOptions.includes(item.value)
-          ) {
-            return false;
-          }
+    let allFiltersPass = true;
+    selectedFilters.forEach((value, key) => {
+      if (value.size > 0) {
+        const matchingSpec = product.ProductSpecs.find((item) => item.specName === key);
+        if (!matchingSpec ||
+          !Array.from(value).includes(matchingSpec.value)) {
+          allFiltersPass = false;
         }
       }
-      )
-    }
-    return true;
+    })
+    return allFiltersPass;
   };
 
   useEffect(() => {
     let tempProductCards = [];
-    productData.forEach((product, index) =>{
+    productData.forEach((product, index) => {
       if (
-        filterProducts(product) 
+        filterProducts(product)
         &&
-        (selectedBrands.length === 0 || selectedBrands.includes(product.brand)) 
+        (selectedBrands.length === 0 || selectedBrands.includes(product.brand))
       ) {
         tempProductCards.push(
           <div
@@ -148,9 +143,11 @@ const ProductListing = () => {
             price={product.minPrice}
             brand={product.brand}
           >
-            <img src={product.imagePath} alt={product.productName} />
+            <div className="images h-screen flex items-center">
+              <img src={product.imagePath} alt={product.productName} />
+            </div>
             <h3>{product.productName}</h3>
-            <p>{product.minPrice}</p>
+            <p><strong>Price:</strong> {product.minPrice}</p>
           </div>,
         );
       }
@@ -187,7 +184,7 @@ const ProductListing = () => {
       options.push(i);
     }
     // Add an option for 'all' if the last option isn't exactly the total number of products
-    if (options[options.length - 1] !== productCards.length) {
+    if (options.length === 0 || options[options.length - 1] !== productCards.length) {
       options.push("all");
     }
     return options;
@@ -266,6 +263,7 @@ const ProductListing = () => {
                 id="items-per-page"
                 className="items-per-page border-2 border-black rounded-sm"
                 onChange={handleItemsPerPageChange}
+                value={itemsPerPage===productCards.length? "all" : itemsPerPage}
               >
                 {generateItemsPerPageOptions().map((option) => (
                   <option key={option} value={option}>
@@ -288,10 +286,10 @@ const ProductListing = () => {
 
           <div className="main-content">
             {currentItems.length ? (
-                currentItems
-              ) : (
-                <p className="statusMsg">No products to display.</p>
-              )}
+              currentItems
+            ) : (
+              <p className="statusMsg">No products to display.</p>
+            )}
           </div>
 
           <ReactPaginate

@@ -67,9 +67,12 @@ html {
     text-align: center;
 }
 
+.images{
+    max-height: 250px;
+}
+
 .product-card img {
     max-width: 100%;
-    height: auto;
     border-radius: 5px;
 }
 

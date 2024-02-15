@@ -7,7 +7,7 @@ const { Op, Sequelize } = require("sequelize");
 
 // Get products by category and subcategory
 const getProductByQuery = async (req, res) => {
-  try{
+  try {
     const keyword = req.params.keyword;
 
     console.log(keyword);
@@ -46,11 +46,11 @@ const getProductByQuery = async (req, res) => {
         },
       ],
     });
-    if(!products){
+    if (!products) {
       return res.status(404).json({ message: "Products not found" });
     }
     res.status(200).json({ products });
-  }catch(error){
+  } catch (error) {
     console.error("Error getting products:", error);
     res.status(500).json({ error: "Internal server error" });
   }
@@ -64,9 +64,9 @@ const getProductsByCategoryAndSubcategory = async (req, res) => {
     console.log(subcategory);
 
     const products = await Product.findAll({
-      where: { 
-        category: category, 
-        subcategory: subcategory 
+      where: {
+        category: category,
+        subcategory: subcategory
       },
       attributes: {
         include: [
@@ -86,7 +86,7 @@ const getProductsByCategoryAndSubcategory = async (req, res) => {
         }
       ],
     });
-    if(!products){
+    if (!products) {
       return res.status(404).json({ message: "Products not found" });
     }
     res.status(200).json({ products });
@@ -104,8 +104,8 @@ const getProductsByCategory = async (req, res) => {
     console.log(category);
 
     const products = await Product.findAll({
-      where: { 
-        category: category, 
+      where: {
+        category: category,
       },
       attributes: {
         include: [
@@ -119,14 +119,14 @@ const getProductsByCategory = async (req, res) => {
           ],
         ],
       },
-      include:[
+      include: [
         {
           model: ProductSpec,
         }
       ]
-      
+
     });
-    if(!products){
+    if (!products) {
       return res.status(404).json({ message: "Products not found" });
     }
     res.status(200).json({ products });
@@ -153,9 +153,29 @@ const getProductDetails = async (req, res) => {
             },
           ],
           attributes: ["price", "pwURL"],
+        }, 
+        {
+          model: ProductSpec,
         },
       ],
-      attributes: ['productName', 'imagePath', 'brand', 'category', 'subcategory', 'model']
+      attributes: ['productName', 'imagePath', 'brand', 'category', 'subcategory', 'model',
+        [
+          Sequelize.literal(`(
+            SELECT MIN("ProductWebsites"."price") 
+            FROM "ProductWebsites" 
+            WHERE "ProductWebsites"."productId" = "Product"."productId"
+          )`),
+          'minPrice',
+        ],
+        [
+          Sequelize.literal(`(
+            SELECT COUNT("ProductWebsites"."websiteId") 
+            FROM "ProductWebsites" 
+            WHERE "ProductWebsites"."productId" = "Product"."productId"
+          )`),
+          'websites',
+        ],
+    ]
     });
 
     if (!productDetails) {
@@ -175,30 +195,30 @@ const getProductWebsite = async (req, res) => {
     const websiteId = req.params.websiteId;
     // Fetch the list of users from the database
     const productDetails = await Product.findOne({
-      where: {productId: productId},
+      where: { productId: productId },
       include: [
-          {
-              model: ProductWebsite,
-              include: [
-                  {
-                      model: Website,
-                      where: {websiteId: websiteId},
-                  },
-                  {
-                      model: ProductPrice,
-                      attributes: ['date', 'price'],
-                  }
-              ]
-          },
-          {
-              model: ProductSpec,
-          },
-          
+        {
+          model: ProductWebsite,
+          include: [
+            {
+              model: Website,
+              where: { websiteId: websiteId },
+            },
+            {
+              model: ProductPrice,
+              attributes: ['date', 'price'],
+            }
+          ]
+        },
+        {
+          model: ProductSpec,
+        },
+
       ],
       order: [
-          [ProductWebsite, ProductPrice, 'date', 'ASC'],
+        [ProductWebsite, ProductPrice, 'date', 'ASC'],
       ]
-  });
+    });
 
     if (!productDetails) {
       return res.status(404).json({ message: "Product not found" });
@@ -211,25 +231,26 @@ const getProductWebsite = async (req, res) => {
   }
 };
 
-const getQuerySuggestions = async (req, res) =>{
-  try{
+const getQuerySuggestions = async (req, res) => {
+  try {
     const keyword = req.params.keyword;
     console.log(keyword);
 
     const products = await Product.findAll({
       where: {
         [Op.or]:
-       [{
-        productName: {
-          [Op.match]: Sequelize.fn('plainto_tsquery', keyword),
-        }},
-        {
-          productName:
+          [{
+            productName: {
+              [Op.match]: Sequelize.fn('plainto_tsquery', keyword),
+            }
+          },
           {
-            [Op.iLike]: '%'+keyword+'%',
+            productName:
+            {
+              [Op.iLike]: '%' + keyword + '%',
+            }
           }
-        }
-      ]
+          ]
       },
       attributes: ['productId', 'productName'],
       limit: 3,
@@ -237,9 +258,9 @@ const getQuerySuggestions = async (req, res) =>{
     const result = JSON.stringify(products);
     console.log({ result });
     res.status(200).json({ products });
-  }catch(error){
+  } catch (error) {
     console.error("Error retrieving product details:", error);
-      res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error" });
   }
 }
 

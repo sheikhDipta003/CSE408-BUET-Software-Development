@@ -19,6 +19,9 @@ const Nav = () => {
     <nav className="Nav">
       <SearchBar />
       <ul>
+        <li>
+          <Link to='/compare'>Compare</Link>
+        </li>
         {auth?.accessToken ? (
           auth.roles === ROLES.Admin || auth.roles === "Admin" ? (
             <AdminDropdown />
