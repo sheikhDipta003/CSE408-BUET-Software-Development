@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,6 +11,14 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import useAuth from "../hooks/useAuth";
+
+const ROLES = {
+  Admin: 5150,
+  Collaborator: 1984,
+  User: 2001,
+};
 
 ChartJS.register(
   CategoryScale,
@@ -32,6 +40,11 @@ const ProductDetails = () => {
   const [pricesConv, setPricesConv] = useState([]);
   const { productId, websiteId } = useParams();
   const navigate = useNavigate();
+  const axiosPrivate = useAxiosPrivate();
+  const { auth } = useAuth();
+  const [clickcount, setClickcount] = useState(0);
+  const location = useLocation();
+
   //let data = {};
   useEffect(() => {
     const fetchData = async () => {
@@ -79,9 +92,41 @@ const ProductDetails = () => {
     { date: '2022-01-03', price: 90 },
   ];
   const [wishlist, setWishlist] = useState(false);
-  const handleAddToWishlist = () => {
+  const handleAddToWishlist = async (pwId) => {
     setWishlist(!wishlist);
-    //console.log('Product added to wishlist:', product.productName);
+
+    //this option is available only for logged in users
+    if(auth?.roles === ROLES.User) {
+      try {
+        const response = await axiosPrivate.post(`/users/${auth.userId}/wishlist/${pwId}/add`);
+        alert(response.data.message);
+        await axiosPrivate.get(`users/${auth.userId}/${pwId}/clicks/create`);
+      } catch (err) {
+        if(err.response.status === 400){
+          try {
+            const response = await axiosPrivate.post(`/users/${auth.userId}/clicks`, {productId:productId, websiteId:websiteId});
+            setClickcount(response.data.clickcount);
+          } catch (err) {
+            alert(err.response.data.message);
+          }
+        }
+      }
+      finally{
+        try {
+          await axiosPrivate.put(`/users/${auth.userId}/clicks/update`, { 
+            clickcount: clickcount + 1, 
+            productId: productId, 
+            websiteId: websiteId });
+          
+        } catch (err) {
+          alert(err.response.data.message);
+        }
+      }
+    }
+    else if(auth?.accessToken){
+      navigate("/unauthorized");
+    }
+    navigate("/login");
   };
 
   const goToWebsite = () => {
@@ -128,8 +173,8 @@ const ProductDetails = () => {
             </button>
           </a>
           <br></br>
-          <button className="bg-green-500 text-white px-4 py-2">
-            Add to wishlist
+          <button className="bg-green-500 text-white px-4 py-2" onClick={()=>handleAddToWishlist(website.pwId)}>
+              Add to wishlist
           </button>
         </div>
         {/* <div className="col-md-2"> */}

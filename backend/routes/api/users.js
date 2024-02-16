@@ -59,8 +59,9 @@ router.get("/:userId/upcomingevents/:eId/follow", event.followEvent);
   
 // recommndations
 router.get("/:userId/recommend", recommend.generateRecommendations);
-router.post("/:userId/recommend2", recommend.getClicksCount);
-router.get("/:userId/recommend/all", recommend.getAllClickCounts);
-router.put("/:userId/recommend/update", recommend.updateClicksCount);
+router.post("/:userId/clicks", recommend.getClicksCount);
+router.get("/:userId/clicks/all", recommend.getAllClickCounts);
+router.get("/:userId/:pwId/clicks/create", recommend.createClicksCount);
+router.put("/:userId/clicks/update", recommend.updateClicksCount);
 
 module.exports = router;

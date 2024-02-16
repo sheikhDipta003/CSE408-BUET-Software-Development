@@ -15,7 +15,7 @@ const CarouselSection = ({ title, id, userId, products }) => {
   const productChunks = chunkProducts(products, 3);
 
   return (
-    <div id={id} style={{ width: "95vw", marginBottom: "10px" }}>
+    <div id={id} className="w-[95vw] mb-3">
       <h2 className="text-4xl font-bold mb-2 mt-8 text-center border-b-4 border-red-500">{title}</h2>
       <Carousel
         showArrows={true}

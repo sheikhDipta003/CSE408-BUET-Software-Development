@@ -30,16 +30,7 @@ const StickyMenu = () => {
       >
         Recommended Products
       </Link>
-      <Link
-        activeClass="active"
-        to="topOffers"
-        spy={true}
-        smooth={true}
-        offset={-70}
-        duration={500}
-      >
-        Top Offers
-      </Link>
+      
       <Link
         activeClass="active"
         to="trendingProducts"
@@ -49,6 +40,17 @@ const StickyMenu = () => {
         duration={500}
       >
         Trending Products
+      </Link>
+
+      <Link
+        activeClass="active"
+        to="topOffers"
+        spy={true}
+        smooth={true}
+        offset={-70}
+        duration={500}
+      >
+        Top Offers
       </Link>
     </div>
   );
