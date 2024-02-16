@@ -13,7 +13,7 @@ const verifyRole = require("../../middleware/verifyRole");
 
 // get all reviews
 router.get("/reviews", review.getAllReviews);
-router.get("/recommend", recommend.getAllUserClickcount);
+router.get("/recommend2", recommend.getAllUserClickcount);
 router.get("/trending", recommend.getTrendingProducts);
 
 //profile
@@ -24,6 +24,7 @@ router.get("/:userId/delete", profile.deleteUser);
 //wishlist
 router.get("/:userId/wishlist", wishlist.allWishlist);
 router.get("/:userId/wishlist/:pwId", wishlist.getOneWishItem);
+router.post("/:userId/wishlist/:pwId/add", wishlist.addToWishlist);
 router.get("/:userId/wishlist/:wishlistId/delete", wishlist.deleteWishItem);
 
 //notifications
@@ -57,8 +58,8 @@ router.get("/:userId/upcomingevents", event.getUpcomingEvents);
 router.get("/:userId/upcomingevents/:eId/follow", event.followEvent);
   
 // recommndations
-router.post("/:userId/recommend", recommend.getClicksCount);
-router.get("/:userId/recommend2", recommend.generateRecommendations);
+router.get("/:userId/recommend", recommend.generateRecommendations);
+router.post("/:userId/recommend2", recommend.getClicksCount);
 router.get("/:userId/recommend/all", recommend.getAllClickCounts);
 router.put("/:userId/recommend/update", recommend.updateClicksCount);
 

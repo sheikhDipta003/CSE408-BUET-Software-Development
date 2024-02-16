@@ -231,6 +231,54 @@ const getProductWebsite = async (req, res) => {
   }
 };
 
+const getPWforUserDashboard = async (req, res) => {
+  const pwId = req.params.pwId;
+
+  try {
+    // Find the product website entry based on pwId
+    const productWebsite = await ProductWebsite.findByPk(pwId, {
+      include: [
+        {
+          model: Product,
+          attributes: ["productId", "productName", "brand", "category", "subcategory", "model", "mpn"],
+        },
+        {
+          model: Website,
+          attributes: ["websiteId", "name", "url", "collaboration"],
+        },
+      ],
+    });
+
+    if (!productWebsite) {
+      return res.status(404).json({ message: "Product website entry not found" });
+    }
+
+    const formatResult = {
+      pwURL: productWebsite.pwURL,
+      shippingTime: productWebsite.shippingTime,
+      inStock: productWebsite.inStock,
+      price: productWebsite.price,
+      rating: productWebsite.rating,
+      productId: productWebsite.Product.productId,
+      productName: productWebsite.Product.productName,
+      brand: productWebsite.Product.brand,
+      category: productWebsite.Product.category,
+      subcategory: productWebsite.Product.subcategory,
+      model: productWebsite.Product.model,
+      mpn: productWebsite.mpn,
+      websiteId: productWebsite.Website.websiteId,
+      websiteName: productWebsite.Website.name,
+      websiteURL: productWebsite.Website.url,
+      websiteCollab: productWebsite.Website.collaboration
+    };
+
+    res.json(formatResult);
+  } catch (error) {
+    console.error("Error retrieving product website information:", error);
+    res.status(500).json({ message: "Error retrieving product website information" });
+  }
+};
+
 const getQuerySuggestions = async (req, res) => {
   try {
     const keyword = req.params.keyword;
@@ -270,5 +318,6 @@ module.exports = {
   getProductsByCategoryAndSubcategory,
   getProductDetails,
   getProductWebsite,
+  getPWforUserDashboard,
   getQuerySuggestions
 };
