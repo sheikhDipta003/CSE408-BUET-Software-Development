@@ -65,7 +65,7 @@ function App() {
           </Route>
 
           <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
-            <Route path="users/:user_id/wishlist" element={<Wishlist />} />
+            <Route path="users/:userId/wishlist" element={<Wishlist />} />
           </Route>
 
           <Route element={<RequireAuth allowedRoles={ROLES.User} />}>

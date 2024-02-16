@@ -7,6 +7,32 @@ const recommendations = require("collaborative-filter/lib/cf_api.js");
 const sequelize = require("../config/database");
 const productsController = require("./productsController");
 
+const createClicksCount = async (req, res) => {
+  const { userId, pwId } = req.params;
+
+  try {
+    const existingInteraction = await UserInteraction.findOne({
+      where: { userId: userId, pwId: pwId },
+    });
+
+    if (existingInteraction) {
+      return res.status(400).json({ error: "User interaction already exists" });
+    }
+
+    // Create a new entry in the UserInteractions table
+    await UserInteraction.create({
+      UserUserId: userId,
+      ProductWebsitePwId: pwId,
+      clickcount: 0,
+    });
+
+    res.status(201).json({ clickcount: 0, message: "User interaction created successfully" });
+  } catch (error) {
+    console.error("Error creating user interaction:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 // Controller to get the clickcount for a specific user, product, and website
 const getClicksCount = async (req, res) => {
   const { userId } = req.params;
@@ -344,6 +370,7 @@ const getProductInfo = async(pwId) => {
 };
 
 module.exports = {
+  createClicksCount,
   getClicksCount,
   updateClicksCount,
   getAllClickCounts,

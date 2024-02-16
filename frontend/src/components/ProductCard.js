@@ -8,10 +8,19 @@ const ProductCard = ({ product, userId }) => {
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
 
-  const handleBookmarkClick = async (pwId) => {
+  const handleBookmarkClick = async (pwId, productId, websiteId) => {
     console.log("Bookmarking this item for logged-in user");
     try {
       await axiosPrivate.post(`/users/${userId}/wishlist/${pwId}/add`);
+      const response = await axiosPrivate.post(`/users/${userId}/clicks`, {productId:productId, websiteId:websiteId});
+      console.log(response.data.clickcount);
+
+      await axiosPrivate.put(`/users/${userId}/clicks/update`, { 
+        clickcount: response.data.clickcount + 1, 
+        productId: productId, 
+        websiteId: websiteId });
+      
+      alert(response.data.message);
     } catch (err) {
       console.error(err.response.status);
       console.error(err.response.data.message);
@@ -31,7 +40,7 @@ const ProductCard = ({ product, userId }) => {
   };
 
   return (
-    <div className="product-card flex bg-violet-300 w-96 h-64">
+    <div className="product-card flex bg-violet-300 w-96 h-72">
       {/* Left Partition - Image */}
       <div className="flex items-center justify-center">
         <img src={product.imagePath} alt={product.productName}/>
@@ -40,6 +49,7 @@ const ProductCard = ({ product, userId }) => {
       {/* Right Partition - Product Details */}
       <div className="w-5/6 p-2 flex flex-col items-center justify-center">
         <h3 className="text-base font-bold mb-2">{product.productName}</h3>
+        <p className="text-base">Website: {product.websiteName}</p>
         <p className="text-base">Price: {product.price}</p>
         
         {/* Icons Section */}
@@ -47,7 +57,7 @@ const ProductCard = ({ product, userId }) => {
           <div
             className="bookmark-icon relative hover:cursor-pointer"
             onClick={(e) => {
-              handleBookmarkClick(product.pwId);
+              handleBookmarkClick(product.pwId, product.productId, product.websiteId);
             }}
           >
             <FontAwesomeIcon icon={faBookmark} />
