@@ -27,6 +27,7 @@ const UserEvent = ({ userId }) => {
                 isMounted && setUpcomingEvents(response2.data);
             } catch (err) {
                 console.error(err);
+                alert(err.response.data.message);
             }
         };
 
@@ -75,6 +76,7 @@ const UserEvent = ({ userId }) => {
             if (new Date(response.data.event.date) > new Date()) setUpcomingEvents([...upcomingEvents, response.data.event]);
         } catch (err) {
             console.error(err);
+            alert(err.response.data.message);
         }
     }
 
@@ -85,6 +87,7 @@ const UserEvent = ({ userId }) => {
             setUpcomingEvents(prevEvents => prevEvents.filter(event => event.eId !== eId));
         } catch (err) {
             console.error(err);
+            alert(err.response.data.message);
         }
     }
 
