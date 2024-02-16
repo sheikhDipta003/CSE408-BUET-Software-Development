@@ -70,7 +70,7 @@ function App() {
 
           <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
             <Route
-              path="users/:user_id/dashboard"
+              path="users/:userId/dashboard"
               element={<UserDashboard />}
             />
           </Route>

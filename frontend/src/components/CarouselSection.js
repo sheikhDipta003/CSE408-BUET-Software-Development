@@ -3,7 +3,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ProductCard from "./ProductCard";
 
-const CarouselSection = ({ title, id, products }) => {
+const CarouselSection = ({ title, id, userId, products }) => {
   const chunkProducts = (products, size) => {
     const chunked = [];
     for (let i = 0; i < products.length; i += size) {
@@ -12,16 +12,15 @@ const CarouselSection = ({ title, id, products }) => {
     return chunked;
   };
 
-  const productChunks = chunkProducts(products, 4);
+  const productChunks = chunkProducts(products, 3);
 
   return (
     <div id={id} style={{ width: "95vw", marginBottom: "10px" }}>
-      <h2 className="text-4xl font-bold mb-2 mt-8 text-center">{title}</h2>
-      <div className="border-b-2 border-red-500 mb-3"></div>
+      <h2 className="text-4xl font-bold mb-2 mt-8 text-center border-b-4 border-red-500">{title}</h2>
       <Carousel
         showArrows={true}
         showStatus={false}
-        showIndicators={false}
+        // showIndicators={false}
         showThumbs={false}
         infiniteLoop={true}
       >
@@ -31,7 +30,7 @@ const CarouselSection = ({ title, id, products }) => {
             className="flex justify-center items-center bg-antiquewhite"
           >
             {chunk.map((product, idx) => (
-              <ProductCard key={idx} product={product} />
+              <ProductCard key={idx} product={product} userId={userId}/>
             ))}
           </div>
         ))}

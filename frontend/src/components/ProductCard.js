@@ -1,49 +1,74 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTicketAlt } from "@fortawesome/free-solid-svg-icons";
-import { faBookmark } from "@fortawesome/free-solid-svg-icons";
-import "../css/ProductCard.css";
+import { faBookmark, faInfoCircle, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, userId }) => {
   const navigate = useNavigate();
+  const axiosPrivate = useAxiosPrivate();
 
-  const handleBookmarkClick = () => {
+  const handleBookmarkClick = async (pwId) => {
     console.log("Bookmarking this item for logged-in user");
-    navigate("/user/1/wishlist");
+    try {
+      await axiosPrivate.post(`/users/${userId}/wishlist/${pwId}/add`);
+    } catch (err) {
+      console.error(err.response.status);
+      console.error(err.response.data.message);
+      alert(err.response.data.message);
+    }
+    navigate(`/users/${userId}/viewprofile`);
   };
 
-  const handleCouponClick = () => {
-    // Handle viewing coupons logic
+  const handleDetailsClick = (productId) => {
+    console.log("Showing details for the product");
+    navigate(`/products/${productId}`);
+  };
+
+  const handleShopNowClick = (url) => {
+    console.log("Redirecting to the shopping page");
+    window.open(url, "_blank");
   };
 
   return (
-    <div className="product-card" style={{ backgroundColor: "sandybrown" }}>
-      <img src={product.image} alt={product.name} style={{ width: "100px" }} />
-      <div className="product-details">
-        <h3>{product.name}</h3>
-        <p>Price: {product.price}</p>
-        <div className="icons">
+    <div className="product-card flex bg-violet-300 w-96 h-64">
+      {/* Left Partition - Image */}
+      <div className="flex items-center justify-center">
+        <img src={product.imagePath} alt={product.productName}/>
+      </div>
+
+      {/* Right Partition - Product Details */}
+      <div className="w-5/6 p-2 flex flex-col items-center justify-center">
+        <h3 className="text-base font-bold mb-2">{product.productName}</h3>
+        <p className="text-base">Price: {product.price}</p>
+        
+        {/* Icons Section */}
+        <div className="icons flex justify-end space-x-4 mt-2">
           <div
             className="bookmark-icon relative hover:cursor-pointer"
             onClick={(e) => {
-              handleBookmarkClick();
+              handleBookmarkClick(product.pwId);
             }}
           >
             <FontAwesomeIcon icon={faBookmark} />
-            <div className="tooltip absolute -top-0 -left-3 whitespace-nowrap bg-black text-white text-xs h-6 rounded py-1 px-2 opacity-0 hover:opacity-100 z-20">
-              Bookmark this item
-            </div>
           </div>
 
           <div
-            className="relative hover:cursor-pointer"
-            onClick={() => handleCouponClick(product.coupon)}
+            className="details-icon relative hover:cursor-pointer"
+            onClick={(e) => {
+              handleDetailsClick(product.productId);
+            }}
           >
-            <FontAwesomeIcon icon={faTicketAlt} />
-            <div className="tooltip absolute -top-0 left-3 whitespace-nowrap bg-black text-white text-xs h-6 rounded py-1 px-2 opacity-0 hover:opacity-100 z-20">
-              See all coupons
-            </div>
+            <FontAwesomeIcon icon={faInfoCircle} />
+          </div>
+
+          <div
+            className="shop-now-icon relative hover:cursor-pointer"
+            onClick={(e) => {
+              handleShopNowClick(product.pwURL);
+            }}
+          >
+            <FontAwesomeIcon icon={faShoppingCart} />
           </div>
         </div>
       </div>
