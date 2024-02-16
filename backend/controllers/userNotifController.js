@@ -8,7 +8,7 @@ const getAllNotifications = async (req, res) => {
     // Fetch all notifications for the user
     const notifications = await Notification.findAll({
       where: { userId: userId },
-      order: [["createdAt", "DESC"]], // Order by creation date in descending order
+      order: [["createdAt", "DESC"]],
     });
 
     res.status(200).json({ notifications });
