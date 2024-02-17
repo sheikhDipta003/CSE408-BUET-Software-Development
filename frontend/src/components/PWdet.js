@@ -44,6 +44,8 @@ const ProductDetails = () => {
   const { auth } = useAuth();
   const [clickcount, setClickcount] = useState(0);
   const location = useLocation();
+  const [priceDrop, setPriceDrop] = useState("");
+  const [showWarning, setShowWarning] = useState(false);
 
   //let data = {};
   useEffect(() => {
@@ -74,6 +76,43 @@ const ProductDetails = () => {
     // Call fetchData function inside useEffect
     fetchData();
   }, [productId, websiteId]); // Empty dependency array means this effect runs only once on mount
+
+  const handleCreateAlert = async () => {
+    console.log("Creating price drop alert...");
+    
+    if(auth?.roles === ROLES.User) {
+      try {
+        const response = await axiosPrivate.post(`users/${auth.userId}/alerts/pricedrop`, {productId, websiteId, price: priceDrop});
+        alert(response.data.message);
+      } catch (err) {
+        console.error('Error creating price drop alert:', err);
+        alert(err.response?.data?.message || err.message);
+      }
+      finally{
+        setPriceDrop("");
+      }
+    }
+    else if(auth?.accessToken){
+      navigate("/unauthorized");
+    }
+    else navigate("/login");
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setPriceDrop(value);
+    setShowWarning(false);
+  };
+
+  const handleSubmit = () => {
+    // Check if the input is a positive integer
+    if (isNaN(parseInt(priceDrop)) || parseInt(priceDrop) < 0) {
+      setShowWarning(true);
+      return;
+    }
+
+    handleCreateAlert();
+  };
 
   useEffect(() => {
     // Convert prices to pricesConv and update state
@@ -126,7 +165,7 @@ const ProductDetails = () => {
     else if(auth?.accessToken){
       navigate("/unauthorized");
     }
-    navigate("/login");
+    else navigate("/login");
   };
 
   const goToWebsite = () => {
@@ -217,6 +256,39 @@ const ProductDetails = () => {
           </tbody>
         </table>
       </div>
+
+      <div className="flex justify-evenly">
+        {/* Left Div */}
+        <div className="w-1/2 p-0">
+          <h2 className="text-xl font-bold mb-2">Set Price Drop Alert</h2>
+          <p className="text-gray-600">
+            Enter the desired price drop below and click 'Create Alert' to set
+            up a price drop alert for this product.
+          </p>
+        </div>
+
+        {/* Right Div */}
+          <div className="flex items-center">
+            <input
+              type="text"
+              placeholder="Enter price drop"
+              value={priceDrop}
+              onChange={handleChange}
+              className="border-2 rounded-md px-4 py-2 mr-2"
+            />
+            <button
+              onClick={handleSubmit}
+              className="bg-blue-500 text-white px-4 py-2 rounded-md mb-4"
+            >
+              Create Alert
+            </button>
+          </div>
+
+          <p className={showWarning ? "errmsg" : "offscreen"}>
+            Enter a positive integer
+          </p>
+      </div>
+
       <div className="mt-2 flex justify-center items-center">
         <h2>Product Price Chart</h2>
       </div>
