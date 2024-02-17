@@ -63,43 +63,30 @@ async function getproductdetails(url) {
         const response = await fetch(url);
         const body = await response.text();
         const $ = cheerio.load(body);
-        
+
         const items = [];
+
         const Name = $('.product_content > h1').text();
         const Price = $('meta[itemprop="price"]').attr('content');
-        //console.log(Name + " : " + Price + "\n");
-        
-        const attributes = [];
-        $('.table-hr-remove').map((index, element) => {
-            const name = $(element).find('.col-lg-4 span').text().replace(/\n.*/, '');
-            let value = $(element).find('.col-lg-8 span').text();
 
-            // Model name has multiple words, remove the first word
-            if (name === 'Model') {
-                const words = value.split(' ');
-                if (words.length > 1) {
-                    // Remove the first word
-                    words.shift();
-                    // Join the remaining words back into a string
-                    value = words.join(' ');
-                }
-                attributes.push({name, value});
-            }
-           
-            //console.log(name + " : " + value + "\n"); 
-            if (name === 'Part No' || name === 'Processor Type' || name === 'RAM' || name === 'Hard Disk Drive (HDD)' || name === 'Solid-State Drive (SSD)' || name === 'Graphics Chipset'){
-                attributes.push({
-                    name,
-                    value
-                });
-                // console.log(name + " : " + value + "\n");
-            }
-        });
-        // console.log(attributes);
+        const Model = $('.table-hr-remove:contains("Model") .col-lg-8 span').text().split(' ').slice(1).join(' ');
+        const MPN = $('.table-hr-remove:contains("Part No") .col-lg-8 span').text();
+        const Processor = $('.table-hr-remove:contains("Processor Type") .col-lg-8 span').text();
+        const RAM = $('.table-hr-remove:contains("RAM") .col-lg-8 span').text();
+        const HDD = $('.table-hr-remove:contains("Hard Disk Drive (HDD)") .col-lg-8 span').text();
+        const SSD = $('.table-hr-remove:contains("Solid-State Drive (SSD)") .col-lg-8 span').text();
+        const Graphics = $('.table-hr-remove:contains("Graphics Chipset") .col-lg-8 span').text();
+
         items.push({
             Name,
             Price,
-            Attributes: attributes
+            Model,
+            MPN,
+            Processor,
+            RAM,
+            HDD,
+            SSD,
+            Graphics
         });
 
         return items;

@@ -25,10 +25,10 @@ async function getRyansLaptops(page = 1) {
         });
 
         // Check if there is a next page and recursively call the function
-        if ($('.pagination .active').length > 0) {
-            const nextPageData = await getRyansLaptops(page + 1);
-            items.push(...nextPageData);
-        }
+        // if ($('.pagination .active').length > 0) {
+        //     const nextPageData = await getRyansLaptops(page + 1);
+        //     items.push(...nextPageData);
+        // }
         // Wait for all promises to resolve
         await Promise.all(promises);
         // console.log(items);
@@ -56,45 +56,28 @@ async function getproductdetails(url) {
         const response = await fetch(url);
         const body = await response.text();
         const $ = cheerio.load(body);
-        
+
         const items = [];
+
         const Name = $('.product_content > h1').text();
         const Price = $('meta[itemprop="price"]').attr('content');
-        //console.log(Name + " : " + Price + "\n");
-        // Remove the first word from the value if name is "Model"
-        
-        
-        const attributes = [];
-        $('.table-hr-remove').map((index, element) => {
-            const name = $(element).find('.col-lg-4 span').text().replace(/\n.*/, '');
-            let value = $(element).find('.col-lg-8 span').text();
 
-            // Model name has multiple words, remove the first word
-            if (name === 'Model') {
-                const words = value.split(' ');
-                if (words.length > 1) {
-                    // Remove the first word
-                    words.shift();
-                    // Join the remaining words back into a string
-                    value = words.join(' ');
-                }
-                attributes.push({name, value});
-            }
+        const Model = $('.table-hr-remove:contains("Model") .col-lg-8 span').text().split(' ').slice(1).join(' ');
+        const MPN = $('.table-hr-remove:contains("Part No") .col-lg-8 span').text();
+        const Processor = $('.table-hr-remove:contains("Processor Type.") .col-lg-8 span').text();
+        const RAM = $('.table-hr-remove:contains("RAM") .col-lg-8 span').text();
+        const Storage = $('.table-hr-remove:contains("Storage") .col-lg-8 span').text();
+        const Graphics = $('.table-hr-remove:contains("Graphics Chipset") .col-lg-8 span').text();
 
-            //console.log(name + " : " + value + "\n"); 
-            if (name === 'Part No' || name === 'Processor Type.' || name === 'RAM' || name === 'Storage' || name === 'Graphics Chipset' || name === 'Display Size (Inch)'){
-                attributes.push({
-                    name,
-                    value
-                });
-                // console.log(name + " : " + value + "\n");
-            }
-        });
-        // console.log(attributes);
         items.push({
             Name,
             Price,
-            Attributes: attributes
+            Model,
+            MPN,
+            Processor,
+            RAM,
+            Storage,
+            Graphics
         });
 
         return items;
