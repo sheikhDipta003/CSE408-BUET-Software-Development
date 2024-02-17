@@ -8,6 +8,11 @@ async function setPriceDropAlert(req, res) {
     const { userId } = req.params;
     const { productId, websiteId, price } = req.body;
 
+    if (isNaN(parseInt(price)) || parseInt(price) <= 0) {
+      return res.status(400).json({
+        message: "Price must be a positive integer",
+      });
+    }
 
     // Find the corresponding ProductWebsite entry
     const productWebsite = await ProductWebsite.findOne({
@@ -23,10 +28,23 @@ async function setPriceDropAlert(req, res) {
         .json({ message: "ProductWebsite entry not found" });
     }
 
+    const existingPriceDrop = await PriceDrop.findOne({
+      where: {
+        UserUserId: userId,
+        ProductWebsitePwId: productWebsite.pwId
+      },
+    });
+
+    if (existingPriceDrop) {
+      return res.status(400).json({
+        message: "Price drop alert already exists for this product",
+      });
+    }
+
     // Create a new PriceDrop entry
     const priceDrop = await PriceDrop.create({
-      userId: userId,
-      pwId: productWebsite.pwId,
+      UserUserId: userId,
+      ProductWebsitePwId: productWebsite.pwId,
       price: price,
       dateAdded: new Date(),
     });
