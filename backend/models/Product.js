@@ -17,10 +17,6 @@ const Product = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    mpn: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     brand: {
       type: DataTypes.STRING,
     },
@@ -33,6 +29,10 @@ const Product = sequelize.define(
     model: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    mpn:
+    {
+      type: DataTypes.STRING,
     }
   },
   {

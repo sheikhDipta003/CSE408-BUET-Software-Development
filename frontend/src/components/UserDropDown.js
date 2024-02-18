@@ -55,7 +55,7 @@ const UserDropDown = ({ userId }) => {
           </Link>
 
           <Link
-            to="/users/1/dashboard"
+            to={`/users/${userId}/dashboard`}
             className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200"
             onClick={closeDropdown}
           >

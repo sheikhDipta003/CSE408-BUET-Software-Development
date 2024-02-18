@@ -4,6 +4,32 @@ const Wishlist = require("../models/Wishlist");
 const Product = require("../models/Product");
 const Website = require("../models/Website");
 
+const addToWishlist = async (req, res) => {
+  try {
+    const { userId, pwId } = req.params;
+
+    // Check if the user already has the product in their wishlist
+    const existingWishlistItem = await Wishlist.findOne({
+      where: { userId: userId, pwId: pwId },
+    });
+
+    if (existingWishlistItem) {
+      return res.status(400).json({ message: "Product already in wishlist" });
+    }
+
+    // Create a new entry in the wishlist table
+    const newWishlistItem = await Wishlist.create({
+      UserUserId: userId,
+      ProductWebsitePwId: pwId,
+    });
+
+    res.status(201).json({ message: "Product added to wishlist successfully", wishlistItem: newWishlistItem });
+  } catch (error) {
+    console.error("Error adding product to wishlist:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 const allWishlist = async (req, res) => {
   try {
     const userId = req.params.userId;
@@ -113,4 +139,4 @@ const deleteWishItem = async (req, res) => {
   }
 };
 
-module.exports = { allWishlist, deleteWishItem, getOneWishItem };
+module.exports = { addToWishlist, allWishlist, deleteWishItem, getOneWishItem };

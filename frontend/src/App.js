@@ -42,8 +42,12 @@ function App() {
           element={<ProductListing />}
         />
         <Route
-          path="productlisting/:keyword"
-          element={<ProductListing />}
+          path="compare"
+          element={<ProductComparisonPage />}
+        />
+        <Route
+          path="search/:keyword"
+          element={<ProductSearch />}
         />
         <Route
           path="products/:productId"
@@ -61,12 +65,12 @@ function App() {
           </Route>
 
           <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
-            <Route path="users/:user_id/wishlist" element={<Wishlist />} />
+            <Route path="users/:userId/wishlist" element={<Wishlist />} />
           </Route>
 
           <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
             <Route
-              path="users/:user_id/dashboard"
+              path="users/:userId/dashboard"
               element={<UserDashboard />}
             />
           </Route>

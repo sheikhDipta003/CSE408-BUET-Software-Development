@@ -25,7 +25,7 @@ const SearchBar = () => {
         }
         const matchedSuggestions = data.products.map((product) => ({
           label: `Product: ${product.productName}`,
-          productId: product.id,
+          productId: product.productId,
         }));
 
         setProductSuggest(matchedSuggestions);
@@ -33,7 +33,6 @@ const SearchBar = () => {
         console.error('Error fetching product suggestions:', error);
       }
     };
-    console.log(input.length)
     if (input.length > 0) {
       fetchProductSuggestions();
       const matchedSuggestions = [];
@@ -95,8 +94,11 @@ const SearchBar = () => {
   };
 
   const  handleProductSuggestClick = (suggestion) => {
+    console.log(suggestion);
     const id = suggestion.productId;
-    navigate(`product/${id}`);
+    console.log(suggestion.label);
+    console.log(id);
+    navigate(`products/${id}`);
     setProductSuggest([]);
     setSuggestions([]);
     setInput("");

@@ -5,6 +5,33 @@ const Website = require("../models/Website");
 const User = require("../models/User");
 const recommendations = require("collaborative-filter/lib/cf_api.js");
 const sequelize = require("../config/database");
+const productsController = require("./productsController");
+
+const createClicksCount = async (req, res) => {
+  const { userId, pwId } = req.params;
+
+  try {
+    const existingInteraction = await UserInteraction.findOne({
+      where: { userId: userId, pwId: pwId },
+    });
+
+    if (existingInteraction) {
+      return res.status(400).json({ error: "User interaction already exists" });
+    }
+
+    // Create a new entry in the UserInteractions table
+    await UserInteraction.create({
+      UserUserId: userId,
+      ProductWebsitePwId: pwId,
+      clickcount: 0,
+    });
+
+    res.status(201).json({ clickcount: 0, message: "User interaction created successfully" });
+  } catch (error) {
+    console.error("Error creating user interaction:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
 
 // Controller to get the clickcount for a specific user, product, and website
 const getClicksCount = async (req, res) => {
@@ -161,30 +188,39 @@ const updateClicksCount = async (req, res) => {
 
 const getTrendingProducts = async (req, res) => {
   try {
-    const maxClickcountRow = await UserInteraction.findOne({
+    const maxClickcountRows = await UserInteraction.findAll({
       attributes: [
         "pwId",
         [sequelize.fn("SUM", sequelize.col("clickcount")), "totalclickcount"],
       ],
       group: ["pwId"],
       order: [[sequelize.literal("totalclickcount"), "DESC"]],
-      raw: true, // Set raw to true to get plain object instead of Sequelize model
+      limit: 10, // Limit the query to retrieve only the first 10 highest pwIds
+      raw: true, // Set raw to true to get plain objects instead of Sequelize models
     });
 
-    console.log(maxClickcountRow);
+    console.log(maxClickcountRows);
 
-    if (!maxClickcountRow) {
+    if (!maxClickcountRows || maxClickcountRows.length === 0) {
       return res
         .status(404)
         .json({ message: "No rows found in UserInteraction table" });
     }
 
-    res.status(200).json({ pwId: maxClickcountRow.pwId });
+    const pwIds = maxClickcountRows.map((row) => row.pwId);
+
+    // Fetch all information about the products using the retrieved pwIds
+    const productsInfo = await Promise.all(
+      pwIds.map(async (pwId) => (await getProductInfo(pwId)).data)
+    );
+
+    res.status(200).json({ trending: productsInfo });
   } catch (error) {
-    console.error("Error retrieving max clickcount row:", error);
+    console.error("Error retrieving max clickcount rows:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 
 // Function to generate recommendations for a specific user
 const generateRecommendations = async (req, res) => {
@@ -253,18 +289,88 @@ const generateRecommendations = async (req, res) => {
       );
     });
 
-    console.log(results);
+    if (results.length === 0) {
+      // Fetch the pwId of the first 3 rows of ProductWebsite table
+      const firstThreePwIds = await ProductWebsite.findAll({ attributes: ["pwId"], limit: 3 });
+
+      // Retrieve corresponding product information using getProductInfo
+      const productInfoPromises = firstThreePwIds.map(async (row) => {
+        const pwId = row.pwId;
+        return (await getProductInfo(pwId)).data;
+      });
+
+      const productInfo = await Promise.all(productInfoPromises);
+
+      res.status(200).json({ recommendations: productInfo, message: "Succesfully returned recommended pwIds" });
+    }
+    else if (results.length > 10) {
+      results = results.slice(0, 10); // Take only the first ten elements
+    }
+
+    const formatResults = await Promise.all(results.map(async (pwId) => {
+      const productInfo = (await getProductInfo(pwId)).data;
+      return productInfo;
+    }));
+    console.log(formatResults);
 
     res
       .status(200)
-      .json({ results, message: "Succesfully returned recommended pwIds" });
+      .json({ recommendations: formatResults, message: "Succesfully returned recommended pwIds" });
   } catch (error) {
     console.error("Error generating recommendations:", error);
     throw error;
   }
 };
 
+const getProductInfo = async(pwId) => {
+  try {
+    const productWebsite = await ProductWebsite.findByPk(pwId, {
+      include: [
+        {
+          model: Product,
+          attributes: ["productId", "productName", "imagePath", "brand", "category", "subcategory", "model", "mpn"],
+        },
+        {
+          model: Website,
+          attributes: ["websiteId", "name", "url", "collaboration"],
+        },
+      ],
+    });
+
+    if (!productWebsite) {
+      return { error: "Product website entry not found" };
+    }
+
+    return {
+      data: {
+        pwId: productWebsite.pwId,
+        pwURL: productWebsite.pwURL,
+        shippingTime: productWebsite.shippingTime,
+        inStock: productWebsite.inStock,
+        price: productWebsite.price,
+        rating: productWebsite.rating,
+        productId: productWebsite.Product.productId,
+        productName: productWebsite.Product.productName,
+        imagePath: productWebsite.Product.imagePath,
+        brand: productWebsite.Product.brand,
+        category: productWebsite.Product.category,
+        subcategory: productWebsite.Product.subcategory,
+        model: productWebsite.Product.model,
+        mpn: productWebsite.mpn,
+        websiteId: productWebsite.Website.websiteId,
+        websiteName: productWebsite.Website.name,
+        websiteURL: productWebsite.Website.url,
+        websiteCollab: productWebsite.Website.collaboration
+      }
+    };
+  } catch (error) {
+    console.error("Error retrieving product website information:", error);
+    return { error: "Error retrieving product website information" }; // Return an error message
+  }
+};
+
 module.exports = {
+  createClicksCount,
   getClicksCount,
   updateClicksCount,
   getAllClickCounts,

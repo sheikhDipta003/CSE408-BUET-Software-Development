@@ -33,4 +33,4 @@ UserEvent.belongsTo(User, {
 });
 UserEvent.belongsTo(Event, { foreignKey: { field: "eId", allowNull: false } });
 
-module.exports = UserEventInterest;
+module.exports = UserEvent;
