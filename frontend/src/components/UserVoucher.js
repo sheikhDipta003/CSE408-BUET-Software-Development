@@ -1,13 +1,13 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons';
+import { faSort, faSortUp, faSortDown, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-const UserVoucher = ({userId}) => {
+const UserVoucher = ({ userId }) => {
     const axiosPrivate = useAxiosPrivate();
     const [userVouchers, setUserVouchers] = useState([]);
-    const [selectAll, setSelectAll] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [sortConfig, setSortConfig] = useState({ key: null, direction: '' });
 
     useEffect(() => {
         let isMounted = true;
@@ -27,104 +27,111 @@ const UserVoucher = ({userId}) => {
         return () => {
             isMounted = false;
         };
-    }, []);
+    }, [userId, axiosPrivate]);
 
-    const handleDelete = async (voucherId) => {
-        try {
-            await axiosPrivate.delete(`users/${userId}/vouchers/${voucherId}/remove`);
-            setUserVouchers(prevVouchers => prevVouchers.filter(voucher => voucher.voucherId !== voucherId));
-        } catch (error) {
-            console.error('Error deleting voucher:', error);
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const handleSort = (key) => {
+        let direction = 'asc';
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
         }
+        setSortConfig({ key, direction });
     };
 
-    // Function to handle deleting all selected vouchers
-    const handleDeleteSelected = async () => {
-        const selectedVouchers = userVouchers.filter(voucher => voucher.isSelected);
-        try {
-            await Promise.all(selectedVouchers.map(voucher => handleDelete(voucher.voucherId)));
-        } catch (error) {
-            console.error('Error deleting selected vouchers:', error);
+    const sortedVouchers = () => {
+        let sorted = [...userVouchers];
+        if (sortConfig.key !== null) {
+            sorted = sorted.sort((a, b) => {
+                if (a[sortConfig.key] < b[sortConfig.key]) {
+                    return sortConfig.direction === 'asc' ? -1 : 1;
+                }
+                if (a[sortConfig.key] > b[sortConfig.key]) {
+                    return sortConfig.direction === 'asc' ? 1 : -1;
+                }
+                return 0;
+            });
         }
+        return sorted;
     };
 
-    const handleCheckboxChange = (voucherId) => {
-        const updatedVouchers = userVouchers.map(voucher => {
-            if (voucher.voucherId === voucherId) {
-                return { ...voucher, isSelected: !voucher.isSelected };
-            }
-            return voucher;
-        });
-        setUserVouchers(updatedVouchers);
+    const filteredVouchers = () => {
+        return sortedVouchers().filter(voucher =>
+            voucher.websiteName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            voucher.voucherCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            voucher.endDate.includes(searchTerm)
+        );
     };
 
-    const toggleSelectAll = () => {
-        const updatedVouchers = userVouchers.map(voucher => ({ ...voucher, isSelected: !selectAll }));
-        setUserVouchers(updatedVouchers);
-        setSelectAll(!selectAll);
-    };
-
-    const formattedDate = (dateString) => {
-        const options = { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        };
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', options);
-    };
-    
     return (
         <div>
-            <div className="flex justify-between items-center mb-4">
-                <div>
-                    <button onClick={toggleSelectAll} className="text-blue-700 hover:text-blue-800 mr-4 bg-teal-100" disabled={userVouchers.length === 0}>
-                        {selectAll ? (
-                            <FontAwesomeIcon icon={faCheckSquare} />
-                        ) : (
-                            <FontAwesomeIcon icon={faSquare} />
-                        )}
-                        <span className="ml-2">Select All</span>
-                    </button>
-                    <button onClick={handleDeleteSelected} className="text-red-700 hover:text-red-800 bg-teal-100" disabled={userVouchers.filter(voucher => voucher.isSelected).length === 0}>
-                        <FontAwesomeIcon icon={faTrash} />
-                        <span className="ml-2">Delete</span>
-                    </button>
+            <div className="flex items-center mb-4">
+                <div className="flex items-center w-3/4">
+                    <input
+                        type="text"
+                        placeholder="Search vouchers by website name, voucher code, or end date..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        className="w-full p-2 border border-gray-300 rounded"
+                    />
                 </div>
             </div>
             <div className="overflow-x-auto">
                 <table className="table-auto w-full border-collapse border border-gray-200">
                     <thead>
                         <tr>
-                            <th className="border border-gray-200 px-4 py-2"></th>
-                            <th className="border border-gray-200 px-4 py-2">Website Name</th>
-                            <th className="border border-gray-200 px-4 py-2">Voucher Code</th>
-                            <th className="border border-gray-200 px-4 py-2">Discount Percentage</th>
-                            <th className="border border-gray-200 px-4 py-2">End Date</th>
+                            <th className="border border-gray-200 px-4 py-2 cursor-pointer" onClick={() => handleSort('websiteName')}>
+                                Website Name
+                                <FontAwesomeIcon
+                                    icon={sortConfig.key === 'websiteName' ? (sortConfig.direction === 'asc' ? faSortUp : faSortDown) : faSort}
+                                    className="ml-2"
+                                />
+                            </th>
+                            <th className="border border-gray-200 px-4 py-2 cursor-pointer" onClick={() => handleSort('voucherCode')}>
+                                Voucher Code
+                                <FontAwesomeIcon
+                                    icon={sortConfig.key === 'voucherCode' ? (sortConfig.direction === 'asc' ? faSortUp : faSortDown) : faSort}
+                                    className="ml-2"
+                                />
+                            </th>
+                            <th className="border border-gray-200 px-4 py-2 cursor-pointer" onClick={() => handleSort('discountPercentage')}>
+                                Discount Percentage
+                                <FontAwesomeIcon
+                                    icon={sortConfig.key === 'discountPercentage' ? (sortConfig.direction === 'asc' ? faSortUp : faSortDown) : faSort}
+                                    className="ml-2"
+                                />
+                            </th>
+                            <th className="border border-gray-200 px-4 py-2 cursor-pointer" onClick={() => handleSort('endDate')}>
+                                End Date
+                                <FontAwesomeIcon
+                                    icon={sortConfig.key === 'endDate' ? (sortConfig.direction === 'asc' ? faSortUp : faSortDown) : faSort}
+                                    className="ml-2"
+                                />
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {userVouchers.map((voucher) => (
-                            <tr key={voucher.voucherId}>
-                                <td className="border border-gray-200 px-4 py-2">
-                                    <input
-                                        type="checkbox"
-                                        className="form-checkbox h-4 w-4 text-blue-500"
-                                        checked={voucher.isSelected || false}
-                                        onChange={() => handleCheckboxChange(voucher.voucherId)}
-                                    />
-                                </td>
-                                <td className="border border-gray-200 px-4 py-2">{voucher.websiteName}</td>
-                                <td className="border border-gray-200 px-4 py-2">{voucher.voucherCode}</td>
-                                <td className="border border-gray-200 px-4 py-2">{voucher.discountPercentage}</td>
-                                <td className="border border-gray-200 px-4 py-2">{formattedDate(voucher.endDate)}</td>
+                        {filteredVouchers().length === 0 ? (
+                            <tr className='px-4 text-red-500 font-bold'>
+                                <td colSpan="4">No vouchers to display</td>
                             </tr>
-                        ))}
+                        ) : (
+                            filteredVouchers().map((voucher) => (
+                                <tr key={voucher.voucherId}>
+                                    <td className="border border-gray-200 px-4 py-2">{voucher.websiteName}</td>
+                                    <td className="border border-gray-200 px-4 py-2">{voucher.voucherCode}</td>
+                                    <td className="border border-gray-200 px-4 py-2">{voucher.discountPercentage}</td>
+                                    <td className="border border-gray-200 px-4 py-2">{new Date(voucher.endDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</td>
+                                </tr>
+                            ))
+                        )}
                     </tbody>
                 </table>
             </div>
         </div>
-    )
+    );
 }
 
-export default UserVoucher
+export default UserVoucher;
