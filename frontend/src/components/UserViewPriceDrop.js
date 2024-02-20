@@ -15,7 +15,7 @@ const UserViewPriceDrop = () => {
     useEffect(() => {
         let isMounted = true;
 
-        const getUsers = async () => {
+        const getPriceDrops = async () => {
             try {
                 const response = await axiosPrivate.get(`/users/${userId}/alerts/pricedrop`);
                 console.log("from UserViewPriceDrop = ", response.data);
@@ -25,16 +25,20 @@ const UserViewPriceDrop = () => {
             } 
         };
 
-        getUsers();
+        getPriceDrops();
 
         return () => {
             isMounted = false;
         };
     }, []);
 
+    useEffect(() => {
+        priceDrops.sort((a, b) => parseInt(b.priceDrop) - parseInt(b.currentPrice) - (parseInt(a.priceDrop) - parseInt(a.currentPrice)));
+    }, [priceDrops]);
+
     const handleDelete = async (pwId, productId, websiteId) => {
         try {
-            const response = await axiosPrivate.delete(`/users/${userId}/alerts/pricedrop/delete/${productId}/${websiteId}`);
+            await axiosPrivate.delete(`/users/${userId}/alerts/pricedrop/delete/${productId}/${websiteId}`);
             setPriceDrops(prevPriceDrops => prevPriceDrops.filter(pd => pd.pwId !== pwId));
         } catch (err) {
             console.error('Error deleting user:', err);
@@ -86,7 +90,7 @@ const UserViewPriceDrop = () => {
             // Convert the new price to a number
             const newPriceValue = parseFloat(newPriceInput);
     
-            if (!isNaN(newPriceValue)) {
+            if (!isNaN(newPriceValue) && newPriceValue > 0.0) {
                 try {
                     // Send a PUT request to update the price drop
                     const response = await axiosPrivate.put(`/users/${userId}/alerts/pricedrop/update`, {
@@ -110,7 +114,7 @@ const UserViewPriceDrop = () => {
                     alert(err.response.data.message);
                 }
             } else {
-                alert("Invalid input! Please enter a valid number for the new price.");
+                alert("Invalid input! Enter a positive number for the new price.");
             }
         }
     };
@@ -147,9 +151,9 @@ const UserViewPriceDrop = () => {
                     <thead>
                         <tr>
                             <th className="border border-gray-200 px-4 py-2"></th>
-                            <th className="border border-gray-200 px-4 py-2">productName</th>
-                            <th className="border border-gray-200 px-4 py-2">websiteName</th>
-                            <th className="border border-gray-200 px-4 py-2">dateAdded</th>
+                            <th className="border border-gray-200 px-4 py-2">Product Name</th>
+                            <th className="border border-gray-200 px-4 py-2">Website Name</th>
+                            <th className="border border-gray-200 px-4 py-2">Date Added</th>
                             <th className="border border-gray-200 px-4 py-2">Current Price</th>
                             <th className="border border-gray-200 px-4 py-2">Price Drop</th>
                             <th className="border border-gray-200 px-4 py-2">Actions</th>
@@ -174,18 +178,18 @@ const UserViewPriceDrop = () => {
                                 <td className="border border-gray-200 px-4 py-2 relative">{pd.productName}</td>
                                 <td className="border border-gray-200 px-4 py-2 relative">{pd.websiteName}</td>
                                 <td className="border border-gray-200 px-4 py-2">{new Date(pd.dateAdded).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</td>
-                                <td className="border border-gray-200 px-4 py-2">{pd.currentPrice}</td>
-                                <td className="border border-gray-200 px-4 py-2">{parseInt(pd.priceDrop)}</td>
+                                <td className={`border border-gray-200 px-4 py-2 ${pd.priceDrop >= pd.currentPrice ? 'text-red-600 font-bold' : ''}`}>{pd.currentPrice}</td>
+                                <td className={`border border-gray-200 px-4 py-2 ${pd.priceDrop >= pd.currentPrice ? 'text-red-600 font-bold' : ''}`}>{parseInt(pd.priceDrop)}</td>
                                 <td>
                                     <span className="flex space-x-2">
                                         <button
-                                            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200"
+                                            className={`bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200}`}
                                             onClick={() => handleEditClick(pd.productId, pd.websiteId)}
                                         >
                                             <FontAwesomeIcon icon={faEdit} />
                                         </button>
                                         <button
-                                            className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition duration-200"
+                                            className={`bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition duration-200 ${pd.priceDrop >= pd.currentPrice ? 'blink' : ''}`}
                                             onClick={() => handleInfoClick(pd.productId, pd.websiteId)}
                                         >
                                             <FontAwesomeIcon icon={faInfoCircle} />

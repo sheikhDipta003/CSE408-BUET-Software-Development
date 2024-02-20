@@ -97,6 +97,12 @@ async function viewPriceDropAlerts(req, res) {
         dateAdded: pd.dateAdded
     }));
 
+    formatResult.sort((a, b) => {
+      const differenceA = a.priceDrop - a.currentPrice;
+      const differenceB = b.priceDrop - b.currentPrice;
+      return differenceB - differenceA; // Higher difference takes priority
+    });
+
     return res.status(200).json(formatResult);
   } catch (error) {
     console.error("Error fetching price drop alerts:", error);

@@ -61,26 +61,26 @@ function App() {
         <Route path="unauthorized" element={<Unauthorized />} />
 
         <Route element={<PersistLogin />}>
-          <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
             <Route path="users/:userId/viewprofile" element={<UserProfile />} />
           </Route>
 
-          <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
             <Route path="users/:userId/wishlist" element={<Wishlist />} />
           </Route>
 
-          <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
             <Route path="users/:userId/pricedrop" element={<UserViewPriceDrop />} />
           </Route>
 
-          <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
             <Route
               path="users/:userId/dashboard"
               element={<UserDashboard />}
             />
           </Route>
 
-          <Route element={<RequireAuth allowedRoles={ROLES.Admin} />}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
             <Route path="admin" element={<Admin adminId={auth.userId}/>} />
           </Route>
         </Route>
