@@ -45,6 +45,12 @@ const ProductDetails = () => {
   const [clickcount, setClickcount] = useState(0);
   const location = useLocation();
   const [priceDrop, setPriceDrop] = useState("");
+  const priceData = [
+    { date: '2022-01-01', price: 100 },
+    { date: '2022-01-02', price: 120 },
+    { date: '2022-01-03', price: 90 },
+  ];
+  const [wishlist, setWishlist] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
 
   //let data = {};
@@ -84,6 +90,7 @@ const ProductDetails = () => {
       try {
         const response = await axiosPrivate.post(`users/${auth.userId}/alerts/pricedrop`, {productId, websiteId, price: priceDrop});
         alert(response.data.message);
+        navigate(`/users/${auth.userId}/pricedrop`);
       } catch (err) {
         console.error('Error creating price drop alert:', err);
         alert(err.response?.data?.message || err.message);
@@ -125,12 +132,7 @@ const ProductDetails = () => {
     console.log(pricesConv);
   }, [prices]);
 
-  const priceData = [
-    { date: '2022-01-01', price: 100 },
-    { date: '2022-01-02', price: 120 },
-    { date: '2022-01-03', price: 90 },
-  ];
-  const [wishlist, setWishlist] = useState(false);
+
   const handleAddToWishlist = async (pwId) => {
     setWishlist(!wishlist);
 
