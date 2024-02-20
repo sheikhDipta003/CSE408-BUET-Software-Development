@@ -18,7 +18,6 @@ const Users = () => {
     const [showUserDetails, setShowUserDetails] = useState(false);
 
     const [openSections, setOpenSections] = useState({
-        interactions: true,
         notifications: false,
         vouchers: false,
         wishlist: false,
@@ -206,23 +205,7 @@ const Users = () => {
                                             </button>
                                         </div>
                                         
-                                        <div className="bg-white w-full h-full mt-10 px-4">
-                                            <div className="p-2 border-b-4 border-red-400">
-                                                <h2 className="text-lg font-semibold inline items-center">Interactions</h2>
-                                                <button
-                                                    onClick={() => toggleAccordion('interactions')}
-                                                    className="mt-0 float-right focus:outline-none size-7"
-                                                >
-                                                    <FontAwesomeIcon
-                                                        icon={faChevronDown}
-                                                        className={`transition-transform transform ${openSections.interactions ? 'rotate-180' : ''}`}
-                                                    />
-                                                </button>
-                                            </div>
-                                            <div className={`p-4 border-b-4 border-red-400 ${openSections.interactions ? '' : 'hidden'}`}>
-                                                <h2 className="text-lg font-semibold">Interactions Content</h2>
-                                            </div>
-                
+                                        <div className="bg-white w-full h-full mt-10 px-4">                
                                             <div className="p-2 border-b-4 border-red-400">
                                                 <h2 className="text-lg font-semibold inline">Notifications</h2>
                                                 <button
