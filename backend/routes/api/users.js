@@ -36,7 +36,7 @@ router.get("/:userId/notification/:notifId/delete", notif.deleteNotification);
 router.get("/:userId/reviews", review.getUserReviews);
 router.post("/:userId/reviews", review.createReview);
 router.get("/:userId/reviews/:reviewId", review.getReviewById);
-router.get("/:userId/reviews/:reviewId/edit", review.updateReview);
+router.put("/:userId/reviews/:reviewId/edit", review.updateReview);
 router.get("/:userId/reviews/:reviewId/delete", review.deleteReview);
 
 //price-drop alerts

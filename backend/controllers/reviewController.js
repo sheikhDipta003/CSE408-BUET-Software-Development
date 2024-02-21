@@ -72,10 +72,16 @@ const reviewController = {
       if (!review) {
         return res.status(404).json({ message: "Review not found" });
       }
+
+      if (!Number.isInteger(parseInt(rating)) || parseInt(rating) < 0 || parseInt(rating) > 5)
+      {
+        return res.status(400).json({ message: "Rating must be a nonnegative integer between 0 and 5, inclusive." });
+      }
+
       review.content = content;
       review.rating = rating;
       await review.save();
-      return res.status(200).json(review);
+      return res.status(200).json({review: review, message: "Review saved successfully"});
     } catch (error) {
       console.error("Error updating review:", error);
       return res.status(500).json({ message: "Failed to update review" });
