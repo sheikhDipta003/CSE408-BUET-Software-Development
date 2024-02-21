@@ -62,7 +62,7 @@ const AdminReview = () => {
             setReviews(prevReviews => prevReviews.filter(review => review.reviewId !== reviewId));
 
             const newNotif = {
-                title:"Your Review has been Approved", 
+                title:"Your Review has been received", 
                 message:"Thank you for your feedback!", 
                 isRead: false, 
                 userId:userId

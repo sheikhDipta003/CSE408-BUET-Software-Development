@@ -20,6 +20,7 @@ import PersistLogin from "./components/PersistLogin";
 import Logout from "./components/Logout";
 import useAuth from "./hooks/useAuth";
 import UserViewPriceDrop from './components/UserViewPriceDrop';
+import Notifications from "./components/Notifications";
 
 const ROLES = {
   Admin: 5150,
@@ -67,6 +68,10 @@ function App() {
 
           <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
             <Route path="users/:userId/wishlist" element={<Wishlist />} />
+          </Route>
+
+          <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
+            <Route path="users/:userId/notifs" element={<Notifications />} />
           </Route>
 
           <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
