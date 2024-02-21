@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useParams } from 'react-router-dom';
 
-const Notifications = ({ userId }) => {
+const Notifications = () => {
     const axiosPrivate = useAxiosPrivate();
     const [notifs, setNotifs] = useState([]);
+    const { userId } = useParams();
 
     useEffect(() => {
         let isMounted = true;
@@ -56,11 +58,11 @@ const Notifications = ({ userId }) => {
     const readNotifs = notifs.filter(notif => notif.isRead);
 
     return (
-        <div>
+        <div className='mx-8 my-4'>
             {/* Unread notifications */}
             <h2 className="mb-4 text-xl font-bold">Unread Notifications</h2>
             {unreadNotifs.length === 0 && (
-                <p className='p-2 m-4'>Woohoo! You've read all the messages in your inbox.</p>
+                <p className='p-2 m-4 border-l-4 border-l-emerald-400'>You've read all the messages in your inbox.</p>
             )}
             {unreadNotifs.map(notif => (
                 <div key={notif.notifId} className="notification-card bg-teal-300 p-4 m-4 rounded-lg shadow">
@@ -75,10 +77,10 @@ const Notifications = ({ userId }) => {
             {/* Read notifications */}
             <h2 className="mb-4 text-xl font-bold">Read Notifications</h2>
             {readNotifs.length === 0 && (
-                <p className='self-center'>You haven't read any of the messages!</p>
+                <p className='p-2 m-4 border-l-4 border-l-emerald-400'>You haven't read any of the messages!</p>
             )}
             {readNotifs.map(notif => (
-                <div key={notif.notifId} className="notification-card  p-4 m-4 rounded-lg shadow bg-teal-100">
+                <div key={notif.notifId} className="notification-card  p-4 m-4 rounded-lg shadow bg-teal-100 border-l-4 border-l-emerald-400">
                     <div className="accordion-header hover:cursor-pointer bg-teal-300 p-2 rounded-md">
                         {notif.title}
                         <FontAwesomeIcon icon={faTrash} className="cursor-pointer float-right text-red-700 hover:text-red-800" onClick={() => handleDelete(notif.notifId)} />
