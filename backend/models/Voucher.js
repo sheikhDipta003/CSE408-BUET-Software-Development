@@ -26,17 +26,13 @@ const Voucher = sequelize.define(
         max: 100,
       },
     },
-    maxAmount: {
+    maxAmountForDiscount: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    minAmount: {
+    minAmountForDiscount: {
       type: DataTypes.FLOAT,
       allowNull: true,
-    },
-    startDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
     },
     endDate: {
       type: DataTypes.DATE,
@@ -44,7 +40,7 @@ const Voucher = sequelize.define(
     },
     total: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     }
   },
   {

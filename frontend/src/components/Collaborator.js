@@ -38,8 +38,8 @@ const Collaborator = ({collabId}) => {
                                 <li className={`cursor-pointer ${activeSubMenu === 'AllV' ? 'border-b-4 border-b-red-500 mb-4 text-blue-700 bg-yellow-200 rounded-md rounded-b-none p-2' : 'text-black mb-4 rounded-md rounded-b-none p-2 bg-slate-300'} mb-1 mr-4`} onClick={() => handleSubMenuClick('AllV')}>All Vouchers</li>
                                 <li className={`cursor-pointer ${activeSubMenu === 'AddV' ? 'border-b-4 border-b-red-500 mb-4 text-blue-700 bg-yellow-200 rounded-md  rounded-b-none p-2' : 'text-black mb-4 rounded-md rounded-b-none p-2 bg-slate-300'} mb-1 mr-4`} onClick={() => handleSubMenuClick('AddV')}>Add a Voucher</li>
                             </ul>
-                            {activeSubMenu === 'AllV' && <ColVoucherManage />}
-                            {activeSubMenu === 'AddV' && <ColVoucherAdd />}
+                            {activeSubMenu === 'AllV' && <ColVoucherManage collabId={collabId} />}
+                            {activeSubMenu === 'AddV' && <ColVoucherAdd collabId={collabId} />}
                         </div>
                     )}
                     {activeMenu === 'Events' && (
@@ -48,8 +48,8 @@ const Collaborator = ({collabId}) => {
                                 <li className={`cursor-pointer ${activeSubMenu === 'AllE' ? 'border-b-4 border-b-red-500 mb-4 text-blue-700 bg-yellow-200 rounded-md rounded-b-none p-2' : 'text-black mb-4 rounded-md rounded-b-none p-2 bg-slate-300'} mb-1 mr-4`} onClick={() => handleSubMenuClick('AllE')}>All Events</li>
                                 <li className={`cursor-pointer ${activeSubMenu === 'AddE' ? 'border-b-4 border-b-red-500 mb-4 text-blue-700 bg-yellow-200 rounded-md  rounded-b-none p-2' : 'text-black mb-4 rounded-md rounded-b-none p-2 bg-slate-300'} mb-1 mr-4`} onClick={() => handleSubMenuClick('AddE')}>Add an Event</li>
                             </ul>
-                            {activeSubMenu === 'AllE' && <ColEventManage />}
-                            {activeSubMenu === 'AddE' && <ColEventAdd />}
+                            {activeSubMenu === 'AllE' && <ColEventManage collabId={collabId} />}
+                            {activeSubMenu === 'AddE' && <ColEventAdd collabId={collabId} />}
                         </div>
                     )}
                 </div>

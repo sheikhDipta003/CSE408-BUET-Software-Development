@@ -3,14 +3,14 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const VoucherManagement = () => {
+const VoucherManagement = ({collabId}) => {
     const [vouchers, setVouchers] = useState([]);
     const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
         const fetchVouchers = async () => {
             try {
-                const response = await axiosPrivate.get(`/collab/vouchers`);
+                const response = await axiosPrivate.get(`/collab/${collabId}/vouchers`);
                 setEvents(response.data.vouchers);
             } catch (error) {
                 console.error('Error fetching vouchers:', error);
@@ -22,7 +22,7 @@ const VoucherManagement = () => {
 
     const handleDeleteVoucher = async (voucherId) => {
         try {
-            await axiosPrivate.delete(`collab/vouchers/${voucherId}/remove`);
+            await axiosPrivate.delete(`collab/${collabId}/vouchers/${voucherId}/remove`);
             setVouchers(prevVouchers => prevVouchers.filter(Voucher => Voucher.voucherId !== voucherId));
         } catch (error) {
             console.error('Error deleting event:', error);

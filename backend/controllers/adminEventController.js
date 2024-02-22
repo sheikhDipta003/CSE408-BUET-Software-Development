@@ -26,24 +26,6 @@ const getEventById = async (req, res) => {
   }
 };
 
-// Add a new event
-const addEvent = async (req, res) => {
-  try {
-    const { name, venue, date, description, url } = req.body;
-    const newEvent = await Event.create({
-      name,
-      venue,
-      date,
-      description,
-      url,
-    });
-    res.status(201).json({ message: "Event added successfully", event: newEvent });
-  } catch (error) {
-    console.error("Error adding event:", error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-};
-
 // Remove an event by event_id
 const removeEvent = async (req, res) => {
   try {
