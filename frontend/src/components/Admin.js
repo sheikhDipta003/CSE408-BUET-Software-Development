@@ -3,6 +3,7 @@ import UserManagement from './UserManagement';
 import ContentManagement from './ContentManagement';
 import AnalyticsReports from './AnalyticsReports';
 import EventManagement from './EventManagement';
+import RegisterCollab from './RegisterCollab';
 
 const Admin = ({adminId}) => {
     const [activeMenu, setActiveMenu] = useState('Dashboard');
@@ -26,6 +27,7 @@ const Admin = ({adminId}) => {
                     <h2 className="text-lg font-bold mb-4">Admin Menu</h2>
                     <ul>
                         <li className={`cursor-pointer ${activeMenu === 'Dashboard' ? 'text-red-500 font-bold' : 'text-black'} mb-4`} onClick={() => handleMenuClick('Dashboard')}>Dashboard</li>
+                        <li className={`cursor-pointer ${activeMenu === 'Collaborator' ? 'text-red-500 font-bold' : 'text-black'} mb-4`} onClick={() => handleMenuClick('Collaborator')}>Add Collaborator</li>
                         <li className={`cursor-pointer ${activeMenu === 'My Profile' ? 'text-red-500 font-bold' : 'text-black'} mb-4`} onClick={() => handleMenuClick('My Profile')}>My Profile</li>
                         <li className={`cursor-pointer ${activeMenu === 'Settings' ? 'text-red-500 font-bold' : 'text-black'} mb-4`} onClick={() => handleMenuClick('Settings')}>Settings</li>
                     </ul>
@@ -44,6 +46,9 @@ const Admin = ({adminId}) => {
                             {activeSubMenu === 'Analytics' && <AnalyticsReports />}
                             {activeSubMenu === 'EventManagement' && <EventManagement />}
                         </div>
+                    )}
+                    {activeMenu === 'Collaborator' && (
+                        <RegisterCollab/>
                     )}
                 </div>
             </div>

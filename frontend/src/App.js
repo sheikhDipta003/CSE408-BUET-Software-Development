@@ -19,6 +19,7 @@ import About from "./components/About";
 import PersistLogin from "./components/PersistLogin";
 import Logout from "./components/Logout";
 import useAuth from "./hooks/useAuth";
+// import Collaborator from "./components/Collaborator";
 
 const ROLES = {
   Admin: 5150,
@@ -76,8 +77,12 @@ function App() {
           </Route>
 
           <Route element={<RequireAuth allowedRoles={ROLES.Admin} />}>
-            <Route path="admin" element={<Admin adminId={auth.userId}/>} />
+            <Route path="admin" element={<Admin adminId={auth.userId} />} />
           </Route>
+
+          {/* <Route element={<RequireAuth allowedRoles={ROLES.Collaborator} />}>
+            <Route path="collab" element={<Collaborator collabId={auth.userId} />} />
+          </Route> */}
         </Route>
 
         <Route path="*" element={<Missing />} />

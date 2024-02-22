@@ -266,7 +266,6 @@ const Register = () => {
             >
               <option value={ROLES.User}>User</option>
               <option value={ROLES.Admin}>Admin</option>
-              <option value={ROLES.Collaborator}>Collaborator</option>
             </select>
 
             <button
