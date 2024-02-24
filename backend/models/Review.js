@@ -21,6 +21,11 @@ const Review = sequelize.define(
         max: 5,
       },
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      allowNull: false,
+    },
     approved: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
