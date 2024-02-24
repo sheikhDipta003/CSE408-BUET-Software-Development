@@ -4,7 +4,6 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCheckSquare, faSquare, faSort, faSortUp, faSortDown, faArrowRight, faTimes, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import AdminReview from './AdminReview';
-import Notifications from './Notifications';
 import UserVoucher from './UserVoucher';
 import Wishlist from './Wishlist';
 
@@ -18,7 +17,6 @@ const Users = () => {
     const [showUserDetails, setShowUserDetails] = useState(false);
 
     const [openSections, setOpenSections] = useState({
-        notifications: false,
         vouchers: false,
         wishlist: false,
     });
@@ -205,23 +203,7 @@ const Users = () => {
                                             </button>
                                         </div>
                                         
-                                        <div className="bg-white w-full h-full mt-10 px-4">                
-                                            <div className="p-2 border-b-4 border-red-400">
-                                                <h2 className="text-lg font-semibold inline">Notifications</h2>
-                                                <button
-                                                    onClick={() => toggleAccordion('notifications')}
-                                                    className="mt-0 float-right focus:outline-none size-7"
-                                                >
-                                                    <FontAwesomeIcon
-                                                        icon={faChevronDown}
-                                                        className={`transition-transform transform ${openSections.notifications ? 'rotate-180' : ''}`}
-                                                    />
-                                                </button>
-                                            </div>
-                                            <div className={`p-4 border-b-4 border-red-400 ${openSections.notifications ? '' : 'hidden'}`}>
-                                                <Notifications userId={user.userId}/>
-                                            </div>
-                
+                                        <div className="bg-white w-full h-full mt-10 px-4">
                                             <div className="p-2 border-b-4 border-red-400">
                                                 <h2 className="text-lg font-semibold inline">Vouchers</h2>
                                                 <button
