@@ -67,10 +67,6 @@ function App() {
           </Route>
 
           <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
-            <Route path="users/:userId/wishlist" element={<Wishlist />} />
-          </Route>
-
-          <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
             <Route path="users/:userId/notifs" element={<Notifications />} />
           </Route>
 
