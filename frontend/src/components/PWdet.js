@@ -112,7 +112,6 @@ const ProductDetails = () => {
   };
 
   const handleSubmit = () => {
-    // Check if the input is a positive integer
     if (isNaN(parseInt(priceDrop)) || parseInt(priceDrop) < 0) {
       setShowWarning(true);
       return;
