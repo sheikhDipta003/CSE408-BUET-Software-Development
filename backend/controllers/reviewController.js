@@ -147,7 +147,36 @@ const reviewController = {
         console.error("Error approving review:", error);
         return res.status(500).json({ message: "Internal server error" });
     }
-  }
+  },
+
+  async getWeightedRating(req, res) {
+    try {
+      const reviews = await Review.findAll();
+  
+      const recentWeight = 0.7, olderWeight = 0.3;
+  
+      let weightedSum = 0;
+      let totalWeight = 0;
+      const currentDate = new Date();
+  
+      reviews.forEach(review => {
+        const reviewDate = new Date(review.createdAt);
+        const daysDifference = (currentDate - reviewDate) / (1000 * 3600 * 24);
+  
+        const weight = daysDifference < 30 ? recentWeight : olderWeight;
+  
+        weightedSum += review.rating * weight;
+        totalWeight += weight;
+      });
+  
+      const weightedRating = weightedSum / totalWeight;
+        
+      return res.status(200).json({ weightedRating: Number(weightedRating.toFixed(2)) });
+    } catch (error) {
+      console.error("Error calculating weighted rating:", error);
+      return res.status(500).json({ message: "Failed to calculate weighted rating" });
+    }
+  }  
 };
 
 module.exports = reviewController;
