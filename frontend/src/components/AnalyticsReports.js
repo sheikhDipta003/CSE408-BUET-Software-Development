@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faHandshake, faLaptop } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faHandshake,
+  faLaptop,
+} from "@fortawesome/free-solid-svg-icons";
 
 const AnalyticsReports = () => {
   const [userCount, setUserCount] = useState(0);
@@ -38,7 +42,9 @@ const AnalyticsReports = () => {
       <div className="bg-blue-200 rounded p-4 mr-2 flex items-center">
         <div>
           <h3 className="text-lg font-bold">Users</h3>
-          <p className="text-xl font-semibold flex justify-center">{userCount}</p>
+          <p className="text-xl font-semibold flex justify-center">
+            {userCount}
+          </p>
         </div>
         <div className="ml-4 mb-6">
           <FontAwesomeIcon icon={faUser} className="text-blue-800" />
@@ -49,7 +55,9 @@ const AnalyticsReports = () => {
       <div className="bg-green-200 rounded p-4 mr-2 flex items-center">
         <div>
           <h3 className="text-lg font-bold">Collaborative Websites</h3>
-          <p className="text-xl font-semibold flex justify-center">{collabSiteCount}</p>
+          <p className="text-xl font-semibold flex justify-center">
+            {collabSiteCount}
+          </p>
         </div>
         <div className="ml-4 mb-6">
           <FontAwesomeIcon icon={faHandshake} className="text-green-800" />
@@ -60,14 +68,16 @@ const AnalyticsReports = () => {
       <div className="bg-yellow-200 rounded p-4 flex items-center">
         <div>
           <h3 className="text-lg font-bold">Non-Collaborative Websites</h3>
-          <p className="text-xl font-semibold flex justify-center">{nonCollabSiteCount}</p>
+          <p className="text-xl font-semibold flex justify-center">
+            {nonCollabSiteCount}
+          </p>
         </div>
         <div className="ml-4 mb-6">
           <FontAwesomeIcon icon={faLaptop} className="text-yellow-800" />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default AnalyticsReports;

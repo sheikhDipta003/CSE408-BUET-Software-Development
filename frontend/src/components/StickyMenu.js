@@ -30,7 +30,7 @@ const StickyMenu = () => {
       >
         Recommended Products
       </Link>
-      
+
       <Link
         activeClass="active"
         to="trendingProducts"

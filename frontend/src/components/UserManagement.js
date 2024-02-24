@@ -1,12 +1,12 @@
-import React from 'react';
-import Users from './Users';
+import React from "react";
+import Users from "./Users";
 
 const UserManagement = () => {
   return (
     <div>
-      <Users/>
+      <Users />
     </div>
-  )
-}
+  );
+};
 
-export default UserManagement
+export default UserManagement;

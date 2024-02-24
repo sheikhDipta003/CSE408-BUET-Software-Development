@@ -38,7 +38,6 @@ const ProductDetails = () => {
     } else {
       console.log("Performing action for logged-in user");
       //price drop enter
-
     }
   };
 
@@ -288,7 +287,6 @@ const ProductDetails = () => {
               Create Alert
             </button>
           </div>
-
         </div>
       )}
     </div>

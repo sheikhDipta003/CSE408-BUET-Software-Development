@@ -119,12 +119,17 @@ const getAllVouchers = async (req, res) => {
       }
     });
 
-    const websiteId = website.dataValues.websiteId;
+    if(!website)
+    {
+      res.status(404).json({ message: "Collaborated website not found" })
+    }
+
+    const websiteId = parseInt(website.dataValues.websiteId, 10);
 
     const vouchers = await Voucher.findAll({
       where:
       {
-        WebsiteWebsiteId: websiteId,
+        websiteId: websiteId,
       }
     });
     res.status(200).json({ vouchers });

@@ -10,11 +10,11 @@ const Layout = () => {
   return (
     <main className="App">
       <Header title="Techshoppers" />
-      
-        <Nav />
-        <Menu />
-        <Outlet />
-        <ScrollToTop />
+
+      <Nav />
+      <Menu />
+      <Outlet />
+      <ScrollToTop />
       <Footer />
     </main>
   );

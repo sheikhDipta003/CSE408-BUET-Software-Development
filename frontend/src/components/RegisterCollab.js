@@ -48,21 +48,20 @@ const Register = () => {
     userRef.current.focus();
   }, []);
 
-  useEffect(()=> {
-    const fetchWebsites = async() => {
-        try {
-            const response = await fetch(`http://localhost:5000/websites/all`);
-            const data = await response.json();
-            console.log(data);
-            const websites=data.allWebsites.map((website)=>({
-                name: `${website.name}`,
-                websiteId: `${website.websiteId}`,
-            }))
-            setWebsites(websites);
-        }catch(error)
-        {
-            console.error('Error fetching websites:', error);
-        }
+  useEffect(() => {
+    const fetchWebsites = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/websites/all`);
+        const data = await response.json();
+        console.log(data);
+        const websites = data.allWebsites.map((website) => ({
+          name: `${website.name}`,
+          websiteId: `${website.websiteId}`,
+        }));
+        setWebsites(websites);
+      } catch (error) {
+        console.error("Error fetching websites:", error);
+      }
     };
     fetchWebsites();
   }, []);
@@ -88,14 +87,14 @@ const Register = () => {
     console.log("role = ", role);
   }, [role]);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("website =", websiteId);
   }, [websiteId]);
 
   const handleRoleChange = (roles) => {
     setRole(roles);
     setRoleSet(true);
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,7 +109,13 @@ const Register = () => {
       console.log("role=", role);
       const response = await axios.post(
         REGISTER_URL,
-        JSON.stringify({ username: user, email, password: pwd, role, websiteId }),
+        JSON.stringify({
+          username: user,
+          email,
+          password: pwd,
+          role,
+          websiteId,
+        }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
@@ -306,13 +311,18 @@ const Register = () => {
               }}
               className="border-2 border-black rounded-md p-2"
             >
-              {websiteId===0 &&
-              <option value={websiteId} key={websiteId}>Not chosen</option>
-              }
-              
-              {websites.length > 0 && websites.map((website)=> (
-                <option value={website.websiteId} key={website.websiteId}>{website.name}</option>
-              ))}
+              {websiteId === 0 && (
+                <option value={websiteId} key={websiteId}>
+                  Not chosen
+                </option>
+              )}
+
+              {websites.length > 0 &&
+                websites.map((website) => (
+                  <option value={website.websiteId} key={website.websiteId}>
+                    {website.name}
+                  </option>
+                ))}
             </select>
 
             <button

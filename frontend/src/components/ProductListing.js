@@ -24,18 +24,19 @@ const ProductListing = () => {
     navigate(`/products/${productId}`);
   };
 
-
-
   useEffect(() => {
     //fetch the product details and then iterate through them for the filtereing data
     const fetchData1 = async () => {
       try {
-        let response = await fetch(`http://localhost:5000/products/search/${category}/${subcategory}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
+        let response = await fetch(
+          `http://localhost:5000/products/search/${category}/${subcategory}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        });
+        );
 
         response = await response.json();
         setProductData(response.products);
@@ -46,12 +47,15 @@ const ProductListing = () => {
 
     const fetchData2 = async () => {
       try {
-        let response = await fetch(`http://localhost:5000/products/all/${category}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
+        let response = await fetch(
+          `http://localhost:5000/products/all/${category}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        });
+        );
 
         response = await response.json();
         setProductData(response.products);
@@ -61,10 +65,8 @@ const ProductListing = () => {
     };
 
     // Call fetchData function inside useEffect
-    if (subcategory === "all")
-      fetchData2();
-    else
-      fetchData1();
+    if (subcategory === "all") fetchData2();
+    else fetchData1();
     //console.log(productData);
   }, [category, subcategory]);
 
@@ -76,7 +78,7 @@ const ProductListing = () => {
       }
 
       specs.get(key).add(value);
-    }
+    };
     let brands = [];
     productData.forEach((item) => {
       if (!brands.includes(item.brand)) {
@@ -85,7 +87,7 @@ const ProductListing = () => {
       setBrands(brands);
       item.ProductSpecs.forEach((line) => {
         addToSet(line.specName, line.value);
-      })
+      });
       // specs.forEach((value, key) => {
       //   console.log(`Key: ${key}`);
       //   console.log('Values:');
@@ -105,11 +107,14 @@ const ProductListing = () => {
 
   const handleBrandChange = (brands) => {
     setSelectedBrands(brands);
-  }
+  };
 
   const filterProducts = (product) => {
     // Price Range Filter
-    if (product.minPrice < priceRange.lower || product.minPrice > priceRange.upper) {
+    if (
+      product.minPrice < priceRange.lower ||
+      product.minPrice > priceRange.upper
+    ) {
       return false;
     }
 
@@ -117,13 +122,14 @@ const ProductListing = () => {
     let allFiltersPass = true;
     selectedFilters.forEach((value, key) => {
       if (value.size > 0) {
-        const matchingSpec = product.ProductSpecs.find((item) => item.specName === key);
-        if (!matchingSpec ||
-          !Array.from(value).includes(matchingSpec.value)) {
+        const matchingSpec = product.ProductSpecs.find(
+          (item) => item.specName === key,
+        );
+        if (!matchingSpec || !Array.from(value).includes(matchingSpec.value)) {
           allFiltersPass = false;
         }
       }
-    })
+    });
     return allFiltersPass;
   };
 
@@ -131,8 +137,7 @@ const ProductListing = () => {
     let tempProductCards = [];
     productData.forEach((product, index) => {
       if (
-        filterProducts(product)
-        &&
+        filterProducts(product) &&
         (selectedBrands.length === 0 || selectedBrands.includes(product.brand))
       ) {
         tempProductCards.push(
@@ -147,11 +152,13 @@ const ProductListing = () => {
               <img src={product.imagePath} alt={product.productName} />
             </div>
             <h3>{product.productName}</h3>
-            <p><strong>Price:</strong> {product.minPrice}</p>
+            <p>
+              <strong>Price:</strong> {product.minPrice}
+            </p>
           </div>,
         );
       }
-    })
+    });
     switch (sortType) {
       case "priceLowToHigh":
         tempProductCards.sort((a, b) => a.props.price - b.props.price);
@@ -164,7 +171,15 @@ const ProductListing = () => {
     }
 
     setProductCards(tempProductCards);
-  }, [productData, sortType, selectedFilters, selectedBrands, priceRange, category, subcategory]);
+  }, [
+    productData,
+    sortType,
+    selectedFilters,
+    selectedBrands,
+    priceRange,
+    category,
+    subcategory,
+  ]);
 
   const handleSortChange = (e) => {
     setSortType(e.target.value);
@@ -184,7 +199,10 @@ const ProductListing = () => {
       options.push(i);
     }
     // Add an option for 'all' if the last option isn't exactly the total number of products
-    if (options.length === 0 || options[options.length - 1] !== productCards.length) {
+    if (
+      options.length === 0 ||
+      options[options.length - 1] !== productCards.length
+    ) {
       options.push("all");
     }
     return options;
@@ -202,9 +220,9 @@ const ProductListing = () => {
     itemsPerPage === "all"
       ? productCards
       : productCards.slice(
-        currentPage * itemsPerPage,
-        (currentPage + 1) * itemsPerPage,
-      );
+          currentPage * itemsPerPage,
+          (currentPage + 1) * itemsPerPage,
+        );
 
   return (
     <main className="ProductListing">
@@ -223,10 +241,10 @@ const ProductListing = () => {
           <div className="topBar">
             <div className="results-count">
               {Math.min(currentPage * itemsPerPage + 1, productCards.length) ===
-                Math.min(
-                  (currentPage + 1) * itemsPerPage,
-                  productCards.length,
-                ) ? (
+              Math.min(
+                (currentPage + 1) * itemsPerPage,
+                productCards.length,
+              ) ? (
                 <p>
                   Showing{" "}
                   {Math.min(
@@ -241,16 +259,16 @@ const ProductListing = () => {
                   {itemsPerPage === "all"
                     ? productCards.length
                     : Math.min(
-                      currentPage * itemsPerPage + 1,
-                      productCards.length,
-                    )}{" "}
+                        currentPage * itemsPerPage + 1,
+                        productCards.length,
+                      )}{" "}
                   -{" "}
                   {itemsPerPage === "all"
                     ? productCards.length
                     : Math.min(
-                      (currentPage + 1) * itemsPerPage,
-                      productCards.length,
-                    )}{" "}
+                        (currentPage + 1) * itemsPerPage,
+                        productCards.length,
+                      )}{" "}
                   of {productCards.length} results for "{category}/{subcategory}
                   "
                 </p>
@@ -263,7 +281,9 @@ const ProductListing = () => {
                 id="items-per-page"
                 className="items-per-page border-2 border-black rounded-sm"
                 onChange={handleItemsPerPageChange}
-                value={itemsPerPage===productCards.length? "all" : itemsPerPage}
+                value={
+                  itemsPerPage === productCards.length ? "all" : itemsPerPage
+                }
               >
                 {generateItemsPerPageOptions().map((option) => (
                   <option key={option} value={option}>

@@ -19,7 +19,7 @@ import About from "./components/About";
 import PersistLogin from "./components/PersistLogin";
 import Logout from "./components/Logout";
 import useAuth from "./hooks/useAuth";
-// import Collaborator from "./components/Collaborator";
+import Collaborator from "./components/Collaborator";
 
 const ROLES = {
   Admin: 5150,
@@ -42,18 +42,9 @@ function App() {
           path="productlisting/:category/:subcategory"
           element={<ProductListing />}
         />
-        <Route
-          path="compare"
-          element={<ProductComparisonPage />}
-        />
-        <Route
-          path="search/:keyword"
-          element={<ProductSearch />}
-        />
-        <Route
-          path="products/:productId"
-          element={<ProductDetails />}
-        />
+        <Route path="compare" element={<ProductComparisonPage />} />
+        <Route path="search/:keyword" element={<ProductSearch />} />
+        <Route path="products/:productId" element={<ProductDetails />} />
         <Route
           path="products/:productId/:websiteId"
           element={<ProductWebsite />}
@@ -70,19 +61,16 @@ function App() {
           </Route>
 
           <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
-            <Route
-              path="users/:userId/dashboard"
-              element={<UserDashboard />}
-            />
+            <Route path="users/:userId/dashboard" element={<UserDashboard />} />
           </Route>
 
           <Route element={<RequireAuth allowedRoles={ROLES.Admin} />}>
             <Route path="admin" element={<Admin adminId={auth.userId} />} />
           </Route>
 
-          {/* <Route element={<RequireAuth allowedRoles={ROLES.Collaborator} />}>
+          <Route element={<RequireAuth allowedRoles={ROLES.Collaborator} />}>
             <Route path="collab" element={<Collaborator collabId={auth.userId} />} />
-          </Route> */}
+          </Route>
         </Route>
 
         <Route path="*" element={<Missing />} />

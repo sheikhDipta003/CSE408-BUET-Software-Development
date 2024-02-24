@@ -42,4 +42,4 @@ const removeEvent = async (req, res) => {
   }
 };
 
-module.exports = { getAllEvents, getEventById, addEvent, removeEvent };
+module.exports = { getAllEvents, getEventById, removeEvent };

@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const validator = require("email-validator");
+const { Op, Sequelize } = require("sequelize");
 
 const handleNewUser = async (req, res) => {
   const { username, email, password, role } = req.body;
@@ -11,7 +12,7 @@ const handleNewUser = async (req, res) => {
     return res
       .status(400)
       .json({ message: "Username, email and password are required." });
-  
+
   if (!USER_REGEX.test(username) || !PWD_REGEX.test(password) || !validator.validate(email))
     return res
       .status(400)
@@ -27,7 +28,19 @@ const handleNewUser = async (req, res) => {
   );
 
   // check for duplicate usernames in the db
-  const duplicate = await User.findOne({ where: { email: email } });
+  const duplicate = await User.findOne({
+    where: {
+      [Op.or]:
+        [
+          {
+            email: email
+          },
+          {
+            username: username
+          }
+        ]
+    }
+  });
   if (duplicate) return res.sendStatus(409); //Conflict
 
   try {

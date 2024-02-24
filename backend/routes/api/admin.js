@@ -39,7 +39,7 @@ router.get("/events", adminEventController.getAllEvents);
 router.get("/events/:eventId", adminEventController.getEventById);
 
 // Add a new event
-router.post("/events/add", adminEventController.addEvent);
+//router.post("/events/add", adminEventController.addEvent);
 
 // Remove an event by event_id
 router.delete("/events/:eventId/remove", adminEventController.removeEvent);

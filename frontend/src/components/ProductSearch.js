@@ -23,20 +23,21 @@ const ProductListing = () => {
   const goToProductDetail = (productId) => {
     navigate(`/products/${productId}`);
   };
-  
-
 
   useEffect(() => {
     //fetch the product details and then iterate through them for the filtereing data
     const fetchData = async () => {
       try {
-        let response = await fetch(`http://localhost:5000/products/productlisting/${keyword}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
+        let response = await fetch(
+          `http://localhost:5000/products/productlisting/${keyword}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        });
-  
+        );
+
         response = await response.json();
         setProductData(response.products);
       } catch (error) {
@@ -44,8 +45,6 @@ const ProductListing = () => {
       }
     };
     fetchData();
-
-    
   }, [keyword]);
   useEffect(() => {
     let specs = new Map();
@@ -55,7 +54,7 @@ const ProductListing = () => {
       }
 
       specs.get(key).add(value);
-    }
+    };
     let brands = [];
     productData.forEach((item) => {
       if (!brands.includes(item.brand)) {
@@ -64,7 +63,7 @@ const ProductListing = () => {
       setBrands(brands);
       item.ProductSpecs.forEach((line) => {
         addToSet(line.specName, line.value);
-      })
+      });
       // specs.forEach((value, key) => {
       //   console.log(`Key: ${key}`);
       //   console.log('Values:');
@@ -84,11 +83,14 @@ const ProductListing = () => {
 
   const handleBrandChange = (brands) => {
     setSelectedBrands(brands);
-  }
+  };
 
   const filterProducts = (product) => {
     // Price Range Filter
-    if (product.minPrice < priceRange.lower || product.minPrice > priceRange.upper) {
+    if (
+      product.minPrice < priceRange.lower ||
+      product.minPrice > priceRange.upper
+    ) {
       return false;
     }
 
@@ -96,13 +98,14 @@ const ProductListing = () => {
     let allFiltersPass = true;
     selectedFilters.forEach((value, key) => {
       if (value.size > 0) {
-        const matchingSpec = product.ProductSpecs.find((item) => item.specName === key);
-        if (!matchingSpec ||
-          !Array.from(value).includes(matchingSpec.value)) {
+        const matchingSpec = product.ProductSpecs.find(
+          (item) => item.specName === key,
+        );
+        if (!matchingSpec || !Array.from(value).includes(matchingSpec.value)) {
           allFiltersPass = false;
         }
       }
-    })
+    });
     return allFiltersPass;
   };
 
@@ -110,9 +113,8 @@ const ProductListing = () => {
     let tempProductCards = [];
     productData.forEach((product, index) => {
       if (
-        filterProducts(product) 
-        &&
-        (selectedBrands.length === 0 || selectedBrands.includes(product.brand)) 
+        filterProducts(product) &&
+        (selectedBrands.length === 0 || selectedBrands.includes(product.brand))
       ) {
         tempProductCards.push(
           <div
@@ -123,14 +125,16 @@ const ProductListing = () => {
             brand={product.brand}
           >
             <div className="images h-screen flex items-center">
-            <img src={product.imagePath} alt={product.productName} />
+              <img src={product.imagePath} alt={product.productName} />
             </div>
             <h3>{product.productName}</h3>
-            <p><strong>Price:</strong> {product.minPrice}</p>
+            <p>
+              <strong>Price:</strong> {product.minPrice}
+            </p>
           </div>,
         );
       }
-    })
+    });
     switch (sortType) {
       case "priceLowToHigh":
         tempProductCards.sort((a, b) => a.props.price - b.props.price);
@@ -143,7 +147,14 @@ const ProductListing = () => {
     }
 
     setProductCards(tempProductCards);
-  }, [productData, sortType, selectedFilters, selectedBrands, priceRange, keyword]);
+  }, [
+    productData,
+    sortType,
+    selectedFilters,
+    selectedBrands,
+    priceRange,
+    keyword,
+  ]);
 
   const handleSortChange = (e) => {
     setSortType(e.target.value);
@@ -163,7 +174,10 @@ const ProductListing = () => {
       options.push(i);
     }
     // Add an option for 'all' if the last option isn't exactly the total number of products
-    if (options.length === 0 || options[options.length - 1] !== productCards.length) {
+    if (
+      options.length === 0 ||
+      options[options.length - 1] !== productCards.length
+    ) {
       options.push("all");
     }
     return options;
@@ -181,9 +195,9 @@ const ProductListing = () => {
     itemsPerPage === "all"
       ? productCards
       : productCards.slice(
-        currentPage * itemsPerPage,
-        (currentPage + 1) * itemsPerPage,
-      );
+          currentPage * itemsPerPage,
+          (currentPage + 1) * itemsPerPage,
+        );
 
   return (
     <main className="ProductListing">
@@ -202,10 +216,10 @@ const ProductListing = () => {
           <div className="topBar">
             <div className="results-count">
               {Math.min(currentPage * itemsPerPage + 1, productCards.length) ===
-                Math.min(
-                  (currentPage + 1) * itemsPerPage,
-                  productCards.length,
-                ) ? (
+              Math.min(
+                (currentPage + 1) * itemsPerPage,
+                productCards.length,
+              ) ? (
                 <p>
                   Showing{" "}
                   {Math.min(
@@ -220,18 +234,17 @@ const ProductListing = () => {
                   {itemsPerPage === "all"
                     ? productCards.length
                     : Math.min(
-                      currentPage * itemsPerPage + 1,
-                      productCards.length,
-                    )}{" "}
+                        currentPage * itemsPerPage + 1,
+                        productCards.length,
+                      )}{" "}
                   -{" "}
                   {itemsPerPage === "all"
                     ? productCards.length
                     : Math.min(
-                      (currentPage + 1) * itemsPerPage,
-                      productCards.length,
-                    )}{" "}
-                  of {productCards.length} results for "{keyword}
-                  "
+                        (currentPage + 1) * itemsPerPage,
+                        productCards.length,
+                      )}{" "}
+                  of {productCards.length} results for "{keyword}"
                 </p>
               )}
             </div>
@@ -242,7 +255,9 @@ const ProductListing = () => {
                 id="items-per-page"
                 className="items-per-page border-2 border-black rounded-sm"
                 onChange={handleItemsPerPageChange}
-                value={itemsPerPage===productCards.length? "all" : itemsPerPage}
+                value={
+                  itemsPerPage === productCards.length ? "all" : itemsPerPage
+                }
               >
                 {generateItemsPerPageOptions().map((option) => (
                   <option key={option} value={option}>
@@ -264,11 +279,11 @@ const ProductListing = () => {
           </div>
 
           <div className="main-content">
-           {currentItems.length ? (
-                currentItems
-              ) : (
-                <p className="statusMsg">No products to display.</p>
-              )}
+            {currentItems.length ? (
+              currentItems
+            ) : (
+              <p className="statusMsg">No products to display.</p>
+            )}
           </div>
 
           <ReactPaginate

@@ -7,15 +7,23 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "../css/ProductFilter.css";
 
-const ProductFilter = ({ specs, brands, onFilterChange, onBrandChange, onPriceRangeChange }) => {//gets the inputs from ProductListing
+const ProductFilter = ({
+  specs,
+  brands,
+  onFilterChange,
+  onBrandChange,
+  onPriceRangeChange,
+}) => {
+  //gets the inputs from ProductListing
   //const [expanded, setExpanded] = useState({});//expand the options
   let specNames = [];
-  const [selectedOptions, setSelectedOptions] = useState(new Map());//choose the options
-  const [lowerValue, setLowerValue] = useState(0);//price lower value
-  const [upperValue, setUpperValue] = useState(400000);//price upper value
+  const [selectedOptions, setSelectedOptions] = useState(new Map()); //choose the options
+  const [lowerValue, setLowerValue] = useState(0); //price lower value
+  const [upperValue, setUpperValue] = useState(400000); //price upper value
   const [selectedBrands, setSelectedBrands] = useState([]);
 
-  const handleLowerSliderChange = async (event) => {//when the slide is changed, the lowervalue is changed
+  const handleLowerSliderChange = async (event) => {
+    //when the slide is changed, the lowervalue is changed
     try {
       const value = Math.min(Number(event.target.value), 200000);
       setLowerValue(value);
@@ -24,7 +32,8 @@ const ProductFilter = ({ specs, brands, onFilterChange, onBrandChange, onPriceRa
     }
   };
 
-  const handleUpperSliderChange = async (event) => {//when the slide is changed, the upper value is changed
+  const handleUpperSliderChange = async (event) => {
+    //when the slide is changed, the upper value is changed
     try {
       const value = Math.max(Number(event.target.value), 200000);
       setUpperValue(value);
@@ -46,7 +55,8 @@ const ProductFilter = ({ specs, brands, onFilterChange, onBrandChange, onPriceRa
     //console.log(selectedOptions);
   }, [specs, brands]);
 
-  useEffect(() => {//change in price range
+  useEffect(() => {
+    //change in price range
     onPriceRangeChange({ lower: lowerValue, upper: upperValue });
   }, [lowerValue, upperValue]);
 
@@ -57,8 +67,7 @@ const ProductFilter = ({ specs, brands, onFilterChange, onBrandChange, onPriceRa
     if (!checked) {
       setSelectedBrands((prev) => {
         return prev.filter((o) => o !== brand);
-      }
-      )
+      });
     }
   };
 
@@ -66,15 +75,15 @@ const ProductFilter = ({ specs, brands, onFilterChange, onBrandChange, onPriceRa
     onBrandChange(selectedBrands);
   }, [selectedBrands]);
 
-  const handleCheckboxChange = (checked, key, option) => {//change in check box
+  const handleCheckboxChange = (checked, key, option) => {
+    //change in check box
     setSelectedOptions((prev) => {
       const next = new Map(prev);
-      if(checked){
+      if (checked) {
         const keySet = next.get(key);
         keySet.add(option);
         next.set(key, keySet);
-      }
-      else{
+      } else {
         const keySet = next.get(key);
         keySet.delete(option);
         next.set(key, keySet);
@@ -96,7 +105,7 @@ const ProductFilter = ({ specs, brands, onFilterChange, onBrandChange, onPriceRa
     // });
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     onFilterChange(selectedOptions);
   }, [selectedOptions]);
 
@@ -177,7 +186,7 @@ const ProductFilter = ({ specs, brands, onFilterChange, onBrandChange, onPriceRa
       {/* {Object.entries(specs).map(([key, options]) =>
         renderSpecFilterGroup(key, options),
       )} */}
-      {specs.size >0 &&
+      {specs.size > 0 &&
         Array.from(specs.entries()).map(([key, value]) => (
           <div key={key} className="filter-group">
             <div className="filter-header">
@@ -188,14 +197,15 @@ const ProductFilter = ({ specs, brands, onFilterChange, onBrandChange, onPriceRa
                 <input
                   type="checkbox"
                   value={v}
-                  onChange={(e) => handleCheckboxChange(e.target.checked, key, v)}
+                  onChange={(e) =>
+                    handleCheckboxChange(e.target.checked, key, v)
+                  }
                 />
                 {v}
               </label>
             ))}
           </div>
-        ))
-      }
+        ))}
     </div>
   );
 };
