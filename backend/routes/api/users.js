@@ -18,7 +18,7 @@ router.get("/trending", recommend.getTrendingProducts);
 
 //profile
 router.get("/:userId", profile.getUser);
-router.put("/:userId/update", profile.updateUser);
+router.route("/:userId/update").put(verifyRole(ROLES_LIST.User), profile.updateUser);
 router.get("/:userId/delete", profile.deleteUser);
 
 //wishlist
