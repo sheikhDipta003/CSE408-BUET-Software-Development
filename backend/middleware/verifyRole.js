@@ -6,7 +6,7 @@ const verifyRole = (...allowedRoles) => {
         console.log(allowedRoles);
         console.log(req.roles);
         const result = allowedRoles.includes(ROLES_LIST[req.roles]);
-        if (!result) return res.sendStatus(401);
+        if (!result) return res.status(500).json({ message: "You are not authorized." });
         next();
     }
 }
