@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import ColEventAdd from "./ColEventAdd";
 // import ColVoucherAdd from "./ColVoucherAdd";
-import ColEventManage from "./ColEventManage";
+import EventManagement from "./ColEventManage";
 import VoucherManagement from "./ColVoucherManage";
 
 const Collaborator = ({ collabId }) => {
@@ -96,7 +96,7 @@ const Collaborator = ({ collabId }) => {
                 </li>
               </ul>
               {activeSubMenu === "AllE" && (
-                <ColEventManage collabId={collabId} />
+                <EventManagement collabId={collabId} />
               )}
               {/* {activeSubMenu === "AddE" && <ColEventAdd collabId={collabId} />} */}
             </div>
