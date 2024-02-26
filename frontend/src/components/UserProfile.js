@@ -542,7 +542,6 @@ const UserProfile = () => {
           <UserEvent userId={userId}/>
         )}
 
-        {activeMenuItem === "Events" && <UserEvent userId={userId} />}
       </div>
     </div>
   );

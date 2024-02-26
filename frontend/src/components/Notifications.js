@@ -59,7 +59,6 @@ const Notifications = () => {
 
     return (
         <div className='mx-8 my-4'>
-            {/* Unread notifications */}
             <h2 className="mb-4 text-xl font-bold">Unread Notifications</h2>
             {unreadNotifs.length === 0 && (
                 <p className='p-2 m-4 border-l-4 border-l-emerald-400'>You've read all the messages in your inbox.</p>
@@ -74,7 +73,6 @@ const Notifications = () => {
                 </div>
             ))}
 
-            {/* Read notifications */}
             <h2 className="mb-4 text-xl font-bold">Read Notifications</h2>
             {readNotifs.length === 0 && (
                 <p className='p-2 m-4 border-l-4 border-l-emerald-400'>You haven't read any of the messages!</p>

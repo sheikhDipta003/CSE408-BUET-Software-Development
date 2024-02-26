@@ -322,6 +322,32 @@ const generateRecommendations = async (req, res) => {
   }
 };
 
+const generateTopProducts = async (req, res) => {
+  try {
+    const { collabId } = req.params;
+    const { productId } = req.body;
+
+    const website = await Website.findOne({ where: { collabId } });
+    if (!website) {
+      return res.status(404).json({ message: "Website not found for the provided collabId" });
+    }
+
+    const productWebsite = await ProductWebsite.findOne({
+      where: { websiteId: website.websiteId, productId },
+    });
+    if (!productWebsite) {
+      return res.status(404).json({ message: "Product not found for the provided collabId and productId" });
+    }
+
+    const productInfo = (await getProductInfo(productWebsite.pwId)).data;
+
+    res.status(200).json(productInfo);
+  } catch (error) {
+    console.error("Error generating top products:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 const getProductInfo = async(pwId) => {
   try {
     const productWebsite = await ProductWebsite.findByPk(pwId, {
@@ -377,4 +403,5 @@ module.exports = {
   getAllUserClickcount,
   generateRecommendations,
   getTrendingProducts,
+  generateTopProducts
 };
