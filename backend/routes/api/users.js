@@ -18,7 +18,7 @@ router.get("/trending", recommend.getTrendingProducts);
 
 //profile
 router.get("/:userId", profile.getUser);
-router.put("/:userId/update", profile.updateUser);
+router.route("/:userId/update").put(verifyRole(ROLES_LIST.User), profile.updateUser);
 router.get("/:userId/delete", profile.deleteUser);
 
 //wishlist
@@ -36,13 +36,14 @@ router.get("/:userId/notification/:notifId/delete", notif.deleteNotification);
 router.get("/:userId/reviews", review.getUserReviews);
 router.post("/:userId/reviews", review.createReview);
 router.get("/:userId/reviews/:reviewId", review.getReviewById);
-router.get("/:userId/reviews/:reviewId/edit", review.updateReview);
+router.put("/:userId/reviews/:reviewId/edit", review.updateReview);
 router.get("/:userId/reviews/:reviewId/delete", review.deleteReview);
 
 //price-drop alerts
 router.route("/:userId/alerts/pricedrop").post(verifyRole(ROLES_LIST.User), pricedrop.setPriceDropAlert);
 router.get("/:userId/alerts/pricedrop", pricedrop.viewPriceDropAlerts);
-router.delete("/:userId/alerts/pricedrop", pricedrop.removePriceDropAlert);
+router.put("/:userId/alerts/pricedrop/update", pricedrop.updatePriceDrop);
+router.delete("/:userId/alerts/pricedrop/delete/:productId/:websiteId", pricedrop.removePriceDropAlert);
 
 // vouchers
 router.get("/:userId/vouchers", uservoucher.getUserVouchers);

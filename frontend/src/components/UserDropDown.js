@@ -70,6 +70,22 @@ const UserDropDown = ({ userId }) => {
             My Account
           </Link>
 
+          <Link
+            to={`/users/${userId}/notifs`}
+            className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200"
+            onClick={closeDropdown}
+          >
+            Notification
+          </Link>
+
+          <Link
+            to={`/users/${userId}/pricedrop`}
+            className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200"
+            onClick={closeDropdown}
+          >
+            Price Drops
+          </Link>
+
           <Logout />
         </div>
       )}

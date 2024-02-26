@@ -8,6 +8,7 @@ const adminEventController = require("../../controllers/adminEventController");
 const adminProfileController = require("../../controllers/adminProfileController");
 
 //manage reviews
+router.get("/rating", reviewController.getWeightedRating);
 router.get("/reviews", reviewController.getUnapprovedReviews);
 router.put("/reviews/:reviewId/approve", reviewController.approveReview);
 router.delete("/reviews/:reviewId/delete", reviewController.deleteReview);

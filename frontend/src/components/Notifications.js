@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useParams } from 'react-router-dom';
 
-const Notifications = ({ userId }) => {
-  const axiosPrivate = useAxiosPrivate();
-  const [notifs, setNotifs] = useState([]);
+const Notifications = () => {
+    const axiosPrivate = useAxiosPrivate();
+    const [notifs, setNotifs] = useState([]);
+    const { userId } = useParams();
 
   useEffect(() => {
     let isMounted = true;
@@ -54,57 +56,37 @@ const Notifications = ({ userId }) => {
     }
   };
 
-  const unreadNotifs = notifs.filter((notif) => !notif.isRead);
-  const readNotifs = notifs.filter((notif) => notif.isRead);
+    return (
+        <div className='mx-8 my-4'>
+            {/* Unread notifications */}
+            <h2 className="mb-4 text-xl font-bold">Unread Notifications</h2>
+            {unreadNotifs.length === 0 && (
+                <p className='p-2 m-4 border-l-4 border-l-emerald-400'>You've read all the messages in your inbox.</p>
+            )}
+            {unreadNotifs.map(notif => (
+                <div key={notif.notifId} className="notification-card bg-teal-300 p-4 m-4 rounded-lg shadow">
+                    <div className="accordion-header hover:cursor-pointer" onClick={() => markAsRead(notif.notifId)}>
+                        {notif.title}
+                        <FontAwesomeIcon icon={faTrash} className="cursor-pointer float-right" onClick={() => handleDelete(notif.notifId)} />
+                    </div>
+                    {notif.isRead && <p className='bg-teal-100'>{notif.message}</p>}
+                </div>
+            ))}
 
-  return (
-    <div>
-      {/* Unread notifications */}
-      <h2 className="mb-4 text-xl font-bold">Unread Notifications</h2>
-      {unreadNotifs.length === 0 && (
-        <p className="p-2 m-4">
-          Woohoo! You've read all the messages in your inbox.
-        </p>
-      )}
-      {unreadNotifs.map((notif) => (
-        <div
-          key={notif.notifId}
-          className="notification-card bg-teal-300 p-4 m-4 rounded-lg shadow"
-        >
-          <div
-            className="accordion-header hover:cursor-pointer"
-            onClick={() => markAsRead(notif.notifId)}
-          >
-            {notif.title}
-            <FontAwesomeIcon
-              icon={faTrash}
-              className="cursor-pointer float-right"
-              onClick={() => handleDelete(notif.notifId)}
-            />
-          </div>
-          {notif.isRead && <p className="bg-teal-100">{notif.message}</p>}
-        </div>
-      ))}
-
-      {/* Read notifications */}
-      <h2 className="mb-4 text-xl font-bold">Read Notifications</h2>
-      {readNotifs.length === 0 && (
-        <p className="self-center">You haven't read any of the messages!</p>
-      )}
-      {readNotifs.map((notif) => (
-        <div
-          key={notif.notifId}
-          className="notification-card  p-4 m-4 rounded-lg shadow bg-teal-100"
-        >
-          <div className="accordion-header hover:cursor-pointer bg-teal-300 p-2 rounded-md">
-            {notif.title}
-            <FontAwesomeIcon
-              icon={faTrash}
-              className="cursor-pointer float-right text-red-700 hover:text-red-800"
-              onClick={() => handleDelete(notif.notifId)}
-            />
-          </div>
-          {notif.isRead && <p className="bg-teal-100 p-2">{notif.message}</p>}
+            {/* Read notifications */}
+            <h2 className="mb-4 text-xl font-bold">Read Notifications</h2>
+            {readNotifs.length === 0 && (
+                <p className='p-2 m-4 border-l-4 border-l-emerald-400'>You haven't read any of the messages!</p>
+            )}
+            {readNotifs.map(notif => (
+                <div key={notif.notifId} className="notification-card  p-4 m-4 rounded-lg shadow bg-teal-100 border-l-4 border-l-emerald-400">
+                    <div className="accordion-header hover:cursor-pointer bg-teal-300 p-2 rounded-md">
+                        {notif.title}
+                        <FontAwesomeIcon icon={faTrash} className="cursor-pointer float-right text-red-700 hover:text-red-800" onClick={() => handleDelete(notif.notifId)} />
+                    </div>
+                    {notif.isRead && <p className='bg-teal-100 p-2'>{notif.message}</p>}
+                </div>
+            ))}
         </div>
       ))}
     </div>

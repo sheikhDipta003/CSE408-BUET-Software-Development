@@ -407,3 +407,13 @@ button {
   background-color: #0056b3;
 }
 /* user profile end */
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.75; }
+  100% { opacity: 1; }
+}
+
+.blink {
+  animation: blink 1s infinite;
+}

@@ -75,18 +75,19 @@ const AdminReview = () => {
         prevReviews.filter((review) => review.reviewId !== reviewId),
       );
 
-      const newNotif = {
-        title: "Your Review hasb been Approved",
-        message: "Thank you for your feedback!",
-        isRead: false,
-        userId: userId,
-      };
-      await axiosPrivate.post(`admin/users/${userId}/notify`, newNotif);
-      console.log(`Notified user ${userId}!`);
-    } catch (error) {
-      console.error("Error approving review:", error);
-    }
-  };
+
+            const newNotif = {
+                title:"Your Review has been received", 
+                message:"Thank you for your feedback!", 
+                isRead: false, 
+                userId:userId
+            };
+            await axiosPrivate.post(`admin/users/${userId}/notify`, newNotif);
+            console.log(`Notified user ${userId}!`);
+        } catch (error) {
+            console.error('Error approving review:', error);
+        }
+    };
 
   const handleApproveSelected = async () => {
     const selectedReviews = reviews.filter((review) => review.isSelected);

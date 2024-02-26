@@ -3,16 +3,9 @@ import { useNavigate, useLocation, useParams, Link } from "react-router-dom";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import Wishlist from "./Wishlist";
 import UserVoucher from "./UserVoucher";
-import Notifications from "./Notifications";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEdit,
-  faTrash,
-  faCheck,
-  faTimes,
-  faInfoCircle,
-} from "@fortawesome/free-solid-svg-icons";
-import UserEvent from "./UserEvent";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import UserEvent from './UserEvent';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -133,6 +126,47 @@ const UserProfile = () => {
     setActiveTab("ManageReviews");
   };
 
+  const handleEditReview = async (reviewId) => {
+    const selectedReview = reviews.find(review => review.reviewId === reviewId);
+    if (selectedReview) {
+      const newContent = prompt("Enter the new content:", selectedReview.content);
+      let newRating = prompt("Enter the new rating (0 - 5):", selectedReview.rating);
+
+    if (newContent !== null && newRating !== null) {
+        newRating = parseInt(newRating);
+        if (!Number.isInteger(newRating) || newRating < 0 || newRating > 5) {
+          alert("Please enter a valid rating between 0 and 5.");
+          return;
+        }
+        const updatedReview = {
+          ...selectedReview,
+          content: newContent,
+          rating: parseInt(newRating)
+        };
+
+        try {
+          const response = await axiosPrivate.put(`/users/${userId}/reviews/${reviewId}/edit`, {
+            content: updatedReview.content,
+            rating: updatedReview.rating
+          });
+          alert(response.data.message);
+        } catch (err) {
+          console.error('Error updating review:', err);
+          alert(err.response?.data?.message || err.message);
+        }
+  
+        const updatedReviews = reviews.map(review => {
+          if (review.reviewId === reviewId) {
+            return updatedReview;
+          }
+          return review;
+        });
+  
+        setReviews(updatedReviews);
+      }
+    }
+  };
+
   const toggleEdit = () => {
     setIsEditing(!isEditing);
   };
@@ -159,10 +193,6 @@ const UserProfile = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const handleEdit = (reviewId) => {
-    console.log("Editing review:", reviewId);
   };
 
   const handleDelete = async (reviewId) => {
@@ -207,13 +237,6 @@ const UserProfile = () => {
             onClick={() => handleMenuClick("Reviews")}
           >
             Reviews
-          </li>
-
-          <li
-            className={`menu-item ${activeMenuItem === "Notifs" ? "active text-red-600 font-bold bg-yellow-300" : ""} hover:bg-yellow-200 rounded-md`}
-            onClick={() => handleMenuClick("Notifs")}
-          >
-            Notifications
           </li>
 
           <li
@@ -495,7 +518,7 @@ const UserProfile = () => {
                       </div>
                       <div className="flex space-x-2">
                         <button
-                          onClick={() => handleEdit(review.reviewId)}
+                          onClick={() => handleEditReview(review.reviewId)}
                           className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200"
                         >
                           <FontAwesomeIcon icon={faEdit} />
@@ -515,7 +538,9 @@ const UserProfile = () => {
           </div>
         )}
 
-        {activeMenuItem === "Notifs" && <Notifications userId={userId} />}
+        {activeMenuItem === "Events" && (
+          <UserEvent userId={userId}/>
+        )}
 
         {activeMenuItem === "Events" && <UserEvent userId={userId} />}
       </div>

@@ -8,7 +8,7 @@ const RequireAuth = ({ allowedRoles }) => {
   console.log("auth?.roles = ", auth?.roles);
   console.log("allowedRoles = ", allowedRoles);
 
-  return auth?.roles === allowedRoles ? (
+  return allowedRoles.includes(auth?.roles) ? (
     <Outlet />
   ) : auth?.accessToken ? (
     <Navigate to="/unauthorized" state={{ from: location }} replace />
