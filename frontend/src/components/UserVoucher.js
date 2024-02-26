@@ -22,7 +22,7 @@ const UserVoucher = ({ userId }) => {
       }
     };
 
-
+    getUserVouchers();
     return () => {
       isMounted = false;
     };
