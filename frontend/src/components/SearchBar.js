@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../api/axios";
 
 const SearchBar = () => {
   const categories = {
@@ -15,9 +16,10 @@ const SearchBar = () => {
   useEffect(() => {
     const fetchProductSuggestions = async () => {
       try {
-        // Replace 'your-backend-endpoint' with your actual backend endpoint for fetching product suggestions
-        const response = await fetch(`http://localhost:5000/products/search/${encodeURIComponent(input)}`);
-        const data = await response.json();
+        const response = await api.get(
+          `/products/search/${encodeURIComponent(input)}`
+        );
+        const data = response.data;
         console.log(data);
         if (!data || data.length === 0) {
           setProductSuggest([]);
@@ -30,9 +32,10 @@ const SearchBar = () => {
 
         setProductSuggest(matchedSuggestions);
       } catch (error) {
-        console.error('Error fetching product suggestions:', error);
+        console.error("Error fetching product suggestions:", error);
       }
     };
+
     if (input.length > 0) {
       fetchProductSuggestions();
       const matchedSuggestions = [];
@@ -93,7 +96,7 @@ const SearchBar = () => {
     setInput("");
   };
 
-  const  handleProductSuggestClick = (suggestion) => {
+  const handleProductSuggestClick = (suggestion) => {
     console.log(suggestion);
     const id = suggestion.productId;
     console.log(suggestion.label);
@@ -102,7 +105,7 @@ const SearchBar = () => {
     setProductSuggest([]);
     setSuggestions([]);
     setInput("");
-   }
+  };
 
   return (
     <div className="relative w-5/6" ref={searchBarRef}>
@@ -116,24 +119,26 @@ const SearchBar = () => {
       />
       {(productSuggest.length > 0 || suggestions.length > 0) && (
         <div className="absolute top-full left-0 right-0 bg-white border mt-1 max-h-40 overflow-auto z-50">
-          {productSuggest.length > 0 && productSuggest.map((suggestion, index) => (
-            <div
-              key={index}
-              className="p-2 hover:bg-gray-100 cursor-pointer"
-              onClick={() => handleProductSuggestClick(suggestion)}
-            >
-              {suggestion.label}
-            </div>
-          ))}
-          {suggestions.length > 0 && suggestions.map((suggestion, index) => (
-            <div
-              key={index}
-              className="p-2 hover:bg-gray-100 cursor-pointer"
-              onClick={() => handleSuggestionClick(suggestion)}
-            >
-              {suggestion}
-            </div>
-          ))}
+          {productSuggest.length > 0 &&
+            productSuggest.map((suggestion, index) => (
+              <div
+                key={index}
+                className="p-2 hover:bg-gray-100 cursor-pointer"
+                onClick={() => handleProductSuggestClick(suggestion)}
+              >
+                {suggestion.label}
+              </div>
+            ))}
+          {suggestions.length > 0 &&
+            suggestions.map((suggestion, index) => (
+              <div
+                key={index}
+                className="p-2 hover:bg-gray-100 cursor-pointer"
+                onClick={() => handleSuggestionClick(suggestion)}
+              >
+                {suggestion}
+              </div>
+            ))}
         </div>
       )}
     </div>

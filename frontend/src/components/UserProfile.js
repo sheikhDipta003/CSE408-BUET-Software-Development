@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation, useParams, Link } from "react-router-dom";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import Wishlist from './Wishlist';
+import Wishlist from "./Wishlist";
 import UserVoucher from "./UserVoucher";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
@@ -21,7 +21,7 @@ const UserProfile = () => {
   });
   const [formData, setFormData] = useState({
     content: "",
-    rating:5
+    rating: 5,
   });
   const [activeMenuItem, setActiveMenuItem] = useState("Profile");
   const [activeTab, setActiveTab] = useState("NewReview");
@@ -111,9 +111,9 @@ const UserProfile = () => {
 
   const handleReviewSubmit = async (e) => {
     try {
-      const newReview = {content: formData.content, rating: formData.rating};
+      const newReview = { content: formData.content, rating: formData.rating };
       await axiosPrivate.post(`/users/${userId}/reviews`, newReview);
-      setFormData({content:'', rating:5});
+      setFormData({ content: "", rating: 5 });
     } catch (err) {
       console.error(err);
     }
@@ -124,7 +124,7 @@ const UserProfile = () => {
     }, 2000);
 
     setActiveTab("ManageReviews");
-  }
+  };
 
   const handleEditReview = async (reviewId) => {
     const selectedReview = reviews.find(review => review.reviewId === reviewId);
@@ -187,8 +187,8 @@ const UserProfile = () => {
 
     getReviews();
   }, [reviews]);
-  
-  const handleFormChange = (e) => {    
+
+  const handleFormChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -196,13 +196,13 @@ const UserProfile = () => {
   };
 
   const handleDelete = async (reviewId) => {
-    console.log('Deleting review:', reviewId);
+    console.log("Deleting review:", reviewId);
     try {
-        await axiosPrivate.get(`users/${userId}/reviews/${reviewId}/delete`);
-        const revList = reviews.filter(review => review.reviewId !== reviewId);
-        setReviews(revList);
+      await axiosPrivate.get(`users/${userId}/reviews/${reviewId}/delete`);
+      const revList = reviews.filter((review) => review.reviewId !== reviewId);
+      setReviews(revList);
     } catch (err) {
-        console.log(`Error: ${err.message}`);
+      console.log(`Error: ${err.message}`);
     }
   };
 
@@ -245,13 +245,11 @@ const UserProfile = () => {
           >
             Events
           </li>
-
         </ul>
       </div>
 
       {/* Right Section - Content */}
       <div className="p-4 max-w-3xl">
-        
         {activeMenuItem === "Profile" && (
           <div className="user-info">
             <label>Name:</label>
@@ -271,10 +269,12 @@ const UserProfile = () => {
                 <p
                   id="uidnote"
                   className={
-                    userFocus && user.username && !validName ? "text-xs text-black rounded-md p-1 relative bottom-10" : "absolute left-[-9999px]"
+                    userFocus && user.username && !validName
+                      ? "text-xs text-black rounded-md p-1 relative bottom-10"
+                      : "absolute left-[-9999px]"
                   }
                 >
-                  <FontAwesomeIcon icon={faInfoCircle} color="black"/>
+                  <FontAwesomeIcon icon={faInfoCircle} color="black" />
                   4 to 24 characters.
                   <br />
                   Must begin with a letter.
@@ -300,7 +300,11 @@ const UserProfile = () => {
                 />
                 <p
                   id="pwdnote"
-                  className={pwdFocus && !validPwd ? "text-xs text-black rounded-md p-1 relative bottom-10" : "absolute left-[-9999px]"}
+                  className={
+                    pwdFocus && !validPwd
+                      ? "text-xs text-black rounded-md p-1 relative bottom-10"
+                      : "absolute left-[-9999px]"
+                  }
                 >
                   <FontAwesomeIcon icon={faInfoCircle} />
                   8 to 24 characters.
@@ -338,7 +342,9 @@ const UserProfile = () => {
                 <p
                   id="confirmnote"
                   className={
-                    matchFocus && !validMatch ? "text-xs text-black rounded-md p-1 relative bottom-10" : "absolute left-[-9999px]"
+                    matchFocus && !validMatch
+                      ? "text-xs text-black rounded-md p-1 relative bottom-10"
+                      : "absolute left-[-9999px]"
                   }
                 >
                   <FontAwesomeIcon icon={faInfoCircle} />
@@ -365,35 +371,45 @@ const UserProfile = () => {
             )}
 
             <label>Registration Date:</label>
-            <p>{new Date(user.registrationDate).toLocaleDateString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</p>
+            <p>
+              {new Date(user.registrationDate).toLocaleDateString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
 
             <div className="flex flex-wrap flex-row justify-evenly">
               <button
-               onClick={isEditing ? handleSubmit : toggleEdit} 
-               className="w-1/2"
-               disabled={
-                  isEditing && (validName || validPwd || validMatch || validEmail)
+                onClick={isEditing ? handleSubmit : toggleEdit}
+                className="w-1/2"
+                disabled={
+                  isEditing &&
+                  (validName || validPwd || validMatch || validEmail)
                     ? false
-                    : !isEditing? false: true
+                    : !isEditing
+                      ? false
+                      : true
                 }
               >
                 {isEditing ? "Save" : "Edit"}
               </button>
-              
-              <button onClick={() => setIsEditing(false)} disabled={!isEditing} className="w-1/2">
+
+              <button
+                onClick={() => setIsEditing(false)}
+                disabled={!isEditing}
+                className="w-1/2"
+              >
                 Cancel
               </button>
             </div>
           </div>
         )}
 
-        {activeMenuItem === "Vouchers" && (
-          <UserVoucher userId={userId}/>
-        )}
+        {activeMenuItem === "Vouchers" && <UserVoucher userId={userId} />}
 
-        {activeMenuItem === "Wishlist" && (
-          <Wishlist userId={userId}/>
-        )}
+        {activeMenuItem === "Wishlist" && <Wishlist userId={userId} />}
 
         {activeMenuItem === "Reviews" && (
           <div>
@@ -401,7 +417,9 @@ const UserProfile = () => {
             <nav className="flex mb-4">
               <button
                 className={`mr-4 px-4 py-2 text-black ${
-                  activeTab === "NewReview" ? "bg-blue-500 text-white rounded" : "bg-slate-300 "
+                  activeTab === "NewReview"
+                    ? "bg-blue-500 text-white rounded"
+                    : "bg-slate-300 "
                 }`}
                 onClick={() => setActiveTab("NewReview")}
               >
@@ -409,21 +427,26 @@ const UserProfile = () => {
               </button>
               <button
                 className={`px-4 py-2 text-black ${
-                  activeTab === "ManageReviews" ? "bg-blue-500 text-white rounded" : "bg-slate-300 text-black"
+                  activeTab === "ManageReviews"
+                    ? "bg-blue-500 text-white rounded"
+                    : "bg-slate-300 text-black"
                 }`}
                 onClick={() => setActiveTab("ManageReviews")}
               >
                 Manage Reviews
               </button>
             </nav>
-        
+
             {/* Content based on active tab */}
             {activeTab === "NewReview" && (
               <div>
                 <h3 className="mb-4 text-xl font-bold">Create a New Review</h3>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-4">
-                    <label className="block mb-1 font-semibold" htmlFor="content">
+                    <label
+                      className="block mb-1 font-semibold"
+                      htmlFor="content"
+                    >
                       Your Message:
                     </label>
                     <textarea
@@ -438,7 +461,10 @@ const UserProfile = () => {
                     />
                   </div>
                   <div className="mb-4">
-                    <label className="block mb-1 font-semibold" htmlFor="rating">
+                    <label
+                      className="block mb-1 font-semibold"
+                      htmlFor="rating"
+                    >
                       Rating (0 - 5):
                     </label>
                     <input
@@ -469,20 +495,26 @@ const UserProfile = () => {
                     </div>
                   </div>
                 )}
-                
               </div>
             )}
-        
+
             {activeTab === "ManageReviews" && (
               <div>
                 <h3 className="mb-4 text-xl font-bold">Manage Reviews</h3>
 
                 {reviews.map((review) => (
-                  <div key={review.reviewId} className="bg-teal-200 rounded-lg shadow-md p-4 mb-4">
+                  <div
+                    key={review.reviewId}
+                    className="bg-teal-200 rounded-lg shadow-md p-4 mb-4"
+                  >
                     <div className="flex justify-between items-center">
                       <div>
-                        <p className="text-lg font-normal mb-4">{review.content}</p>
-                        <p className="text-purple-800">Rating: {review.rating}</p>
+                        <p className="text-lg font-normal mb-4">
+                          {review.content}
+                        </p>
+                        <p className="text-purple-800">
+                          Rating: {review.rating}
+                        </p>
                       </div>
                       <div className="flex space-x-2">
                         <button
@@ -501,8 +533,8 @@ const UserProfile = () => {
                     </div>
                   </div>
                 ))}
-                </div>
-              )}
+              </div>
+            )}
           </div>
         )}
 
@@ -510,9 +542,10 @@ const UserProfile = () => {
           <UserEvent userId={userId}/>
         )}
 
+        {activeMenuItem === "Events" && <UserEvent userId={userId} />}
       </div>
     </div>
   );
-}
+};
 
 export default UserProfile;

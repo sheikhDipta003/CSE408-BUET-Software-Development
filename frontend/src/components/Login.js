@@ -12,6 +12,7 @@ const ROLES = {
 
 const Login = () => {
   const { setAuth, persist, setPersist } = useAuth();
+  const { auth } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -58,6 +59,8 @@ const Login = () => {
       setPwd("");
       if (roles === ROLES.User) navigate(from, { replace: true });
       else if (roles === ROLES.Admin) navigate("/admin", { replace: true });
+      else if (roles === ROLES.Collaborator)
+        navigate(`/collab`, { replace: true });
       console.log(
         "roles = ",
         roles,
@@ -66,7 +69,7 @@ const Login = () => {
         ", ROLES.User = ",
         ROLES.User,
         "userId = ",
-        userId
+        userId,
       );
     } catch (err) {
       if (!err?.response) {

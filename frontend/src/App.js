@@ -19,6 +19,7 @@ import About from "./components/About";
 import PersistLogin from "./components/PersistLogin";
 import Logout from "./components/Logout";
 import useAuth from "./hooks/useAuth";
+import Collaborator from "./components/Collaborator";
 import UserViewPriceDrop from './components/UserViewPriceDrop';
 import Notifications from "./components/Notifications";
 
@@ -43,18 +44,9 @@ function App() {
           path="productlisting/:category/:subcategory"
           element={<ProductListing />}
         />
-        <Route
-          path="compare"
-          element={<ProductComparisonPage />}
-        />
-        <Route
-          path="search/:keyword"
-          element={<ProductSearch />}
-        />
-        <Route
-          path="products/:productId"
-          element={<ProductDetails />}
-        />
+        <Route path="compare" element={<ProductComparisonPage />} />
+        <Route path="search/:keyword" element={<ProductSearch />} />
+        <Route path="products/:productId" element={<ProductDetails />} />
         <Route
           path="products/:productId/:websiteId"
           element={<ProductWebsite />}
@@ -69,6 +61,11 @@ function App() {
           <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
             <Route path="users/:userId/notifs" element={<Notifications />} />
           </Route>
+
+
+
+          <Route element={<RequireAuth allowedRoles={ROLES.Collaborator} />}>
+            <Route path="collab" element={<Collaborator collabId={auth.userId} />} />
 
           <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
             <Route path="users/:userId/pricedrop" element={<UserViewPriceDrop />} />

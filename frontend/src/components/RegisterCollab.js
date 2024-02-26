@@ -13,7 +13,7 @@ import ROLES from "../App";
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const REGISTER_URL = "/register";
+const REGISTER_URL = "/register/collab";
 
 const Register = () => {
   const userRef = useRef();
@@ -38,10 +38,32 @@ const Register = () => {
   const [validEmail, setValidEmail] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
 
-  const [role, setRole] = useState(ROLES.User);
+  const [websites, setWebsites] = useState([]);
+  const [websiteId, setWebsiteId] = useState(0);
+
+  const [role, setRole] = useState(ROLES.Collaborator);
+  const [isRole, setRoleSet] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    const fetchWebsites = async () => {
+      try {
+        const response = await axios.get(`/websites/all`);
+        const data = response.data;
+        console.log(data);
+        const websites = data.allWebsites.map((website) => ({
+          name: `${website.name}`,
+          websiteId: `${website.websiteId}`,
+        }));
+        setWebsites(websites);
+      } catch (error) {
+        console.error("Error fetching websites:", error);
+      }
+    };
+    fetchWebsites();
   }, []);
 
   useEffect(() => {
@@ -65,6 +87,15 @@ const Register = () => {
     console.log("role = ", role);
   }, [role]);
 
+  useEffect(() => {
+    console.log("website =", websiteId);
+  }, [websiteId]);
+
+  const handleRoleChange = (roles) => {
+    setRole(roles);
+    setRoleSet(true);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // if button enabled with JS hack
@@ -75,9 +106,16 @@ const Register = () => {
       return;
     }
     try {
+      console.log("role=", role);
       const response = await axios.post(
         REGISTER_URL,
-        JSON.stringify({ username: user, email, password: pwd, role }),
+        JSON.stringify({
+          username: user,
+          email,
+          password: pwd,
+          role,
+          websiteId,
+        }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
@@ -107,10 +145,7 @@ const Register = () => {
     <>
       {success ? (
         <section>
-          <h1>Success!</h1>
-          <p className="text-green-600">
-            <Link to="/login">Sign In</Link>
-          </p>
+          <h1>Successfully added!</h1>
         </section>
       ) : (
         <section>
@@ -121,7 +156,7 @@ const Register = () => {
           >
             {errMsg}
           </p>
-          <h1>Register</h1>
+          <h1>Register Collaborator</h1>
           <form onSubmit={handleSubmit}>
             <label htmlFor="username">
               Username:
@@ -260,12 +295,34 @@ const Register = () => {
               id="role"
               value={role}
               onChange={(e) => {
-                setRole(e.target.value);
+                handleRoleChange(e.target.value);
               }}
               className="border-2 border-black rounded-md p-2"
             >
-              <option value={ROLES.User}>User</option>
-              <option value={ROLES.Admin}>Admin</option>
+              {!isRole && <option>None</option>}
+              <option value={ROLES.Collaborator}>Collaborator</option>
+            </select>
+            <label htmlFor="websiteId">Website:</label>
+            <select
+              id="website"
+              value={websiteId}
+              onChange={(e) => {
+                setWebsiteId(e.target.value);
+              }}
+              className="border-2 border-black rounded-md p-2"
+            >
+              {websiteId === 0 && (
+                <option value={websiteId} key={websiteId}>
+                  Not chosen
+                </option>
+              )}
+
+              {websites.length > 0 &&
+                websites.map((website) => (
+                  <option value={website.websiteId} key={website.websiteId}>
+                    {website.name}
+                  </option>
+                ))}
             </select>
 
             <button
@@ -275,16 +332,16 @@ const Register = () => {
                   : false
               }
             >
-              Sign Up
+              Register Collaborator
             </button>
           </form>
-          <p className="text-green-600">
+          {/* <p className="text-green-600">
             Already registered?
             <br />
             <span className="line">
               <Link to="/login">Sign In</Link>
             </span>
-          </p>
+          </p> */}
         </section>
       )}
     </>

@@ -9,7 +9,7 @@ const UserDashboard = () => {
   const [trendingProducts, setTrendingProducts] = useState([]);
   const [topOffers, setTopOffers] = useState([]);
   const axiosPrivate = useAxiosPrivate();
-  const {userId} = useParams();
+  const { userId } = useParams();
 
   useEffect(() => {
     let isMounted = true;
@@ -19,7 +19,7 @@ const UserDashboard = () => {
         const response = await axiosPrivate.get(`/users/${userId}/recommend`);
         console.log("from recommend = ", response.data.recommendations);
         isMounted && setRecommendedProducts(response.data.recommendations);
-        
+
         const response2 = await axiosPrivate.get(`/users/trending`);
         console.log("from trending = ", response2.data.trending);
         isMounted && setTrendingProducts(response2.data.trending);

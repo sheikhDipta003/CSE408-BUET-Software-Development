@@ -3,14 +3,14 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const EventManagement = () => {
+const EventManagement = ({ collabId }) => {
   const [events, setEvents] = useState([]);
   const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axiosPrivate.get(`/admin/events`);
+        const response = await axiosPrivate.get(`/collab/${collabId}/events`);
         setEvents(response.data.events);
       } catch (error) {
         console.error("Error fetching events:", error);
@@ -22,7 +22,7 @@ const EventManagement = () => {
 
   const handleDeleteEvent = async (eventId) => {
     try {
-      await axiosPrivate.delete(`admin/events/${eventId}/remove`);
+      await axiosPrivate.delete(`collab/${collabId}/events/${eventId}/remove`);
       setEvents((prevEvents) =>
         prevEvents.filter((event) => event.eId !== eventId),
       );

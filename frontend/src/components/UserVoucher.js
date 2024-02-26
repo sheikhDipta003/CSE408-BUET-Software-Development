@@ -9,20 +9,19 @@ const UserVoucher = ({ userId }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortConfig, setSortConfig] = useState({ key: null, direction: '' });
 
-    useEffect(() => {
-        let isMounted = true;
+  useEffect(() => {
+    let isMounted = true;
 
-        const getUserVouchers = async () => {
-            try {
-                const response = await axiosPrivate.get(`/users/${userId}/vouchers`);
-                console.log(response.data);
-                isMounted && setUserVouchers(response.data);
-            } catch (err) {
-                console.error(err);
-            }
-        };
+    const getUserVouchers = async () => {
+      try {
+        const response = await axiosPrivate.get(`/users/${userId}/vouchers`);
+        console.log(response.data);
+        isMounted && setUserVouchers(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-        getUserVouchers();
 
         return () => {
             isMounted = false;
@@ -32,6 +31,8 @@ const UserVoucher = ({ userId }) => {
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
     };
+  }, []);
+
 
     const handleSort = (key) => {
         let direction = 'asc';

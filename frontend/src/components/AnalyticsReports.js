@@ -81,7 +81,7 @@ const AnalyticsReports = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default AnalyticsReports;

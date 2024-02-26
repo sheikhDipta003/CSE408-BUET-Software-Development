@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import api from '../api/axios';
+import api from "../api/axios";
 import feature1 from "../images/feature1.png";
 import feature2 from "../images/feature2.png";
 import feature3 from "../images/feature3.png";
@@ -35,12 +35,12 @@ const Home = () => {
 
     const getReviews = async () => {
       try {
-          const response = await api.get('/reviews');
-          console.log(response.data);
-          console.log(isMounted);
-          isMounted && setReviews(response.data);
+        const response = await api.get("/reviews");
+        console.log(response.data);
+        console.log(isMounted);
+        isMounted && setReviews(response.data);
       } catch (err) {
-          console.log(`Error: ${err.message}`);
+        console.log(`Error: ${err.message}`);
       }
     };
 
@@ -94,7 +94,7 @@ const Home = () => {
                 {testimonial.content}
               </p>
 
-              <RatingStar rating={testimonial.rating}/>
+              <RatingStar rating={testimonial.rating} />
             </blockquote>
             <figcaption className="mt-2 text-right text-xl italic text-slate-500 dark:text-slate-400 sm:text-2xl">
               &#8212;{testimonial.username}

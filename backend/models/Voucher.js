@@ -38,6 +38,10 @@ const Voucher = sequelize.define(
       type: DataTypes.DATE,
       allowNull: false,
     },
+    total: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    }
   },
   {
     timestamps: false,

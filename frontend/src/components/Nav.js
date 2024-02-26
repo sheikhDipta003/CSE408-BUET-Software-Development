@@ -3,6 +3,7 @@ import UserDropDown from "./UserDropDown.js";
 import SearchBar from "./SearchBar.js";
 import useAuth from "../hooks/useAuth";
 import AdminDropdown from "./AdminDropdown.js";
+import CollabDropdown from "./CollabDropdown.js";
 
 const ROLES = {
   Admin: 5150,
@@ -20,15 +21,17 @@ const Nav = () => {
       <SearchBar />
       <ul>
         <li>
-          <Link to='/compare'>Compare</Link>
+          <Link to="/compare">Compare</Link>
         </li>
         {auth?.accessToken ? (
-          auth.roles === ROLES.Admin || auth.roles === "Admin" ? (
+          auth.roles === ROLES.Admin ? (
             <AdminDropdown />
+          ) : (auth.roles === ROLES.Collaborator ? (
+            <CollabDropdown />
           ) : (
             <UserDropDown userId={auth.userId} />
           )
-        ) : (
+        )) : (
           <>
             <li>
               <Link to="/login">Login</Link>
