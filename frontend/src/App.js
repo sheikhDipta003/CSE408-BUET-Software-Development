@@ -62,10 +62,9 @@ function App() {
             <Route path="users/:userId/notifs" element={<Notifications />} />
           </Route>
 
-
-
-          <Route element={<RequireAuth allowedRoles={ROLES.Collaborator} />}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.Collaborator]} />}>
             <Route path="collab" element={<Collaborator collabId={auth.userId} />} />
+          </Route>
 
           <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
             <Route path="users/:userId/pricedrop" element={<UserViewPriceDrop />} />

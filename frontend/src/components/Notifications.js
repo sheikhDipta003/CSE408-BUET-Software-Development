@@ -9,56 +9,58 @@ const Notifications = () => {
     const [notifs, setNotifs] = useState([]);
     const { userId } = useParams();
 
-  useEffect(() => {
-    let isMounted = true;
+    useEffect(() => {
+        let isMounted = true;
 
-    const getNotifs = async () => {
-      try {
-        const response = await axiosPrivate.get(
-          `/users/${userId}/notification`,
-        );
-        console.log("from Notifications.js = ", response.data.notifications);
-        isMounted && setNotifs(response.data.notifications);
-      } catch (err) {
-        console.error(err);
-      }
+        const getNotifs = async () => {
+            try {
+                const response = await axiosPrivate.get(
+                    `/users/${userId}/notification`,
+                );
+                console.log("from Notifications.js = ", response.data.notifications);
+                isMounted && setNotifs(response.data.notifications);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        getNotifs();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
+    const handleDelete = async (notifId) => {
+        console.log("Deleting notif:", notifId);
+        try {
+            await axiosPrivate.get(`users/${userId}/notification/${notifId}/delete`);
+            const notifList = notifs.filter((notif) => notif.notifId !== notifId);
+            setNotifs(notifList);
+        } catch (err) {
+            console.log(`Error: ${err.message}`);
+        }
     };
 
-    getNotifs();
-
-    return () => {
-      isMounted = false;
+    const markAsRead = async (notifId) => {
+        console.log("Marking notif as read:", notifId);
+        try {
+            await axiosPrivate.get(`users/${userId}/notification/${notifId}/mark`);
+            // Update notif's status
+            const updatedNotifs = notifs.map((notif) =>
+                notif.notifId === notifId ? { ...notif, isRead: true } : notif,
+            );
+            setNotifs(updatedNotifs);
+        } catch (err) {
+            console.error("Error marking notif as read:", err);
+        }
     };
-  }, []);
 
-  const handleDelete = async (notifId) => {
-    console.log("Deleting notif:", notifId);
-    try {
-      await axiosPrivate.get(`users/${userId}/notification/${notifId}/delete`);
-      const notifList = notifs.filter((notif) => notif.notifId !== notifId);
-      setNotifs(notifList);
-    } catch (err) {
-      console.log(`Error: ${err.message}`);
-    }
-  };
-
-  const markAsRead = async (notifId) => {
-    console.log("Marking notif as read:", notifId);
-    try {
-      await axiosPrivate.get(`users/${userId}/notification/${notifId}/mark`);
-      // Update notif's status
-      const updatedNotifs = notifs.map((notif) =>
-        notif.notifId === notifId ? { ...notif, isRead: true } : notif,
-      );
-      setNotifs(updatedNotifs);
-    } catch (err) {
-      console.error("Error marking notif as read:", err);
-    }
-  };
+    const unreadNotifs = notifs.filter(notif => !notif.isRead);
+    const readNotifs = notifs.filter(notif => notif.isRead);
 
     return (
         <div className='mx-8 my-4'>
-            {/* Unread notifications */}
             <h2 className="mb-4 text-xl font-bold">Unread Notifications</h2>
             {unreadNotifs.length === 0 && (
                 <p className='p-2 m-4 border-l-4 border-l-emerald-400'>You've read all the messages in your inbox.</p>
@@ -73,7 +75,6 @@ const Notifications = () => {
                 </div>
             ))}
 
-            {/* Read notifications */}
             <h2 className="mb-4 text-xl font-bold">Read Notifications</h2>
             {readNotifs.length === 0 && (
                 <p className='p-2 m-4 border-l-4 border-l-emerald-400'>You haven't read any of the messages!</p>
@@ -88,9 +89,7 @@ const Notifications = () => {
                 </div>
             ))}
         </div>
-      ))}
-    </div>
-  );
+    );
 };
 
 export default Notifications;
