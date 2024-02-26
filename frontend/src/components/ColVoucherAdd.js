@@ -5,12 +5,14 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "../api/axios";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import "../css/Register.css";
 import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
 
 const ColVoucherAdd = ({ collabId }) => {
   const errRef = useRef();
+  const axiosPrivate = useAxiosPrivate();
 
   const [voucherCode, setVoucherCode] = useState("");
   const [discountPercentage, setDiscountPer] = useState(0);
@@ -19,11 +21,14 @@ const ColVoucherAdd = ({ collabId }) => {
   const [total, setTotal] = useState();
   const [endDate, setEndDate] = useState(new Date());
 
+  const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
+      const response = await axiosPrivate.post(
         "/collab/voucher/add",
         JSON.stringify({
           voucherCode,

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import ColEventAdd from "./ColEventAdd";
-// import ColVoucherAdd from "./ColVoucherAdd";
+import ColEventAdd from "./ColEventAdd";
+import ColVoucherAdd from "./ColVoucherAdd";
 import EventManagement from "./ColEventManage";
 import VoucherManagement from "./ColVoucherManage";
 
@@ -74,9 +74,9 @@ const Collaborator = ({ collabId }) => {
               {activeSubMenu === "AllV" && (
                 <VoucherManagement collabId={collabId} />
               )}
-              {/* {activeSubMenu === "AddV" && (
+              {activeSubMenu === "AddV" && (
                 <ColVoucherAdd collabId={collabId} />
-              )} */}
+              )}
             </div>
           )}
           {activeMenu === "Events" && (
@@ -98,7 +98,7 @@ const Collaborator = ({ collabId }) => {
               {activeSubMenu === "AllE" && (
                 <EventManagement collabId={collabId} />
               )}
-              {/* {activeSubMenu === "AddE" && <ColEventAdd collabId={collabId} />} */}
+              {activeSubMenu === "AddE" && <ColEventAdd collabId={collabId} />}
             </div>
           )}
         </div>

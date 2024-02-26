@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-// import { Table, Form, Col } from 'react-bootstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import "../css/ProductCompare.css";
+import api from "../api/axios"
 
 const ProductComparisonPage = () => {
   const [product1, setProduct1] = useState("");
@@ -27,11 +26,11 @@ const ProductComparisonPage = () => {
   useEffect(() => {
     const fetchProduct1Suggestions = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/products/search/${encodeURIComponent(product1)}`,
+        const response = await api.get(
+          `/products/search/${encodeURIComponent(product1)}`,
         );
         //console.log(product1)
-        const data = await response.json();
+        const data = response.data;
         //console.log(data);
         if (!data || data.length === 0) {
           setProductSuggest1([]);
@@ -58,11 +57,11 @@ const ProductComparisonPage = () => {
   useEffect(() => {
     const fetchProduct2Suggestions = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/products/search/${encodeURIComponent(product2)}`,
+        const response = await api.get(
+          `/products/search/${encodeURIComponent(product2)}`,
         );
         //console.log(product2)
-        const data = await response.json();
+        const data = response.data;
         //console.log(data);
         if (!data || data.length === 0) {
           setProductSuggest2([]);
@@ -116,13 +115,13 @@ const ProductComparisonPage = () => {
     const id = suggestion.productId;
 
     try {
-      const response = await fetch(`http://localhost:5000/products/${id}`);
+      const response = await api.get(`/products/${id}`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch product data");
       }
 
-      const data = await response.json();
+      const data = response.data;
       //console.log(data.productDetails);
       setProduct1val(data.productDetails);
       //console.log(product1val);
@@ -137,13 +136,13 @@ const ProductComparisonPage = () => {
   const handleProductSuggestClick2 = async (suggestion) => {
     const id = suggestion.productId;
     try {
-      const response = await fetch(`http://localhost:5000/products/${id}`);
+      const response = await api.get(`/products/${id}`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch product data");
       }
 
-      const data = await response.json();
+      const data = response.data;
       //console.log(data.productDetails);
       setProduct2val(data.productDetails);
       //console.log(product2val);
@@ -213,16 +212,6 @@ const ProductComparisonPage = () => {
     }
   }, [product1val, product2val, allFeatures, p1Features, p2Features]);
 
-  const criteriaData = [
-    { criteria: "Price", feature1: "Price1", feature2: "Price2" },
-    { criteria: "Quality", feature1: "Quality1", feature2: "Quality2" },
-    {
-      criteria: "Durability",
-      feature1: "Durability1",
-      feature2: "Durability2",
-    },
-    // Add more criteria as needed
-  ];
 
   return (
     <div className="container mx-auto m-10 content-center">

@@ -51,8 +51,8 @@ const Register = () => {
   useEffect(() => {
     const fetchWebsites = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/websites/all`);
-        const data = await response.json();
+        const response = await axios.get(`/websites/all`);
+        const data = response.data;
         console.log(data);
         const websites = data.allWebsites.map((website) => ({
           name: `${website.name}`,

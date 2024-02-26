@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../api/axios";
 
 const SearchBar = () => {
   const categories = {
@@ -15,11 +16,10 @@ const SearchBar = () => {
   useEffect(() => {
     const fetchProductSuggestions = async () => {
       try {
-        // Replace 'your-backend-endpoint' with your actual backend endpoint for fetching product suggestions
-        const response = await fetch(
-          `http://localhost:5000/products/search/${encodeURIComponent(input)}`,
+        const response = await api.get(
+          `/products/search/${encodeURIComponent(input)}`
         );
-        const data = await response.json();
+        const data = response.data;
         console.log(data);
         if (!data || data.length === 0) {
           setProductSuggest([]);
@@ -35,6 +35,7 @@ const SearchBar = () => {
         console.error("Error fetching product suggestions:", error);
       }
     };
+
     if (input.length > 0) {
       fetchProductSuggestions();
       const matchedSuggestions = [];

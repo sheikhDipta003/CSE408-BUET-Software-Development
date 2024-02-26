@@ -13,6 +13,7 @@ import {
 import { Line } from "react-chartjs-2";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import useAuth from "../hooks/useAuth";
+import api from "../api/axios"
 
 const ROLES = {
   Admin: 5150,
@@ -50,23 +51,17 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response = await fetch(
-          `http://localhost:5000/products/${productId}/${websiteId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          },
+        let response = await api.get(
+          `/products/${productId}/${websiteId}`
         );
 
-        response = await response.json();
-        console.log(response);
-        setProduct(response.productDetails);
-        const productWebsiteTs = response.productDetails.ProductWebsites[0];
+        const data = response.data;
+        console.log(data);
+        setProduct(data.productDetails);
+        const productWebsiteTs = data.productDetails.ProductWebsites[0];
         setWebsites(productWebsiteTs);
         setName(productWebsiteTs.Website.name);
-        const specs = response.productDetails.ProductSpecs;
+        const specs = data.productDetails.ProductSpecs;
         setSpecs(specs);
         const price = productWebsiteTs.ProductPrices;
         setPrices(price);
@@ -129,12 +124,8 @@ const ProductDetails = () => {
     console.log(pricesConv);
   }, [prices]);
 
-  const priceData = [
-    { date: "2022-01-01", price: 100 },
-    { date: "2022-01-02", price: 120 },
-    { date: "2022-01-03", price: 90 },
-  ];
   const [wishlist, setWishlist] = useState(false);
+  
   const handleAddToWishlist = async (pwId) => {
     setWishlist(!wishlist);
 
@@ -216,6 +207,10 @@ const ProductDetails = () => {
               <strong>Subcategory: </strong>
               {product.subcategory}
             </p>
+            <p>
+              <strong>Price: </strong>
+              {website.price}
+            </p>
           </div>
         </div>
         <div className="ml-10">
@@ -225,24 +220,25 @@ const ProductDetails = () => {
             </button>
           </a>
           <br></br>
-          <button
-            className="bg-green-500 text-white px-4 py-2"
-            onClick={() => handleAddToWishlist(website.pwId)}
-          >
-            Add to wishlist
-          </button>
-        </div>
-        {/* <div className="col-md-2"> */}
-        {/* {!wishlist && (
-            <button className="btn btn-primary" onClick={handleAddToWishlist}>
+          {!wishlist && (
+            <button className="bg-green-500 text-white px-4 py-2" onClick={() => handleAddToWishlist(website.pwId)}>
               Add to Wishlist
             </button>
           )}
           {wishlist && (
-            <button className="btn btn-primary" onClick={handleAddToWishlist}>
+            <button className="bg-green-500 text-white px-4 py-2" onClick={() => handleAddToWishlist(website.pwId)}>//////////////////////////////////////////////////////////////////////
               Added to wishlist
             </button>
-          )} */}
+          )}
+          {/* <button
+            className="bg-green-500 text-white px-4 py-2"
+            onClick={() => handleAddToWishlist(website.pwId)}
+          >
+            Add to wishlist
+          </button> */}
+        </div>
+        {/* <div className="col-md-2"> */}
+        
         {/* <a href={website.pwURL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
             Visit Website
           </a> */}

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-// import {Table} from 'react-bootstrap'
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import api from "../api/axios"
 
 const ProductDetails = () => {
   const [product, setProduct] = useState([]);
@@ -13,22 +12,16 @@ const ProductDetails = () => {
     const fetchData = async () => {
       try {
         console.log(productId);
-        let response = await fetch(
-          `http://localhost:5000/products/${productId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          },
+        let response = await api.get(
+          `/products/${productId}`,
         );
 
-        response = await response.json();
-        setProduct(response.productDetails);
-        const productWebsiteTs = response.productDetails.ProductWebsites;
+        const data = response.data;
+        setProduct(data.productDetails);
+        const productWebsiteTs = data.productDetails.ProductWebsites;
         console.log(productWebsiteTs);
         setWebsites(productWebsiteTs);
-        const specs = response.productDetails.ProductSpecs;
+        const specs = data.productDetails.ProductSpecs;
         setSpecs(specs);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -36,6 +29,8 @@ const ProductDetails = () => {
     };
     fetchData();
   }, [productId]);
+
+  
   return (
     <div className="container mx-auto mt-8 content-center">
       <div className="flex justify-center items-center">

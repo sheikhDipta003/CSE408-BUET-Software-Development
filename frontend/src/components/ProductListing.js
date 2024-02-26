@@ -28,18 +28,12 @@ const ProductListing = () => {
     //fetch the product details and then iterate through them for the filtereing data
     const fetchData1 = async () => {
       try {
-        let response = await fetch(
-          `http://localhost:5000/products/search/${category}/${subcategory}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          },
+        let response = await api.get(
+          `/products/search/${category}/${subcategory}`,
         );
 
-        response = await response.json();
-        setProductData(response.products);
+        const data = response.data;
+        setProductData(data.products);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -47,18 +41,12 @@ const ProductListing = () => {
 
     const fetchData2 = async () => {
       try {
-        let response = await fetch(
-          `http://localhost:5000/products/all/${category}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          },
+        let response = await api.get(
+          `/products/all/${category}`,
         );
 
-        response = await response.json();
-        setProductData(response.products);
+        const data = response.data;
+        setProductData(data.products);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
