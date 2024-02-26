@@ -16,7 +16,9 @@ const CarouselSection = ({ title, id, userId, products }) => {
 
   return (
     <div id={id} className="w-[95vw] mb-3">
-      <h2 className="text-4xl font-bold mb-2 mt-8 text-center border-b-4 border-red-500">{title}</h2>
+      <h2 className="text-4xl font-bold mb-2 mt-8 text-center border-b-4 border-red-500">
+        {title}
+      </h2>
       <Carousel
         showArrows={true}
         showStatus={false}
@@ -30,7 +32,7 @@ const CarouselSection = ({ title, id, userId, products }) => {
             className="flex justify-center items-center bg-antiquewhite"
           >
             {chunk.map((product, idx) => (
-              <ProductCard key={idx} product={product} userId={userId}/>
+              <ProductCard key={idx} product={product} userId={userId} />
             ))}
           </div>
         ))}

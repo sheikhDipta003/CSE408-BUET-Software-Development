@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import "../css/Dropdown.css"
+import "../css/Dropdown.css";
 import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
@@ -43,8 +43,11 @@ const Menu = () => {
           <div
             key={category}
             className={`menu-item${activeCategory === category ? " active" : ""}`}
-            onMouseEnter={()=> handleCategoryHover(category)}
-            onMouseLeave={()=>{setActiveCategory(null); setHoverSubcategory(null)}}
+            onMouseEnter={() => handleCategoryHover(category)}
+            onMouseLeave={() => {
+              setActiveCategory(null);
+              setHoverSubcategory(null);
+            }}
           >
             {category.charAt(0).toUpperCase() + category.slice(1)}
             {activeCategory === category && (
@@ -61,7 +64,9 @@ const Menu = () => {
                   <div
                     key={subcategory}
                     className={`subcategory-item${hoverSubcategory === subcategory ? " hover" : ""}`}
-                    onClick={() => handleSubcategoryClick(subcategory, category)}
+                    onClick={() =>
+                      handleSubcategoryClick(subcategory, category)
+                    }
                     onMouseEnter={() => setHoverSubcategory(subcategory)}
                     onMouseLeave={() => setHoverSubcategory(null)}
                   >

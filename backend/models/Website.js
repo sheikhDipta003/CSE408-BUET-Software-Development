@@ -2,7 +2,8 @@
 
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const User = require('./User');
+//const ProductWebsite = require('./ProductWebsite');
+const User = require("./User");
 
 const Website = sequelize.define(
   "Website",
@@ -50,8 +51,10 @@ const Website = sequelize.define(
 
 //Website.belongsToMany(Product, { through: ProductWebsite });
 //Website.hasMany(Voucher);
-
-Website.belongsTo(User, { foreignKey: "collabId" });
-User.hasOne(Website, { foreignKey: "collabId" });
-
+User.hasOne(Website,  {
+  foreignKey: { field: "collabId", allowNull: true },
+});
+Website.belongsTo(User,  {
+  foreignKey: { field: "collabId", allowNull: true },
+})
 module.exports = Website;
