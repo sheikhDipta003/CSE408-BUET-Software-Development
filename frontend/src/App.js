@@ -66,7 +66,8 @@ function App() {
 
           <Route element={<RequireAuth allowedRoles={ROLES.Collaborator} />}>
             <Route path="collab" element={<Collaborator collabId={auth.userId} />} />
-
+          </Route>
+          
           <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
             <Route path="users/:userId/pricedrop" element={<UserViewPriceDrop />} />
           </Route>
@@ -90,3 +91,4 @@ function App() {
 }
 
 export default App;
+
