@@ -2,7 +2,7 @@
 
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-//const ProductWebsite = require('./ProductWebsite');
+const User = require('./User');
 
 const Website = sequelize.define(
   "Website",
@@ -33,6 +33,15 @@ const Website = sequelize.define(
       allowNull: false,
       defaultValue: false, // Default value if not provided
     },
+    collabId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      unique: true,
+      references: {
+        model: "User",
+        key: "userId",
+      },
+    },
   },
   {
     timestamps: false,
@@ -41,4 +50,8 @@ const Website = sequelize.define(
 
 //Website.belongsToMany(Product, { through: ProductWebsite });
 //Website.hasMany(Voucher);
+
+Website.belongsTo(User, { foreignKey: "collabId" });
+User.hasOne(Website, { foreignKey: "collabId" });
+
 module.exports = Website;
