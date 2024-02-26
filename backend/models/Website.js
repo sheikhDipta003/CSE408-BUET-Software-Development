@@ -34,6 +34,15 @@ const Website = sequelize.define(
       allowNull: false,
       defaultValue: false, // Default value if not provided
     },
+    collabId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      unique: true,
+      references: {
+        model: "User",
+        key: "userId",
+      },
+    },
   },
   {
     timestamps: false,

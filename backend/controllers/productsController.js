@@ -310,7 +310,57 @@ const getQuerySuggestions = async (req, res) => {
     console.error("Error retrieving product details:", error);
     res.status(500).json({ message: "Internal server error" });
   }
-}
+};
+
+const getProductsByCollabId = async (req, res) => {
+  try {
+    const { collabId } = req.params;
+
+    const website = await Website.findOne({
+      where: { collabId: collabId },
+    });
+
+    if (!website) {
+      return res.status(404).json({ message: "Website not found for the collabId" });
+    }
+
+    const websiteId = website.websiteId;
+
+    const products = await Product.findAll({
+      include: [
+        {
+          model: ProductWebsite,
+          where: { websiteId: websiteId },
+        },
+      ],
+    });
+
+    if (!products || products.length === 0) {
+      return res.status(404).json({ message: "No products found for the websiteId" });
+    }
+
+    const formatResult = products.map(pw => ({
+      productId: pw.productId,
+      productName: pw.productName,
+      productImage: pw.imagePath,
+      brand: pw.brand,
+      category: pw.category,
+      subcategory: pw.subcategory,
+      model: pw.model,
+      mpn: pw.mpn,
+      pwId: pw.ProductWebsites[0].pwId,
+      pwURL: pw.ProductWebsites[0].pwURL,
+      shippingTime: pw.ProductWebsites[0].shippingTime,
+      inStock: pw.ProductWebsites[0].inStock,
+      currentPrice: pw.ProductWebsites[0].price
+    }));
+
+    res.status(200).json(formatResult);
+  } catch (error) {
+    console.error("Error retrieving products by collabId:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
 
 module.exports = {
   getProductByQuery,
@@ -319,5 +369,6 @@ module.exports = {
   getProductDetails,
   getProductWebsite,
   getPWforUserDashboard,
-  getQuerySuggestions
+  getQuerySuggestions,
+  getProductsByCollabId
 };
