@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -14,9 +14,7 @@ const Notifications = () => {
 
         const getNotifs = async () => {
             try {
-                const response = await axiosPrivate.get(
-                    `/users/${userId}/notification`,
-                );
+                const response = await axiosPrivate.get(`/users/${userId}/notification`);
                 console.log("from Notifications.js = ", response.data.notifications);
                 isMounted && setNotifs(response.data.notifications);
             } catch (err) {
@@ -32,10 +30,10 @@ const Notifications = () => {
     }, []);
 
     const handleDelete = async (notifId) => {
-        console.log("Deleting notif:", notifId);
+        console.log('Deleting notif:', notifId);
         try {
             await axiosPrivate.get(`users/${userId}/notification/${notifId}/delete`);
-            const notifList = notifs.filter((notif) => notif.notifId !== notifId);
+            const notifList = notifs.filter(notif => notif.notifId !== notifId);
             setNotifs(notifList);
         } catch (err) {
             console.log(`Error: ${err.message}`);
@@ -43,16 +41,16 @@ const Notifications = () => {
     };
 
     const markAsRead = async (notifId) => {
-        console.log("Marking notif as read:", notifId);
+        console.log('Marking notif as read:', notifId);
         try {
             await axiosPrivate.get(`users/${userId}/notification/${notifId}/mark`);
             // Update notif's status
-            const updatedNotifs = notifs.map((notif) =>
-                notif.notifId === notifId ? { ...notif, isRead: true } : notif,
+            const updatedNotifs = notifs.map(notif =>
+                notif.notifId === notifId ? { ...notif, isRead: true } : notif
             );
             setNotifs(updatedNotifs);
         } catch (err) {
-            console.error("Error marking notif as read:", err);
+            console.error('Error marking notif as read:', err);
         }
     };
 
