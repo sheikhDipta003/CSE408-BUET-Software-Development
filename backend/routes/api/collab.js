@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const collController = require("../../controllers/collController");
+const productsController = require("../../controllers/productsController");
+const recommendController = require("../../controllers/recommendController");
 
 router.post("/event/add", collController.addEvent);
 router.get("/:collabId/events", collController.getAllEvents);
+router.put("/:collabId/events/:eId/update", collController.updateEvent);
 router.delete("/:collabId/events/:eventId/remove", collController.removeEvent);
 
 router.post("/voucher/add", collController.addVoucher);

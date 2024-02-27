@@ -1,4 +1,5 @@
 const Event = require("../models/Event");
+const Website = require("../models/Website");
 
 // Get all events
 const getAllEvents = async (req, res) => {
@@ -26,11 +27,35 @@ const getEventById = async (req, res) => {
   }
 };
 
+const approveEvent = async (req, res) => {
+  try {
+    const { eId } = req.params;
+
+    const event = await Event.findByPk(eId);
+
+    if (!event) {
+      return res.status(404).json({ message: "Event not found" });
+    }
+    else if (event.approved) {
+      return res.status(400).json({ message: "Event already approved" });
+    }
+
+    event.approved = true;
+
+    await event.save();
+
+    res.status(200).json({ message: "Event approved successfully", event });
+  } catch (error) {
+    console.error("Error approving event:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 // Remove an event by event_id
 const removeEvent = async (req, res) => {
   try {
-    const eventId = req.params.eventId;
-    const event = await Event.findByPk(eventId);
+    const { eId } = req.params;
+    const event = await Event.findByPk(eId);
     if (!event) {
       return res.status(404).json({ message: "Event not found" });
     }
@@ -42,4 +67,4 @@ const removeEvent = async (req, res) => {
   }
 };
 
-module.exports = { getAllEvents, getEventById, removeEvent };
+module.exports = { getAllEvents, getEventById, approveEvent, removeEvent };

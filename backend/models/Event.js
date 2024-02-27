@@ -33,6 +33,11 @@ const Event = sequelize.define(
         isUrl: true, // Validate that the value is a URL
       },
     },
+    approved: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false,
+    },
   },
   {
     timestamps: false,
