@@ -48,6 +48,8 @@ async function getproductdetails(url) {
         const items = [];
         const Name = $('.product_content > h1').text();
         const Price = $('meta[itemprop="price"]').attr('content');
+        const ProductUrl = url;
+        const ImageUrl = $('.product-info-section img').attr('src');
         const BrandName = Name.split(' ')[1]; // Assuming the second word is the brand name
         
         const attributes = [];
@@ -77,6 +79,8 @@ async function getproductdetails(url) {
         items.push({
             Name,
             Price,
+            ProductUrl,
+            ImageUrl,
             BrandName,
             Attributes: attributes
         });
