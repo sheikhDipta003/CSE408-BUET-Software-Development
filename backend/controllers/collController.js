@@ -54,6 +54,49 @@ const addEvent = async (req, res) => {
   }
 };
 
+const updateEvent = async (req, res) => {
+  try {
+    const { eId, collabId } = req.params;
+    const { name, venue, date, description, url } = req.body;
+
+    const website = await Website.findOne({
+      where: {
+        UserUserId: collabId,
+      },
+    });
+
+    if (!website) {
+      return res.status(404).json({ message: "Collaborated website not found" });
+    }
+
+    const websiteId = website.websiteId;
+
+    const event = await Event.findByPk(eId);
+
+    if (!event) {
+      return res.status(404).json({ message: "Event not found" });
+    }
+
+    if (event.WebsiteWebsiteId !== websiteId) {
+      return res.status(400).json({ message: "Event is not hosted by the collaboration with the given collabId" });
+    }
+
+    event.name = name;
+    event.venue = venue;
+    event.date = date;
+    event.description = description;
+    event.url = url;
+    event.approved = false;
+
+    await event.save();
+
+    res.status(200).json({ message: "Event updated successfully", event });
+  } catch (error) {
+    console.error("Error updating event:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 // Remove an event by event_id
 const removeEvent = async (req, res) => {
   try {
@@ -154,4 +197,4 @@ const removeVoucher = async (req, res) => {
   }
 }
 
-module.exports = { addVoucher, removeVoucher, getAllVouchers, addEvent, getAllEvents, removeEvent };
+module.exports = { addVoucher, removeVoucher, getAllVouchers, addEvent, getAllEvents, updateEvent, removeEvent };

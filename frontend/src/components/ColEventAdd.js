@@ -1,8 +1,9 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import "../css/Register.css";
 import DatePicker from "react-datepicker";
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const ColEventAdd = ({ collabId }) => {
   const errRef = useRef();
@@ -34,13 +35,9 @@ const ColEventAdd = ({ collabId }) => {
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
-        },
+        }
       );
-      // TODO: remove console.logs before deployment
-      console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response))
       setSuccess(true);
-      //clear state and controlled inputs
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -51,11 +48,19 @@ const ColEventAdd = ({ collabId }) => {
     }
   };
 
+  const handleCancel = () => {
+    setEventName("");
+    setVenue("");
+    setDate(new Date());
+    setDesc("");
+    setURL("");
+  };
+
   return (
     <>
       {success ? (
         <section>
-          <h1>Successfully added!</h1>
+          <h1 className="bg-green-400 w-full px-4 py-2 flex justify-center items-center">Successfully added!</h1>
         </section>
       ) : (
         <section>
@@ -66,52 +71,100 @@ const ColEventAdd = ({ collabId }) => {
           >
             {errMsg}
           </p>
-          <h1>Add Event</h1>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="eventName">Name:</label>
-            <input
-              type="text"
-              id="eventName"
-              autoComplete="off"
-              onChange={(e) => setEventName(e.target.value)}
-              value={eventName}
-              required
-            />
+          <h1 className="text-2xl bg-green-500 text-white px-4 py-2 rounded inline-flex items-center">
+            Enter Event Details to Create a New Event
+          </h1>
+          <form onSubmit={handleSubmit} className="mt-4">
+            <div className="mb-4">
+              <label htmlFor="eventName" className="block">
+                Event Name:
+              </label>
+              <input
+                type="text"
+                id="eventName"
+                autoComplete="off"
+                onChange={(e) => setEventName(e.target.value)}
+                value={eventName}
+                required
+                placeholder="Enter event name"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+            </div>
 
-            <label htmlFor="venue">Venue:</label>
-            <input
-              type="text"
-              id="venue"
-              onChange={(e) => setVenue(e.target.value)}
-              value={venue}
-              required
-            />
+            <div className="mb-4">
+              <label htmlFor="venue" className="block">
+                Venue:
+              </label>
+              <input
+                type="text"
+                id="venue"
+                onChange={(e) => setVenue(e.target.value)}
+                value={venue}
+                required
+                placeholder="Enter venue"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+            </div>
 
-            <label htmlFor="date">Date:</label>
-            <DatePicker
-             selected={date}
-             onChange={(date)=> {setDate(date)}}
-             />
+            <div className="mb-4">
+              <label htmlFor="date" className="block">
+                Date:
+              </label>
+              <DatePicker
+                selected={date}
+                onChange={(date) => {
+                  setDate(date);
+                }}
+                className="w-full p-2 border border-gray-300 rounded cursor-pointer"
+              />
+            </div>
 
-            <label htmlFor="description">Description:</label>
-            <input
-              type="text"
-              id="description"
-              onChange={(e) => setDesc(e.target.value)}
-              value={description}
-              required
-            />
+            <div className="mb-4">
+              <label htmlFor="description" className="block">
+                Description:
+              </label>
+              <textarea
+                id="description"
+                onChange={(e) => setDesc(e.target.value)}
+                value={description}
+                required
+                placeholder="Enter description"
+                className="w-full p-2 border border-gray-300 rounded"
+              ></textarea>
+            </div>
 
-            <label htmlFor="url">URL:</label>
-            <input
-              type="text"
-              id="url"
-              onChange={(e) => setURL(e.target.value)}
-              value={url}
-              required
-            />
+            <div className="mb-4">
+              <label htmlFor="url" className="block">
+                URL:
+              </label>
+              <input
+                type="text"
+                id="url"
+                onChange={(e) => setURL(e.target.value)}
+                value={url}
+                required
+                placeholder="Enter URL"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+            </div>
 
-            <button>Add Event</button>
+            <div className="flex justify-between">
+              <button
+                type="submit"
+                className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded mr-2"
+              >
+                <FontAwesomeIcon icon={faPlus} className="mr-2" />
+                Add Event
+              </button>
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="bg-gray-500 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded"
+              >
+                <FontAwesomeIcon icon={faTimes} className="mr-2" />
+                Clear All
+              </button>
+            </div>
           </form>
         </section>
       )}

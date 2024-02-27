@@ -8,7 +8,6 @@ const getUserEvents = async (req, res) => {
   const userId = req.params.userId;
 
   try {
-    // Fetch all events including associated websites
     const events = await UserEvent.findAll({
       where: {userId : userId },
       include: [
@@ -49,21 +48,19 @@ const getUpcomingEvents = async (req, res) => {
   const userId = req.params.userId;
 
   try {
-    // Fetch events already followed by the user
     const followedEvents = await UserEvent.findAll({
       where: { userId: userId },
       attributes: ['eId'],
     });
 
-    // Extract the eventId of followed events
     const followedEventIds = followedEvents.map(event => event.dataValues.eId);
     console.log(followedEventIds);
 
-    // Fetch all upcoming events excluding followed events
     const upcomingEvents = await Event.findAll({
       where: { 
         date: { [Op.gt]: new Date() },
-        eId: { [Op.notIn]: followedEventIds }
+        eId: { [Op.notIn]: followedEventIds },
+        approved: true
       },
       include: [
         {
@@ -97,6 +94,14 @@ const followEvent = async (req, res) => {
   const { userId, eId } = req.params;
 
   try {
+    const existingEvent = await Event.findOne({
+      where: { eId: eId, approved: true }
+    });
+
+    if (!existingEvent) {
+      return res.status(404).json({ error: "Event not found or not approved" });
+    }
+
     const existingEntry = await UserEvent.findOne({
       where: { userId: userId, eId: eId }
     });

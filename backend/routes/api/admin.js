@@ -42,8 +42,8 @@ router.get("/events/:eventId", adminEventController.getEventById);
 // Add a new event
 //router.post("/events/add", adminEventController.addEvent);
 
-// Remove an event by event_id
-router.delete("/events/:eventId/remove", adminEventController.removeEvent);
+router.put("/events/:eId/approve", adminEventController.approveEvent);
+router.delete("/events/:eId/delete", adminEventController.removeEvent);
 
 /*
     manage profile
