@@ -96,12 +96,13 @@ async function getproductdetails(url) {
         const items = [];
         const Name = $('.product_content > h1').text();
         const Price = $('meta[itemprop="price"]').attr('content');
-        
+        const BrandName = Name.split(' ')[1];
+
         const attributes = [];
         $('.table-hr-remove').map((index, element) => {
             const name = $(element).find('.col-lg-4 span').text().replace(/\n.*/, '');
             let value = $(element).find('.col-lg-8 span').text();
-        
+            
             // Remove the first word from the value if name is "Model"
             if (name === 'Model') {
                 const words = value.split(' ');
@@ -124,6 +125,7 @@ async function getproductdetails(url) {
         items.push({
             Name,
             Price,
+            BrandName,
             Attributes: attributes
         });
         return items;

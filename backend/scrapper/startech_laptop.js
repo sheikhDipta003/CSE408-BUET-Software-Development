@@ -16,6 +16,7 @@ async function getStartechLaptops(page = 1) {
             const Name = $(element).find('.p-item-inner > .p-item-details > .p-item-name a').text();
             const Price = $(element).find('.p-item-inner > .p-item-details > .p-item-price span:first').text();
             const ImageUrl = $(element).find('.p-item-inner > .p-item-img > a > img').attr('src');
+            const BrandName = Name.split(' ')[0];
 
             // Get the product url and fetch the product information
             const Producturl = $(element).find('.p-item-inner > .p-item-details > .p-item-name a').attr('href');
@@ -25,6 +26,7 @@ async function getStartechLaptops(page = 1) {
                 items.push({
                     Name,
                     Price,
+                    BrandName,
                     Producturl,
                     ImageUrl,
                     Attributes: productAttributes

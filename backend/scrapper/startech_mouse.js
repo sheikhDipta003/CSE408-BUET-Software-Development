@@ -1,16 +1,14 @@
 import * as cheerio from 'cheerio';
 import fetch from 'node-fetch';
 import fs from 'fs';
-import { table } from 'console';
 
-async function getStartechDesktops(page = 1) {
+async function getStartechMice(page = 1) {
     try {
-        const url = `https://www.startech.com.bd/desktops?page=${page}`;
+        const url = `https://www.startech.com.bd/accessories/mouse?page=${page}`;
         const response = await fetch(url);
         const body = await response.text();
         const $ = cheerio.load(body);
 
-        // console.log($('.bottom-bar').length);
         console.log(`Page ${page} data successfully parsed`);
         const items = [];
         const promises = $('.main-content > .p-item').map(async (index, element) => {
@@ -37,7 +35,7 @@ async function getStartechDesktops(page = 1) {
 
         // Check if there is a next page and recursively call the function
         if ($('.pagination .active').length > 0) {
-            const nextPageData = await getStartechDesktops(page + 1);
+            const nextPageData = await getStartechMice(page + 1);
             items.push(...nextPageData);
         }
         // Wait for all promises to resolve
@@ -52,14 +50,13 @@ async function getStartechDesktops(page = 1) {
 }
 
 async function scrapeAndStoreData() {
-    const allDesktopData = await getStartechDesktops();
+    const allMouseData = await getStartechMice();
     
-    fs.writeFile('startech_desktops.json', JSON.stringify(allDesktopData), function (err) {
+    fs.writeFile('startech_mice.json', JSON.stringify(allMouseData), function (err) {
         if (err) return console.log(err);
-        console.log('All data successfully written to startech_desktops.json');
+        console.log('All data successfully written to startech_mice.json');
     });
 }
-
 
 async function getproductdetails(url) {
     try {
@@ -81,7 +78,7 @@ async function getproductdetails(url) {
             const value = $(element).find('td.value').text().replace(/\n.*/, '');
 
             //console.log(name)
-            if (name === 'Processor' || name === 'Motherboard' || name === 'RAM' || name === 'Storage' || name === 'Graphics' ){
+            if (name === 'Connection Type' || name === 'Number of Keys' || name === 'Resolution' || name === 'Optical Sensor' || name === 'Weight' ){
                 attributes.push({
                     name,
                     value

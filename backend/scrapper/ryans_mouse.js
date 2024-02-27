@@ -2,9 +2,9 @@ import * as cheerio from 'cheerio';
 import fetch from 'node-fetch';
 import fs from 'fs';
 
-async function getRyansDesktops(page = 1) {
+async function getRyansMice(page = 1) {
     try {
-        const url = `https://www.ryanscomputers.com/category/desktop-pc-brand-desktop-pc?page=${page}`;
+        const url = `https://www.ryanscomputers.com/category/desktop-component-mouse?page=${page}`;
         const response = await fetch(url);
         const body = await response.text();
         const $ = cheerio.load(body);
@@ -18,7 +18,7 @@ async function getRyansDesktops(page = 1) {
         });
 
         if ($('.pagination .active').length > 0) {
-            const nextPageData = await getRyansDesktops(page + 1);
+            const nextPageData = await getRyansMice(page + 1);
             items.push(...nextPageData);
         }
 
@@ -31,11 +31,11 @@ async function getRyansDesktops(page = 1) {
 }
 
 async function scrapeAndStoreData() {
-    const allDesktopData = await getRyansDesktops();
+    const allMouseData = await getRyansMice();
     
-    fs.writeFile('ryans_desktops.json', JSON.stringify(allDesktopData), function (err) {
+    fs.writeFile('ryans_mice.json', JSON.stringify(allMouseData), function (err) {
         if (err) return console.log(err);
-        console.log('All data successfully written to ryans_desktops.json');
+        console.log('All data successfully written to ryans_mice.json');
     });
 }
 
@@ -48,7 +48,7 @@ async function getproductdetails(url) {
         const items = [];
         const Name = $('.product_content > h1').text();
         const Price = $('meta[itemprop="price"]').attr('content');
-        const BrandName = Name.split(' ')[1];
+        const BrandName = Name.split(' ')[1]; // Assuming the second word is the brand name
         
         const attributes = [];
         $('.table-hr-remove').map((index, element) => {
@@ -66,12 +66,12 @@ async function getproductdetails(url) {
                 }
             }
         
-            if (name === 'Part No' || name === 'Processor Type' || name === 'RAM' || name === 'Hard Disk Drive (HDD)' || name === 'Solid-State Drive (SSD)' || name === 'Graphics Chipset' || name === 'Display Size (Inch)') {
+            // Modify conditions based on the attributes you want to extract for mice
+            if (name === 'Model' || name === 'Type' || name === 'Interface' || name === 'Resolution' || name === 'Number of Button' || name === 'Weight') {
                 attributes.push({
                     name,
                     value
                 });
-                // console.log(name + " : " + value + "\n");
             }
         });
         items.push({
