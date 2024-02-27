@@ -96,6 +96,8 @@ async function getproductdetails(url) {
         const items = [];
         const Name = $('.product_content > h1').text();
         const Price = $('meta[itemprop="price"]').attr('content');
+        const ProductUrl = url;
+        const ImageUrl = $('.product-info-section img').attr('src');
         const BrandName = Name.split(' ')[1];
 
         const attributes = [];
@@ -114,7 +116,7 @@ async function getproductdetails(url) {
                 }
             }
         
-            if (name === 'Part No' || name === 'Processor Type.' || name === 'RAM' || name === 'Storage' || name === 'Graphics Chipset' ) {
+            if (name === 'Part No' || name === 'Model' || name === 'Processor Type.' || name === 'RAM' || name === 'Storage' || name === 'Graphics Chipset' ) {
                 attributes.push({
                     name,
                     value
@@ -125,6 +127,8 @@ async function getproductdetails(url) {
         items.push({
             Name,
             Price,
+            ProductUrl,
+            ImageUrl,
             BrandName,
             Attributes: attributes
         });
