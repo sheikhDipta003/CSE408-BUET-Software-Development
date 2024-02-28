@@ -12,16 +12,16 @@ const UserVoucher = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "Users",
-        key: "id",
+        model: "User",
+        key: "userId",
       },
     },
     voucherId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "Vouchers",
-        key: "id",
+        model: "Voucher",
+        key: "voucherId",
       },
     },
     dateAdded: {

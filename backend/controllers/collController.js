@@ -1,6 +1,10 @@
 const Voucher = require("../models/Voucher");
 const Website = require("../models/Website");
+const ProductWebsite = require("../models/ProductWebsite");
+const UserInteraction = require("../models/UserInteraction");
+const UserVoucher = require("../models/UserVoucher");
 const Event = require("../models/Event");
+const User = require("../models/User");
 
 const getAllEvents = async (req, res) => {
   try {
@@ -113,6 +117,54 @@ const removeEvent = async (req, res) => {
   }
 };
 
+const getClickCounts = async (req, res) => {
+  try {
+    const { collabId } = req.params;
+
+    const website = await Website.findOne({
+      where: {
+        UserUserId: collabId,
+      },
+    });
+
+    if (!website) {
+      return res.status(404).json({ message: "Collaborated website not found" });
+    }
+
+    const websiteId = website.websiteId;
+
+    const productWebsites = await ProductWebsite.findAll({
+      where: {
+        WebsiteWebsiteId: websiteId,
+      },
+    });
+
+    const pwIds = productWebsites.map((productWebsite) => productWebsite.pwId);
+
+    const userInteractions = await UserInteraction.findAll({
+      where: {
+        pwId: pwIds,
+      },
+    });
+
+    const clickcounts = {};
+    userInteractions.forEach((interaction) => {
+      if (!clickcounts[interaction.ProductWebsitePwId]) {
+        clickcounts[interaction.ProductWebsitePwId] = {};
+      }
+      if (!clickcounts[interaction.ProductWebsitePwId][interaction.UserUserId]) {
+        clickcounts[interaction.ProductWebsitePwId][interaction.UserUserId] = 0;
+      }
+      clickcounts[interaction.ProductWebsitePwId][interaction.UserUserId] += interaction.clickcount;
+    });
+
+    res.status(200).json({ clickcounts });
+  } catch (error) {
+    console.error("Error getting click counts:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 const addVoucher = async (req, res) => {
   try {
     // Extract voucher details from the request body
@@ -149,6 +201,114 @@ const addVoucher = async (req, res) => {
     res.status(201).json({ newVoucher });
   } catch (error) {
     console.error("Error adding voucher:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const assignVoucherToUser = async (req, res) => {
+  try {
+    const { userId, voucherId } = req.params;
+
+    if (!userId || !voucherId) {
+      return res.status(400).json({ message: "User ID and Voucher ID are required" });
+    }
+
+    const voucher = await Voucher.findByPk(voucherId);
+
+    if (!voucher) {
+      return res.status(404).json({ message: "Voucher not found" });
+    }
+    else if (voucher.total <= 0) {
+      return res.status(400).json({ message: "No more vouchers available for this offer" });
+    }
+
+    voucher.total -= 1;
+
+    await voucher.save();
+
+    const newUserVoucher = await UserVoucher.create({
+      UserUserId: userId,
+      VoucherVoucherId: voucherId,
+      userId: userId,
+      voucherId: voucherId
+    });
+
+    res.status(201).json({ message: "Voucher assigned to user successfully", newUserVoucher });
+  } catch (error) {
+    console.error("Error assigning voucher to user:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const assignToRandomUsers = async (req, res) => {
+  try {
+    const { voucherId } = req.params;
+
+    const voucher = await Voucher.findByPk(voucherId);
+
+    if (!voucher) {
+      return res.status(404).json({ message: "Voucher not found" });
+    }
+    else if (voucher.total <= 0) {
+      return res.status(400).json({ message: "No more vouchers available for this offer" });
+    }
+
+    const users = await User.findAll();
+    const userIds = users.map(user => user.userId);
+
+    const usersWithoutVoucher = [];
+    for (const userId of userIds) {
+      const existingUserVoucher = await UserVoucher.findOne({
+        where: {
+          UserUserId: userId,
+          VoucherVoucherId: voucherId,
+          userId: userId,
+          voucherId: voucherId
+        }
+      });
+      if (!existingUserVoucher) {
+        usersWithoutVoucher.push(userId);
+      }
+    }
+
+    if (voucher.total >= usersWithoutVoucher.length) {
+      await Promise.all(usersWithoutVoucher.map(async userId => {
+        await UserVoucher.create({
+          UserUserId: userId,
+          VoucherVoucherId: voucherId,
+          userId: userId,
+          voucherId: voucherId
+        });
+      }));
+
+      voucher.total -= usersWithoutVoucher.length;
+      await voucher.save();
+
+      res.status(201).json({ message: "Voucher assigned to all eligible users successfully" });
+    } else {
+      const selectedUserIds = [];
+      while (selectedUserIds.length < voucher.total) {
+        const randomIndex = Math.floor(Math.random() * usersWithoutVoucher.length);
+        selectedUserIds.push(usersWithoutVoucher[randomIndex]);
+        usersWithoutVoucher.splice(randomIndex, 1);
+      }
+
+      await Promise.all(selectedUserIds.map(async userId => {
+        await UserVoucher.create({
+          UserUserId: userId,
+          VoucherVoucherId: voucherId,
+          userId: userId,
+          voucherId: voucherId
+        });
+      }));
+
+      voucher.total -= selectedUserIds.length;
+      await voucher.save();
+
+      res.status(201).json({ message: "Voucher assigned to selected eligible users successfully" });
+    }
+  } catch (error) {
+    console.error("Error assigning voucher to users:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -197,4 +357,4 @@ const removeVoucher = async (req, res) => {
   }
 }
 
-module.exports = { addVoucher, removeVoucher, getAllVouchers, addEvent, getAllEvents, updateEvent, removeEvent };
+module.exports = { getClickCounts, addVoucher, assignVoucherToUser, assignToRandomUsers, removeVoucher, getAllVouchers, addEvent, getAllEvents, updateEvent, removeEvent };
