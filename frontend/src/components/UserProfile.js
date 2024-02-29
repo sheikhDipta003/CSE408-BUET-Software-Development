@@ -120,6 +120,7 @@ const UserProfile = () => {
   };
 
   const handleReviewSubmit = async (e) => {
+    e.preventDefault();
     try {
       const newReview = { content: formData.content, rating: formData.rating };
       await axiosPrivate.post(`/users/${userId}/reviews`, newReview);
@@ -133,6 +134,7 @@ const UserProfile = () => {
       setShowPopup(false);
     }, 2000);
 
+    getReviews();
     setActiveTab("ManageReviews");
   };
 

@@ -13,6 +13,7 @@ const Menu = () => {
   const [hoverSubcategory, setHoverSubcategory] = useState(null);
   const navigate = useNavigate();
   const menuRef = useRef(null);
+  let categoryHoverTimeout;
 
   // useEffect(() => {
   //   const handleClickOutside = (event) => {
@@ -28,7 +29,17 @@ const Menu = () => {
   // }, [menuRef]);
 
   const handleCategoryHover = (category) => {
-    setActiveCategory(category);
+    clearTimeout(categoryHoverTimeout);
+
+    categoryHoverTimeout = setTimeout(() => {
+      setActiveCategory(category);
+    }, 300);
+  };
+
+  const handleCategoryLeave = () => {
+    clearTimeout(categoryHoverTimeout);
+    setActiveCategory(null);
+    setHoverSubcategory(null);
   };
 
   const handleSubcategoryClick = (subcategory, category) => {
@@ -44,10 +55,7 @@ const Menu = () => {
             key={category}
             className={`menu-item${activeCategory === category ? " active" : ""}`}
             onMouseEnter={() => handleCategoryHover(category)}
-            onMouseLeave={() => {
-              setActiveCategory(null);
-              setHoverSubcategory(null);
-            }}
+            onMouseLeave={handleCategoryLeave}
           >
             {category.charAt(0).toUpperCase() + category.slice(1)}
             {activeCategory === category && (

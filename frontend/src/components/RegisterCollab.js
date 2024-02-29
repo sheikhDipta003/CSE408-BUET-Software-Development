@@ -6,7 +6,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
-import { Link } from "react-router-dom";
 import "../css/Register.css";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
@@ -48,7 +47,6 @@ const RegisterCollab = () => {
   const [websiteId, setWebsiteId] = useState(0);
 
   const [role, setRole] = useState(ROLES.Collaborator);
-  const [isRole, setRoleSet] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -96,11 +94,6 @@ const RegisterCollab = () => {
   useEffect(() => {
     console.log("website =", websiteId);
   }, [websiteId]);
-
-  const handleRoleChange = (roles) => {
-    setRole(roles);
-    setRoleSet(true);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
