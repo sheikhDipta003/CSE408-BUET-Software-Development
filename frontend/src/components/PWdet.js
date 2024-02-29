@@ -46,6 +46,7 @@ const ProductDetails = () => {
   const location = useLocation();
   const [priceDrop, setPriceDrop] = useState("");
   const [showWarning, setShowWarning] = useState(false);
+  const [wishlist, setWishlist] = useState(false);
 
   //let data = {};
   useEffect(() => {
@@ -70,8 +71,28 @@ const ProductDetails = () => {
       }
     };
 
+    const fetchWishlist = async() => {
+      if(auth?.roles === ROLES.User)
+      {
+        try {
+          const response = await axiosPrivate.get(
+            `/users/${auth.userId}/wishlist/${website.pwId}/exist`,
+          );
+          console.log(response.data.message);
+
+          if(response.data.message==="Found")
+            setWishlist(true);
+          else
+            setWishlist(false);
+        } catch (error) {
+          console.error("Error fetching wishlist exist:", error);
+        }
+      }
+    }
+
     // Call fetchData function inside useEffect
     fetchData();
+    fetchWishlist();
   }, [productId, websiteId]); // Empty dependency array means this effect runs only once on mount
 
   const handleCreateAlert = async () => {
@@ -123,8 +144,6 @@ const ProductDetails = () => {
     }
     console.log(pricesConv);
   }, [prices]);
-
-  const [wishlist, setWishlist] = useState(false);
   
   const handleAddToWishlist = async (pwId) => {
     setWishlist(!wishlist);
@@ -165,9 +184,25 @@ const ProductDetails = () => {
     } else navigate("/login");
   };
 
-  const goToWebsite = () => {
-    navigate(``);
+  const handleDeleteWishlist = async (pwId) => {
+    setWishlist(!wishlist);
+
+    //this option is available only for logged in users
+    if (auth?.roles === ROLES.User) {
+      try {
+        const response = await axiosPrivate.post(
+          `/users/${auth.userId}/wishlist/${pwId}/deletepw`,
+        );
+        alert(response.data.message);
+      } catch (err) {
+        console.log("Error removing from wishlist: ", err);
+      }
+    } else if (auth?.accessToken) {
+      navigate("/unauthorized");
+    } else navigate("/login");
   };
+
+  
   const data = {
     labels: pricesConv.map((entry) => entry.date),
     datasets: [
@@ -226,7 +261,7 @@ const ProductDetails = () => {
             </button>
           )}
           {wishlist && (
-            <button className="bg-green-500 text-white px-4 py-2" onClick={() => handleAddToWishlist(website.pwId)}>//////////////////////////////////////////////////////////////////////
+            <button className="bg-green-500 text-white px-4 py-2" onClick={() => handleDeleteWishlist(website.pwId)}>
               Added to wishlist
             </button>
           )}

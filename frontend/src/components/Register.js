@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
 import { Link } from "react-router-dom";
 import "../css/Register.css";
-import ROLES from "../App";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -16,6 +15,11 @@ const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const REGISTER_URL = "/register";
 
 const Register = () => {
+  const ROLES = {
+    Admin: 5150,
+    Collaborator: 1984,
+    User: 2001,
+  };
   const userRef = useRef();
   const errRef = useRef();
 
@@ -255,7 +259,7 @@ const Register = () => {
               onBlur={() => setEmailFocus(false)}
             />
 
-            <label htmlFor="role">Role:</label>
+            {/* <label htmlFor="role">Role:</label>
             <select
               id="role"
               value={role}
@@ -266,7 +270,7 @@ const Register = () => {
             >
               <option value={ROLES.User}>User</option>
               <option value={ROLES.Admin}>Admin</option>
-            </select>
+            </select> */}
 
             <button
               disabled={

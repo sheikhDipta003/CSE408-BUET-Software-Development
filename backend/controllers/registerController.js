@@ -2,9 +2,16 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const validator = require("email-validator");
 const { Op, Sequelize } = require("sequelize");
+const ROLES_LIST = require("../config/roles");
 
 const handleNewUser = async (req, res) => {
   const { username, email, password, role } = req.body;
+  let setRole;
+  for (const [roles, value] of Object.entries(ROLES_LIST)) {
+    if (value === role) {
+      setRole=roles;
+    }
+  }
   const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
   const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
@@ -24,7 +31,7 @@ const handleNewUser = async (req, res) => {
     ", pass = ",
     password,
     " role = ",
-    role,
+    setRole, role,
   );
 
   // check for duplicate usernames in the db
@@ -52,7 +59,7 @@ const handleNewUser = async (req, res) => {
       username: username,
       email: email,
       password: hashedPwd,
-      roles: role,
+      roles: setRole,
     });
 
     console.log(result);

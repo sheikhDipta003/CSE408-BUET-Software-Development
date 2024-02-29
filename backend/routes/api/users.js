@@ -24,8 +24,10 @@ router.get("/:userId/delete", profile.deleteUser);
 //wishlist
 router.get("/:userId/wishlist", wishlist.allWishlist);
 router.get("/:userId/wishlist/:pwId", wishlist.getOneWishItem);
+router.get("/:userId/wishlist/:pwId/exist", wishlist.isInWishlist);
 router.post("/:userId/wishlist/:pwId/add", wishlist.addToWishlist);
 router.get("/:userId/wishlist/:wishlistId/delete", wishlist.deleteWishItem);
+router.get("/:userId/wishlist/:pwId/deletepw", wishlist.deleteWishItemPW)
 
 //notifications
 router.get("/:userId/notification", notif.getAllNotifications);

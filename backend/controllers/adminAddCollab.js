@@ -2,9 +2,17 @@ const User = require("../models/User"); // Import the User model
 const Website = require("../models/Website");
 const validator = require("email-validator");
 const bcrypt = require("bcrypt");
+const ROLES_LIST = require("../config/roles");
+const { Op, Sequelize } = require("sequelize");
 
 const newCollab = async (req, res) => {
     const { username, email, password, role, websiteId } = req.body;
+    let setRole;
+    for (const [roles, value] of Object.entries(ROLES_LIST)) {
+        if (value === role) {
+            setRole = roles;
+        }
+    }
     const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
     const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
@@ -24,14 +32,36 @@ const newCollab = async (req, res) => {
         ", pass = ",
         password,
         " role = ",
-        role,
-        ", websiteId = ", 
+        setRole,
+        ", websiteId = ",
         websiteId,
     );
 
     // check for duplicate usernames in the db
-    const duplicate = await User.findOne({ where: { email: email } });
-    if (duplicate) return res.sendStatus(409); //Conflict
+    const duplicate = await User.findOne({
+        where: {
+          [Op.or]:
+            [
+              {
+                email: email
+              },
+              {
+                username: username
+              }
+            ]
+        }
+      });
+
+      const exist = await Website.findOne({
+        where:
+        {
+            websiteId: websiteId,
+        }
+      });
+
+      const here = exist.dataValues.collaboration;
+
+    if (duplicate || here) return res.sendStatus(409); //Conflict
 
     try {
         //encrypt the password
@@ -42,7 +72,7 @@ const newCollab = async (req, res) => {
             username: username,
             email: email,
             password: hashedPwd,
-            roles: role,
+            roles: setRole,
         });
 
         console.log(result.dataValues.userId);
@@ -50,7 +80,7 @@ const newCollab = async (req, res) => {
 
         //const result2 = await Website.findByPk(websiteId);
 
-        const result2 = await Website.update({UserUserId: userId, collaboration: true},{
+        const result2 = await Website.update({ UserUserId: userId, collaboration: true }, {
             where: {
                 websiteId: websiteId,
             }
@@ -70,4 +100,72 @@ const newCollab = async (req, res) => {
     }
 }
 
-module.exports = {newCollab};
+const newAdmin = async (req, res) => {
+    const { username, email, password, role } = req.body;
+    let setRole;
+    for (const [roles, value] of Object.entries(ROLES_LIST)) {
+        if (value === role) {
+            setRole = roles;
+        }
+    }
+    const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+    const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+
+    if (!username || !email || !password)
+        return res
+            .status(400)
+            .json({ message: "Username, email and password are required." });
+
+    if (!USER_REGEX.test(username) || !PWD_REGEX.test(password) || !validator.validate(email))
+        return res
+            .status(400)
+            .json({ message: "This username, email and/or password is not acceptable." });
+
+    console.log(
+        "\nusername = ",
+        username,
+        ", pass = ",
+        password,
+        " role = ",
+        setRole,
+    );
+
+    // check for duplicate usernames in the db
+    const duplicate = await User.findOne({
+        where: {
+          [Op.or]:
+            [
+              {
+                email: email
+              },
+              {
+                username: username
+              }
+            ]
+        }
+      });
+    if (duplicate) return res.sendStatus(409); //Conflict
+
+    try {
+        //encrypt the password
+        const hashedPwd = await bcrypt.hash(password, 10);
+
+        //create and store the new user
+        const result = await User.create({
+            username: username,
+            email: email,
+            password: hashedPwd,
+            roles: setRole,
+        });
+
+        console.log(result.dataValues.userId);
+
+        res
+            .status(201)
+            .json({ success: `New user ${username} created with role ${role}!` });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+module.exports = { newCollab, newAdmin };
