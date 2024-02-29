@@ -27,7 +27,7 @@ const Nav = () => {
           auth.roles === ROLES.Admin ? (
             <AdminDropdown />
           ) : (auth.roles === ROLES.Collaborator ? (
-            <CollabDropdown />
+            <CollabDropdown collabId={auth.userId} />
           ) : (
             <UserDropDown userId={auth.userId} />
           )
