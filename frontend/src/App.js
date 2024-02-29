@@ -22,6 +22,7 @@ import useAuth from "./hooks/useAuth";
 import Collaborator from "./components/Collaborator";
 import UserViewPriceDrop from './components/UserViewPriceDrop';
 import Notifications from "./components/Notifications";
+import ColVoucherAssign from './components/ColVoucherAssign';
 
 const ROLES = {
   Admin: 5150,
@@ -50,6 +51,10 @@ function App() {
         <Route
           path="products/:productId/:websiteId"
           element={<ProductWebsite />}
+        />
+        <Route
+          path="collab/:collabId/vouchers"
+          element={<ColVoucherAssign />}
         />
         <Route path="unauthorized" element={<Unauthorized />} />
 
