@@ -4,6 +4,7 @@ import ContentManagement from "./ContentManagement";
 import AnalyticsReports from "./AnalyticsReports";
 import EventManagement from "./EventManagement";
 import RegisterCollab from "./RegisterCollab";
+import RegisterAdmin from "./RegisterAdmin";
 
 const Admin = ({ adminId }) => {
   const [activeMenu, setActiveMenu] = useState("Dashboard");
@@ -13,7 +14,10 @@ const Admin = ({ adminId }) => {
 
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);
-    setActiveSubMenu("");
+    if(menu === "Dashboard")
+      setActiveSubMenu("Analytics");
+    else
+      setActiveSubMenu("");
   };
 
   const handleSubMenuClick = (submenu) => {
@@ -31,6 +35,12 @@ const Admin = ({ adminId }) => {
               onClick={() => handleMenuClick("Dashboard")}
             >
               Dashboard
+            </li>
+            <li
+              className={`cursor-pointer ${activeMenu === "Admin" ? "text-red-500 font-bold" : "text-black"} mb-4`}
+              onClick={() => handleMenuClick("Admin")}
+            >
+              Add Admin
             </li>
             <li
               className={`cursor-pointer ${activeMenu === "Collaborator" ? "text-red-500 font-bold" : "text-black"} mb-4`}
@@ -87,6 +97,7 @@ const Admin = ({ adminId }) => {
               {activeSubMenu === "EventManagement" && <EventManagement />}
             </div>
           )}
+          {activeMenu === "Admin" && <RegisterAdmin />}
           {activeMenu === "Collaborator" && <RegisterCollab />}
         </div>
       </div>

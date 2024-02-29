@@ -13,10 +13,6 @@ const ProductWebsite = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    pwURL: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     shippingTime: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -41,10 +37,10 @@ const ProductWebsite = sequelize.define(
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    price: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
+    promoted: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    }
   },
   {
     timestamps: false,

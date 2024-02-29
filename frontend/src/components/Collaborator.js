@@ -41,6 +41,12 @@ const Collaborator = ({ collabId }) => {
               Events
             </li>
             <li
+              className={`cursor-pointer ${activeMenu === "Products" ? "text-red-500 font-bold" : "text-black"} mb-4`}
+              onClick={() => handleMenuClick("Products")}
+            >
+              Products
+            </li>
+            <li
               className={`cursor-pointer ${activeMenu === "My Profile" ? "text-red-500 font-bold" : "text-black"} mb-4`}
               onClick={() => handleMenuClick("My Profile")}
             >

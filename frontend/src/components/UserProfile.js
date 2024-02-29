@@ -61,6 +61,15 @@ const UserProfile = () => {
     setErrMsg("");
   }, [user.username, user.password, user.matchpassword]);
 
+  const getReviews = async () => {
+    try {
+      const response = await axiosPrivate.get(`/users/${userId}/reviews`);
+      setReviews(response.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     let isMounted = true;
 
@@ -82,6 +91,7 @@ const UserProfile = () => {
     };
 
     getUsers();
+    getReviews();
 
     return () => {
       isMounted = false;
@@ -110,6 +120,7 @@ const UserProfile = () => {
   };
 
   const handleReviewSubmit = async (e) => {
+    e.preventDefault();
     try {
       const newReview = { content: formData.content, rating: formData.rating };
       await axiosPrivate.post(`/users/${userId}/reviews`, newReview);
@@ -123,6 +134,7 @@ const UserProfile = () => {
       setShowPopup(false);
     }, 2000);
 
+    getReviews();
     setActiveTab("ManageReviews");
   };
 
@@ -155,14 +167,15 @@ const UserProfile = () => {
           alert(err.response?.data?.message || err.message);
         }
   
-        const updatedReviews = reviews.map(review => {
-          if (review.reviewId === reviewId) {
-            return updatedReview;
-          }
-          return review;
-        });
+        // const updatedReviews = reviews.map(review => {
+        //   if (review.reviewId === reviewId) {
+        //     return updatedReview;
+        //   }
+        //   return review;
+        // });
   
-        setReviews(updatedReviews);
+        // setReviews(updatedReviews);
+        getReviews();
       }
     }
   };
@@ -175,18 +188,18 @@ const UserProfile = () => {
     setActiveMenuItem(menu);
   };
 
-  useEffect(() => {
-    const getReviews = async () => {
-      try {
-        const response = await axiosPrivate.get(`/users/${userId}/reviews`);
-        setReviews(response.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+  // useEffect(() => {
+  //   const getReviews = async () => {
+  //     try {
+  //       const response = await axiosPrivate.get(`/users/${userId}/reviews`);
+  //       setReviews(response.data);
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
 
-    getReviews();
-  }, [reviews]);
+  //   getReviews();
+  // }, [reviews]);
 
   const handleFormChange = (e) => {
     setFormData({
@@ -199,8 +212,9 @@ const UserProfile = () => {
     console.log("Deleting review:", reviewId);
     try {
       await axiosPrivate.get(`users/${userId}/reviews/${reviewId}/delete`);
-      const revList = reviews.filter((review) => review.reviewId !== reviewId);
-      setReviews(revList);
+      // const revList = reviews.filter((review) => review.reviewId !== reviewId);
+      // setReviews(revList);
+      getReviews();
     } catch (err) {
       console.log(`Error: ${err.message}`);
     }
@@ -441,7 +455,7 @@ const UserProfile = () => {
             {activeTab === "NewReview" && (
               <div>
                 <h3 className="mb-4 text-xl font-bold">Create a New Review</h3>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleReviewSubmit}>
                   <div className="mb-4">
                     <label
                       className="block mb-1 font-semibold"
@@ -480,9 +494,7 @@ const UserProfile = () => {
                     />
                   </div>
                   <button
-                    type="submit"
                     className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
-                    onClick={handleReviewSubmit}
                   >
                     Submit
                   </button>

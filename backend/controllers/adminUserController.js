@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Notification = require("../models/Notification");
+const Website = require("../models/Website");
 
 const getUsers = async (req, res) => {
   try {
@@ -50,6 +51,18 @@ const deleteUser = async (req, res) => {
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
+    }
+
+    if(user.roles === "Collaborator")
+    {
+      const website=await Website.findOne({
+        where:
+        {
+          collabId: user.userId,
+        }
+      });
+      website.collaboration=false;
+      await website.save();
     }
 
     // Delete the user

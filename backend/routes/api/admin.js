@@ -6,6 +6,10 @@ const adminWebsiteController = require("../../controllers/adminWebsiteController
 const reviewController = require("../../controllers/reviewController");
 const adminEventController = require("../../controllers/adminEventController");
 const adminProfileController = require("../../controllers/adminProfileController");
+const adminAddCollab = require("../../controllers/adminAddCollab");
+
+router.post("/registerCollab", adminAddCollab.newCollab);
+router.post("/registerAdmin", adminAddCollab.newAdmin);
 
 //manage reviews
 router.get("/rating", reviewController.getWeightedRating);

@@ -198,22 +198,19 @@ const UserEvent = ({ userId }) => {
             className="relative bg-lime-200 p-4 rounded-lg mb-4"
           >
             <div className="absolute top-0 right-0 mt-0 mr-2 flex">
-              <button className="bg-blue-500 text-white px-2 py-1 rounded mr-2 hover:bg-blue-600">
-                <FontAwesomeIcon icon={faInfoCircle} />
-              </button>
               {activeTab === "Following" ? (
                 <button
-                  className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+                  className="bg-red-400 text-white px-2 py-1 rounded hover:bg-red-600"
                   onClick={() => handleEventUnFollow(event.eId)}
                 >
-                  <FontAwesomeIcon icon={faTimes} />
+                  Remove <FontAwesomeIcon icon={faTimes} />
                 </button>
               ) : (
                 <button
-                  className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600"
+                  className="bg-green-400 text-white px-2 py-1 rounded hover:bg-green-600"
                   onClick={() => handleEventFollow(event.eId)}
                 >
-                  <FontAwesomeIcon icon={faPlus} />
+                  Follow <FontAwesomeIcon icon={faPlus} />
                 </button>
               )}
             </div>

@@ -6,16 +6,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
-import { Link } from "react-router-dom";
 import "../css/Register.css";
-import ROLES from "../App";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const REGISTER_URL = "/register/collab";
+const REGISTER_URL = "/admin/registerCollab";
 
-const Register = () => {
+const RegisterCollab = () => {
+  const axiosPrivate = useAxiosPrivate();
+  const ROLES = {
+    Admin: 5150,
+    Collaborator: 1984,
+    User: 2001,
+  };
   const userRef = useRef();
   const errRef = useRef();
 
@@ -42,7 +47,6 @@ const Register = () => {
   const [websiteId, setWebsiteId] = useState(0);
 
   const [role, setRole] = useState(ROLES.Collaborator);
-  const [isRole, setRoleSet] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -83,18 +87,13 @@ const Register = () => {
     setErrMsg("");
   }, [user, pwd, matchPwd]);
 
-  useEffect(() => {
-    console.log("role = ", role);
-  }, [role]);
+  // useEffect(() => {
+  //   console.log("role = ", role);
+  // }, [role]);
 
   useEffect(() => {
     console.log("website =", websiteId);
   }, [websiteId]);
-
-  const handleRoleChange = (roles) => {
-    setRole(roles);
-    setRoleSet(true);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,7 +106,7 @@ const Register = () => {
     }
     try {
       console.log("role=", role);
-      const response = await axios.post(
+      const response = await axiosPrivate.post(
         REGISTER_URL,
         JSON.stringify({
           username: user,
@@ -133,7 +132,7 @@ const Register = () => {
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 409) {
-        setErrMsg("Username Taken");
+        setErrMsg("Username Taken / Collaborator already assigned");
       } else {
         setErrMsg("Registration Failed");
       }
@@ -290,7 +289,7 @@ const Register = () => {
               onBlur={() => setEmailFocus(false)}
             />
 
-            <label htmlFor="role">Role:</label>
+            {/* <label htmlFor="role">Role:</label>
             <select
               id="role"
               value={role}
@@ -299,9 +298,9 @@ const Register = () => {
               }}
               className="border-2 border-black rounded-md p-2"
             >
-              {!isRole && <option>None</option>}
+              {!isRole && <option>Not chosen</option>}
               <option value={ROLES.Collaborator}>Collaborator</option>
-            </select>
+            </select> */}
             <label htmlFor="websiteId">Website:</label>
             <select
               id="website"
@@ -327,7 +326,7 @@ const Register = () => {
 
             <button
               disabled={
-                !validName || !validPwd || !validMatch || !validEmail
+                !validName || !validPwd || !validMatch || !validEmail || websiteId===0
                   ? true
                   : false
               }
@@ -335,17 +334,10 @@ const Register = () => {
               Register Collaborator
             </button>
           </form>
-          {/* <p className="text-green-600">
-            Already registered?
-            <br />
-            <span className="line">
-              <Link to="/login">Sign In</Link>
-            </span>
-          </p> */}
         </section>
       )}
     </>
   );
 };
 
-export default Register;
+export default RegisterCollab;

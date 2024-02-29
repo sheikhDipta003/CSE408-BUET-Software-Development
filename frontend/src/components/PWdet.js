@@ -46,6 +46,7 @@ const ProductDetails = () => {
   const location = useLocation();
   const [priceDrop, setPriceDrop] = useState("");
   const [showWarning, setShowWarning] = useState(false);
+  const [wishlist, setWishlist] = useState(false);
 
   //let data = {};
   useEffect(() => {
@@ -70,9 +71,35 @@ const ProductDetails = () => {
       }
     };
 
-    // Call fetchData function inside useEffect
-    fetchData();
-  }, [productId, websiteId]); // Empty dependency array means this effect runs only once on mount
+    const fetchWishlist = async() => {
+      if(auth?.roles === ROLES.User)
+      {
+        try {
+          const response = await axiosPrivate.get(
+            `/users/${auth.userId}/wishlist/${website.pwId}/exist`,
+          );
+          console.log(response.data.message);
+
+          if(response.data.message==="Found")
+            setWishlist(true);
+          else
+            setWishlist(false);
+        } catch (error) {
+          console.error("Error fetching wishlist exist:", error);
+        }
+      }
+    }
+
+    const fetchDataAndWishlist = async () => {
+      try {
+        await fetchData();
+        await fetchWishlist();
+      } catch (error) {
+        console.error("Error fetching data and wishlist:", error);
+      }
+    };
+    fetchDataAndWishlist()
+  }, [productId, websiteId]);
 
   const handleCreateAlert = async () => {
     console.log("Creating price drop alert...");
@@ -123,8 +150,6 @@ const ProductDetails = () => {
     }
     console.log(pricesConv);
   }, [prices]);
-
-  const [wishlist, setWishlist] = useState(false);
   
   const handleAddToWishlist = async (pwId) => {
     setWishlist(!wishlist);
@@ -165,9 +190,25 @@ const ProductDetails = () => {
     } else navigate("/login");
   };
 
-  const goToWebsite = () => {
-    navigate(``);
+  const handleDeleteWishlist = async (pwId) => {
+    setWishlist(!wishlist);
+
+    //this option is available only for logged in users
+    if (auth?.roles === ROLES.User) {
+      try {
+        const response = await axiosPrivate.get(
+          `/users/${auth.userId}/wishlist/${pwId}/deletepw`,
+        );
+        alert(response.data.message);
+      } catch (err) {
+        console.log("Error removing from wishlist: ", err);
+      }
+    } else if (auth?.accessToken) {
+      navigate("/unauthorized");
+    } else navigate("/login");
   };
+
+  
   const data = {
     labels: pricesConv.map((entry) => entry.date),
     datasets: [
@@ -226,23 +267,12 @@ const ProductDetails = () => {
             </button>
           )}
           {wishlist && (
-            <button className="bg-green-500 text-white px-4 py-2" onClick={() => handleAddToWishlist(website.pwId)}>//////////////////////////////////////////////////////////////////////
+            <button className="bg-green-500 text-white px-4 py-2" onClick={() => handleDeleteWishlist(website.pwId)}>
               Added to wishlist
             </button>
           )}
-          {/* <button
-            className="bg-green-500 text-white px-4 py-2"
-            onClick={() => handleAddToWishlist(website.pwId)}
-          >
-            Add to wishlist
-          </button> */}
         </div>
-        {/* <div className="col-md-2"> */}
         
-        {/* <a href={website.pwURL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-            Visit Website
-          </a> */}
-        {/* </div> */}
       </div>
       <hr className="mt-8" />
       <div className="mt-2 flex justify-center items-center">
@@ -280,7 +310,7 @@ const ProductDetails = () => {
         <div className="w-1/2 p-0">
           <h2 className="text-xl font-bold mb-2">Set Price Drop Alert</h2>
           <p className="text-gray-600">
-            Enter the desired price drop below and click 'Create Alert' to set
+            Enter the desired price and click 'Create Alert' to set
             up a price drop alert for this product.
           </p>
         </div>
@@ -289,7 +319,7 @@ const ProductDetails = () => {
         <div className="flex items-center">
           <input
             type="text"
-            placeholder="Enter price drop"
+            placeholder="Enter price"
             value={priceDrop}
             onChange={handleChange}
             className="border-2 rounded-md px-4 py-2 mr-2"

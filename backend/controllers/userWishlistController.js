@@ -114,6 +114,29 @@ const getOneWishItem = async (req, res) => {
   }
 };
 
+const isInWishlist = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const pwId = req.params.pwId;
+    // Fetch the list of users from the database
+    const wishlistDetails = await Wishlist.findOne({
+      where: { userId: userId, pwId: pwId }
+    });
+
+    let response;
+    if (!wishlistDetails) {
+      response = {message: "Not Found"};
+    }
+    else
+      response = {message: "Found"}
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.error("Error retrieving wishItem:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 const deleteWishItem = async (req, res) => {
   try {
     const userId = req.params.userId;
@@ -139,4 +162,29 @@ const deleteWishItem = async (req, res) => {
   }
 };
 
-module.exports = { addToWishlist, allWishlist, deleteWishItem, getOneWishItem };
+const deleteWishItemPW = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const pwId = req.params.pwId;
+
+    // Check if the user has the product in their wishlist
+    const userWishlist = await Wishlist.findOne({
+      where: { pwId: pwId, userId: userId },
+    });
+
+    if (!userWishlist) {
+      return res.status(404).json({ message: "Wishlist not found" });
+    }
+
+    await userWishlist.destroy();
+
+    res
+      .status(200)
+      .json({ message: "Product removed from wishlist successfully" });
+  } catch (error) {
+    console.error("Error removing product from wishlist:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+module.exports = { addToWishlist, allWishlist, deleteWishItem, getOneWishItem, isInWishlist, deleteWishItemPW };
