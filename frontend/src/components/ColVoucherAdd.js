@@ -149,11 +149,9 @@ const ColVoucherAdd = ({ collabId }) => {
               autoComplete="off"
               onChange={(e) => setVoucherCode(e.target.value)}
               value={voucherCode}
-              className="w-full p-2 border border-gray-300 rounded"
               required
               className="border-2 rounded px-4 py-2 mb-2 block"
             />
-            </div>
             <label htmlFor="discountPercentage">Discount Percentage:</label>
             <input
               type="number"
@@ -162,7 +160,6 @@ const ColVoucherAdd = ({ collabId }) => {
               max={100}
               onChange={handleChange}
               value={discountPercentage}
-              className="w-full p-2 border border-black-500 rounded"
               required
               className="border-2 rounded px-4 py-2 mb-2 block"
             />
