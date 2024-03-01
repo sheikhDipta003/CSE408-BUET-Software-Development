@@ -23,7 +23,10 @@ const UserDashboard = () => {
         const response2 = await axiosPrivate.get(`/users/trending`);
         console.log("from trending = ", response2.data.trending);
         isMounted && setTrendingProducts(response2.data.trending);
-        isMounted && setTopOffers(response2.data.trending);
+
+        const response3 = await axiosPrivate.get(`/users/topOffers`);
+        console.log("from top offers = ", response3.data.top);
+        isMounted && setTopOffers([...response3.data.top, ...response2.data.trending]);
       } catch (err) {
         console.error(err);
         alert(err.response?.data?.message || err.message);
@@ -72,6 +75,7 @@ const UserDashboard = () => {
           padding: "10px 0",
           "min-height": "600px",
           marginBottom: "10px",
+          zIndex: 5
         }}
       />
     </div>

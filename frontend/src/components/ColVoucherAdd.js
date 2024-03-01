@@ -86,7 +86,7 @@ const ColVoucherAdd = ({ collabId }) => {
     <>
       {success ? (
         <section>
-          <h1>Voucher Successfully Added!</h1>
+          <h1 className="bg-green-400 w-full px-4 py-2 flex justify-center items-center">Voucher Successfully Added!</h1>
         </section>
       ) : (
         <section>
@@ -97,18 +97,20 @@ const ColVoucherAdd = ({ collabId }) => {
           >
             {errMsg}
           </p>
-          <h1>Add Voucher</h1>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="voucherCode">Voucher Code:</label>
+          <h1 className="text-2xl bg-green-500 text-white px-4 py-2 rounded inline-flex items-center">Add Voucher details to provide to Users</h1>
+          <form onSubmit={handleSubmit} className="mt-4">
+            <div className="mb-4">
+            <label htmlFor="voucherCode" className="block">Voucher Code:</label>
             <input
               type="text"
               id="voucherCode"
               autoComplete="off"
               onChange={(e) => setVoucherCode(e.target.value)}
               value={voucherCode}
+              className="w-full p-2 border border-gray-300 rounded"
               required
             />
-
+            </div>
             <label htmlFor="discountPercentage">Discount Percentage:</label>
             <input
               type="number"
@@ -117,6 +119,7 @@ const ColVoucherAdd = ({ collabId }) => {
               max={100}
               onChange={handleChange}
               value={discountPercentage}
+              className="w-full p-2 border border-black-500 rounded"
               required
             />
 
@@ -132,6 +135,7 @@ const ColVoucherAdd = ({ collabId }) => {
               id="maxAmount"
               onChange={handleMax}
               value={maxAmount}
+              className="w-full p-2 border border-black-500 rounded"
             />
 
             <label htmlFor="minAmount">Min Amount:</label>
@@ -140,6 +144,7 @@ const ColVoucherAdd = ({ collabId }) => {
               id="minAmount"
               onChange={handleMin}
               value={minAmount}
+              className="w-full p-2 border border-black-500 rounded"
             />
 
             <label htmlFor="total">Total Vouchers:</label>
@@ -148,6 +153,7 @@ const ColVoucherAdd = ({ collabId }) => {
               id="total"
               onChange={handleTotal}
               value={total}
+              className="w-full p-2 border border-black-500 rounded"
             />
 
             <button>Add Voucher</button>

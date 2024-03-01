@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,7 +15,7 @@ const CollabProducts = ({ collabId }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [promoted, setPromoted] = useState(false);
-    const [unpromoted, setUnpromoted] = useState(false);
+    const [all, setAll] = useState(true);
 
     const fetchProducts = async () => {
         try {
@@ -43,12 +43,15 @@ const CollabProducts = ({ collabId }) => {
         );
 
         let allFilters = filterProducts;
-        if (promoted) {
+        if (all) {
+            allFilters = allFilters;
+        }
+        else if (promoted) {
             allFilters = allFilters.filter(
                 (product) => product.promoted === true,
             );
         }
-        if (unpromoted) {
+        else if (!promoted) {
             allFilters = allFilters.filter(
                 (product) => product.promoted === false,
             );
@@ -58,7 +61,7 @@ const CollabProducts = ({ collabId }) => {
     }, [
         searchQuery,
         promoted,
-        unpromoted,
+        all,
         products
     ]);
 
@@ -101,12 +104,27 @@ const CollabProducts = ({ collabId }) => {
         }
     };
 
+    const handleAll = () => {
+        setAll(true);
+        setPromoted(false);
+    }
+
+    const handlePromoted = () => {
+        setAll(false);
+        setPromoted(true);
+    }
+
+    const handleUnpromoted = () => {
+        setAll(false);
+        setPromoted(false);
+    }
+
     const handleSearch = (e) => {
         setSearchQuery(e.target.value);
     };
 
     return (
-        <div className="relative">
+        <div>
             <div className="text-xl font-bold flex justify-center mt-4 w-5/6">
                 All products
             </div>
@@ -121,44 +139,40 @@ const CollabProducts = ({ collabId }) => {
                 />
             </div>
 
-            <div className="flex justify-center">
-                <div className="w-1/4 my-2 p-4">
-                    <p className="text-black font-bold mb-2 border-b-4 border-blue-700">
-                        Filter by following:
-                    </p>
-                    <div className="mb-2 flex flex-row ">
-                        <input
-                            type="checkbox"
-                            id="promoted"
-                            name="promoted"
-                            checked={promoted}
-                            onChange={() => setPromoted(!promoted)}
-                            className="size-5 hover:cursor-pointer"
-                        />
-                        <label
-                            htmlFor="promoted"
-                            className="ml-2 font-normal text-black mt-0 hover:text-red-600 hover:cursor-pointer"
-                        >
-                            Promoted Products
-                        </label>
-                    </div>
-                    <div className="mb-2 pb-2 flex flex-row border-b-4 border-b-blue-700">
-                        <input
-                            type="checkbox"
-                            id="unpromoted"
-                            name="unpromoted"
-                            checked={unpromoted}
-                            onChange={() => setUnpromoted(!unpromoted)}
-                            className="size-5 hover:cursor-pointer"
-                        />
-                        <label
-                            htmlFor="unpromoted"
-                            className="ml-2 text-black mt-0 font-normal hover:text-red-600 hover:cursor-pointer"
-                        >
-                            Unpromoted Products
-                        </label>
-                    </div>
-                </div>
+            <div className="flex items-center justify-center space-x-4 mb-4">
+                <label className="text-md flex items-center cursor-pointer">
+                    <input
+                        type="radio"
+                        name="filter"
+                        value="all"
+                        className="size-5 mr-2 cursor-pointer"
+                        checked={all}
+                        onChange={handleAll}
+                    />
+                    All
+                </label>
+                <label className="text-md flex items-center cursor-pointer">
+                    <input
+                        type="radio"
+                        name="filter"
+                        value="promoted"
+                        className="size-5 mr-2 cursor-pointer"
+                        checked={!all && promoted}
+                        onChange={handlePromoted}
+                    />
+                    Promoted
+                </label>
+                <label className="text-md flex items-center cursor-pointer">
+                    <input
+                        type="radio"
+                        name="filter"
+                        value="unpromoted"
+                        className="size-5 mr-2 cursor-pointer"
+                        checked={!all && !promoted}
+                        onChange={handleUnpromoted}
+                    />
+                    Unpromoted
+                </label>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-5/6 mt-0">
@@ -174,7 +188,7 @@ const CollabProducts = ({ collabId }) => {
                                 rel="noopener noreferrer"
                             >
                                 <button className="bg-blue-400 text-white px-4 py-2 rounded">
-                                <FontAwesomeIcon icon={faInfoCircle} />
+                                    <FontAwesomeIcon icon={faInfoCircle} />
                                 </button>
                             </Link>
                             &nbsp;&nbsp;&nbsp;

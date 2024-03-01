@@ -392,20 +392,19 @@ const getPromoted = async (req, res) => {
       {
         promoted: true,
       },
-      include:
-        [
-          {
-            model: Product
-          },
-          {
-            model: Website,
-          }
-        ]
     });
 
-    console.log({result});
+    if (!result || result.length === 0) {
+      return res.status(200).json({ top: [] });
+    }
 
-    res.status(200).json(result);
+    const pwIds = result.map((row) => row.pwId);
+
+    const productsInfo = await Promise.all(
+      pwIds.map(async (pwId) => (await getProductInfo(pwId)).data)
+    );
+
+    res.status(200).json({top: productsInfo});
 
   } catch (error) {
     console.error("Error getting top products:", error);
