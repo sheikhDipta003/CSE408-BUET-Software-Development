@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../css/ProductCompare.css";
 import api from "../api/axios"
+import { useAsyncError } from "react-router-dom";
 
 const ProductComparisonPage = () => {
   const [product1, setProduct1] = useState("");
@@ -14,6 +15,7 @@ const ProductComparisonPage = () => {
   const searchRef2 = useRef(null);
   const [productSuggest1, setProductSuggest1] = useState([]);
   const [productSuggest2, setProductSuggest2] = useState([]);
+  const [difference, setDiff] = useState(false);
 
   const handleProduct1Change = (e) => {
     setProduct1(e.target.value);
@@ -117,12 +119,12 @@ const ProductComparisonPage = () => {
     try {
       const response = await api.get(`/products/${id}`);
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch product data");
-      }
+      // if (!response.ok) {
+      //   throw new Error("Failed to fetch product data");
+      // }
 
       const data = response.data;
-      //console.log(data.productDetails);
+      console.log(data.productDetails);
       setProduct1val(data.productDetails);
       //console.log(product1val);
       setProductSuggest1([]);
@@ -138,9 +140,9 @@ const ProductComparisonPage = () => {
     try {
       const response = await api.get(`/products/${id}`);
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch product data");
-      }
+      // if (!response.ok) {
+      //   throw new Error("Failed to fetch product data");
+      // }
 
       const data = response.data;
       //console.log(data.productDetails);
@@ -212,11 +214,27 @@ const ProductComparisonPage = () => {
     }
   }, [product1val, product2val, allFeatures, p1Features, p2Features]);
 
+  const handleDiff = () => {
+    setDiff(!difference);
+  }
+
 
   return (
     <div className="container mx-auto m-10 content-center">
       <div className="mt-2 flex justify-center items-center">
-        <h3 className="text-lg font-semibold mb-4">Product Comparison</h3>
+        <h3 className="text-lg font-semibold mb-1">Product Comparison</h3><br></br>
+      </div>
+      <div className="mt-2 flex justify-center items-center">
+        {!difference && (
+          <button className="border-2 border-black rounded text-black px-4 py-2" onClick={handleDiff}>
+            Highlight Differences
+          </button>
+        )}
+        {difference && (
+          <button className="border-2 border-black rounded text-black px-4 py-2" onClick={handleDiff}>
+            Show plain result
+          </button>
+        )}
       </div>
       <div className="mt-2 flex justify-center items-center">
         <table
@@ -251,6 +269,12 @@ const ProductComparisonPage = () => {
                 </div>{" "}
                 <br></br>
                 {product1val.productName}
+                <br></br>
+                <img
+                  src={product1val.imagePath}
+                  alt={product1val.productName}
+                  className="max-w-52 max-h-52 m-auto"
+                />
               </th>
               <th className="border-b border-black px-6 py-10">
                 <div className="relative" ref={searchRef2}>
@@ -277,69 +301,145 @@ const ProductComparisonPage = () => {
                 </div>
                 <br></br>
                 {product2val.productName}
+                <br></br>
+                <img
+                  src={product2val.imagePath}
+                  alt={product2val.productName}
+                  className="max-w-52 max-h-52 m-auto"
+                />
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="border-b border-black px-6 py-6">Brand</td>
-              <td className="border-b border-black px-6 py-6">
-                {product1val.brand}
-              </td>
-              <td className="border-b border-black px-6 py-6">
-                {product2val.brand}
-              </td>
-            </tr>
-            <tr>
-              <td className="border-b border-black px-6 py-6">Category</td>
-              <td className="border-b border-black px-6 py-6">
-                {product1val.category}
-              </td>
-              <td className="border-b border-black px-6 py-6">
-                {product2val.category}
-              </td>
-            </tr>
+            {(product1val.length != 0 || product2val.length != 0) && (
+              <>
+                <tr>
+                  <td className="border-b border-black px-6 py-6">Brand</td>
+                  {(difference && product1val.length != 0 && product2val.length != 0 && product1val.brand === product2val.brand) ?
+                    (<>
+                      <td className="border-b border-black text-slate-300 px-6 py-6">
+                        {product1val.brand}
+                      </td>
+                      <td className="border-b border-black text-slate-300 px-6 py-6">
+                        {product2val.brand}
+                      </td>
+                    </>) :
+                    (<>
+                      <td className="border-b border-black px-6 py-6">
+                        {product1val.brand}
+                      </td>
+                      <td className="border-b border-black px-6 py-6">
+                        {product2val.brand}
+                      </td>
+                    </>)}
+                </tr>
+                <tr>
+                  <td className="border-b border-black px-6 py-6">Category</td>
+                  {(difference && product1val.length != 0 && product2val.length != 0 && product1val.category === product2val.category) ?
+                    (<>
+                      <td className="border-b border-black text-slate-300 px-6 py-6">
+                        {product1val.category}
+                      </td>
+                      <td className="border-b border-black text-slate-300 px-6 py-6">
+                        {product2val.category}
+                      </td>
+                    </>) :
+                    (<>
+                      <td className="border-b border-black px-6 py-6">
+                        {product1val.category}
+                      </td>
+                      <td className="border-b border-black px-6 py-6">
+                        {product2val.category}
+                      </td>
+                    </>)}
+                </tr>
 
-            <tr>
-              <td className="border-b border-black px-6 py-6">Subcategory</td>
-              <td className="border-b border-black px-6 py-6">
-                {product1val.subcategory}
-              </td>
-              <td className="border-b border-black px-6 py-6">
-                {product2val.subcategory}
-              </td>
-            </tr>
+                <tr>
+                  <td className="border-b border-black px-6 py-6">Subcategory</td>
+                  {(difference && product1val.length != 0 && product2val.length != 0 && product1val.subcategory === product2val.subcategory) ?
+                    (<>
+                      <td className="border-b border-black text-slate-300 px-6 py-6">
+                        {product1val.subcategory}
+                      </td>
+                      <td className="border-b border-black text-slate-300 px-6 py-6">
+                        {product2val.subcategory}
+                      </td>
+                    </>) : (<>
+                      <td className="border-b border-black px-6 py-6">
+                        {product1val.subcategory}
+                      </td>
+                      <td className="border-b border-black px-6 py-6">
+                        {product2val.subcategory}
+                      </td>
+                    </>)}
+                </tr>
 
-            <tr>
-              <td className="border-b border-black px-6 py-6">Min Price</td>
-              <td className="border-b border-black px-6 py-6">
-                {product1val.minPrice}
-              </td>
-              <td className="border-b border-black px-6 py-6">
-                {product2val.minPrice}
-              </td>
-            </tr>
-            <tr>
-              <td className="border-b border-black px-6 py-6">Available in</td>
-              <td className="border-b border-black px-6 py-6">
-                {product1val.websites} websites
-              </td>
-              <td className="border-b border-black px-6 py-6">
-                {product2val.websites} websites
-              </td>
-            </tr>
+                <tr>
+                  <td className="border-b border-black px-6 py-6">Min Price</td>
+                  {(difference && product1val.length != 0 && product2val.length != 0 && product1val.minPrice === product2val.minPrice) ?
+                    (<>
+                      <td className="border-b border-black text-slate-300 px-6 py-6">
+                        {product1val.minPrice}
+                      </td>
+                      <td className="border-b border-black text-slate-300 px-6 py-6">
+                        {product2val.minPrice}
+                      </td>
+                    </>) : (<>
+                      <td className="border-b border-black px-6 py-6">
+                        {product1val.minPrice}
+                      </td>
+                      <td className="border-b border-black px-6 py-6">
+                        {product2val.minPrice}
+                      </td>
+                    </>)}
+                </tr>
+                <tr>
+                  <td className="border-b border-black px-6 py-6">Available in</td>
+                  {(difference && product1val.length != 0 && product2val.length != 0 && product1val.websites === product2val.websites) ?
+                    (
+                      <>
+                        <td className="border-b border-black text-slate-300 px-6 py-6">
+                          {product1val.websites} websites
+                        </td>
+                        <td className="border-b border-black text-slate-300 px-6 py-6">
+                          {product2val.websites} websites
+                        </td>
+                      </>) : (
+                      <>
+                        <td className="border-b border-black px-6 py-6">
+                          {product1val.websites} websites
+                        </td>
+                        <td className="border-b border-black px-6 py-6">
+                          {product2val.websites} websites
+                        </td>
+                      </>
+                    )
+                  }
+                </tr>
 
-            {allFeatures.map((feature, index) => (
-              <tr key={index}>
-                <td className="border-b border-black px-6 py-6">{feature}</td>
-                <td className="border-b border-black px-6 py-6">
-                  {p1Features.size > 0 ? p1Features.get(feature) : ""}
-                </td>
-                <td className="border-b border-black px-6 py-6">
-                  {p2Features.size > 0 ? p2Features.get(feature) : ""}
-                </td>
-              </tr>
-            ))}
+                {allFeatures.map((feature, index) => (
+                  <tr key={index}>
+                    <td className="border-b border-black px-6 py-6">{feature}</td>
+                    {(difference && p1Features.length != 0 && p2Features.length != 0 && p1Features.get(feature) === p2Features.get(feature)) ?
+                      (<>
+                        <td className="border-b border-black text-slate-300 px-6 py-6">
+                          {p1Features.size > 0 ? p1Features.get(feature) : ""}
+                        </td>
+                        <td className="border-b border-black text-slate-300 px-6 py-6">
+                          {p2Features.size > 0 ? p2Features.get(feature) : ""}
+                        </td>
+                      </>) : (<>
+                        <td className="border-b border-black px-6 py-6">
+                          {p1Features.size > 0 ? p1Features.get(feature) : ""}
+                        </td>
+                        <td className="border-b border-black px-6 py-6">
+                          {p2Features.size > 0 ? p2Features.get(feature) : ""}
+                        </td>
+                      </>)}
+                  </tr>
+                ))}
+              </>
+            )}
           </tbody>
         </table>
       </div>
