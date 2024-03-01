@@ -3,6 +3,7 @@ import ColEventAdd from "./ColEventAdd";
 import ColVoucherAdd from "./ColVoucherAdd";
 import EventManagement from "./ColEventManage";
 import VoucherManagement from "./ColVoucherManage";
+import CollabProducts from "./CollabProducts";
 
 const Collaborator = ({ collabId }) => {
   const [activeMenu, setActiveMenu] = useState("Vouchers");
@@ -106,6 +107,9 @@ const Collaborator = ({ collabId }) => {
               )}
               {activeSubMenu === "AddE" && <ColEventAdd collabId={collabId} />}
             </div>
+          )}
+          {activeMenu === "Products" && (
+            <CollabProducts collabId={collabId} />
           )}
         </div>
       </div>

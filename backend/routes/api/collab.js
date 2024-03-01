@@ -16,7 +16,7 @@ router.get("/:collabId/clickcounts", collController.getClickCounts);
 router.get("/:collabId/vouchers", collController.getAllVouchers);
 router.delete("/:collabId/vouchers/:voucherId/remove", collController.removeVoucher);
 
-router.get("/:collabId", productsController.getProductsByCollabId);
+router.get("/:collabId/products", collController.getAllProducts);
 router.post("/:collabId/promote", recommendController.generateTopProducts);
 router.post("/:collabId/unpromote", recommendController.removeTopProduct);
 

@@ -15,6 +15,7 @@ const verifyRole = require("../../middleware/verifyRole");
 router.get("/reviews", review.getAllReviews);
 router.get("/recommend2", recommend.getAllUserClickcount);
 router.get("/trending", recommend.getTrendingProducts);
+router.get("/topOffers");
 
 //profile
 router.get("/:userId", profile.getUser);
