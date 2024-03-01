@@ -5,6 +5,7 @@ const UserInteraction = require("../models/UserInteraction");
 const UserVoucher = require("../models/UserVoucher");
 const Event = require("../models/Event");
 const User = require("../models/User");
+const Product = require("../models/Product");
 
 const getAllEvents = async (req, res) => {
   try {
@@ -412,4 +413,42 @@ const removeVoucher = async (req, res) => {
   }
 }
 
-module.exports = { getClickCounts, addVoucher, assignVoucherToUser, assignToRandomUsers, removeVoucher, getAllVouchers, getNumberOfUserVouchers, addEvent, getAllEvents, updateEvent, removeEvent };
+const getAllProducts = async (req, res) => {
+  try {
+    const collabId = req.params.collabId;
+    const website = await Website.findOne({
+      where: {
+        collabId: collabId,
+      }
+    })
+
+    if(!website)
+    {
+      res.status(404).json({ message: "Collaborated website not found" })
+    }
+
+    //console.log(website);
+    const websiteId = website.dataValues.websiteId;
+    //console.log(websiteId);
+
+    const result = await ProductWebsite.findAll({
+      where:
+      {
+        websiteId: websiteId,
+      },
+      include:
+        [
+          {
+            model: Product,
+          }
+        ]
+    })
+    //console.log();
+    res.status(200).json({ result, websiteId });
+  } catch (error) {
+    console.error("Error getting products:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+module.exports = { getClickCounts, addVoucher, assignVoucherToUser, assignToRandomUsers, removeVoucher, getAllVouchers, getNumberOfUserVouchers, addEvent, getAllEvents, updateEvent, removeEvent, getAllProducts };

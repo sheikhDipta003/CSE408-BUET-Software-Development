@@ -327,23 +327,25 @@ const generateRecommendations = async (req, res) => {
 
 const generateTopProducts = async (req, res) => {
   try {
-    const { collabId } = req.params;
-    const { productId } = req.body;
+    const collabId = req.params.collabId;
+    const { pwId } = req.body;
 
-    const website = await Website.findOne({ where: { collabId } });
+    const website = await Website.findOne({ where: { collabId: collabId } });
     if (!website) {
       return res.status(404).json({ message: "Website not found for the provided collabId" });
     }
 
+    //const websiteId = website.dataValues.website;
+
     const productWebsite = await ProductWebsite.findOne({
-      where: { websiteId: website.websiteId, productId },
+      where: { pwId: pwId },
     });
     if (!productWebsite) {
       return res.status(404).json({ message: "Product not found for the provided collabId and productId" });
     }
 
     //const productInfo = (await getProductInfo(productWebsite.pwId)).data;
-    productWebsite.promoted=true;
+    productWebsite.promoted = true;
     await productWebsite.save();
 
     res.status(200).json(productWebsite);
@@ -355,33 +357,62 @@ const generateTopProducts = async (req, res) => {
 
 const removeTopProduct = async (req, res) => {
   try {
-    const { collabId } = req.params;
-    const { productId } = req.body;
+    const collabId = req.params.collabId;
+    const { pwId } = req.body;
 
-    const website = await Website.findOne({ where: { collabId } });
+    const website = await Website.findOne({ where: { collabId: collabId } });
     if (!website) {
       return res.status(404).json({ message: "Website not found for the provided collabId" });
     }
 
+    //const websiteId = website.dataValues.websiteId;
+
     const productWebsite = await ProductWebsite.findOne({
-      where: { websiteId: website.websiteId, productId },
+      where: { pwId: pwId },
     });
     if (!productWebsite) {
       return res.status(404).json({ message: "Product not found for the provided collabId and productId" });
     }
 
     //const productInfo = (await getProductInfo(productWebsite.pwId)).data;
-    productWebsite.promoted=false;
+    productWebsite.promoted = false;
     await productWebsite.save();
 
     res.status(200).json(productWebsite);
   } catch (error) {
-    console.error("Error generating top products:", error);
+    console.error("Error removing top products:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
 
-const getProductInfo = async(pwId) => {
+const getPromoted = async (req, res) => {
+  try {
+    const result = await ProductWebsite.findAll({
+      where:
+      {
+        promoted: true,
+      },
+    });
+
+    if (!result || result.length === 0) {
+      return res.status(200).json({ top: [] });
+    }
+
+    const pwIds = result.map((row) => row.pwId);
+
+    const productsInfo = await Promise.all(
+      pwIds.map(async (pwId) => (await getProductInfo(pwId)).data)
+    );
+
+    res.status(200).json({top: productsInfo});
+
+  } catch (error) {
+    console.error("Error getting top products:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+const getProductInfo = async (pwId) => {
   try {
     const productWebsite = await ProductWebsite.findByPk(pwId, {
       include: [
@@ -437,5 +468,6 @@ module.exports = {
   generateRecommendations,
   getTrendingProducts,
   generateTopProducts,
-  removeTopProduct
+  removeTopProduct,
+  getPromoted
 };

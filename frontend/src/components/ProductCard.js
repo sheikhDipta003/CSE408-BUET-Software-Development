@@ -37,9 +37,9 @@ const ProductCard = ({ product, userId }) => {
     navigate(`/users/${userId}/viewprofile`);
   };
 
-  const handleDetailsClick = (productId) => {
+  const handleDetailsClick = (productId, websiteId) => {
     console.log("Showing details for the product");
-    navigate(`/products/${productId}`);
+    navigate(`/products/${productId}/${websiteId}`);
   };
 
   const handleShopNowClick = (url) => {
@@ -48,7 +48,7 @@ const ProductCard = ({ product, userId }) => {
   };
 
   return (
-    <div className="product-card flex bg-violet-300 w-96 h-72">
+    <div className="product-card flex border border-solid border-gray-400 w-96 h-72 z-30">
       {/* Left Partition - Image */}
       <div className="flex items-center justify-center">
         <img src={product.imagePath} alt={product.productName} />
@@ -78,7 +78,7 @@ const ProductCard = ({ product, userId }) => {
           <div
             className="details-icon relative hover:cursor-pointer"
             onClick={(e) => {
-              handleDetailsClick(product.productId);
+              handleDetailsClick(product.productId, product.websiteId);
             }}
           >
             <FontAwesomeIcon icon={faInfoCircle} />

@@ -314,7 +314,7 @@ const getQuerySuggestions = async (req, res) => {
 
 const getProductsByCollabId = async (req, res) => {
   try {
-    const { collabId } = req.params;
+    const collabId = req.params.collabId;
 
     const website = await Website.findOne({
       where: { collabId: collabId },
