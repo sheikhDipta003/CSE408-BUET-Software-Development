@@ -223,16 +223,29 @@ const assignVoucherToUser = async (req, res) => {
       return res.status(400).json({ message: "No more vouchers available for this offer" });
     }
 
-    voucher.total -= 1;
+    const existingUserVoucher = await UserVoucher.findOne({
+      where: {
+        UserUserId: userId,
+        VoucherVoucherId: voucherId,
+        userId: userId,
+        voucherId: voucherId
+      }
+    });
 
-    await voucher.save();
-
+    if (existingUserVoucher) {
+      return res.status(400).json({ message: "User already has this voucher" });
+    }
+    
     const newUserVoucher = await UserVoucher.create({
       UserUserId: userId,
       VoucherVoucherId: voucherId,
       userId: userId,
       voucherId: voucherId
     });
+
+    voucher.total -= 1;
+
+    await voucher.save();
 
     res.status(201).json({ message: "Voucher assigned to user successfully", newUserVoucher });
   } catch (error) {
@@ -285,7 +298,7 @@ const assignToRandomUsers = async (req, res) => {
       voucher.total -= usersWithoutVoucher.length;
       await voucher.save();
 
-      res.status(201).json({ message: "Voucher assigned to all eligible users successfully" });
+      res.status(201).json({ message: `Voucher assigned to ${usersWithoutVoucher.length} eligible users successfully` });
     } else {
       const selectedUserIds = [];
       while (selectedUserIds.length < voucher.total) {
@@ -306,7 +319,7 @@ const assignToRandomUsers = async (req, res) => {
       voucher.total -= selectedUserIds.length;
       await voucher.save();
 
-      res.status(201).json({ message: "Voucher assigned to selected eligible users successfully" });
+      res.status(201).json({ message: `Voucher assigned to ${selectedUserIds.length} eligible users successfully` });
     }
   } catch (error) {
     console.error("Error assigning voucher to users:", error);
@@ -342,6 +355,48 @@ const getAllVouchers = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 }
+
+const getNumberOfUserVouchers = async (req, res) => {
+  try {
+    const { userId, collabId } = req.params;
+
+    const website = await Website.findOne({
+      where: {
+        UserUserId: collabId,
+      },
+    });
+
+    if (!website) {
+      return res.status(404).json({ message: "Collaborated website not found" });
+    }
+
+    const websiteId = website.websiteId;
+
+    const vouchers = await Voucher.findAll({
+      where: {
+        WebsiteWebsiteId: websiteId,
+      },
+    });
+
+    const voucherIds = vouchers.map(voucher => voucher.voucherId);
+
+    const userVouchers = await UserVoucher.findAll({
+      where: {
+        UserUserId: userId,
+        VoucherVoucherId: voucherIds,
+        userId: userId,
+        voucherId: voucherIds
+      },
+    });
+
+    const numberOfUserVouchers = userVouchers.length;
+
+    res.status(200).json({ nVouchers: numberOfUserVouchers});
+  } catch (error) {
+    console.error("Error getting number of user vouchers:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
 
 const removeVoucher = async (req, res) => {
     try {
@@ -396,4 +451,4 @@ const getAllProducts = async (req, res) => {
   }
 }
 
-module.exports = { getClickCounts, addVoucher, assignVoucherToUser, assignToRandomUsers, removeVoucher, getAllVouchers, addEvent, getAllEvents, updateEvent, removeEvent, getAllProducts };
+module.exports = { getClickCounts, addVoucher, assignVoucherToUser, assignToRandomUsers, removeVoucher, getAllVouchers, getNumberOfUserVouchers, addEvent, getAllEvents, updateEvent, removeEvent, getAllProducts };

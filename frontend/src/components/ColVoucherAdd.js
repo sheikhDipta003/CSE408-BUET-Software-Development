@@ -1,8 +1,9 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import "../css/Register.css";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const ColVoucherAdd = ({ collabId }) => {
   const errRef = useRef();
@@ -14,6 +15,15 @@ const ColVoucherAdd = ({ collabId }) => {
   const [minAmount, setMinAmount] = useState();
   const [total, setTotal] = useState();
   const [endDate, setEndDate] = useState(new Date());
+
+  const handleCancel = () => {
+    setVoucherCode("");
+    setDiscountPer(0);
+    setMaxAmount();
+    setMinAmount();
+    setTotal();
+    setEndDate(new Date());
+  };
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -82,12 +92,41 @@ const ColVoucherAdd = ({ collabId }) => {
     }
   };
 
+  const handleAddVoucher = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axiosPrivate.post(
+        "/collab/voucher/add",
+        JSON.stringify({
+          voucherCode,
+          discountPercentage,
+          maxAmount,
+          minAmount,
+          endDate,
+          total, 
+          collabId
+        }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      setSuccess(true);
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else {
+        setErrMsg("Adding Event Failed");
+      }
+      errRef.current.focus();
+    }
+  };
+
   return (
     <>
       {success ? (
-        <section>
-          <h1 className="bg-green-400 w-full px-4 py-2 flex justify-center items-center">Voucher Successfully Added!</h1>
-        </section>
+        <div className="w-full px-4 py-2 flex justify-center items-center bg-green-500 text-white font-semibold">Voucher Successfully Added!</div>
       ) : (
         <section>
           <p
@@ -97,10 +136,13 @@ const ColVoucherAdd = ({ collabId }) => {
           >
             {errMsg}
           </p>
-          <h1 className="text-2xl bg-green-500 text-white px-4 py-2 rounded inline-flex items-center">Add Voucher details to provide to Users</h1>
-          <form onSubmit={handleSubmit} className="mt-4">
-            <div className="mb-4">
-            <label htmlFor="voucherCode" className="block">Voucher Code:</label>
+          
+          <h1 className="text-2xl bg-green-500 text-white px-4 py-2 rounded inline-flex items-center">
+            Enter Voucher Details to Create a New Voucher
+          </h1>
+          
+          <form onSubmit={handleSubmit} className="mb-4">
+            <label htmlFor="voucherCode">Voucher Code:</label>
             <input
               type="text"
               id="voucherCode"
@@ -109,6 +151,7 @@ const ColVoucherAdd = ({ collabId }) => {
               value={voucherCode}
               className="w-full p-2 border border-gray-300 rounded"
               required
+              className="border-2 rounded px-4 py-2 mb-2 block"
             />
             </div>
             <label htmlFor="discountPercentage">Discount Percentage:</label>
@@ -121,12 +164,14 @@ const ColVoucherAdd = ({ collabId }) => {
               value={discountPercentage}
               className="w-full p-2 border border-black-500 rounded"
               required
+              className="border-2 rounded px-4 py-2 mb-2 block"
             />
 
             <label htmlFor="endDate">End Date:</label>
             <DatePicker
               selected={endDate}
               onChange={(date) => setEndDate(date)}
+              className="border-2 rounded px-4 py-2 mb-2 block"
             />
 
             <label htmlFor="maxAmount">Max Amount:</label>
@@ -135,7 +180,7 @@ const ColVoucherAdd = ({ collabId }) => {
               id="maxAmount"
               onChange={handleMax}
               value={maxAmount}
-              className="w-full p-2 border border-black-500 rounded"
+              className="border-2 rounded px-4 py-2 mb-2 block"
             />
 
             <label htmlFor="minAmount">Min Amount:</label>
@@ -144,7 +189,7 @@ const ColVoucherAdd = ({ collabId }) => {
               id="minAmount"
               onChange={handleMin}
               value={minAmount}
-              className="w-full p-2 border border-black-500 rounded"
+              className="border-2 rounded px-4 py-2 mb-2 block"
             />
 
             <label htmlFor="total">Total Vouchers:</label>
@@ -153,10 +198,27 @@ const ColVoucherAdd = ({ collabId }) => {
               id="total"
               onChange={handleTotal}
               value={total}
-              className="w-full p-2 border border-black-500 rounded"
+              className="border-2 rounded px-4 py-2 mb-2 block"
             />
 
-            <button>Add Voucher</button>
+            <div className="flex justify-between">
+              <button
+                type="submit"
+                className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded mr-2"
+                onClick={handleAddVoucher}
+              >
+                <FontAwesomeIcon icon={faPlus} className="mr-2" />
+                Add Voucher
+              </button>
+              <button
+                type="button"
+                className="bg-gray-500 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded"
+                onClick={handleCancel}
+              >
+                <FontAwesomeIcon icon={faTimes} className="mr-2" />
+                Clear All
+              </button>
+            </div>
           </form>
         </section>
       )}

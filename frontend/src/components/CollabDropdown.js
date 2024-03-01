@@ -10,7 +10,7 @@ import "../css/UserDropDown.css";
 import Logout from "./Logout";
 import useAuth from "../hooks/useAuth";
 
-const CollabDropdown = () => {
+const CollabDropdown = ({ collabId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -45,13 +45,21 @@ const CollabDropdown = () => {
       </div>
 
       {isOpen && (
-        <div className="dropdown-menu">
+        <div className="dropdown-menu w-[14vw]">
           <Link
             to="/home"
             className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200"
             onClick={closeDropdown}
           >
             Home
+          </Link>
+
+          <Link
+            to={`/collab/${collabId}/vouchers`}
+            className="text-right w-full px-4 py-3 mt-0 no-underline block text-black transition bg-slate-100 hover:bg-slate-300 duration-200"
+            onClick={closeDropdown}
+          >
+            Assign Vouchers
           </Link>
 
           <Link
