@@ -144,7 +144,7 @@ const RegisterCollab = () => {
     <>
       {success ? (
         <section>
-          <h1>Successfully added!</h1>
+          <h1 className="bg-green-400 w-full px-4 py-2 flex justify-center items-center">Successfully added!</h1>
         </section>
       ) : (
         <section>
@@ -155,7 +155,9 @@ const RegisterCollab = () => {
           >
             {errMsg}
           </p>
-          <h1>Register Collaborator</h1>
+          <h1 className="text-2xl bg-green-500 text-white px-4 py-2 rounded inline-flex items-center" style={{ marginRight: '20px' }}>
+            Register Collaborator by providing the following details:
+          </h1>
           <form onSubmit={handleSubmit}>
             <label htmlFor="username">
               Username:

@@ -10,9 +10,9 @@ const getAdminProfile = async (req, res) => {
     }
     // Return admin profile data without sensitive information
     res.status(200).json({
-      adminId: admin.adminId,
-      username: admin.username,
-      email: admin.email,
+      username: admin.dataValues.username,
+      email: admin.dataValues.email,
+      registrationDate: admin.dataValues.registrationDate,
       // Add other profile fields as needed
     });
   } catch (error) {

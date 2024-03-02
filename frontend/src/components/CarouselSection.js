@@ -25,6 +25,7 @@ const CarouselSection = ({ title, id, userId, products }) => {
         showIndicators={true}
         showThumbs={false}
         infiniteLoop={true}
+        selectedItem={0}
         renderArrowPrev={(clickHandler, hasPrev) => {
           return (
             <div

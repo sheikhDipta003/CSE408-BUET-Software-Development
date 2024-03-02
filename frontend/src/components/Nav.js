@@ -20,7 +20,7 @@ const Nav = () => {
     <nav className="Nav">
       <SearchBar />
       <ul>
-        <li>
+        <li className="mr-2">
           <Link to="/compare">Compare</Link>
         </li>
         {auth?.accessToken ? (

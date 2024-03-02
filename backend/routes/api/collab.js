@@ -4,6 +4,8 @@ const collController = require("../../controllers/collController");
 const productsController = require("../../controllers/productsController");
 const recommendController = require("../../controllers/recommendController");
 
+router.get("/:collabId/profile", collController.getCollabProfile);
+
 router.post("/event/add", collController.addEvent);
 
 router.post("/voucher/add", collController.addVoucher);

@@ -7,6 +7,43 @@ const Event = require("../models/Event");
 const User = require("../models/User");
 const Product = require("../models/Product");
 
+const getCollabProfile = async (req, res) => {
+  try {
+    const collabId = req.params.collabId;
+    const website = await Website.findOne({
+      where: {
+        collabId: collabId,
+      }
+    });
+
+    if (!website) {
+      return res.status(404).json({ message: "Collaborated website not found" });
+    }
+
+    const websiteName = website.dataValues.name;
+
+    const collab = await User.findOne({
+      where: {
+        userId: collabId,
+      }
+    });
+
+    if(!collab){
+      return res.status(404).json({message: "Collaboration profile not found"});
+    }
+
+    res.status(200).json({
+      username: collab.dataValues.username,
+      website: websiteName,
+      email: collab.dataValues.email,
+      registrationDate: collab.dataValues.registrationDate,
+    });
+  } catch (error) {
+    console.error("Error getting collab profile: ", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
 const getAllEvents = async (req, res) => {
   try {
     const collabId = req.params.collabId;
@@ -15,6 +52,10 @@ const getAllEvents = async (req, res) => {
         UserUserId: collabId,
       }
     });
+
+    if (!website) {
+      return res.status(404).json({ message: "Collaborated website not found" });
+    }
 
     const websiteId = website.dataValues.websiteId;
 
@@ -40,6 +81,10 @@ const addEvent = async (req, res) => {
         UserUserId: collabId,
       }
     })
+
+    if (!website) {
+      return res.status(404).json({ message: "Collaborated website not found" });
+    }
 
     const websiteId = website.dataValues.websiteId;
 
@@ -451,4 +496,4 @@ const getAllProducts = async (req, res) => {
   }
 }
 
-module.exports = { getClickCounts, addVoucher, assignVoucherToUser, assignToRandomUsers, removeVoucher, getAllVouchers, getNumberOfUserVouchers, addEvent, getAllEvents, updateEvent, removeEvent, getAllProducts };
+module.exports = { getClickCounts, addVoucher, assignVoucherToUser, assignToRandomUsers, removeVoucher, getAllVouchers, getNumberOfUserVouchers, addEvent, getAllEvents, updateEvent, removeEvent, getAllProducts, getCollabProfile };

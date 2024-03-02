@@ -62,7 +62,7 @@ const ProductCard = ({ product, userId }) => {
 
         {/* Icons Section */}
         <div className="icons flex justify-end space-x-4 mt-2">
-          <div
+          {/* <div
             className="bookmark-icon relative hover:cursor-pointer"
             onClick={(e) => {
               handleBookmarkClick(
@@ -73,7 +73,7 @@ const ProductCard = ({ product, userId }) => {
             }}
           >
             <FontAwesomeIcon icon={faBookmark} />
-          </div>
+          </div> */}
 
           <div
             className="details-icon relative hover:cursor-pointer"
