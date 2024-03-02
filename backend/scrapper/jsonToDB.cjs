@@ -48,7 +48,7 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
       
       // Check if the product model is present in the product table
       const { data: productData, error: productError } = await supabase
-        .from('Products_duplicate')
+        .from('Products')
         .select('productId')
         .eq('model', productModel);
 
@@ -65,7 +65,7 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
 
         // Check if the product-website is present in the product website table
         const { data: websiteData, error: websiteError } = await supabase
-          .from('ProductWebsites_duplicate')
+          .from('ProductWebsites')
           .select('pwURL')
           .eq('productId', productId);
 
@@ -87,8 +87,8 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
           console.log('Product-website not present, add to ProductWebsite table');
           // Product-website not present, add to ProductWebsite table
           const { data: insertedWebsite, error: websiteInsertError } = await supabase
-            .from('ProductWebsites_duplicate')
-            .insert([{ productId, pwURL: item.ProductUrl, websiteId }]);
+            .from('ProductWebsites')
+            .insert([{ productId, pwURL: item.ProductUrl, websiteId, price: item.Price }]);
 
           if (websiteInsertError) {
             console.error(`Error inserting product website for ${productName}: ${websiteInsertError.message}`);
@@ -99,7 +99,7 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
          const formattedDataForProductSpecs = [];
          if (productId !== null) {
            // Exclude 'MPN' and 'Model' attributes from specifications
-           if(Subcategory === 'Desktop'){
+           if(Subcategory === 'desktop'){
               if(websiteId === 2) {
                 const Processor = item.Attributes.find(attr => attr.name === 'Processor');
                 const RAM = item.Attributes.find(attr => attr.name === 'RAM');
@@ -121,7 +121,7 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
                 formattedDataForProductSpecs.push({ productId, specName: 'Storage', value: Storage ? Storage.value : '' });
                 formattedDataForProductSpecs.push({ productId, specName: 'Graphics', value: Graphics ? Graphics.value : '' });
               }
-            } else if(Subcategory === 'Laptop'){
+            } else if(Subcategory === 'laptop'){
               if (websiteId === 2) {
                 const Processor = item.Attributes.find(attr => attr.name === 'Processor Model');
                 const RAM = item.Attributes.find(attr => attr.name === 'RAM');
@@ -143,7 +143,7 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
                 formattedDataForProductSpecs.push({ productId, specName: 'Storage', value: Storage ? Storage.value : '' });
                 formattedDataForProductSpecs.push({ productId, specName: 'Graphics', value: Graphics ? Graphics.value : '' });
               }
-           } else if(Subcategory === 'Keyboard'){
+           } else if(Subcategory === 'keyboard'){
               if (websiteId === 2) {
                 const Interface = item.Attributes.find(attr => attr.name === 'Interface');
                 const CableLength = item.Attributes.find(attr => attr.name === 'Cable Length');
@@ -163,7 +163,7 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
                 formattedDataForProductSpecs.push({ productId, specName: 'Dimensions', value: Dimensions ? Dimensions.value : '' });
                 formattedDataForProductSpecs.push({ productId, specName: 'Cable Length', value: CableLength ? CableLength.value : '' });
               }          
-            } else if(Subcategory === 'Mouse'){
+            } else if(Subcategory === 'mouse'){
               if (websiteId === 2) {
                 const NumberOfKeys = item.Attributes.find(attr => attr.name === 'Number of Keys');
                 const ConnectionType = item.Attributes.find(attr => attr.name === 'Connection Type');
@@ -187,15 +187,29 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
              }          
           }
            const { error: specsInsertError } = await supabase
-           .from('ProductSpecs_duplicate')
+           .from('ProductSpecs')
            .insert(formattedDataForProductSpecs);
          }
         }
+        
+        // Fetch pwId from ProductWebsites table
+        const { data: pwIdData, error: pwIderror } = await supabase
+          .from('ProductWebsites')
+          .select('pwId')
+          .eq('productId', productId)
+          .eq('websiteId', websiteId)
+          .single();
 
+        if (pwIderror) {
+          console.error(`Error fetching pwId for ${productName}: ${pwIderror.message}`);
+          continue;
+        }
+
+        const pwId = pwIdData ? pwIdData.pwId : null;
         // Update product price table
         const { data: updatedPrice, error: priceUpdateError } = await supabase
-          .from('ProductPrices_duplicate')
-          .upsert([{ pwId: productId, price: item.Price, date: new Date().toISOString().split('T')[0] }]);
+          .from('ProductPrices')
+          .upsert([{ pwId, price: item.Price, date: new Date().toISOString().split('T')[0] }]);
 
         if (priceUpdateError) {
           console.error(`Error updating product price for ${productName}: ${priceUpdateError.message}`);
@@ -206,7 +220,7 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
         console.log('Product does not exist in the product table, add to all tables');
         const mpnAttribute = item.Attributes.find(attr => attr.name === 'MPN' || attr.name === 'Part No');
         const mpnValue = mpnAttribute ? mpnAttribute.value : null;
-        // Insert data into 'Products_duplicate' table
+        // Insert data into 'Products' table
         const formattedDataForProduct = {
           productName,
           imagePath: item.ImageUrl,
@@ -218,7 +232,7 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
         };
 
         const { data: insertedProduct, error: productInsertError } = await supabase
-          .from('Products_duplicate')
+          .from('Products')
           .insert([formattedDataForProduct]);
         
         if (productInsertError) {
@@ -235,18 +249,31 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
 
         // Insert data into 'ProductWebsite' table
         const { error: websiteInsertError } = await supabase
-          .from('ProductWebsites_duplicate')
+          .from('ProductWebsites')
           .insert([{ productId, pwURL: item.ProductUrl, websiteId }]);
 
         if (websiteInsertError) {
           console.error(`Error inserting product website for ${productName}: ${websiteInsertError.message}`);
           continue;
         }
+        
+        const { data: pwIdData, error: pwIderror } = await supabase
+          .from('ProductWebsites')
+          .select('pwId')
+          .eq('productId', productId)
+          .eq('websiteId', websiteId)
+          .single();
 
-        // Insert data into 'ProductPrices_duplicate' table
+        if (pwIderror) {
+          console.error(`Error fetching pwId for ${productName}: ${pwIderror.message}`);
+          continue;
+        }
+
+        const pwId = pwIdData ? pwIdData.pwId : null;
+        // Insert data into 'ProductPrices' table
         const { error: priceInsertError } = await supabase
-          .from('ProductPrices_duplicate')
-          .insert([{ pwId: productId, price: item.Price, date: new Date().toISOString().split('T')[0] }]);
+          .from('ProductPrices')
+          .insert([{ pwId, price: item.Price, date: new Date().toISOString().split('T')[0] }]);
 
         if (priceInsertError) {
           console.error(`Error inserting product price for ${productName}: ${priceInsertError.message}`);
@@ -275,27 +302,26 @@ const MousejsonFilePathRyans = path.resolve(__dirname, 'ryans_mice.json');
 
 
 // Call the function to insert data from the Startech file
-processJsonData(DesktopjsonFilePathStartech, 2, 'Computer', 'Desktop'); // Pass 2 as the websiteId for Startech
-
+processJsonData(DesktopjsonFilePathStartech, 2, 'computer', 'desktop'); // Pass 2 as the websiteId for Startech
 
 // Call the function to insert data from the Ryans file
-processJsonData(DesktopjsonFilePathRyans, 3, 'Computer', 'Desktop'); // Pass 3 as the websiteId for Ryans
-processJsonData(DesktopjsonFilePathRyans, 3, 'Computer', 'Desktop');
+processJsonData(DesktopjsonFilePathRyans, 3, 'computer', 'desktop'); // Pass 3 as the websiteId for Ryans
+processJsonData(DesktopjsonFilePathRyans, 3, 'computer', 'desktop');
 
-processJsonData(LaptopjsonFilePathStartech, 2, 'Computer', 'Laptop'); // Pass 2 as the websiteId for Startech
+processJsonData(LaptopjsonFilePathStartech, 2, 'computer', 'laptop'); // Pass 2 as the websiteId for Startech
 
-processJsonData(LaptopjsonFilePathRyans, 3, 'Computer', 'Laptop'); // Pass 3 as the websiteId for Ryans
-processJsonData(LaptopjsonFilePathRyans, 3, 'Computer', 'Laptop');
+processJsonData(LaptopjsonFilePathRyans, 3, 'computer', 'laptop'); // Pass 3 as the websiteId for Ryans
+processJsonData(LaptopjsonFilePathRyans, 3, 'computer', 'laptop');
 
-processJsonData(KeyboardjsonFilePathStartech, 2, 'Accessesories', 'Keyboard'); // Pass 2 as the websiteId for Startech
-
-
-processJsonData(KeyboardjsonFilePathRyans, 3, 'Accessesories', 'Keyboard'); // Pass 3 as the websiteId for Ryans
-processJsonData(KeyboardjsonFilePathRyans, 3, 'Accessesories', 'Keyboard');
-
-processJsonData(MousejsonFilePathStartech, 2, 'Accessesories', 'Mouse'); // Pass 2 as the websiteId for Startech
+processJsonData(KeyboardjsonFilePathStartech, 2, 'accessesories', 'keyboard'); // Pass 2 as the websiteId for Startech
 
 
-processJsonData(MousejsonFilePathRyans, 3, 'Accessesories', 'Mouse'); // Pass 3 as the websiteId for Ryans
-processJsonData(MousejsonFilePathRyans, 3, 'Accessesories', 'Mouse');
+processJsonData(KeyboardjsonFilePathRyans, 3, 'accessesories', 'keyboard'); // Pass 3 as the websiteId for Ryans
+processJsonData(KeyboardjsonFilePathRyans, 3, 'accessesories', 'keyboard');
+
+processJsonData(MousejsonFilePathStartech, 2, 'accessesories', 'mouse'); // Pass 2 as the websiteId for Startech
+
+
+processJsonData(MousejsonFilePathRyans, 3, 'accessesories', 'mouse'); // Pass 3 as the websiteId for Ryans
+processJsonData(MousejsonFilePathRyans, 3, 'accessesories', 'mouse');
 
