@@ -4,6 +4,7 @@ import ColVoucherAdd from "./ColVoucherAdd";
 import EventManagement from "./ColEventManage";
 import VoucherManagement from "./ColVoucherManage";
 import CollabProducts from "./CollabProducts";
+import CollabProfile from "./CollabProfile";
 
 const Collaborator = ({ collabId }) => {
   const [activeMenu, setActiveMenu] = useState("Vouchers");
@@ -52,12 +53,6 @@ const Collaborator = ({ collabId }) => {
               onClick={() => handleMenuClick("My Profile")}
             >
               My Profile
-            </li>
-            <li
-              className={`cursor-pointer ${activeMenu === "Settings" ? "text-red-500 font-bold" : "text-black"} mb-4`}
-              onClick={() => handleMenuClick("Settings")}
-            >
-              Settings
             </li>
           </ul>
         </div>
@@ -111,6 +106,7 @@ const Collaborator = ({ collabId }) => {
           {activeMenu === "Products" && (
             <CollabProducts collabId={collabId} />
           )}
+          {activeMenu === "My Profile" && <CollabProfile collabId={collabId}/>}
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import AnalyticsReports from "./AnalyticsReports";
 import EventManagement from "./EventManagement";
 import RegisterCollab from "./RegisterCollab";
 import RegisterAdmin from "./RegisterAdmin";
+import AdminProfile from "./AdminProfile";
 
 const Admin = ({ adminId }) => {
   const [activeMenu, setActiveMenu] = useState("Dashboard");
@@ -54,12 +55,6 @@ const Admin = ({ adminId }) => {
             >
               My Profile
             </li>
-            <li
-              className={`cursor-pointer ${activeMenu === "Settings" ? "text-red-500 font-bold" : "text-black"} mb-4`}
-              onClick={() => handleMenuClick("Settings")}
-            >
-              Settings
-            </li>
           </ul>
         </div>
         <div className="w-full p-4">
@@ -99,6 +94,7 @@ const Admin = ({ adminId }) => {
           )}
           {activeMenu === "Admin" && <RegisterAdmin />}
           {activeMenu === "Collaborator" && <RegisterCollab />}
+          {activeMenu === "My Profile" && <AdminProfile adminId={adminId}/>}
         </div>
       </div>
     </div>

@@ -126,7 +126,7 @@ const RegisterAdmin = () => {
         <>
             {success ? (
                 <section>
-                    <h1>Admin successfully added!</h1>
+                    <h1 className="bg-green-400 w-full px-4 py-2 flex justify-center items-center">Admin successfully added!</h1>
                 </section>
             ) : (
                 <section>
@@ -137,7 +137,9 @@ const RegisterAdmin = () => {
                     >
                         {errMsg}
                     </p>
-                    <h1>Register Admin</h1>
+                    <h1 className="text-2xl bg-green-500 text-white px-4 py-2 rounded inline-flex items-center">
+                        Register Admin by providing the following details :
+                    </h1>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="username">
                             Username:

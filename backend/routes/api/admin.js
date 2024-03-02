@@ -17,6 +17,8 @@ router.get("/reviews", reviewController.getUnapprovedReviews);
 router.put("/reviews/:reviewId/approve", reviewController.approveReview);
 router.delete("/reviews/:reviewId/delete", reviewController.deleteReview);
 
+router.get("/collabs", adminUserControl.getCollabs);
+
 //manage users
 router.get("/users", adminUserControl.getUsers);
 router.get("/users/:userId", adminUserControl.getOneUser);

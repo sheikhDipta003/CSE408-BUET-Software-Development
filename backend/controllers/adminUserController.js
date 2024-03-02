@@ -21,6 +21,29 @@ const getUsers = async (req, res) => {
   }
 };
 
+const getCollabs = async (req, res) => {
+  try {
+    const collabs = await User.findAll({
+      where: {
+        roles: "Collaborator",
+      },
+      attributes: ["userId", "username", "email", "roles", "registrationDate"],
+      include: 
+      [
+        {
+          model: Website,
+          attributes: ["name"],
+        }
+      ]
+    })
+
+    res.status(200).json({collabs});
+  } catch (error) {
+    console.error("Error retrieving all collaborators:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
 const getOneUser = async (req, res) => {
   try {
     const userId = req.params.userId;
@@ -95,4 +118,4 @@ const createNotification = async (req, res) => {
 };
 
 
-module.exports = { getUsers, deleteUser, getOneUser, createNotification };
+module.exports = { getUsers, deleteUser, getOneUser, createNotification, getCollabs };

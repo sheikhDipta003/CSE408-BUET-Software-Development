@@ -311,11 +311,11 @@ const ProductComparisonPage = () => {
             </tr>
           </thead>
           <tbody>
-            {(product1val.length != 0 || product2val.length != 0) && (
+            {(product1val.length !== 0 || product2val.length !== 0) && (
               <>
                 <tr>
                   <td className="border-b border-black px-6 py-6">Brand</td>
-                  {(difference && product1val.length != 0 && product2val.length != 0 && product1val.brand === product2val.brand) ?
+                  {(difference && product1val.length !== 0 && product2val.length !== 0 && product1val.brand === product2val.brand) ?
                     (<>
                       <td className="border-b border-black text-slate-300 px-6 py-6">
                         {product1val.brand}
@@ -335,7 +335,7 @@ const ProductComparisonPage = () => {
                 </tr>
                 <tr>
                   <td className="border-b border-black px-6 py-6">Category</td>
-                  {(difference && product1val.length != 0 && product2val.length != 0 && product1val.category === product2val.category) ?
+                  {(difference && product1val.length !== 0 && product2val.length !== 0 && product1val.category === product2val.category) ?
                     (<>
                       <td className="border-b border-black text-slate-300 px-6 py-6">
                         {product1val.category}
@@ -356,7 +356,7 @@ const ProductComparisonPage = () => {
 
                 <tr>
                   <td className="border-b border-black px-6 py-6">Subcategory</td>
-                  {(difference && product1val.length != 0 && product2val.length != 0 && product1val.subcategory === product2val.subcategory) ?
+                  {(difference && product1val.length !== 0 && product2val.length !== 0 && product1val.subcategory === product2val.subcategory) ?
                     (<>
                       <td className="border-b border-black text-slate-300 px-6 py-6">
                         {product1val.subcategory}
@@ -376,7 +376,7 @@ const ProductComparisonPage = () => {
 
                 <tr>
                   <td className="border-b border-black px-6 py-6">Min Price</td>
-                  {(difference && product1val.length != 0 && product2val.length != 0 && product1val.minPrice === product2val.minPrice) ?
+                  {(difference && product1val.length !== 0 && product2val.length !== 0 && product1val.minPrice === product2val.minPrice) ?
                     (<>
                       <td className="border-b border-black text-slate-300 px-6 py-6">
                         {product1val.minPrice}
@@ -395,7 +395,7 @@ const ProductComparisonPage = () => {
                 </tr>
                 <tr>
                   <td className="border-b border-black px-6 py-6">Available in</td>
-                  {(difference && product1val.length != 0 && product2val.length != 0 && product1val.websites === product2val.websites) ?
+                  {(difference && product1val.length !== 0 && product2val.length !== 0 && product1val.websites === product2val.websites) ?
                     (
                       <>
                         <td className="border-b border-black text-slate-300 px-6 py-6">
@@ -420,7 +420,7 @@ const ProductComparisonPage = () => {
                 {allFeatures.map((feature, index) => (
                   <tr key={index}>
                     <td className="border-b border-black px-6 py-6">{feature}</td>
-                    {(difference && p1Features.length != 0 && p2Features.length != 0 && p1Features.get(feature) === p2Features.get(feature)) ?
+                    {(difference && p1Features.length !== 0 && p2Features.length !== 0 && p1Features.get(feature) === p2Features.get(feature)) ?
                       (<>
                         <td className="border-b border-black text-slate-300 px-6 py-6">
                           {p1Features.size > 0 ? p1Features.get(feature) : ""}

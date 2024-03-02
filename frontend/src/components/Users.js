@@ -10,6 +10,7 @@ import Wishlist from './Wishlist';
 const Users = () => {
     const axiosPrivate = useAxiosPrivate();
     const [users, setUsers] = useState([]);
+    const [collabs, setCollabs] = useState([]);
     const [selectAll, setSelectAll] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortBy, setSortBy] = useState(null);
@@ -43,12 +44,24 @@ const Users = () => {
         try {
           const response = await axiosPrivate.get("/admin/users");
           setUsers(response.data.users);
+          console.log(response.data);
         } catch (error) {
           console.error('Error fetching users:', error);
         }
       };
+
+      const fetchCollabs = async () => {
+        try {
+            const response = await axiosPrivate.get("/admin/collabs");
+            setCollabs(response.data.collabs);
+            console.log(response.data);
+          } catch (error) {
+            console.error('Error fetching collabs:', error);
+          }
+      }
   
       fetchUsers();
+      fetchCollabs();
     }, []);
 
     const handleSort = (field) => {
@@ -111,6 +124,12 @@ const Users = () => {
       new Date(user.registrationDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.roles.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    const getWebsiteForUserId = (userId) => {
+        const collabsIndex = collabs.findIndex(collab => collab.userId === userId);
+        console.log(collabsIndex);
+        return collabsIndex !== -1 ? collabs[collabsIndex].Website.name : null;
+      };
     
     return (
         <div>
@@ -193,7 +212,7 @@ const Users = () => {
                                     <td className="border border-gray-200 px-4 py-2">{new Date(user.registrationDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</td>
                                     <td className='border border-gray-200 px-4 py-2'>{user.roles}</td>
                                 </tr>
-                                {showUserDetails && (
+                                {showUserDetails && user.roles === "User" && (
                                     <div
                                         className={`sidebar fixed top-0 right-0 w-2/3 bg-white h-screen overflow-y-auto transform ${showUserDetails ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 ease-in-out h-full shadow-lg z-50`}
                                     >
@@ -237,6 +256,20 @@ const Users = () => {
                                             </div>
                 
                                         </div>
+                                    </div>
+                                )}
+
+                                {showUserDetails && user.roles === "Collaborator" && (
+                                    <div
+                                    className={`sidebar fixed top-0 right-0 w-2/3 bg-white h-screen overflow-y-auto transform ${showUserDetails ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 ease-in-out h-full shadow-lg z-50`}
+                                    >
+                                        <div className="sticky top-0 right-0 z-40 sidebar-header flex justify-center bg-violet-300 p-0 m-0">
+                                            <button onClick={closeSidebar} className='p-0 bg-transparent'>
+                                                <FontAwesomeIcon icon={faTimes} className='text-red-500 mb-2 size-6 hover:text-red-800'/>
+                                            </button>
+                                        </div>
+                                        <p className='text-lg font-bold'>Collaborator</p>
+                                        <p className='text-lg font-bold'>Website: {getWebsiteForUserId(user.userId)}</p>
                                     </div>
                                 )}
                             </>
