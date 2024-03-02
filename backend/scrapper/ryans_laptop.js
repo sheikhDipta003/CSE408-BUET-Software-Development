@@ -25,10 +25,10 @@ async function getRyansLaptops(page = 1) {
         });
 
         // Check if there is a next page and recursively call the function
-        if ($('.pagination .active').length > 0) {
-            const nextPageData = await getRyansLaptops(page + 1);
-            items.push(...nextPageData);
-        }
+        // if ($('.pagination .active').length > 0) {
+        //     const nextPageData = await getRyansLaptops(page + 1);
+        //     items.push(...nextPageData);
+        // }
         // Wait for all promises to resolve
         await Promise.all(promises);
         // console.log(items);
@@ -95,7 +95,8 @@ async function getproductdetails(url) {
         
         const items = [];
         const Name = $('.product_content > h1').text();
-        const Price = $('meta[itemprop="price"]').attr('content');
+        const PriceText = $('meta[itemprop="price"]').attr('content');
+        const Price = parseFloat(PriceText.replace(/[^\d.৳]/g, '').replace(',', ''));
         const ProductUrl = url;
         const ImageUrl = $('.product-info-section img').attr('src');
         const BrandName = Name.split(' ')[1];
