@@ -194,6 +194,8 @@ const getClickCounts = async (req, res) => {
     });
 
     const clickcounts = {};
+    const totalclickcounts = {};
+
     userInteractions.forEach((interaction) => {
       if (!clickcounts[interaction.ProductWebsitePwId]) {
         clickcounts[interaction.ProductWebsitePwId] = {};
@@ -202,14 +204,20 @@ const getClickCounts = async (req, res) => {
         clickcounts[interaction.ProductWebsitePwId][interaction.UserUserId] = 0;
       }
       clickcounts[interaction.ProductWebsitePwId][interaction.UserUserId] += interaction.clickcount;
+
+      if (!totalclickcounts[interaction.UserUserId]) {
+        totalclickcounts[interaction.UserUserId] = 0;
+      }
+      totalclickcounts[interaction.UserUserId] += interaction.clickcount;
     });
 
-    res.status(200).json({ clickcounts });
+    res.status(200).json({ clickcounts, totalclickcounts });
   } catch (error) {
     console.error("Error getting click counts:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
 
 const addVoucher = async (req, res) => {
   try {
@@ -302,17 +310,21 @@ const assignVoucherToUser = async (req, res) => {
 const assignToRandomUsers = async (req, res) => {
   try {
     const { voucherId } = req.params;
+    const { nVouchers } = req.body;
 
     const voucher = await Voucher.findByPk(voucherId);
 
     if (!voucher) {
       return res.status(404).json({ message: "Voucher not found" });
-    }
-    else if (voucher.total <= 0) {
-      return res.status(400).json({ message: "No more vouchers available for this offer" });
+    } else if (voucher.total < nVouchers) {
+      return res.status(400).json({ message: "Not enough vouchers available for this offer" });
     }
 
-    const users = await User.findAll();
+    const users = await User.findAll({
+      where: {
+        roles: "User"
+      }
+    });
     const userIds = users.map(user => user.userId);
 
     const usersWithoutVoucher = [];
@@ -330,7 +342,7 @@ const assignToRandomUsers = async (req, res) => {
       }
     }
 
-    if (voucher.total >= usersWithoutVoucher.length) {
+    if (nVouchers >= usersWithoutVoucher.length) {
       await Promise.all(usersWithoutVoucher.map(async userId => {
         await UserVoucher.create({
           UserUserId: userId,
@@ -343,10 +355,10 @@ const assignToRandomUsers = async (req, res) => {
       voucher.total -= usersWithoutVoucher.length;
       await voucher.save();
 
-      res.status(201).json({ message: `Voucher assigned to ${usersWithoutVoucher.length} eligible users successfully` });
+      res.status(201).json({ message: `Voucher assigned to ${usersWithoutVoucher.length} eligible users successfully`, userIds: usersWithoutVoucher });
     } else {
       const selectedUserIds = [];
-      while (selectedUserIds.length < voucher.total) {
+      while (selectedUserIds.length < nVouchers) {
         const randomIndex = Math.floor(Math.random() * usersWithoutVoucher.length);
         selectedUserIds.push(usersWithoutVoucher[randomIndex]);
         usersWithoutVoucher.splice(randomIndex, 1);
@@ -361,10 +373,10 @@ const assignToRandomUsers = async (req, res) => {
         });
       }));
 
-      voucher.total -= selectedUserIds.length;
+      voucher.total -= nVouchers;
       await voucher.save();
 
-      res.status(201).json({ message: `Voucher assigned to ${selectedUserIds.length} eligible users successfully` });
+      res.status(201).json({ message: `Voucher assigned to ${nVouchers} eligible users successfully`, userIds: selectedUserIds });
     }
   } catch (error) {
     console.error("Error assigning voucher to users:", error);
@@ -389,12 +401,27 @@ const getAllVouchers = async (req, res) => {
     const websiteId = parseInt(website.dataValues.websiteId, 10);
 
     const vouchers = await Voucher.findAll({
-      where:
-      {
-        websiteId: websiteId,
-      }
+      include: [
+        {
+          model: Website,
+          where: { websiteId: websiteId },
+          attributes: ["websiteId", "name"]
+        },
+      ],
     });
-    res.status(200).json({ vouchers });
+
+    const formatResult = vouchers.map((voucher) => ({
+      voucherId: voucher.voucherId,
+      voucherCode: voucher.voucherCode,
+      discountPercentage: voucher.discountPercentage,
+      maxAmountForDiscount: voucher.maxAmountForDiscount,
+      minAmountForDiscount: voucher.minAmountForDiscount,
+      endDate: voucher.endDate,
+      total: voucher.total,
+      websiteName: voucher.Website.name
+    }));
+
+    res.status(200).json({ vouchers: formatResult });
   } catch (error) {
     console.error("Error getting vouchers:", error);
     res.status(500).json({ message: "Internal server error" });
