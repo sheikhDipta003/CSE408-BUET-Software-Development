@@ -13,20 +13,21 @@ async function getStartechKeyboards(page = 1) {
         const items = [];
         const promises = $('.main-content > .p-item').map(async (index, element) => {
             const Name = $(element).find('.p-item-inner > .p-item-details > .p-item-name a').text();
-            const Price = $(element).find('.p-item-inner > .p-item-details > .p-item-price span:first').text();
+            const PriceText = $(element).find('.p-item-inner > .p-item-details > .p-item-price span:first').text();
+            const Price = parseFloat(PriceText.replace(/[^\d.৳]/g, '').replace(',', ''));
             const ImageUrl = $(element).find('.p-item-inner > .p-item-img > a > img').attr('src');
             const BrandName = Name.split(' ')[0];
 
             // Get the product url and fetch the product information
-            const Producturl = $(element).find('.p-item-inner > .p-item-details > .p-item-name a').attr('href');
-            const productAttributes = await getproductdetails(Producturl);
+            const ProductUrl = $(element).find('.p-item-inner > .p-item-details > .p-item-name a').attr('href');
+            const productAttributes = await getproductdetails(ProductUrl);
             
-            if(Price !== "TBA"){
+            if(Price){
                 items.push({
                     Name,
                     Price,
                     BrandName,
-                    Producturl,
+                    ProductUrl,
                     ImageUrl,
                     Attributes: productAttributes
                 });
@@ -34,10 +35,10 @@ async function getStartechKeyboards(page = 1) {
         });
 
         // Check if there is a next page and recursively call the function
-        if ($('.pagination .active').length > 0) {
-            const nextPageData = await getStartechKeyboards(page + 1);
-            items.push(...nextPageData);
-        }
+        // if ($('.pagination .active').length > 0) {
+        //     const nextPageData = await getStartechKeyboards(page + 1);
+        //     items.push(...nextPageData);
+        // }
         // Wait for all promises to resolve
         await Promise.all(promises);
         // console.log(items);

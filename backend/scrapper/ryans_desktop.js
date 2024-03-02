@@ -17,10 +17,10 @@ async function getRyansDesktops(page = 1) {
             items.push(...productAttributes);
         });
 
-        if ($('.pagination .active').length > 0) {
-            const nextPageData = await getRyansDesktops(page + 1);
-            items.push(...nextPageData);
-        }
+        // if ($('.pagination .active').length > 0) {
+        //     const nextPageData = await getRyansDesktops(page + 1);
+        //     items.push(...nextPageData);
+        // }
 
         await Promise.all(promises);
         return items;
@@ -47,7 +47,8 @@ async function getproductdetails(url) {
         
         const items = [];
         const Name = $('.product_content > h1').text();
-        const Price = $('meta[itemprop="price"]').attr('content');
+        const PriceText = $('meta[itemprop="price"]').attr('content');
+        const Price = parseFloat(PriceText.replace(/[^\d.৳]/g, '').replace(',', ''));
         const ProductUrl = url;
         const ImageUrl = $('.product-info-section img').attr('src');
         const BrandName = Name.split(' ')[1];
