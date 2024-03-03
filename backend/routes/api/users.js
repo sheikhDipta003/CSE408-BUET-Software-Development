@@ -45,6 +45,7 @@ router.get("/:userId/reviews/:reviewId/delete", review.deleteReview);
 //price-drop alerts
 router.route("/:userId/alerts/pricedrop").post(verifyRole(ROLES_LIST.User), pricedrop.setPriceDropAlert);
 router.get("/:userId/alerts/pricedrop", pricedrop.viewPriceDropAlerts);
+router.get("/:userId/alerts/pricedrop/notify", pricedrop.notifyUserForPriceDrop);
 router.put("/:userId/alerts/pricedrop/update", pricedrop.updatePriceDrop);
 router.delete("/:userId/alerts/pricedrop/delete/:productId/:websiteId", pricedrop.removePriceDropAlert);
 
