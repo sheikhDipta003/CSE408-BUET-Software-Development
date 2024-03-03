@@ -229,9 +229,9 @@ const ProductDetails = () => {
           className="w-1/2 md:w-1/4 object-cover"
         />
 
-        <div className="ml-4">
+        <div className="ml-4 max-w-3xl">
           <div>
-            <h2 className="text-xl font-semibold">{product.productName}</h2>
+            <h2 className="text-xl font-semibold max-w-xl">{product.productName}</h2>
             <p>
               <strong>Website: </strong>
               {name}

@@ -153,6 +153,7 @@ const getProductDetails = async (req, res) => {
             },
           ],
           attributes: ["price", "pwURL"],
+          order: [['price', 'ASC']],
         }, 
         {
           model: ProductSpec,
