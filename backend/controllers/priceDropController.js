@@ -2,6 +2,7 @@ const PriceDrop = require("../models/PriceDrop");
 const Product = require("../models/Product");
 const Website = require("../models/Website");
 const ProductWebsite = require("../models/ProductWebsite");
+const Notification = require("../models/Notification");
 
 // Controller function to set an alert for a price drop on a specific product
 async function setPriceDropAlert(req, res) {
@@ -60,12 +61,49 @@ async function setPriceDropAlert(req, res) {
   }
 }
 
-// Controller function to view all price drops of a user
+async function notifyUserForPriceDrop(req, res) {
+  try {
+    const { userId } = req.params;
+
+    const priceDrops = await PriceDrop.findAll({
+      where: { userId },
+      include: {
+        model: ProductWebsite,
+        include: [Product, Website],
+      },
+    });
+
+    const notifications = [];
+
+    for (const priceDrop of priceDrops) {
+      if (priceDrop.price >= priceDrop.ProductWebsite.price) {
+        const productName = priceDrop.ProductWebsite.Product.productName;
+        const websiteName = priceDrop.ProductWebsite.Website.name;
+
+        const message = `The price for ${productName} on ${websiteName} has dropped to or below your desired price.`;
+
+        const notification = await Notification.create({
+          title: "Price Drop Alert",
+          message,
+          isRead: false,
+          UserUserId: userId,
+        });
+
+        notifications.push(notification);
+      }
+    }
+
+    return res.status(200).json(notifications);
+  } catch (error) {
+    console.error("Error notifying users about price drop alerts:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
+
 async function viewPriceDropAlerts(req, res) {
   try {
     const userId = req.params.userId;
 
-    // Find all price drops associated with the user
     const priceDrops = await PriceDrop.findAll({
       where: { userId },
       include: [
@@ -100,7 +138,7 @@ async function viewPriceDropAlerts(req, res) {
     formatResult.sort((a, b) => {
       const differenceA = a.priceDrop - a.currentPrice;
       const differenceB = b.priceDrop - b.currentPrice;
-      return differenceB - differenceA; // Higher difference takes priority
+      return differenceB - differenceA;
     });
 
     return res.status(200).json(formatResult);
@@ -182,4 +220,5 @@ module.exports = {
   viewPriceDropAlerts,
   updatePriceDrop,
   removePriceDropAlert,
+  notifyUserForPriceDrop
 };

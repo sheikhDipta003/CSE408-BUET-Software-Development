@@ -57,20 +57,14 @@ const Login = () => {
       setAuth({ user, pwd, roles, accessToken, userId });
       setUser("");
       setPwd("");
-      if (roles === ROLES.User) navigate(from, { replace: true });
+      if (roles === ROLES.User) {
+        navigate(from, { replace: true });
+      }
       else if (roles === ROLES.Admin) navigate("/admin", { replace: true });
       else if (roles === ROLES.Collaborator)
         navigate(`/collab`, { replace: true });
-      console.log(
-        "roles = ",
-        roles,
-        ", ROLES.roles = ",
-        ROLES.roles,
-        ", ROLES.User = ",
-        ROLES.User,
-        "userId = ",
-        userId,
-      );
+
+      console.log("roles = ", roles, ", ROLES.roles = ", ROLES.roles, ", ROLES.User = ", ROLES.User, "userId = ", userId);
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
