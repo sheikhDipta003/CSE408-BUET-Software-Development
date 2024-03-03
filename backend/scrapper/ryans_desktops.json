@@ -1,155 +1,7 @@
 [
     {
-        "Name": " Lenovo ThinkCentre Neo 50s Gen 3 SFF 12th Gen Intel Core i5 12500 8GB RAM, 1TB HDD Raven Black Small Tower Brand PC #11SYS23300",
-        "Price": "63500",
-        "ProductUrl": "https://www.ryanscomputers.com/lenovo-thinkcentre-neo-50s-gen-3-sff-12th-gen-intel-core-i5-12500-8gb-ram-1tb-hdd-raven-black-small-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-thinkcentre-neo-50s-gen-3-sff-12th-gen-11705205215.webp",
-        "BrandName": "Lenovo",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "ThinkCentre Neo 50s Gen 3 SFF"
-            },
-            {
-                "name": "Part No",
-                "value": "11SYS23300"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
-            }
-        ]
-    },
-    {
-        "Name": " Dell Vostro 3910 MT Intel Core i3 12100 8GB RAM 1TB HDD Black Mid Tower Brand PC #DOLPHINMTADL22057585",
-        "Price": "55000",
-        "ProductUrl": "https://www.ryanscomputers.com/dell-vostro-3910-mt-intel-core-i3-12100-8gb-ram-1tb-hdd-black-mid-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/dell-vostro-3910-mt-intel-core-i3-12100-8gb-ram-11671691102.webp",
-        "BrandName": "Dell",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "Vostro 3910 MT"
-            },
-            {
-                "name": "Part No",
-                "value": "DOLPHINMTADL22057585"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Lenovo ThinkCentre Neo 50t 12th Gen Intel Core i3 12100 8GB RAM 1TB HDD Black Tower Brand PC #11SES0HM00 (8GB RAM + 180W PSU)",
-        "Price": "52000",
-        "ProductUrl": "https://www.ryanscomputers.com/lenovo-thinkcentre-neo-50t-12th-gen-intel-core-i3-12100-8gb-ram-1tb-hdd-black-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-thinkcentre-neo-50s-sff-12th-gen-intel-11700216786.webp",
-        "BrandName": "Lenovo",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "ThinkCentre Neo 50t"
-            },
-            {
-                "name": "Part No",
-                "value": "11SES0HM00"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Intel 10th Gen Core i5-10400F Gaming Desktop PC",
-        "Price": "59000",
-        "ProductUrl": "https://www.ryanscomputers.com/hp-prodesk-400-g7-mt-10th-gen-intel-core-i3-10100-8gb-ram-1tb-hdd-mid-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/hp-prodesk-400-g7-mt-10th-gen-intel-core-i3-10100-11654601640.webp",
-        "BrandName": "HP",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "Intel 10th Gen Core i5-10400F"
-            },
-            {
-                "name": "Part No",
-                "value": "31P84PA"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 630"
-            }
-        ]
-    },
-    {
         "Name": " Acer Veriton M200 12th Gen Intel Core i5 12400 8GB RAM, 1TB HDD Black Mini Tower Brand PC #UX.VWNSI.177",
-        "Price": "62000",
+        "Price": 62000,
         "ProductUrl": "https://www.ryanscomputers.com/acer-veriton-m200-12th-gen-intel-core-i5-12400-8gb-ram-1tb-hdd-black-mini-tower-brand-pc",
         "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/acer-veriton-m200-12th-gen-intel-core-i5-12400-11698822575.webp",
         "BrandName": "Acer",
@@ -185,119 +37,8 @@
         ]
     },
     {
-        "Name": " HP 280 Pro G9 12th Gen Intel Core i5 12400 8GB RAM, 512GB SSD Tower Brand PC #950J6PA",
-        "Price": "67000",
-        "ProductUrl": "https://www.ryanscomputers.com/hp-280-pro-g9-12th-gen-intel-core-i5-12400-8gb-ram-512gb-ssd-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/hp-280-pro-g9-mt-12th-gen-intel-core-i5-12400-8gb-11706335475.webp",
-        "BrandName": "HP",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "280 Pro G9"
-            },
-            {
-                "name": "Part No",
-                "value": "950J6PA"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "512GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Lenovo ThinkCentre Neo 50t 12th Gen Intel Core i3 12100 4GB RAM, 1TB HDD Black Tower Brand PC #11SE000YGP",
-        "Price": "45000",
-        "ProductUrl": "https://www.ryanscomputers.com/lenovo-thinkcentre-neo-50t-12th-gen-intel-core-i3-12100-4gb-ram-1tb-hdd-black-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-thinkcentre-neo-50t-12th-gen-intel-core-i3-11707979908.webp",
-        "BrandName": "Lenovo",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "ThinkCentre Neo 50t"
-            },
-            {
-                "name": "Part No",
-                "value": "11SE000YGP"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "4GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Lenovo ThinkCentre Neo 50s SFF 12th Gen Intel Core i5 12400 8GB DDR4 RAM 1TB HDD Black Small Tower Brand PC #11SWS0NS00 (i5+HDD)",
-        "Price": "63000",
-        "ProductUrl": "https://www.ryanscomputers.com/lenovo-thinkcentre-neo-50s-sff-12th-gen-intel-core-i5-12400-8gb-ddr4-ram-1tb-hdd-black-small-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-thinkcentre-neo-50s-sff-12th-gen-intel-11700218508.webp",
-        "BrandName": "Lenovo",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "ThinkCentre Neo 50s SFF"
-            },
-            {
-                "name": "Part No",
-                "value": "11SWS0NS00"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
-            }
-        ]
-    },
-    {
         "Name": " HP ProDesk 400 G7 MT 10th Gen Intel Core i3 10100 4GB RAM, 1TB HDD Mid Tower Brand PC #31P82PA",
-        "Price": "57000",
+        "Price": 57000,
         "ProductUrl": "https://www.ryanscomputers.com/hp-prodesk-400-g7-mt-10th-gen-intel-core-i3-10100-4gb-ram-1tb-hdd-mid-tower-brand-pc",
         "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/hp-prodesk-400-g7-mt-10th-gen-intel-core-i3-10100-51704697440.webp",
         "BrandName": "HP",
@@ -333,263 +74,8 @@
         ]
     },
     {
-        "Name": " HP 280 Pro G9 12th Gen Intel Core i3 12100 4GB DDR4 Tower Brand PC #827Q3PA",
-        "Price": "52000",
-        "ProductUrl": "https://www.ryanscomputers.com/hp-280-pro-g9-12th-gen-intel-core-i3-12100-4gb-ddr4-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/hp-280-pro-g9-12th-gen-intel-core-i3-12100-4gb-11695814658.webp",
-        "BrandName": "HP",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "280 Pro G9"
-            },
-            {
-                "name": "Part No",
-                "value": "827Q3PA"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "4GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "256GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Lenovo IdeaCentre 3 07IAB7 Intel Core i5 12400 8GB RAM 1TB HDD Mineral Grey Brand PC #90SM001XLK",
-        "Price": "58000",
-        "ProductUrl": "https://www.ryanscomputers.com/lenovo-ideacentre-3-07iab7-intel-core-i5-12400-8gb-ram-1tb-hdd-mineral-grey-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-ideacentre-3-07iab7-intel-core-i5-12400-11671684255.webp",
-        "BrandName": "Lenovo",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "IdeaCentre 3 07IAB7"
-            },
-            {
-                "name": "Part No",
-                "value": "90SM001XLK"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Dell Vostro 3020T 13th Gen Intel Core i3 13100 8GB RAM, 256GB SSD Black Tower Brand PC",
-        "Price": "56000",
-        "ProductUrl": "https://www.ryanscomputers.com/dell-vostro-3020t-13th-gen-intel-core-i3-13100-8gb-ram-256gb-ssd-black-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/dell-vostro-3020t-13th-gen-intel-core-i3-13100-11698647156.webp",
-        "BrandName": "Dell",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "Vostro 3020T"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "256GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Lenovo ThinkCentre Neo 50t 12th Gen Intel Core i3 12100 8GB RAM Black Tower Brand PC #11SES0HM00 (8GB RAM + 260W PSU)",
-        "Price": "55000",
-        "ProductUrl": "https://www.ryanscomputers.com/lenovo-thinkcentre-neo-50t-12th-gen-intel-core-i3-12100-8gb-ram-black-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-thinkcentre-neo-50t-12th-gen-intel-core-i3-11698646537.webp",
-        "BrandName": "Lenovo",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "ThinkCentre Neo 50t"
-            },
-            {
-                "name": "Part No",
-                "value": "11SES0HM00"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " Acer Veriton M200 11th Gen Intel Core i5 11400 Black Mini Tower Brand PC #UX.BH5SI.B42",
-        "Price": "53800",
-        "ProductUrl": "https://www.ryanscomputers.com/acer-veriton-m200-11th-gen-intel-core-i5-11400-black-mini-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/acer-veriton-m200-11th-gen-intel-core-i5-11400-11652333635.webp",
-        "BrandName": "Acer",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "Veriton M200"
-            },
-            {
-                "name": "Part No",
-                "value": "UX.BH5SI.B42"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " HP 280 Pro G9 12th Gen Intel Core i3 12100 4GB RAM, 256GB SSD Tower Brand PC #950J5PA",
-        "Price": "54000",
-        "ProductUrl": "https://www.ryanscomputers.com/hp-280-pro-g9-12th-gen-intel-core-i3-12100-4gb-ram-256gb-ssd-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/hp-280-pro-g9-12th-gen-intel-core-i3-12100-4gb-11706338304.webp",
-        "BrandName": "HP",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "280 Pro G9"
-            },
-            {
-                "name": "Part No",
-                "value": "950J5PA"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i3"
-            },
-            {
-                "name": "RAM",
-                "value": "4GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "No"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "256GB"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
-        "Name": " HP ProDesk 400 G9 12th Gen Intel Core i5 12500 8GB RAM 1TB HDD Tower Brand PC #6Q2Q6PA",
-        "Price": "69000",
-        "ProductUrl": "https://www.ryanscomputers.com/hp-prodesk-400-g9-12th-gen-intel-core-i5-12500-8gb-ram-1tb-hdd-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/hp-prodesk-400-g9-12th-gen-intel-core-i5-12500-41685771885.webp",
-        "BrandName": "HP",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "ProDesk 400 G9"
-            },
-            {
-                "name": "Part No",
-                "value": "6Q2Q6PA"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 770"
-            }
-        ]
-    },
-    {
         "Name": " HP 280 Pro G9 12th Gen Intel Core i3 12100 8GB RAM 1TB HDD Tower Brand PC #6Q2N1PA",
-        "Price": "54500",
+        "Price": 54500,
         "ProductUrl": "https://www.ryanscomputers.com/hp-280-pro-g9-12th-gen-intel-core-i3-12100-8gb-ram-1tb-hdd-tower-brand-pc",
         "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/hp-280-pro-g9-12th-gen-intel-core-i3-12100-8gb-41685771033.webp",
         "BrandName": "HP",
@@ -625,45 +111,8 @@
         ]
     },
     {
-        "Name": " Asus ExpertCenter D7 D700MD 12th Gen Intel Core i5 12400 8GB DDR4 1TB HDD Black Mini Tower Brand PC #5124000110",
-        "Price": "68000",
-        "ProductUrl": "https://www.ryanscomputers.com/asus-expertcenter-d7-d700md-12th-gen-intel-core-i5-12400-black-mini-tower-brand-pc",
-        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/asus-expertcenter-d7-d700md-12th-gen-intel-core-11697462265.webp",
-        "BrandName": "Asus",
-        "Attributes": [
-            {
-                "name": "Model",
-                "value": "ExpertCenter D7 D700MD"
-            },
-            {
-                "name": "Part No",
-                "value": "5124000110"
-            },
-            {
-                "name": "Processor Type",
-                "value": "Core i5"
-            },
-            {
-                "name": "RAM",
-                "value": "8GB"
-            },
-            {
-                "name": "Hard Disk Drive (HDD)",
-                "value": "1TB"
-            },
-            {
-                "name": "Solid-State Drive (SSD)",
-                "value": "No"
-            },
-            {
-                "name": "Graphics Chipset",
-                "value": "Intel UHD Graphics 730"
-            }
-        ]
-    },
-    {
         "Name": " Dell OptiPlex 7010 13th Gen Intel Core i3 13100 4GB DDR4 256GB SSD Black Tower Brand PC",
-        "Price": "57000",
+        "Price": 57000,
         "ProductUrl": "https://www.ryanscomputers.com/dell-optiplex-7010-13th-gen-intel-core-i3-13100-black-tower-brand-pc",
         "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/dell-optiplex-7010-13th-gen-intel-core-i3-13100-11697453307.webp",
         "BrandName": "Dell",
@@ -695,8 +144,481 @@
         ]
     },
     {
+        "Name": " Lenovo ThinkCentre Neo 50s Gen 3 SFF 12th Gen Intel Core i5 12500 8GB RAM, 1TB HDD Raven Black Small Tower Brand PC #11SYS23300",
+        "Price": 63500,
+        "ProductUrl": "https://www.ryanscomputers.com/lenovo-thinkcentre-neo-50s-gen-3-sff-12th-gen-intel-core-i5-12500-8gb-ram-1tb-hdd-raven-black-small-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-thinkcentre-neo-50s-gen-3-sff-12th-gen-11705205215.webp",
+        "BrandName": "Lenovo",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ThinkCentre Neo 50s Gen 3 SFF"
+            },
+            {
+                "name": "Part No",
+                "value": "11SYS23300"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 770"
+            }
+        ]
+    },
+    {
+        "Name": " HP 280 Pro G9 12th Gen Intel Core i5 12400 8GB RAM, 512GB SSD Tower Brand PC #950J6PA",
+        "Price": 67000,
+        "ProductUrl": "https://www.ryanscomputers.com/hp-280-pro-g9-12th-gen-intel-core-i5-12400-8gb-ram-512gb-ssd-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/hp-280-pro-g9-mt-12th-gen-intel-core-i5-12400-8gb-11706335475.webp",
+        "BrandName": "HP",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "280 Pro G9"
+            },
+            {
+                "name": "Part No",
+                "value": "950J6PA"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "512GB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " Lenovo ThinkCentre Neo 50t 12th Gen Intel Core i3 12100 8GB RAM 1TB HDD Black Tower Brand PC #11SES0HM00 (8GB RAM + 180W PSU)",
+        "Price": 52000,
+        "ProductUrl": "https://www.ryanscomputers.com/lenovo-thinkcentre-neo-50t-12th-gen-intel-core-i3-12100-8gb-ram-1tb-hdd-black-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-thinkcentre-neo-50s-sff-12th-gen-intel-11700216786.webp",
+        "BrandName": "Lenovo",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ThinkCentre Neo 50t"
+            },
+            {
+                "name": "Part No",
+                "value": "11SES0HM00"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " Lenovo ThinkCentre Neo 50t 12th Gen Intel Core i3 12100 4GB RAM, 1TB HDD Black Tower Brand PC #11SE000YGP",
+        "Price": 45000,
+        "ProductUrl": "https://www.ryanscomputers.com/lenovo-thinkcentre-neo-50t-12th-gen-intel-core-i3-12100-4gb-ram-1tb-hdd-black-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-thinkcentre-neo-50t-12th-gen-intel-core-i3-11707979908.webp",
+        "BrandName": "Lenovo",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ThinkCentre Neo 50t"
+            },
+            {
+                "name": "Part No",
+                "value": "11SE000YGP"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "4GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " HP ProDesk 400 G7 MT 10th Gen Intel Core i3 10100 8GB RAM 1TB HDD Mid Tower Brand PC #31P84PA",
+        "Price": 59000,
+        "ProductUrl": "https://www.ryanscomputers.com/hp-prodesk-400-g7-mt-10th-gen-intel-core-i3-10100-8gb-ram-1tb-hdd-mid-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/hp-prodesk-400-g7-mt-10th-gen-intel-core-i3-10100-11654601640.webp",
+        "BrandName": "HP",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ProDesk 400 G7 MT"
+            },
+            {
+                "name": "Part No",
+                "value": "31P84PA"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 630"
+            }
+        ]
+    },
+    {
+        "Name": " HP 280 Pro G9 12th Gen Intel Core i3 12100 4GB DDR4 Tower Brand PC #827Q3PA",
+        "Price": 52000,
+        "ProductUrl": "https://www.ryanscomputers.com/hp-280-pro-g9-12th-gen-intel-core-i3-12100-4gb-ddr4-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/hp-280-pro-g9-12th-gen-intel-core-i3-12100-4gb-11695814658.webp",
+        "BrandName": "HP",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "280 Pro G9"
+            },
+            {
+                "name": "Part No",
+                "value": "827Q3PA"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "4GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "256GB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " Dell Vostro 3020T 13th Gen Intel Core i3 13100 8GB RAM, 256GB SSD Black Tower Brand PC",
+        "Price": 56000,
+        "ProductUrl": "https://www.ryanscomputers.com/dell-vostro-3020t-13th-gen-intel-core-i3-13100-8gb-ram-256gb-ssd-black-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/dell-vostro-3020t-13th-gen-intel-core-i3-13100-11698647156.webp",
+        "BrandName": "Dell",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "Vostro 3020T"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "256GB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " Lenovo ThinkCentre Neo 50t 12th Gen Intel Core i3 12100 8GB RAM Black Tower Brand PC #11SES0HM00 (8GB RAM + 260W PSU)",
+        "Price": 55000,
+        "ProductUrl": "https://www.ryanscomputers.com/lenovo-thinkcentre-neo-50t-12th-gen-intel-core-i3-12100-8gb-ram-black-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-thinkcentre-neo-50t-12th-gen-intel-core-i3-11698646537.webp",
+        "BrandName": "Lenovo",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ThinkCentre Neo 50t"
+            },
+            {
+                "name": "Part No",
+                "value": "11SES0HM00"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " Lenovo IdeaCentre 3 07IAB7 SFF 12th Gen Intel Core i5 12400 4GB DDR4 1TB HDD Small Tower Cloud Grey Brand PC #90SM00GGLK",
+        "Price": 61000,
+        "ProductUrl": "https://www.ryanscomputers.com/lenovo-ideacentre-3-07iab7-sff-12th-gen-intel-core-i5-12400-small-tower-cloud-grey-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-ideacentre-3-07iab7-sff-12th-gen-intel-11703740383.webp",
+        "BrandName": "Lenovo",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "IdeaCentre 3 07IAB7"
+            },
+            {
+                "name": "Part No",
+                "value": "90SM00GGLK"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "4GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " Acer Veriton M200 11th Gen Intel Core i5 11400 Black Mini Tower Brand PC #UX.BH5SI.B42",
+        "Price": 53800,
+        "ProductUrl": "https://www.ryanscomputers.com/acer-veriton-m200-11th-gen-intel-core-i5-11400-black-mini-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/acer-veriton-m200-11th-gen-intel-core-i5-11400-11652333635.webp",
+        "BrandName": "Acer",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "Veriton M200"
+            },
+            {
+                "name": "Part No",
+                "value": "UX.BH5SI.B42"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " Lenovo IdeaCentre 3 07IAB7 Intel Core i5 12400 8GB RAM 1TB HDD Mineral Grey Brand PC #90SM001XLK",
+        "Price": 58000,
+        "ProductUrl": "https://www.ryanscomputers.com/lenovo-ideacentre-3-07iab7-intel-core-i5-12400-8gb-ram-1tb-hdd-mineral-grey-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-ideacentre-3-07iab7-intel-core-i5-12400-11671684255.webp",
+        "BrandName": "Lenovo",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "IdeaCentre 3 07IAB7"
+            },
+            {
+                "name": "Part No",
+                "value": "90SM001XLK"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " HP 280 Pro G9 12th Gen Intel Core i3 12100 4GB RAM, 256GB SSD Tower Brand PC #950J5PA",
+        "Price": 54000,
+        "ProductUrl": "https://www.ryanscomputers.com/hp-280-pro-g9-12th-gen-intel-core-i3-12100-4gb-ram-256gb-ssd-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/hp-280-pro-g9-12th-gen-intel-core-i3-12100-4gb-11706338304.webp",
+        "BrandName": "HP",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "280 Pro G9"
+            },
+            {
+                "name": "Part No",
+                "value": "950J5PA"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "4GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "No"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "256GB"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
+        "Name": " Lenovo ThinkCentre Neo 50s SFF 12th Gen Intel Core i3 12100 8GB RAM, 1TB HDD Black Small Tower Brand PC",
+        "Price": 52000,
+        "ProductUrl": "https://www.ryanscomputers.com/lenovo-thinkcentre-neo-50s-sff-12th-gen-intel-core-i3-12100-8gb-ram-1tb-hdd-black-small-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-thinkcentre-neo-50s-sff-12th-gen-intel-11707126364.webp",
+        "BrandName": "Lenovo",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ThinkCentre Neo 50s SFF"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i3"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 730"
+            }
+        ]
+    },
+    {
         "Name": " Dell Vostro 3910 MT 12th Gen Intel Core i5 12400 8GB RAM, 1TB HDD Black Mid Tower Brand PC #DOLPHINMTADL23014343",
-        "Price": "66000",
+        "Price": 66000,
         "ProductUrl": "https://www.ryanscomputers.com/dell-vostro-3910-mt-12th-gen-intel-core-i5-12400-8gb-ram-1tb-hdd-black-mid-tower-brand-pc",
         "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/dell-vostro-3910-mt-12th-gen-intel-core-i5-12400-11685362359.webp",
         "BrandName": "Dell",
@@ -728,6 +650,80 @@
             {
                 "name": "Graphics Chipset",
                 "value": "Intel UHD Graphics"
+            }
+        ]
+    },
+    {
+        "Name": " HP ProDesk 400 G9 12th Gen Intel Core i5 12500 8GB RAM 1TB HDD Tower Brand PC #6Q2Q6PA",
+        "Price": 69000,
+        "ProductUrl": "https://www.ryanscomputers.com/hp-prodesk-400-g9-12th-gen-intel-core-i5-12500-8gb-ram-1tb-hdd-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/hp-prodesk-400-g9-12th-gen-intel-core-i5-12500-41685771885.webp",
+        "BrandName": "HP",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ProDesk 400 G9"
+            },
+            {
+                "name": "Part No",
+                "value": "6Q2Q6PA"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 770"
+            }
+        ]
+    },
+    {
+        "Name": " Lenovo ThinkCentre Neo 50s SFF 12th Gen Intel Core i5 12400 8GB DDR4 RAM 1TB HDD Black Small Tower Brand PC #11SWS0NS00 (i5+HDD)",
+        "Price": 63000,
+        "ProductUrl": "https://www.ryanscomputers.com/lenovo-thinkcentre-neo-50s-sff-12th-gen-intel-core-i5-12400-8gb-ddr4-ram-1tb-hdd-black-small-tower-brand-pc",
+        "ImageUrl": "https://www.ryanscomputers.com/storage/products/main/lenovo-thinkcentre-neo-50s-sff-12th-gen-intel-11700218508.webp",
+        "BrandName": "Lenovo",
+        "Attributes": [
+            {
+                "name": "Model",
+                "value": "ThinkCentre Neo 50s SFF"
+            },
+            {
+                "name": "Part No",
+                "value": "11SWS0NS00"
+            },
+            {
+                "name": "Processor Type",
+                "value": "Core i5"
+            },
+            {
+                "name": "RAM",
+                "value": "8GB"
+            },
+            {
+                "name": "Hard Disk Drive (HDD)",
+                "value": "1TB"
+            },
+            {
+                "name": "Solid-State Drive (SSD)",
+                "value": "No"
+            },
+            {
+                "name": "Graphics Chipset",
+                "value": "Intel UHD Graphics 770"
             }
         ]
     }

@@ -6,6 +6,7 @@ const adminWebsiteController = require("../../controllers/adminWebsiteController
 const reviewController = require("../../controllers/reviewController");
 const adminEventController = require("../../controllers/adminEventController");
 const adminProfileController = require("../../controllers/adminProfileController");
+const adminContentController = require("../../controllers/adminContentController");
 
 //manage reviews
 router.get("/rating", reviewController.getWeightedRating);
@@ -44,6 +45,9 @@ router.get("/events/:eventId", adminEventController.getEventById);
 
 router.put("/events/:eId/approve", adminEventController.approveEvent);
 router.delete("/events/:eId/delete", adminEventController.removeEvent);
+
+// manage content management
+router.post("/content-management/run-script", adminContentController.runScript);
 
 /*
     manage profile

@@ -45,6 +45,8 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
     for (const item of jsonData) {
       const productName = item.Name;
       const productModel = item.Attributes.find(attr => attr.name === 'Model').value;
+      const mpnAttribute = item.Attributes.find(attr => attr.name === 'MPN' || attr.name === 'Part No');
+      const mpnValue = mpnAttribute ? mpnAttribute.value : null;
       
       // Check if the product model is present in the product table
       const { data: productData, error: productError } = await supabase
@@ -197,9 +199,8 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
           .from('ProductWebsites')
           .select('pwId')
           .eq('productId', productId)
-          .eq('websiteId', websiteId)
-          .single();
-
+          .eq('websiteId', websiteId);
+          console.log(pwIdData);
         if (pwIderror) {
           console.error(`Error fetching pwId for ${productName}: ${pwIderror.message}`);
           continue;
@@ -209,7 +210,7 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
         // Update product price table
         const { data: updatedPrice, error: priceUpdateError } = await supabase
           .from('ProductPrices')
-          .upsert([{ pwId, price: item.Price, date: new Date().toISOString().split('T')[0] }]);
+          .insert([{ pwId, price: item.Price, date: new Date().toISOString().split('T')[0] }]);
 
         if (priceUpdateError) {
           console.error(`Error updating product price for ${productName}: ${priceUpdateError.message}`);
@@ -218,8 +219,7 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
       } else {
         // Product does not exist in the product table, add to all tables
         console.log('Product does not exist in the product table, add to all tables');
-        const mpnAttribute = item.Attributes.find(attr => attr.name === 'MPN' || attr.name === 'Part No');
-        const mpnValue = mpnAttribute ? mpnAttribute.value : null;
+        
         // Insert data into 'Products' table
         const formattedDataForProduct = {
           productName,
@@ -240,10 +240,18 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
           continue;
         }
         
-        if (Array.isArray(insertedProduct) && insertedProduct[0] && insertedProduct[0].productId) {
-          productId = insertedProduct[0].productId;
-        } else {
-          console.error('Error: Failed to insert product or retrieve productId:', insertedProduct);
+        try {
+          const insertedProductData = await new Promise((resolve, reject) => {
+            if (Array.isArray(insertedProduct) && insertedProduct[0] && insertedProduct[0].productId) {
+              resolve(insertedProduct[0]);
+            } else {
+              reject('Error: Failed to insert product or retrieve productId');
+            }
+          });
+        
+          productId = insertedProductData.productId;
+        } catch (error) {
+          console.error('Error:', error);
           continue;
         }
 
@@ -261,8 +269,8 @@ async function processJsonData(filePath, websiteId, Category, Subcategory) {
           .from('ProductWebsites')
           .select('pwId')
           .eq('productId', productId)
-          .eq('websiteId', websiteId)
-          .single();
+          .eq('websiteId', websiteId);
+          console.log(pwIdData);
 
         if (pwIderror) {
           console.error(`Error fetching pwId for ${productName}: ${pwIderror.message}`);
@@ -313,15 +321,15 @@ processJsonData(LaptopjsonFilePathStartech, 2, 'computer', 'laptop'); // Pass 2 
 processJsonData(LaptopjsonFilePathRyans, 3, 'computer', 'laptop'); // Pass 3 as the websiteId for Ryans
 processJsonData(LaptopjsonFilePathRyans, 3, 'computer', 'laptop');
 
-processJsonData(KeyboardjsonFilePathStartech, 2, 'accessesories', 'keyboard'); // Pass 2 as the websiteId for Startech
+processJsonData(KeyboardjsonFilePathStartech, 2, 'accessories', 'keyboard'); // Pass 2 as the websiteId for Startech
 
 
-processJsonData(KeyboardjsonFilePathRyans, 3, 'accessesories', 'keyboard'); // Pass 3 as the websiteId for Ryans
-processJsonData(KeyboardjsonFilePathRyans, 3, 'accessesories', 'keyboard');
+processJsonData(KeyboardjsonFilePathRyans, 3, 'accessories', 'keyboard'); // Pass 3 as the websiteId for Ryans
+processJsonData(KeyboardjsonFilePathRyans, 3, 'accessories', 'keyboard');
 
-processJsonData(MousejsonFilePathStartech, 2, 'accessesories', 'mouse'); // Pass 2 as the websiteId for Startech
+processJsonData(MousejsonFilePathStartech, 2, 'accessories', 'mouse'); // Pass 2 as the websiteId for Startech
 
 
-processJsonData(MousejsonFilePathRyans, 3, 'accessesories', 'mouse'); // Pass 3 as the websiteId for Ryans
-processJsonData(MousejsonFilePathRyans, 3, 'accessesories', 'mouse');
+processJsonData(MousejsonFilePathRyans, 3, 'accessories', 'mouse'); // Pass 3 as the websiteId for Ryans
+processJsonData(MousejsonFilePathRyans, 3, 'accessories', 'mouse');
 
