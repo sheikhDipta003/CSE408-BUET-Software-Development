@@ -13,7 +13,7 @@ const ProductListing = () => {
   const [selectedFilters, setSelectedFilters] = useState(new Map());
   const [priceRange, setPriceRange] = useState({ lower: 0, upper: 400000 });
   const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [productData, setProductData] = useState([]);
   const navigate = useNavigate();
   const [brandings, setBrands] = useState([]);
@@ -74,7 +74,8 @@ const ProductListing = () => {
       }
       setBrands(brands);
       item.ProductSpecs.forEach((line) => {
-        addToSet(line.specName, line.value);
+        if(line.value !== "" || line.value !== " "|| line.value !== null)
+          addToSet(line.specName, line.value);
       });
       // specs.forEach((value, key) => {
       //   console.log(`Key: ${key}`);
@@ -183,7 +184,7 @@ const ProductListing = () => {
 
   const generateItemsPerPageOptions = () => {
     const options = [];
-    for (let i = 4; i <= productCards.length; i += 4) {
+    for (let i = 10; i <= productCards.length; i += 10) {
       options.push(i);
     }
     // Add an option for 'all' if the last option isn't exactly the total number of products
