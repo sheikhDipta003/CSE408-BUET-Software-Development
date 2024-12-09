@@ -87,13 +87,13 @@ Welcome to the repository for our Price Comparison Website. This platform is des
 
 ## Demo
 
-- [Navigating](https://youtu.be/krloJzYuYs0?si=HUokKF4Q1mNNCTRP) through the products-sort,search,filter
+- [Navigating](https://youtu.be/krloJzYuYs0?si=SzFFqBYiu_297dWc) through the products-sort,search,filter
 
-- [Users](https://youtu.be/xZZz1ywUoRc?si=y90pDNx-oFq0zoG0) can add products to wishlist, get product recommendations and top offers, set price alert, get notified when price drops below threshold, follow/unfollow events and more
+- [Users](https://youtu.be/xZZz1ywUoRc?si=wFV9X6do8jDNG-D_) can add products to wishlist, get product recommendations and top offers, set price alert, get notified when price drops below threshold, follow/unfollow events and more
 
-- [Collaborators](https://youtu.be/eVoZVsXA36U?si=g0xcqd1q9fak9yrG) can promote their own products so that they appear in Top Offers list of users, they can create and manage events and vouchers and more
+- [Collaborators](https://youtu.be/eVoZVsXA36U?si=G6DJrK3pKxukZWVP) can promote their own products so that they appear in Top Offers list of users, they can create and manage events and vouchers and more
 
-- [Admins](https://youtu.be/wqLi1nNQ16c?si=i5zD3Fp6kJnuJP7x) can view overall statistics of TechShoppers, approve/disapprove events and reviews, add/remove users, collaborators and other admins
+- [Admins](https://youtu.be/wqLi1nNQ16c?si=kRf0SRDnFLIup55k) can view overall statistics of TechShoppers, approve/disapprove events and reviews, add/remove users, collaborators and other admins
 
 
 ## API Documentation
