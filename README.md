@@ -103,7 +103,7 @@ Welcome to the repository for our Price Comparison Website. This platform is des
 
 ## Additional Information
 
-- Since the supbase project has been paused and cannot be restored via dashboard, [follow these instructions]() in order to restore the backup database and run the project
+- Since the supbase project has been paused and cannot be restored via dashboard, [follow these instructions](https://github.com/sheikhDipta003/CSE408-BUET-Software-Development/blob/33e01cd592359902e246e8c3dc0abf95f6847a68/db_backup/db_restoration.md) in order to restore the backup database and run the project
 - Credentials for 3 different kinds of users are given below. You may login as one of them or you may register as a new user:
    1. *customer/normal user:*
 
