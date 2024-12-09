@@ -122,7 +122,7 @@ Welcome to the repository for our Price Comparison Website. This platform is des
       **username:** afnanCollab
 
       **password:** 12345aA@
-
+- Only an admin can add a new admin or new collaborator. So, you can only register as a normal user, not as admin/collaborator.
 
 ## Authors
 - **Sheikh Intiser Uddin Dipta** - *1905003* - [sheikhDipta003](https://github.com/sheikhDipta003)
